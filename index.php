@@ -9,7 +9,7 @@
 
 
 <?php include "views/includes/public/footer.php"; ?>
-
+<!-- -------------------------------comentario--------------------------------- -->
 
 <!-- Mainly scripts -->
 <script src="public/js/jquery-3.1.1.min.js"></script>
