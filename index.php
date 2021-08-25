@@ -10,6 +10,7 @@
 
 <?php include "views/includes/public/footer.php"; ?>
 <!-- -------------------------------comentario--------------------------------- -->
+<!-- -------------------------------comentario2--------------------------------- -->
 
 <!-- Mainly scripts -->
 <script src="public/js/jquery-3.1.1.min.js"></script>
