@@ -35,9 +35,9 @@ archivo public/css/style.css
                         <a class="caption-link" href="#" role="button">Inspinia Theme</a>
                     </p>
                 </div>
-                <div class="carousel-image wow zoomIn">
+                <!-- <div class="carousel-image wow zoomIn">
                     <img src="public/img/landing/laptop.png" alt="laptop"/>
-                </div>
+                </div> -->
             </div>
             <!-- Set background for slide in css -->
             <div class="header-back one"></div>
