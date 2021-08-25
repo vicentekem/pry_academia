@@ -2,17 +2,21 @@
 
 session_start();
 
-$siteName = ""; // la variable siteName define el nombre del sistema
+$siteName = "ACADEMIA"; // la variable siteName define el nombre del sistema
 $currentPage = "INICIO";
 //$url_base = "http://localhost/";
 
 //$urls: variable para el manejo de rutas amigables
 // sintax : urls[ alias(url que se mostrará en la navegador ) ] =  (archivo que se va a renderizar)
+
 $urls = [];
+
 $urls["login"] = "login.php";
 $urls["inicio"] = "index.php";
 $urls["error"] = "vwerror.php";
 $urls[""] = "index.php";
+
+
 
 if( isset($_SESSION["usuario_sgh"]) ){
 
@@ -27,6 +31,11 @@ if( isset($_SESSION["usuario_sgh"]) ){
         }
     }
 }
+
+
+
+
+
 
 
 

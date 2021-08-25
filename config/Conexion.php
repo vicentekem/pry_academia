@@ -3,10 +3,10 @@
 class Conexion
 {
 
-    private $host = "10.0.0.3";
-    private $user = "postgres";
-    private $pass = "Diris@123";
-    private $bdname = "db_sgh_dev";
+    private $host = "localhost";
+    private $user = "root";
+    private $pass = "secret";
+    private $bdname = "db_pry_academia";
 
     function getConexion(){
 
@@ -15,7 +15,7 @@ class Conexion
         try{
 
             $conexion = new PDO(
-                "pgsql:host=" . $this->host . ";dbname=". $this->bdname,
+                "mysql:host=" . $this->host . ";dbname=". $this->bdname,
                 $this->user,
                 $this->pass
             );
@@ -25,12 +25,27 @@ class Conexion
                 PDO::ERRMODE_EXCEPTION);
 
         }
+
         catch(PDOException $e){
             throw $e;
         }
-
         return $conexion;
     }
 
 }
+
+/*$result = ["rows" => []];
+$bd = new Conexion();
+$cn = $bd->getConexion();
+$sql = "select * from tbl_usuario";
+$stmt = $cn->prepare($sql);
+$ok = $stmt->execute();
+if ($ok) {
+    if ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $result["rows"][] = $row;
+    }
+}
+
+echo json_encode( $result["rows"] );*/
+
 
