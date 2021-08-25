@@ -15,6 +15,7 @@ archivo public/css/style.css
     <ol class="carousel-indicators">
         <li data-target="#inSlider" data-slide-to="0" class="active"></li>
         <li data-target="#inSlider" data-slide-to="1"></li>
+        <li data-target="#inSlider" data-slide-to="2"></li>
     </ol>
 
     <div class="carousel-inner" role="listbox">
@@ -30,7 +31,7 @@ archivo public/css/style.css
                         we are IN+ studio</h1>
                     <p>Lorem Ipsum is simply dummy text of the printing.</p>
                     <p>
-                        <a class="btn btn-lg btn-primary" href="#" role="button">READ MORE</a>
+                        <a class="btn btn-lg btn-success" href="#" role="button">READ MORE</a>
                         <a class="caption-link" href="#" role="button">Inspinia Theme</a>
                     </p>
                 </div>
@@ -48,7 +49,7 @@ archivo public/css/style.css
                 <div class="carousel-caption blank">
                     <h1>We create meaningful <br/> interfaces that inspire.</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <p><a class="btn btn-lg btn-success" href="#" role="button">Learn more</a></p>
                 </div>
             </div>
             <!-- Set background for slide in css -->
@@ -60,7 +61,7 @@ archivo public/css/style.css
                 <div class="carousel-caption blank">
                     <h1>Confe <br/> interfaces that inspire.</h1>
                     <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                    <p><a class="btn btn-lg btn-success" href="#" role="button">Learn more</a></p>
                 </div>
             </div>
             <!-- Set background for slide in css -->

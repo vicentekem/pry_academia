@@ -7960,7 +7960,11 @@ body.landing-page {
   height: auto;
   display: block;
   font-size: 14px;
-  background: #1ab394;
+  /* background: #15457c; */
+  width: 10rem;
+  background-image: url('../img/logo-academy.svg');
+  background-color: white;
+  /* background-image: ; */
   padding: 15px 20px 15px 20px;
   border-radius: 0 0 5px 5px;
   font-weight: 700;
