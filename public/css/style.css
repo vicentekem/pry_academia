@@ -7963,6 +7963,7 @@ body.landing-page {
   /* background: #15457c; */
   width: 10rem;
   background-image: url('../img/logo-academy.svg');
+  background-repeat: no-repeat;
   background-color: white;
   /* background-image: ; */
   padding: 15px 20px 15px 20px;
