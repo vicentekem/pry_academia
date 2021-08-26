@@ -1,0 +1,5 @@
+git add . --- agregar cambios
+git commit -am "mensaje" --- confirmar cambios
+git pull --- actualizar
+git push (--all) --- subir cambios
+
