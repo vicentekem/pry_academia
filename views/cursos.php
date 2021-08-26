@@ -32,10 +32,7 @@
 
 <body>
     <div id="wrapper">
-<<<<<<< HEAD
-        <?php include '/includes/admin/menu.php'?>
-=======
-    <nav class="navbar-default navbar-static-side" role="navigation">
+        <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
                 <ul class="nav metismenu" id="side-menu">
                     <li class="nav-header">
@@ -270,7 +267,6 @@
 
             </div>
         </nav>
->>>>>>> 1efbe05a1ba018fc7912ffa82ca921295f2201d6
 
         <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
