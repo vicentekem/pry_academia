@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 26/08/2021 11:59:29
+ Date: 26/08/2021 16:17:12
 */
 
 SET NAMES utf8mb4;
@@ -38,8 +38,15 @@ DROP TABLE IF EXISTS `tbl_menu`;
 CREATE TABLE `tbl_menu`  (
   `id` int(11) NOT NULL,
   `name_menu` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `class_icon` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_menu
+-- ----------------------------
+INSERT INTO `tbl_menu` VALUES (1, 'MANTENIMIENTO', 'fa-table');
+INSERT INTO `tbl_menu` VALUES (2, 'PROCESOS', 'fa-cog');
 
 -- ----------------------------
 -- Table structure for tbl_persona
@@ -75,7 +82,12 @@ CREATE TABLE `tbl_submenu`  (
   `file_view` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `icon_class` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_submenu
+-- ----------------------------
+INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tabla.php', NULL);
 
 -- ----------------------------
 -- Table structure for tbl_tablas
@@ -86,7 +98,7 @@ CREATE TABLE `tbl_tablas`  (
   `id_registro` smallint(255) NULL DEFAULT NULL,
   `cod_referencial` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `estado` tinyint(255) NULL DEFAULT NULL
+  `estado` tinyint(255) NULL DEFAULT 1
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
@@ -95,6 +107,9 @@ CREATE TABLE `tbl_tablas`  (
 INSERT INTO `tbl_tablas` VALUES (0, 1, NULL, 'TIPO_MENU', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 1, NULL, 'PAGINA_WEB', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 2, NULL, 'ADMIN', 1);
+INSERT INTO `tbl_tablas` VALUES (0, 2, NULL, 'ROLES', 1);
+INSERT INTO `tbl_tablas` VALUES (2, 1, NULL, 'ADMINISTRADOR', 1);
+INSERT INTO `tbl_tablas` VALUES (2, 2, NULL, 'ESTUDIANTE', 1);
 
 -- ----------------------------
 -- Table structure for tbl_ubigeo
