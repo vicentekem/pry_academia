@@ -11,11 +11,41 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 26/08/2021 16:17:12
+ Date: 27/08/2021 12:18:10
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for tbl_accesos_rol
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_accesos_rol`;
+CREATE TABLE `tbl_accesos_rol`  (
+  `id_rol` int(32) NOT NULL,
+  `id_submenu` int(32) NOT NULL,
+  PRIMARY KEY (`id_rol`, `id_submenu`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_accesos_rol
+-- ----------------------------
+INSERT INTO `tbl_accesos_rol` VALUES (1, 1);
+
+-- ----------------------------
+-- Table structure for tbl_accesos_usuario
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_accesos_usuario`;
+CREATE TABLE `tbl_accesos_usuario`  (
+  `id_usuario` int(32) NOT NULL,
+  `id_submenu` int(32) NOT NULL,
+  PRIMARY KEY (`id_usuario`, `id_submenu`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_accesos_usuario
+-- ----------------------------
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 1);
 
 -- ----------------------------
 -- Table structure for tbl_estudiante
@@ -53,7 +83,7 @@ INSERT INTO `tbl_menu` VALUES (2, 'PROCESOS', 'fa-cog');
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_persona`;
 CREATE TABLE `tbl_persona`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(32) NOT NULL AUTO_INCREMENT,
   `dni` varchar(8) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `apellido_pat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -67,7 +97,12 @@ CREATE TABLE `tbl_persona`  (
   `fec_modificacion` datetime(6) NULL DEFAULT NULL,
   `usu_modificacion` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_persona
+-- ----------------------------
+INSERT INTO `tbl_persona` VALUES (1, '70389257', 'joel', 'vicente', NULL, NULL, NULL, NULL, NULL, '2021-08-27 12:13:45.860842', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_submenu
@@ -87,7 +122,7 @@ CREATE TABLE `tbl_submenu`  (
 -- ----------------------------
 -- Records of tbl_submenu
 -- ----------------------------
-INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tabla.php', NULL);
+INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tablas.php', NULL);
 
 -- ----------------------------
 -- Table structure for tbl_tablas
@@ -3706,6 +3741,11 @@ CREATE TABLE `tbl_usuario`  (
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_usuario
+-- ----------------------------
+INSERT INTO `tbl_usuario` VALUES (1, 1, 'jvicente', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL);
 
 SET FOREIGN_KEY_CHECKS = 1;

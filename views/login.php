@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/vendor/themify-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="assets/vendor/toastr/toastr.min.css">
+    <link href="public/css/bootstrap.min.css" rel="stylesheet">
+    <link href="public/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="public/themify.icons/css/themify-icons.css">
+    <link href="public/css/plugins/toastr/toastr.min.css" rel="stylesheet">
     <!-- MAIN CSS -->
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="public/css/login/main.css">
     <!-- FOR DEMO PURPOSES ONLY. You should remove this in your project -->
-    <link rel="stylesheet" href="assets/css/demo.css">
+    <link rel="stylesheet" href="public/css/login/demo.css">
     <!-- GOOGLE FONTS -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700" rel="stylesheet">
     <!-- ICONS -->
@@ -79,9 +79,9 @@
 <!-- END WRAPPER -->
 </body>
 
-<script src="../public/js/jquery-3.1.1.min.js"></script>
-<script src="../public/js/plugins/toastr/toastr.min.js"></script>
-<script src="assets/js/my_functions.js"></script>
+<script src="public/js/jquery-3.1.1.min.js"></script>
+<script src="public/js/plugins/toastr/toastr.min.js"></script>
+<script src="public/js/my_functions.js"></script>
 
 <script>
 
