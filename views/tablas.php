@@ -1,7 +1,8 @@
 <?php include __DIR__ . '/includes/admin/head.php'?>
 
 <body>
-    <div id="wrapper">
+    <!-- cclasss -->
+    <div id="wrapper" class="sssss">
 
         <?php include __DIR__ . '/includes/admin/menu.php'?>
 
