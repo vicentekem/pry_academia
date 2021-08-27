@@ -12,13 +12,14 @@ $currentPage = "INICIO";
 $urls = [];
 
 $urls["login"] = "login.php";
+$urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
-$urls["error"] = "vwerror.php";
+$urls["error"] = "error.php";
 $urls[""] = "index.php";
 
 
 
-if( isset($_SESSION["usuario_sgh"]) ){
+/*if( isset($_SESSION["usuario_sgh"]) ){
 
     require __DIR__ . "/Conexion.php";
     require __DIR__ . "/../models/Menu.php";
@@ -30,7 +31,7 @@ if( isset($_SESSION["usuario_sgh"]) ){
             $urls[ $row["alias"] ] = $row["archivo_url"];
         }
     }
-}
+}*/
 
 
 
