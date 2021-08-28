@@ -102,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 3rem;
+  max-height: 4rem;
 }
 
 /*--------------------------------------------------------------
@@ -126,13 +126,16 @@ h1, h2, h3, h4, h5, h6 {
 .navbar li {
   position: relative;
 }
+.link{
+position: relative;
+}
 
 .navbar a, .navbar a:focus {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 10px 15px 10px 15px;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 400;
   color: #555555;
   white-space: nowrap;
@@ -145,11 +148,39 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 
-.navbar a:hover,
+/* .navbar a:hover,
 .navbar li:hover > a {
   color: #3498db;
-  border-bottom: 2px solid #3498db;
+  border-bottom: 2px solid #3498db; 
+} */
+
+
+.link::after{
+  content: "";
+  position: absolute;
+  background-color: #ff3c78;
+  /* background-color: #9b2e8c; */
+  height: 2px;
+  width: 0;
+  left: 0;
+  bottom: -10px;
+  transition: 0.3s;
 }
+.link:hover{
+  color: #3498db;
+}
+.link:hover:after{
+  width: 100%;
+}
+
+
+
+
+
+
+
+
+
 
 .navbar .getstarted {
   background: #3498db;
