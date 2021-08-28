@@ -16,6 +16,7 @@ body {
 a {
   color: #3498db;
   text-decoration: none;
+  font-size: 0.9rem;
 }
 
 a:hover {
@@ -75,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
 #header {
   z-index: 997;
   transition: all 0.5s;
-  padding: 22px 0;
+  padding: 1rem 0;
   background: #fff;
 }
 
@@ -101,7 +102,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  max-height: 3rem;
 }
 
 /*--------------------------------------------------------------
@@ -130,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 0 10px 30px;
+  padding: 10px 15px 10px 15px;
   font-size: 15px;
   font-weight: 400;
   color: #555555;
@@ -144,8 +145,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-left: 5px;
 }
 
-.navbar a:hover, .navbar .active, .navbar .active:focus, .navbar li:hover > a {
+.navbar a:hover,
+.navbar li:hover > a {
   color: #3498db;
+  border-bottom: 2px solid #3498db;
 }
 
 .navbar .getstarted {
@@ -328,11 +331,11 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-#hero {
+/* #hero {
   width: 100%;
   height: 70vh;
   margin-top: 70px;
-}
+} */
 
 #hero h1 {
   margin: 0 0 10px 0;
@@ -379,6 +382,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 991px) {
   #hero {
     height: 100vh;
+    margin-top: 3rem;
   }
   #hero .animated {
     -webkit-animation: none;
@@ -438,7 +442,7 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 12rem 0 5rem 0;
   overflow: hidden;
 }
 
@@ -1496,6 +1500,10 @@ section {
   .breadcrumbs {
     margin-top: 72px;
   }
+  section {
+    padding-top: 3rem;
+    overflow: hidden;
+  }
 }
 
 .breadcrumbs h2 {
@@ -1529,6 +1537,7 @@ section {
   color: #3c3c3c;
   content: "/";
 }
+
 
 @media (max-width: 768px) {
   .breadcrumbs .d-flex {
