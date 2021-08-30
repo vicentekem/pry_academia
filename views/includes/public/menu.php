@@ -1,5 +1,5 @@
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center">
+<header id="header" class="fixed-top d-flex align-items-center ">
   <div class="container d-flex align-items-center sapce-header">
 
     <div class="logo">
@@ -17,11 +17,11 @@
       </ul>
       
       <div class="button-sing">
-          <a class="loggin-btn nav-link scrollto" href="#about">Log In</a>
-          <a class=" loggin-btn nav-link scrollto " href="#">Sign Up</a>
+          <a class="loggin-btn nav-link  link" href="#about">Log In</a>
+          <a class=" loggin-btn nav-link scrollto link" href="#">Sign Up</a>
       </div>
 
-      <i class="bi bi-list mobile-nav-toggle"></i>
+      <i class="bi bi-list mobile-nav-toggle outer-shadow hover-in-shadow hamburger-btn"></i>
     </nav><!-- .navbar -->
 
   </div>

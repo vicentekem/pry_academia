@@ -11,6 +11,7 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
+  background: #eff0f4;
 }
 
 a {
@@ -77,7 +78,10 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 997;
   transition: all 0.5s;
   padding: 1rem 0;
-  background: #fff;
+  /* background: #fff; */
+}
+.cambioColor {
+  background-color: #fff;
 }
 
 #header.header-scrolled {
@@ -267,17 +271,52 @@ position: relative;
 /**
 * Mobile Navigation 
 */
+/* .hamburger-btn{
+height: 40px;
+width: 40px;
+display: flex;
+align-items: center;
+cursor: pointer;
+
+justify-content: center;
+transition: all 0.3s ease;
+} */
+
 .mobile-nav-toggle {
+  padding: 0.2rem;
+  border-radius: 50%;
   color: #222222;
   font-size: 28px;
   cursor: pointer;
   display: none;
   line-height: 0;
-  transition: 0.5s;
+  transition: all 0.5s ease;
 }
 
+
+.outer-shadow{
+  box-shadow: 3px 3px 3px #d0d0d0, -3px -3px 3px #f8f8f8;;
+}
+/* .inner-shadow{
+  box-shadow: var(--inner-shadow);
+} */
+.hamburger-btn:hover{
+  box-shadow: inset 3px 3px 3px #d0d0d0, inset -3px -3px 3px #f8f8f8;
+  transition: all 1s ease;
+}
+
+
+
+
+
+
+
+
+
+
+
 .mobile-nav-toggle.bi-x {
-  color: #fff;
+  color: rgb(50, 173, 221);
 }
 
 @media (max-width: 991px) {
@@ -415,6 +454,10 @@ position: relative;
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
+.row{
+  justify-content: center;
+}
+
 @media (min-width: 1024px) {
   #hero {
     background-attachment: fixed;
@@ -426,6 +469,13 @@ position: relative;
     height: 100vh;
     margin-top: 3rem;
   }
+  #hero h1{
+    font-size: 38px;
+  }
+  #hero h2{
+    text-align: center;
+    font-size: 20;
+  }
   #hero .animated {
     -webkit-animation: none;
     animation: none;
@@ -436,6 +486,11 @@ position: relative;
   #hero .hero-img img {
     width: 50%;
   }
+  .caja{
+    width: 85%;
+    align-items: center;
+  }
+  
 }
 
 @media (max-width: 768px) {
@@ -454,6 +509,7 @@ position: relative;
   #hero .hero-img img {
     width: 70%;
   }
+
 }
 
 @media (max-width: 575px) {
@@ -1572,6 +1628,10 @@ section {
   };
   .flex-rigth{
   justify-content: end;
+  }
+  #hero h1{
+    font-size: 32px;
+    text-align: center;
   }
 }
 
