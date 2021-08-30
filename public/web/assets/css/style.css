@@ -84,6 +84,9 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
   padding: 12px 0;
 }
+.logo{
+  padding: 0 3rem 0 0;
+}
 
 #header .logo h1 {
   font-size: 30px;
@@ -113,6 +116,7 @@ h1, h2, h3, h4, h5, h6 {
 */
 .navbar {
   padding: 0;
+  width: 100%;
 }
 
 .navbar ul {
@@ -179,10 +183,12 @@ position: relative;
 
 
 
+/*  sin UP*/
+.button-sing{
+  display: inline-flex;
+}
 
-
-
-.navbar .getstarted {
+/* .navbar .getstarted {
   background: #3498db;
   padding: 8px 25px;
   margin-left: 30px;
@@ -193,8 +199,10 @@ position: relative;
 .navbar .getstarted:hover {
   color: #fff;
   background: #4aa3df;
-}
+} */
 
+
+/* end Sing UP */
 .navbar .dropdown ul {
   display: block;
   position: absolute;
@@ -279,6 +287,9 @@ position: relative;
   .navbar ul {
     display: none;
   }
+  .navbar div{
+    display: none;
+  }
 }
 
 .navbar-mobile {
@@ -299,7 +310,7 @@ position: relative;
   right: 15px;
 }
 
-.navbar-mobile ul {
+.navbar-mobile ul{
   display: block;
   position: absolute;
   top: 55px;
@@ -1535,6 +1546,9 @@ section {
     padding-top: 3rem;
     overflow: hidden;
   }
+  .flex-rigth{
+  justify-content: end;
+  }
 }
 
 .breadcrumbs h2 {
@@ -1555,6 +1569,9 @@ section {
 @media (max-width: 992px) {
   .breadcrumbs ol {
     margin-top: 10px;
+  };
+  .flex-rigth{
+  justify-content: end;
   }
 }
 
@@ -1579,6 +1596,9 @@ section {
   }
   .breadcrumbs ol li {
     display: inline-block;
+  }
+  .flex-rigth{
+  justify-content: end;
   }
 }
 
