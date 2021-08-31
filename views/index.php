@@ -9,11 +9,15 @@
 
     <div class="container">
       <div class="row">
-        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center caja">
           <h1 data-aos="fade-up">Access To High Quality Education</h1>
           <h2 data-aos="fade-up" data-aos-delay="400">La educación tiene el poder de transformar vidas y sociedades.En ACADEMIAS BORIS Creemos que el aprendizaje es un derecho, no un privilegio. La educación es para todos.</h2>
           <div data-aos="fade-up" data-aos-delay="800">
+<<<<<<< HEAD
             <a href="?url=dashboard" class="btn-get-started scrollto">INTRANET</a>
+=======
+            <a href="#about" class="btn-get-started scrollto">COMIENSA  A ESTUDIAR</a>
+>>>>>>> cb1f0d022ab274ecbe9903ebbc5e555e12a51d8a
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left" data-aos-delay="200">
@@ -42,6 +46,9 @@
 
   <!-- Template Main JS File -->
   <script src="public/web/assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="public/web/assets/js/header.js"></script>
+
 
 </body>
 

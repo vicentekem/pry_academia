@@ -16,8 +16,9 @@
       return [...document.querySelectorAll(el)]
     } else {
       return document.querySelector(el)
-    }
+    } 
   }
+
 
   /**
    * Easy event listener function
@@ -32,6 +33,7 @@
       }
     }
   }
+  
 
   /**
    * Easy on scroll event listener 
@@ -50,15 +52,16 @@
       if (!navbarlink.hash) return
       let section = select(navbarlink.hash)
       if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
+      // if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
+      //   navbarlink.classList.add('active')
+      // } else {
+      //   navbarlink.classList.remove('active')
+      // }
     })
   }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
+
+  window.addEventListener('load', navbarlinksActive);
+  onscroll(document, navbarlinksActive);
 
   /**
    * Scrolls to an element with header offset
@@ -151,6 +154,7 @@
    * Scroll with ofset on page load with hash links in the url
    */
   window.addEventListener('load', () => {
+    console.log(window.location.hash);
     if (window.location.hash) {
       if (select(window.location.hash)) {
         scrollto(window.location.hash)
@@ -199,6 +203,8 @@
       });
 
       let portfolioFilters = select('#portfolio-flters li', true);
+      
+      
 
       on('click', '#portfolio-flters li', function(e) {
         e.preventDefault();

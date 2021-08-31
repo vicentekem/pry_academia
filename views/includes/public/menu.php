@@ -1,43 +1,28 @@
 <!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
+<header id="header" class="fixed-top d-flex align-items-center ">
+  <div class="container d-flex align-items-center sapce-header">
 
     <div class="logo">
-        <h1><a href="index.html"><img src="public/web/assets/img/logo.svg" alt=""></a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html"><img src="public/web/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <h1><a href="index.html"><img src="public/web/assets/img/logo.svg" alt=""></a></h1>
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html"><img src="public/web/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    </div>
+    <nav id="navbar" class="navbar grid-header flex-rigth">
+      <ul>
+        <li><a class="nav-link scrollto link" href="#hero">Incio</a></li>
+        <li><a class="nav-link scrollto link" href="#about">Sobre Notros</a></li>
+        <li><a class="nav-link scrollto link" href="#services">Ciclos</a></li>
+        <li><a class="nav-link scrollto link" href="#portfolio">Matricula Virtual</a></li>
+        <li><a class="nav-link scrollto link" href="#team">Contacto</a></li>
+      </ul>
+      
+      <div class="button-sing">
+          <a class="loggin-btn nav-link  link" href="#about">Log In</a>
+          <a class=" loggin-btn nav-link scrollto link" href="#">Sign Up</a>
       </div>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto link" href="#hero">Incio</a></li>
-          <li><a class="nav-link scrollto link" href="#about">Sobre Notros</a></li>
-          <li><a class="nav-link scrollto link" href="#services">Ciclos</a></li>
-          <li><a class="nav-link scrollto link" href="#portfolio">Matricula Virtual</a></li>
-          <li><a class="nav-link scrollto link" href="#team">Contacto</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#pricing">Pricing</a></li> -->
-          <!-- <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down"></i></a>
-            <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-right"></i></a>
-                <ul>
-                  <li><a href="#">Deep Drop Down 1</a></li>
-                  <li><a href="#">Deep Drop Down 2</a></li>
-                  <li><a href="#">Deep Drop Down 3</a></li>
-                  <li><a href="#">Deep Drop Down 4</a></li>
-                  <li><a href="#">Deep Drop Down 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
-            </ul>
-          </li> -->
-          <!-- <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+      <i class="bi bi-list mobile-nav-toggle outer-shadow hover-in-shadow hamburger-btn"></i>
+    </nav><!-- .navbar -->
 
-    </div>
-  </header><!-- End Header -->
+  </div>
+</header><!-- End Header -->
