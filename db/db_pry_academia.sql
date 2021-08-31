@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 30/08/2021 22:04:37
+ Date: 31/08/2021 12:04:48
 */
 
 SET NAMES utf8mb4;
@@ -47,6 +47,7 @@ CREATE TABLE `tbl_accesos_usuario`  (
 -- Records of tbl_accesos_usuario
 -- ----------------------------
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 2);
 
 -- ----------------------------
 -- Table structure for tbl_curso
@@ -54,12 +55,10 @@ INSERT INTO `tbl_accesos_usuario` VALUES (1, 1);
 DROP TABLE IF EXISTS `tbl_curso`;
 CREATE TABLE `tbl_curso`  (
   `id` int(32) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `id_ciclo` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
-  `update_password` binary(1) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
@@ -71,17 +70,35 @@ DROP TABLE IF EXISTS `tbl_curso_programado`;
 CREATE TABLE `tbl_curso_programado`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_curso` int(32) NULL DEFAULT NULL,
-  `id_turno` int(32) NULL DEFAULT NULL,
-  `id_tipo_pago` int(32) NULL DEFAULT NULL,
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
-  `update_password` binary(1) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   `fecha_inicio` date NULL DEFAULT NULL,
   `fecha_fin` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for tbl_curso_programado_tipo_pago
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_curso_programado_tipo_pago`;
+CREATE TABLE `tbl_curso_programado_tipo_pago`  (
+  `id_curso_programado` int(32) NOT NULL,
+  `id_tipo_pago` int(32) NOT NULL,
+  `monto` float(255, 0) NOT NULL,
+  PRIMARY KEY (`id_curso_programado`, `id_tipo_pago`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for tbl_curso_programado_turno
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_curso_programado_turno`;
+CREATE TABLE `tbl_curso_programado_turno`  (
+  `id_curso_programado` int(32) NOT NULL,
+  `id_turno` int(32) NOT NULL,
+  PRIMARY KEY (`id_curso_programado`, `id_turno`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_estudiante
@@ -152,13 +169,14 @@ CREATE TABLE `tbl_persona`  (
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
+  `apellido_mat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_persona
 -- ----------------------------
-INSERT INTO `tbl_persona` VALUES (1, '70389257', 'joel', 'vicente', NULL, NULL, NULL, NULL, NULL, '2021-08-27 12:13:45.860842', NULL, NULL, NULL, 0x31);
+INSERT INTO `tbl_persona` VALUES (1, '70389257', 'joel', 'vicente', NULL, NULL, NULL, NULL, NULL, '2021-08-27 12:13:45.860842', NULL, NULL, NULL, 0x31, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_submenu
@@ -3806,6 +3824,6 @@ CREATE TABLE `tbl_usuario`  (
 -- ----------------------------
 -- Records of tbl_usuario
 -- ----------------------------
-INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTE', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 0x31);
+INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 0x31);
 
 SET FOREIGN_KEY_CHECKS = 1;
