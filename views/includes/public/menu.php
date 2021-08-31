@@ -8,6 +8,7 @@
       <!-- <a href="index.html"><img src="public/web/assets/img/logo.png" alt="" class="img-fluid"></a>-->
     </div>
     <nav id="navbar" class="navbar grid-header flex-rigth">
+      
       <ul>
         <li><a class="nav-link scrollto link" href="#hero">Incio</a></li>
         <li><a class="nav-link scrollto link" href="#about">Sobre Notros</a></li>
@@ -17,8 +18,8 @@
       </ul>
       
       <div class="button-sing">
-          <a class="loggin-btn nav-link  link" href="#about">Log In</a>
-          <a class=" loggin-btn nav-link scrollto link" href="#">Sign Up</a>
+          <a class="loggin-btn nav-link  link" href="?login">Log In</a>
+          <!-- <a class=" loggin-btn nav-link scrollto link" href="#">Sign Up</a> -->
       </div>
 
       <i class="bi bi-list mobile-nav-toggle outer-shadow hover-in-shadow hamburger-btn"></i>
