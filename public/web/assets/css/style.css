@@ -1603,7 +1603,7 @@ section {
     overflow: hidden;
   }
   .flex-rigth{
-  justify-content: end;
+  justify-content: flex-end;
   }
 }
 
@@ -1626,9 +1626,9 @@ section {
   .breadcrumbs ol {
     margin-top: 10px;
   };
-  .flex-rigth{
+  /* .flex-rigth{
   justify-content: end;
-  }
+  } */
   #hero h1{
     font-size: 32px;
     text-align: center;
@@ -1657,9 +1657,9 @@ section {
   .breadcrumbs ol li {
     display: inline-block;
   }
-  .flex-rigth{
+  /* .flex-rigth{
   justify-content: end;
-  }
+  } */
 }
 
 /*--------------------------------------------------------------
