@@ -23,7 +23,7 @@
             </li>
 
             
-            <?php                
+            <?php
                 require_once __DIR__ . "/../../../models/menu.php";
                 
                 $menuModel = new Menu();
@@ -50,7 +50,7 @@
                     ?>
 
                         <li class="">
-                            <a href="?<?php echo $submenu["alias"] ?>"> 
+                            <a href="?url=<?php echo $submenu["alias"] ?>"> 
                                 <?php echo $submenu["name_menu"] ?>
                             </a>
                         </li>

@@ -32,29 +32,29 @@
 
                         <div class="header">
                             <div class="logo text-center">
-                                <img src="assets/img/logo-isat.png" alt="Klorofil Logo">
+                                <img src="public/web/assets/img/logo.svg" alt="Klorofil Logo" width="150px">
                             </div>
                         </div>
 
                         <form class="form-auth-small" id="form_login" method="post" action="controllers/UsuarioController.php">
                             <input type="hidden" name="action" value="login">
                             <div class="form-group">
-                                <label for="txt_usuario" class="control-label sr-only">Email</label>
-                                <input type="email" class="form-control" id="txt_usuario" value="" placeholder="Email"
+                                <label for="txt_usuario" class="control-label sr-only">Usuario o Correo</label>
+                                <input type="email" class="form-control" id="txt_usuario" value="" placeholder="Usuario o Correo"
                                     name="usuario" autocomplete="off">
                             </div>
 
                             <div class="form-group">
-                                <label for="txt_pass" class="control-label sr-only">Password</label>
-                                <input type="password" class="form-control" id="txt_pass" name="clave" value="" placeholder="Password">
+                                <label for="txt_pass" class="control-label sr-only">Contraseña</label>
+                                <input type="password" class="form-control" id="txt_pass" name="clave" value="" placeholder="Contraseña">
                             </div>
 
                             <div class="form-group clearfix">
                                 <label class="fancy-checkbox element-left custom-bgcolor-blue">
                                     <input type="checkbox">
-                                    <span class="text-muted">Remember me</span>
+                                    <span class="text-muted">Recordarme</span>
                                 </label>
-                                <span class="helper-text element-right">Don't have an account? <a href="page-register.html">Register</a></span>
+                                <!-- <span class="helper-text element-right">Don't have an account? <a href="page-register.html">Register</a></span>-->
                             </div>
 
                             <button type="submit" onclick="validate(event)" class="btn btn-primary btn-lg btn-block">Ingresar</button>
