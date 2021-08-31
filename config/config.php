@@ -14,6 +14,7 @@ $urls = [];
 $urls["login"] = "login.php";
 $urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
+$urls["matricula_virtual"] = "matricula_virtual.php";
 $urls["error"] = "error.php";
 $urls[""] = "index.php";
 

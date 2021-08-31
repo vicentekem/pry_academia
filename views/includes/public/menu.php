@@ -13,7 +13,7 @@
         <li><a class="nav-link scrollto link" href="#hero">Incio</a></li>
         <li><a class="nav-link scrollto link" href="#about">Sobre Notros</a></li>
         <li><a class="nav-link scrollto link" href="#services">Ciclos</a></li>
-        <li><a class="nav-link scrollto link" href="#portfolio">Matricula Virtual</a></li>
+        <li><a class="nav-link scrollto link" href="?url=matricula_virtual">Matricula Virtual</a></li>
         <li><a class="nav-link scrollto link" href="#team">Contacto</a></li>
       </ul>
       

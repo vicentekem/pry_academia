@@ -53,9 +53,9 @@ class UsuarioController
                 $array_result = $this->validator->login();
                 if( $array_result["error"] == "" ){
                     @session_start();
-                    $_SESSION['usuario_cor'] = $array_result["row"];
+                    $_SESSION['usuario_academia'] = $array_result["row"];
                     $url_bak = isset($_POST['url_bak']) ? $_POST['url_bak'] : '';
-                    $url = $url_bak ? $url_bak : 'inicio';
+                    $url = $url_bak ? $url_bak : 'dashboard';
                     header('location:../?url=' . $url);
                 }else{
                     header('location:../?url=login');
