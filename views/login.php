@@ -1,3 +1,10 @@
+<?php
+
+    if(isset( $_SESSION["usuario_academia"] )){
+        header('location:?url=dashboard');
+    }
+
+?>
 
 <!doctype html>
 <html lang="es" class="fullscreen-bg">

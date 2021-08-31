@@ -1,3 +1,10 @@
+<?php
+if (!isset($_SESSION["usuario_academia"])) {
+    header('location:?url=login');
+}
+?>
+
+
 <?php include __DIR__ . '/includes/admin/head.php'?>
 
 <body>

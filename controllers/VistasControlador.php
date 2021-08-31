@@ -21,11 +21,11 @@ class VistasControlador
         }else if ($url == "logout"){
             $_SESSION["usuario_sgh"] = null;
             session_destroy();
-            $url_bak = isset($_GET['url_bak']) ? '&url_bak=' . $_GET['url_bak'] : '';
-            header('location:?url=login' . $url_bak);
+            //$url_bak = isset($_GET['url_bak']) ? '&url_bak=' . $_GET['url_bak'] : '';
+            header('location:?url=login');
         }else{
-            $url_origin = $url ? '&url_origin=' . $url : '';
-            header('location:?url=error' . $url_origin);
+            //$url_origin = $url ? '&url_origin=' . $url : '';
+            header('location:?url=error');
         }
     }
 

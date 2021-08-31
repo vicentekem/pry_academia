@@ -22,6 +22,8 @@ class Conexion
                 $this->pass
             );
 
+            $conexion->exec("set names utf8");
+
             $conexion ->setAttribute(
                 PDO::ATTR_ERRMODE,
                 PDO::ERRMODE_EXCEPTION);
@@ -36,7 +38,7 @@ class Conexion
 
     function getAllRows($sql, $data = []){
 
-        $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => null];
+        $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => ""];
         try{
             $cn = $this->getConexion();
             $stmt = $cn->prepare($sql);
@@ -54,14 +56,16 @@ class Conexion
             $stmt = null;
             $cn = null;
         }catch( Exception $e ){
-            $result["error"] = $e->getMessage();
+            $pos = strpos($e->getMessage(), '1001');
+            $msg = substr( $e->getMessage(),$pos + 5);
+            $result["error"] = $msg;
         }
         
         return $result;
     }
 
-    function getRow($sql){
-        $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => null];
+    function getRow($sql, $data = []){
+        $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => ""];
         try{
             $cn = $this->getConexion();
             $stmt = $cn->prepare($sql);
@@ -78,10 +82,43 @@ class Conexion
                     $result["Error"] = "No se encontraron datos";
                 }
             }
+
             $stmt = null;
             $cn = null;
         }catch( Exception $e ){
-            $result["error"] = $e->getMessage();
+            $pos = strpos($e->getMessage(), '1001');
+            $msg = substr( $e->getMessage(),$pos + 5);
+            $result["error"] = $msg;
+        }
+        
+        return $result;
+    }
+
+    function executeProcedure($sql,$data = []){
+        $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => ""];
+        try{
+            $cn = $this->getConexion();
+            $stmt = $cn->prepare($sql);
+           
+            foreach ($data as $key => &$value) { 
+                if( $value && ( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);
+            }
+            
+            $ok = $stmt->execute();
+
+            if ($ok) {
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $result["rows"][] = $row;
+                }
+            }
+            
+            $stmt = null;
+            $cn = null;
+        }catch( Exception $e ){
+
+            $pos = strpos($e->getMessage(), '1001');
+            $msg = substr( $e->getMessage(),$pos + 5);
+            $result["error"] = $msg;
         }
         
         return $result;
