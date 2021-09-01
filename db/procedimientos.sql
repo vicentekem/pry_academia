@@ -10,7 +10,7 @@ BEGIN
 		DECLARE msg varchar(255) default '';
 		set msg = CONCAT('El usuario ', _usuario , ' no existe' );
 		
-    -- select * from tbl_usuario;
+    	-- select * from tbl_usuario;
 		IF (select id from tbl_usuario where usuario = _usuario) is null THEN
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
 		ELSEIF (select id from tbl_usuario 
