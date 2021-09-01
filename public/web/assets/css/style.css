@@ -11,7 +11,8 @@
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
-  background: #eff0f4;
+  /* background: #eff0f4; */
+  background: #ffffff;
 }
 
 a {
@@ -540,7 +541,7 @@ transition: all 0.3s ease;
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 12rem 0 5rem 0;
+  padding: 2rem 0 5rem 0;
   overflow: hidden;
 }
 
@@ -751,6 +752,8 @@ section {
   .counts .image img {
     max-width: 70%;
   }
+  section {
+    padding: 4rem 0 8rem 0;
 }
 
 @media (max-width: 667px) {
@@ -1605,6 +1608,7 @@ section {
   .flex-rigth{
   justify-content: flex-end;
   }
+  
 }
 
 .breadcrumbs h2 {
