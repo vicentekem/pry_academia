@@ -25,6 +25,27 @@ BEGIN
 		END IF;
 		
 END $
+
+
+drop procedure if exists sp_curso$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso`( 
+	_action varchar(10),
+	_id int(32),
+	_description VARCHAR(255)
+)
+BEGIN
+CASE _action
+	WHEN 'ins' THEN
+		INSERT into tbl_curso(description) VALUES(_description);
+	WHEN 'upd' THEN
+		UPDATE tbl_curso set description=_description where id=_id;
+	WHEN 'del' THEN
+		UPDATE tbl_curso SET estado=0 WHERE id=_id;
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
+END $
+
 DELIMITER ;
 
 
