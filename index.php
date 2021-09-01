@@ -8,7 +8,7 @@
     header("Pragma: no-cache");
 
     require_once __DIR__ . "/config/config.php";
-    //require_once __DIR__ . "/config/handler.php";
+    require_once __DIR__ . "/config/handler.php";
     require_once __DIR__ . "/controllers/VistasControlador.php";
 
     $controller = new VistasControlador();

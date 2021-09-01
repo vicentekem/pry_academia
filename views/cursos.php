@@ -1,10 +1,19 @@
 <?php
-if (!isset($_SESSION["usuario_academia"])) {
-    header('location:?url=login');
-}
-?>
 
-<?php include __DIR__ . '/includes/admin/head.php'?>
+    global $siteName;
+    global $currentPage;
+    global $menu;
+    
+    $menu = "Mantenimiento";
+    $currentPage = "Cursos";
+    
+    if (!isset($_SESSION["usuario_academia"])) {
+        header('location:?url=login');
+    }
+    
+    include __DIR__ . '/includes/admin/head.php';
+
+?>
 
 <body>
     <div id="wrapper">
@@ -12,13 +21,16 @@ if (!isset($_SESSION["usuario_academia"])) {
         <?php include __DIR__ . '/includes/admin/menu.php'?>
 
         <div id="page-wrapper" class="gray-bg dashbard-1">
+
             <div class="row border-bottom">
                 <?php include __DIR__ . '/includes/admin/header.php'?>
             </div>
-            <div class="row  border-bottom white-bg dashboard-header">
-                <h1>Cursos</h1>
-            </div>
 
+            <div class="row  border-bottom white-bg dashboard-header">
+                <div class="col-md-3">
+                    <?php include __DIR__ . '/includes/admin/breadcrumb.php'?>
+                </div>
+            </div>
 
             <div class="col-lg-12 px-0 mt-3">
                 <div class="ibox">
