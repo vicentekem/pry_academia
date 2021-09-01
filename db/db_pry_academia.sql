@@ -11,7 +11,7 @@
  Target Server Version : 100418
  File Encoding         : 65001
 
- Date: 31/08/2021 16:12:00
+ Date: 31/08/2021 23:40:26
 */
 
 SET NAMES utf8mb4;
@@ -212,15 +212,31 @@ CREATE TABLE `tbl_persona`  (
   `user_create_up` int(32) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   `apellido_mat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_sexo` int(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_persona
 -- ----------------------------
-INSERT INTO `tbl_persona` VALUES (1, '70389257', 'joel', 'vicente', NULL, NULL, NULL, NULL, NULL, '2021-08-27 12:13:45.860842', NULL, NULL, NULL, 0x31, NULL);
-INSERT INTO `tbl_persona` VALUES (2, '70786548', 'brayhan', 'barragan', NULL, NULL, NULL, NULL, NULL, '2021-08-31 12:17:50.211782', NULL, NULL, NULL, 0x31, NULL);
-INSERT INTO `tbl_persona` VALUES (3, '12345678', 'kevin', 'quispe', NULL, NULL, NULL, NULL, NULL, '2021-08-31 12:18:26.986157', NULL, NULL, NULL, 0x31, NULL);
+INSERT INTO `tbl_persona` VALUES (1, '70389257', 'joel', 'vicente', NULL, NULL, NULL, NULL, NULL, '2021-08-27 12:13:45.860842', NULL, NULL, NULL, 0x31, NULL, NULL);
+INSERT INTO `tbl_persona` VALUES (2, '70786548', 'brayhan', 'barragan', NULL, NULL, NULL, NULL, NULL, '2021-08-31 12:17:50.211782', NULL, NULL, NULL, 0x31, NULL, NULL);
+INSERT INTO `tbl_persona` VALUES (3, '12345678', 'kevin', 'quispe', NULL, NULL, NULL, NULL, NULL, '2021-08-31 12:18:26.986157', NULL, NULL, NULL, 0x31, NULL, NULL);
+
+-- ----------------------------
+-- Table structure for tbl_personal
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_personal`;
+CREATE TABLE `tbl_personal`  (
+  `id` int(32) NOT NULL,
+  `id_persona` int(32) NULL DEFAULT NULL,
+  `id_cargo` int(32) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_personal
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tbl_submenu
@@ -272,6 +288,15 @@ INSERT INTO `tbl_tablas` VALUES (0, 4, NULL, 'TURNOS', 1);
 INSERT INTO `tbl_tablas` VALUES (4, 1, NULL, 'MAÑANA', 1);
 INSERT INTO `tbl_tablas` VALUES (4, 2, NULL, 'TARDE', 1);
 INSERT INTO `tbl_tablas` VALUES (4, 3, NULL, 'NOCHE', 1);
+INSERT INTO `tbl_tablas` VALUES (0, 5, NULL, 'CARGO', 1);
+INSERT INTO `tbl_tablas` VALUES (5, 1, NULL, 'PROFESOR', 1);
+INSERT INTO `tbl_tablas` VALUES (0, 6, NULL, 'SEXO', 1);
+INSERT INTO `tbl_tablas` VALUES (6, 1, NULL, 'MASCULINO', 1);
+INSERT INTO `tbl_tablas` VALUES (6, 2, NULL, 'FEMENINO', 1);
+INSERT INTO `tbl_tablas` VALUES (0, 7, NULL, 'ESTADO_MATRICULA', 1);
+INSERT INTO `tbl_tablas` VALUES (7, 1, NULL, 'REGISTRADO', 1);
+INSERT INTO `tbl_tablas` VALUES (7, 2, NULL, 'CONFIRMADO', 1);
+INSERT INTO `tbl_tablas` VALUES (7, 3, NULL, 'ANULADO', 1);
 
 -- ----------------------------
 -- Table structure for tbl_ubigeo
@@ -3876,5 +3901,35 @@ CREATE TABLE `tbl_usuario`  (
 -- Records of tbl_usuario
 -- ----------------------------
 INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 0x31);
+
+-- ----------------------------
+-- Procedure structure for sp_login
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_login`;
+delimiter ;;
+CREATE PROCEDURE `sp_login`(_usuario varchar(255),
+	_password varchar(255))
+BEGIN
+		DECLARE _id_usuario int default null;
+		DECLARE msg varchar(255) default '';
+		set msg = CONCAT('El usuario ', _usuario , ' no existe' );
+		
+    -- select * from tbl_usuario;
+		IF (select id from tbl_usuario where usuario = _usuario) is null THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
+		ELSEIF (select id from tbl_usuario 
+				where usuario = _usuario and `password`= md5(_password)) is null THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La contraseña ingresada es incorrecta', MYSQL_ERRNO = 1001;			
+		ELSE
+			select u.id,u.id_persona,usuario,p.dni,u.update_password,
+				trim(upper(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,'')))) as nombre_completo
+			from tbl_usuario u
+			inner join tbl_persona p on u.id_persona = p.id
+			where usuario = _usuario and `password`= md5(_password);
+		END IF;
+		
+END
+;;
+delimiter ;
 
 SET FOREIGN_KEY_CHECKS = 1;
