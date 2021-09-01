@@ -1,0 +1,98 @@
+:root{
+    --primero: #784dc3;
+    --marron:#663d14;
+    --gris: #e1e1e1;
+    --blanco: #ffffff;
+    --negro: #000000;
+}
+html{
+    box-sizing: border-box;
+    /*font-size: 62.5%;1rem = 10px*/
+}
+*, *::before, *::after{
+    box-sizing: inherit;
+}
+h2{
+    font-size: 30px;
+}
+/* caja from__first */
+.from__padre{
+    padding-top: 3rem;
+    width: 80%;
+    margin: 0 auto;
+}
+.from__header{
+    width: 100%;
+    min-height: 20rem;
+    /* background-color: red; */
+    display: grid;
+    grid-template-rows: 20% 80%;
+}
+.from__titulo h2{
+    font-size: 46px;
+    /* padding-left: 1rem; */
+    font-weight: 500;
+    /* position: relative; */
+}
+/* .from__titulo h2::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 50px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  } */
+
+.from__parrafo{
+    width: min(90%, 120rem);
+    margin: 0 auto;
+}
+.from__matricula{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+  }
+.from__titulo-matricula{
+    width: 100%;
+    position: relative;
+    /* display: block; */
+    margin-bottom: 20px ;
+}
+.from__titulo-matricula::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 50px;
+    border-radius: 5px;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  }
+
+.campo{
+    margin-bottom: 15px;
+    width: calc(100% / 4 - 20px);
+  }
+
+.campo__caja{
+    height: 2rem;
+    /* height: 45px; */
+    width: 100%;
+    outline: none;
+    font-size: 16px;
+    border-radius: 5px;
+    padding-left: 10px;
+    border: 1px solid #ccc;
+    background-color: #eeeeee;
+    border-bottom-width: 3px;
+    transition: all 0.3s ease;
+}
+.campo input[type="text"]:focus{
+/* border-radius: 5px; */
+  border-color: #9b59b6;
+}
+
+
