@@ -22,7 +22,7 @@
 					</div>
 					<div class="campo campo1">
 						<label class="campo__label">Ciclo</label>
-						<select class="campo__field">
+						<select class="campo__caja">
 							<option>Lost</option>
 							<option>How I met your mother</option>
 							<option>Fargo</option>
@@ -31,7 +31,7 @@
 					</div>
 					<div class="campo2 campo">
 						<label>Turnos</label>
-						<select>
+						<select class="campo__caja">
 							<option>Lost</option>
 							<option>How I met your mother</option>
 							<option>Fargo</option>
@@ -40,7 +40,7 @@
 					</div>
 					<div class="campo3 campo">
 						<label>Tipo Pago</label>
-						<select>
+						<select class="campo__caja">
 							<option>Lost</option>
 							<option>How I met your mother</option>
 							<option>Fargo</option>
@@ -51,15 +51,15 @@
 						<label>Monto</label>
 						<input class="campo__caja" type="text">
 					</div>
-					<div class="campo5 campo">
-						<div>
+					<!-- <div class="campo5 campo">
+						<div class="campo__">
 							<label for="">Ingresa tu cupon de descuento</label>
 							<div>
-								<input type="text">
+								<input class="campo__caja"  type="text">
 							</div>
 							<button>Procesar Cupón</button>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<!-- ============================================ -->
