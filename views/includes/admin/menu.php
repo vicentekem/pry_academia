@@ -24,13 +24,12 @@
 
             
             <?php
+
                 require_once __DIR__ . "/../../../models/menu.php";
                 
                 $menuModel = new Menu();
 
                 $menus = $menuModel->getMenusForUser(1);
-                //echo json_encode( $menus );
-                //exit();
 
                 foreach( $menus["rows"] as $menu ){
             ?>

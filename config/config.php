@@ -14,25 +14,30 @@ $urls = [];
 $urls["login"] = "login.php";
 $urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
+//$urls["cursos"] = "cursos.php";
 $urls["matricula_virtual"] = "matricula_virtual.php";
 $urls["error"] = "error.php";
 $urls[""] = "index.php";
 
+//$urls[ $submenu["alias"] ] = $submenu["file_view"];
 
-
-/*if( isset($_SESSION["usuario_sgh"]) ){
+if( isset($_SESSION["usuario_academia"]) ){
 
     require __DIR__ . "/Conexion.php";
     require __DIR__ . "/../models/Menu.php";
     
     $repository = new Menu();
-    $result =  $repository->getUrlsSubMenusForUser( $_SESSION["usuario_sgh"]["id_usuario"] );
+    $result =  $repository->getSubMenusForUser( $_SESSION["usuario_academia"]["id"] );
+
     if(count($result["rows"]) > 0 ){
+
         foreach( $result["rows"] as $row ){
-            $urls[ $row["alias"] ] = $row["archivo_url"];
+            $urls[ $row["alias"] ] = $row["file_view"];
         }
+
     }
-}*/
+}
+
 
 
 
