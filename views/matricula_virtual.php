@@ -9,7 +9,7 @@
 	<form class="container">
 		<fieldset class="from__padre">
 			<!-- ============================================ -->
-			<div class="from__header">
+			<div class="from__header from__header--spacio">
 				<div class="from__titulo">
 					<h2>Pre-Matricula</h2>
 					<div class="from__parrafo">
@@ -47,9 +47,9 @@
 							<option>True Detective</option>
 						</select>
 					</div>
-					<div class="campo4 campo">
+					<div class="campo4 campo ">
 						<label>Monto</label>
-						<input class="campo__caja" type="text">
+						<input class="campo__caja bloqueo" type="text" disabled>
 					</div>
 					<!-- <div class="campo5 campo">
 						<div class="campo__">
@@ -63,52 +63,105 @@
 				</div>
 			</div>
 			<!-- ============================================ -->
-			<!-- <div>
-				<div>
-					<div>
+			<div class="from__header">
+				<div class="from__matricula">
+					<div class="from__titulo-matricula  from__titulo--2">
 						<h2>Datos Personales</h2>
 					</div>
-					<div>
-						<label>Pais de residencia</label>
-						<select>
-							<option>Peru</option>
-							<option>How I met your moth</option>
-							<option>Fargo</option>
-							<option>True Detective</option>
-						</select>
-					</div>
-					<div class='field'>
-						<label>DNI</label>
-						<div>
-							<b>Registre el DNI del estudiante.</b>
+					<div class="from__matricula  from__datos--personal">
+						<!--=== DNI ===-->
+						<div class="campo campo1 campo__campo">
+							<label>DNI</label>
+							<input class="campo__caja" type="text" placeholder='Su DNI'>
+						</div>
+
+						<!--=== Apellido Paterno===-->
+						<div class="campo campo2 campo__campo">
+							<label>Apelido Paterno</label>
+							<input class="campo__caja" type="text" placeholder='Su Apellido Paterno'>
+						</div>
+
+						<!--=== Apellido Materno===-->
+						<div class="campo campo3 campo__campo">
+							<label>Apelido Materno</label>
+							<input class="campo__caja" type="text" placeholder='Su Apellido Materno'>
+						</div>
+
+						<!--=== Nombres ===-->
+						<div class="campo campo4 campo__campo">
+							<label>Nombres</label>
+							<input class="campo__caja" type="text" placeholder='Sus Nombres'>
+						</div>
+
+						<!--=== Departamento de Residencia ===-->
+						<div class="campo campo5 campo__campo">
+							<label class="campo__label">Departamento de residencia</label>
+							<select class="campo__caja">
+								<option>Lost</option>
+								<option>How I met your mother</option>
+								<option>Fargo</option>
+								<option>True Detective</option>
+							</select>
+						</div>
+
+						<!--=== Provincia de Residenci ===-->
+						<div class="campo campo5 campo__campo">
+							<label class="campo__label">Provincia de residencia</label>
+							<select class="campo__caja">
+								<option>Lost</option>
+								<option>How I met your mother</option>
+								<option>Fargo</option>
+								<option>True Detective</option>
+							</select>
+						</div>
+
+						<!--=== Distrito de Residenci ===-->
+						<div class="campo campo5 campo__campo">
+							<label class="campo__label">Distrito de residencia</label>
+							<select class="campo__caja">
+								<option>Lost</option>
+								<option>How I met your mother</option>
+								<option>Fargo</option>
+								<option>True Detective</option>
+							</select>
+						</div>
+
+						<!--=== Correo ===-->
+						<div class="campo campo6 campo__campo">
+							<label>Correo Electronico</label>
+							<input class="campo__caja" type="email" placeholder='Su Correo Electronico'>
+						</div>
+
+						<!--=== Confirme Correo Electronico ===-->
+						<div class="campo campo7 campo__campo">
+							<label>Confirme Correo Electronico </label>
+							<input class="campo__caja" type="email" placeholder='Su Correo Electronico '>
+						</div>
+
+						<!--=== Celular ===-->
+						<div class="campo campo8 campo__campo">
+							<label>Celular </label>
+							<input class="campo__caja" type="txt" '>
+						</div>
+
+						<!-- <div class="campo5 campo">
+						<div class="campo__">
+							<label for="">Ingresa tu cupon de descuento</label>
 							<div>
-								<input type='text' required value="DNI" placeholder='Su DNI' />
+								<input class="campo__caja"  type="text">
 							</div>
+							<button>Procesar Cupón</button>
 						</div>
+					</div> -->
 					</div>
-					<div class='field'>
-						<label>Apellido Paterno</label>
-						<div>
-							<input type='text' required value="Apellido" placeholder='Su Apellido Paterno' />
-						</div>
-					</div>
-					<div class='field'>
-						<label>Apellido Materno</label>
-						<div>
-							<input type='text' required value="Apellido" placeholder='Su Apellido Materno' />
-						</div>
-					</div>
-
-					<div class="campo">
-						<label class="campo__label" for="nombre">Nombre</label>
-						<div>
-							<input class="campo__field" type="text" placeholder="Sus Nombres" id="nombre">
-						</div>
-					</div>
-
 				</div>
-			</div> -->
-
+			</div>
+			<!-- ============================================ -->
+			<div class="from__caja--boton">
+				<button class="from__btn transparent" id="sign-in-btn">
+				Enviar
+				</button>
+			</div>
 
 		</fieldset>
 	</form>
