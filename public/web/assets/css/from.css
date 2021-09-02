@@ -28,8 +28,8 @@ h2 {
   width: 100%;
   min-height: 20rem;
   /* background-color: red; */
-  display: grid;
-  grid-template-rows: 20% 80%;
+  /* display: grid; */
+  /* grid-template-rows: 20% 80%; */
 }
 .from__header--spacio{
   margin-bottom: 3rem;
