@@ -14,19 +14,8 @@
     $controller = new VistasControlador();
 
     $url = isset($_GET["url"]) ? $_GET["url"] : "";
-
+    
     $controller->loadView( $url );
 // comentario
 
-
-
-
-
-
-
-
-
-
-
-
-
+// Consolas, 'Courier New', monospace

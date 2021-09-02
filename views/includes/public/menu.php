@@ -5,7 +5,7 @@
        <a href="#" class="logo">
          <img src="public/web/assets/img/logo.svg" alt="logo">
        </a>
-       <!-- toggle bar -->
+       <!-- toggle bar --> 
        <div class="burger">
          <span></span>
          <span></span>
@@ -25,6 +25,5 @@
    </div>
  </header>
  <div class="scroll">
-
  </div>
  <!-- Home -->
