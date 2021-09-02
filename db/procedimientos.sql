@@ -60,7 +60,7 @@ CASE _action
 	WHEN 'ins' THEN
 		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_id_registro,_cod_referencial,_description);
 	WHEN 'upd' THEN
-		UPDATE tbl_tablas set description=_description where id_tabla=_id_tabla AND id_registro=_id_registro;
+		UPDATE tbl_tablas set description=_description, cod_referencial=_cod_referencial where id_tabla=_id_tabla AND id_registro=_id_registro;
 	WHEN 'del' THEN
 		UPDATE tbl_tablas SET estado=0 WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
 	ELSE
