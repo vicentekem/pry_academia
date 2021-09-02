@@ -65,7 +65,7 @@
 			<!-- ============================================ -->
 			<div class="from__header">
 				<div class="from__matricula">
-					<div class="from__titulo-matricula  from__titulo--2">
+					<div class="from__titulo-matricula  from__before--header">
 						<h2>Datos Personales</h2>
 					</div>
 					<div class="from__matricula  from__datos--personal">
