@@ -46,8 +46,28 @@ CASE _action
 END CASE;
 END $
 
-DELIMITER ;
 
+drop procedure if exists sp_tablas$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_tablas`( 
+	_action varchar(10),
+	_id_tabla int(32),
+	_id_registro int(32),
+	_description VARCHAR(255),
+	_cod_referencial VARCHAR(255)
+)
+BEGIN
+CASE _action
+	WHEN 'ins' THEN
+		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_id_registro,_cod_referencial,_description);
+	WHEN 'upd' THEN
+		UPDATE tbl_tablas set description=_description where id_tabla=_id_tabla AND id_registro=_id_registro;
+	WHEN 'del' THEN
+		UPDATE tbl_tablas SET estado=0 WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
+END $
+DELIMITER ;
 
 
 
