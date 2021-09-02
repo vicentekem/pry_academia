@@ -45,7 +45,9 @@ class UsuarioController
         $action = isset($_POST['action']) ? $_POST['action'] : "";
         switch ($action){
             case "login":
+
                 $array_result = $this->validator->login();
+                
                 if( $array_result["error"] == "" ){
                     @session_start();
                     $_SESSION['usuario_academia'] = $array_result["row"];

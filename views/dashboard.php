@@ -1,4 +1,8 @@
 <?php
+
+global $siteName;
+global $currentPage;
+
 if (!isset($_SESSION["usuario_academia"])) {
     header('location:?url=login');
 }

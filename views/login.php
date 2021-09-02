@@ -74,8 +74,8 @@
                 <div class="right">
                     <div class="overlay"></div>
                     <div class="content text">
-                       <!-- <h1 class="heading">Klorofil Pro - Bootstrap dashboard template</h1>
-                        <p>by The Develovers</p>-->
+                       <h1 class="heading">ACADEMIA BORIS</h1>
+                        <p>Somos tu mejor opcion</p>
                     </div>
                 </div>
                 <div class="clearfix"></div>

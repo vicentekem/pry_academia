@@ -3,7 +3,7 @@
 session_start();
 
 $siteName = "ACADEMIA"; // la variable siteName define el nombre del sistema
-$currentPage = "INICIO";
+$currentPage = "Inicio";
 //$url_base = "http://localhost/";
 
 //$urls: variable para el manejo de rutas amigables

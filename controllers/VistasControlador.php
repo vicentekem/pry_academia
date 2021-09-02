@@ -19,7 +19,7 @@ class VistasControlador
                 echo "Página no encontrada";
             }
         }else if ($url == "logout"){
-            $_SESSION["usuario_sgh"] = null;
+            $_SESSION["usuario_academia"] = null;
             session_destroy();
             //$url_bak = isset($_GET['url_bak']) ? '&url_bak=' . $_GET['url_bak'] : '';
             header('location:?url=login');

@@ -7,7 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>INSPINIA | Dashboard</title>
+    <title> <?php echo $siteName ?> | <?php echo $currentPage ?></title>
+
+    <link href="public/web/assets/img/logo.svg" rel="icon">
 
     <link href="public/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/font-awesome/css/font-awesome.css" rel="stylesheet">
