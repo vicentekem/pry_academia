@@ -2,9 +2,9 @@
 
     global $siteName;
     global $currentPage;
-    global $menu;
+    global $menup;
     
-    $menu = "Mantenimiento";
+    $menup = "Mantenimiento";
     $currentPage = "Cursos";
     
     if (!isset($_SESSION["usuario_academia"])) {
@@ -68,7 +68,7 @@
                                 <thead>
                                 <tr>
                                     <th>Accion</th>
-                                    <th>Nombre Hospital</th>
+                                    <th>Descripcion</th>
                                     <th>Estado</th>
                                 </tr>
                                 </thead>

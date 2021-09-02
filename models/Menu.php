@@ -32,7 +32,8 @@ class Menu
             INNER JOIN tbl_accesos_usuario au ON u.id=au.id_usuario
             inner JOIN tbl_submenu sm on au.id_submenu =sm.id
             INNER JOIN tbl_menu m on sm.id_menu=m.id
-            WHERE m.id=:id_menu and u.id = :id_usuario"
+            WHERE m.id=:id_menu and u.id = :id_usuario
+            ORDER BY  sm.orden"
         ,["id_usuario" => $idusuario , "id_menu"=> $idmenu]);
     }
 
