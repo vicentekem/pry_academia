@@ -6,9 +6,9 @@
 
   <!-- ================================================================= -->
 
-  <section class="datos__section">
-    <div class="container">
-      <div class="contenedor__tarjeta">
+  <section class="datos__section contenedor--bg">
+    <!-- <div class="container"> -->
+      <div class="contenedor__tarjeta limite">
         <!-- header -->
         <div class="datos__titulo">
           <!-- buscar -->
@@ -44,10 +44,10 @@
           <!-- fin nivel -->
         </div>
         <!-- targetas -->
-        <div class="curso__card">
+        <div class="curso__card--general limite">
 
           <!-- tarjeta 1 -->
-          <div class="curso__card1">
+          <div class="curso__card">
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
@@ -66,7 +66,7 @@
                 est suscipit itaque?
               </p>
               <div class="curso__view">
-                <a href="#">
+                <a href="#" class="curso__btn">
 
                   <span>Cruso</span>
                 </a>
@@ -82,7 +82,7 @@
           <!-- find tarjeta 1 -->
 
           <!-- tarjeta 2 -->
-          <div class="curso__card1">
+          <div class="curso__card">
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
@@ -117,7 +117,7 @@
           <!-- find tarjeta 2 -->
 
           <!-- tarjeta 3 -->
-          <div class="curso__card1">
+          <div class="curso__card">
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
@@ -152,7 +152,7 @@
           <!-- find tarjeta 3 -->
 
           <!-- tarjeta 4 -->
-          <div class="curso__card1">
+          <div class="curso__card">
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
@@ -188,7 +188,7 @@
 
         </div>
       </div>
-    </div>
+    <!-- </div> -->
   </section>
 
 

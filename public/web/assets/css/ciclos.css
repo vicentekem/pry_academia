@@ -1,0 +1,103 @@
+:root {
+  --primero: #1192ee;
+  --marron: #663d14;
+  --gris: #eef2f4;
+  --blanco: #ffffff;
+  --negro: #333;
+  --plomo: #7a7a7a;
+  --font: "Relaway", sans-serif;
+  --font2: "Open Sans", sans-serif;
+  --color: #e7f4fd;
+  --color-alt: #b7defa;
+}
+.contenedor--bg {
+  background-color: var(--gris);
+}
+
+.limite {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+/* curso-bloque__general */
+@media (min-width: 768px) {
+  .curso__card--general {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    /* width: 100%; */
+  }
+}
+
+/* ====tarjetas de curso==== */
+.curso__card {
+  background-color: var(--blanco);
+  box-shadow: 0 2px 4px rgba(174, 190, 205, 0.3);
+  border-radius: 0.5rem;
+  width: 100%;
+}
+.curso__card:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.curso__imagen {
+  border-top-right-radius: 0.5rem;
+}
+.curso__imagen img {
+  transition: transform 0.3s ease-out;
+  max-width: 100%;
+    display: block;
+}
+.curso__imagen img:hover {
+  transform: scale(0.8);
+}
+
+/* =====imagen======= */
+.curso__title {
+  line-height: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 0.15rem;
+  color: #333;
+  font-family: var(--font);
+}
+
+/* =======texto======== */
+.curso__text {
+  font-family: var(--font2);
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--plomo);
+}
+
+/* ======botom========= */
+.curso__btn {
+  font-family: var(--font2);
+  font-weight: 400;
+  font-size: 0.8125rem;
+  background-color: var(--color-alt);
+  color: var(--primero);
+  transition: all 0.3s ease-out;
+}
+.curso__btn:hover {
+  background-color: var(--primero);
+  color: white;
+}
+
+/* ========================================= */
+.curso__profesor {
+  width: 100%;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  background: var(--gris);
+  border-bottom-right-radius: 0.5rem;
+  border-bottom-left-radius: 0.5rem;
+  display: flex;
+  height: 2rem;
+  align-items: center;
+  align-items: center;
+}
+.curso__profesor p {
+  font-family: var(--font2);
+  font-weight: 400;
+  color: var(--plomo);
+  font-family: 0.8125rem;
+  margin: 0;
+}
