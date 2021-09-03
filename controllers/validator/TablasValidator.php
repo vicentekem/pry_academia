@@ -6,8 +6,8 @@
  * Time: 08:34 AM
  */
 
-require_once __DIR__ . "/../../config/Conexion.php";
 require_once __DIR__ . "/../../models/Tablas.php";
+require_once __DIR__ . "/../../utilitario/Utilitario.php";
 
 class TablasValidator
 {
@@ -24,14 +24,19 @@ class TablasValidator
         $data["start int"] = isset($_GET["start"]) ? $_GET["start"] : null;
         $data["length int"] = isset($_GET["length"]) ? $_GET["length"] : null;
 
-        //$data["id_tabla"] = isset($_GET["length"]) ? $_GET["length"] : null;
-        //$data["search"] = isset($_GET["length"]) ? $_GET["length"] : null;
-
-        //if (!$data["usuario"]) { $result["error"] = "Ingrese usuario"; }
-        //if (!$data["clave"]) { $result["error"] = "Ingrese contraseña"; }
-
+        $data["search"] =       Utilitario::getParam("search");
+        $data["id_tabla int"] = Utilitario::getIntParam("id_tabla");
+        
         if ($result["error"] === "") $result = $this->model->qryTablas($data);        
 
+        return $result;
+    }
+
+    public function cbxTablas()
+    {
+        $result = ["error" => ""];
+        $data["id_tabla int"] = Utilitario::getIntParam("id_tabla");
+        if ($result["error"] === "") $result = $this->model->cbxTablas($data);
         return $result;
     }
 

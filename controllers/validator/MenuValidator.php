@@ -1,15 +1,16 @@
 <?php
 
-require_once __DIR__ . "/../../models/Muestra.php";
+require_once __DIR__ . "/../../models/Menu.php";
+require_once __DIR__ . "/../../utilitario/Utilitario.php";
 
-class MuestraValidator
+class MenuValidator
 {
 
     private $repository;
 
     public function __construct()
     {
-        $this->repository = new Muestra();
+        $this->repository = new Menu();
     }
 
         

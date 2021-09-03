@@ -1,14 +1,14 @@
 let crud_tablas = {
     
     dtable: null,
-
+    id_element: null,
     init : (id_table)=>{
-
+        crud_tablas.id_element = id_table;
         crud_tablas.dtable = $('#' + id_table).DataTable({
-            pageLength: 10,
-            searching : false,
-            ordering:false,
-            serverSide: true,
+            pageLength: 10,//cantidad de registros a mostrar por paginas
+            searching : false,//si es true agrega un buscador a la tabla
+            ordering:false,//si es true se habilita la opcion de ordenar por columna
+            serverSide: true,//si es true hace la llamada al servidor por cada pagina
             responsive: true,
             processing: true,
             language: {
@@ -18,7 +18,7 @@ let crud_tablas = {
                 type:"GET",
                 url: "controllers/TablasController.php",
                 data: function(dtp){
-                    dtp.action = 'qry_tablas';
+                    dtp.action = 'qry_tablas';                    
                     dtp.id_tabla = $("#cbx_id_tabla").val();
                     dtp.search = $("#txt_search").val();
                     return dtp;
@@ -38,27 +38,25 @@ let crud_tablas = {
                 {orderable: false, targets: 3, searchable: true,width:"10%",name:'estado'}
             ],
             columns: [
-                /*{
-                    render: function(data, type, row){
-                        let btn = "";
-                        /*var btn = "<a class='fa fa-edit text-warning mx-1' href='#' style='font-size: 1.1em' " +
-                            " onclick='event.preventDefault();openModal(\"upd_persona\","+ JSON.stringify(row) +")' >"
-                            +"</a>";
-    
-                        /*var cambiar_estado = "<a style='font-size: 1.1em' class='fa " +
-                            (row.estado == '1' ? "fa-times text-danger" : "fa-check text-navy") + " mx-1' " +
-                            " onclick='event.preventDefault();cambiarEstado("+ JSON.stringify(row) + ")' href='#' >"
-                            +"</a>";
-                        return "<div class='text-center'>" + btn + "</div>";
+                {
+                    render: function(data, type, row, meta){
+                        
+                        var btn_edit = `<a class='fa fa-edit text-warning upd-row' id=upd_${meta.row} href='#' style='font-size: 1.1em'></a>`;
+                        return "<div class='text-center'>" + btn_edit + "</div>";
                     }
-                },*/
-
-                { data: "id"},
+                },
                 { data: "description"},
                 { data: "cod_referencial"},
                 { data: "estado"}
             ]
         });
+
+        $("#" + crud_tablas.id_element + " tbody").on("click", ".upd-row", function(event){
+            event.preventDefault();
+            var id_row = $(this).attr("id").match(/\d+/)[0];
+            var data = crud_tablas.dtable.row(id_row).data();
+        });
+
     },
 
     reloadTable : ()=>{
@@ -67,15 +65,17 @@ let crud_tablas = {
 
 };
 
-const ajaxCbx = (action,controller,parameters,successCallback,errorCallback) => {
-
+const loadCbx = ()=>{
+    ajaxRequest("cbx_tablas","get","TablasController.php",{ id_tabla:0 },
+    (result) => {
+        loadDataToTemplate('tmpl_cbx_tabla','cbx_id_tabla',result["rows"]);
+    });
 }
 
-
 document.addEventListener('DOMContentLoaded',()=>{
+
     
+
     crud_tablas.init("tbl_tablas");
-
-
-
+    loadCbx();
 });

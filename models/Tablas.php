@@ -1,25 +1,47 @@
 <?php
 
-require_once __DIR__ . "/../services/General.php";
+require_once __DIR__ . "/../models/ModeloBase.php";
 
-class Tablas extends General
+
+class Tablas
 {
-    private $conexion;
+    private $model;
 
     public function __construct()
     {
-        $this->conexion = new Conexion();
+        $this->model = new ModeloBase();
     }
 
     public function qryTablas($data)
     {
-        return $this->conexion->getAllRows(
-            "select id_registro as id,description,cod_referencial,estado from tbl_tablas limit :start,:length ",
-            $data,
-            "select count(id_registro) as cant_rows from tbl_tablas"
-        );
+        $where = Utilitario::generarFiltros($data,[
+            "search" => "description like concat('%',:search,'%')",
+            "id_tabla" => "id_tabla = :id_tabla"
+        ]);
 
+        $where_count = Utilitario::generarFiltros($data,[            
+            "id_tabla" => "id_tabla = :id_tabla"
+        ]);
+        
+        return $data["id_tabla int"] === null ?       
+            $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => null]
+        :
+        $this->model->getAllRows(
+            "SELECT id_registro AS id,description,cod_referencial,estado
+            FROM tbl_tablas $where limit :start,:length ", $data,
+            "SELECT count(id_registro) AS cant_rows FROM tbl_tablas $where_count",
+            ["id_tabla" => $data["id_tabla int"] ]
+        );
     }
-   
+
+    public function cbxTablas($data){
+
+        $where = Utilitario::generarFiltros($data,[
+            "id_tabla" => "id_tabla = :id_tabla"
+        ]);        
+        return $this->model->getAllRows(
+            "SELECT id_registro as id,description FROM tbl_tablas $where", $data
+        );
+    }   
 
 }
