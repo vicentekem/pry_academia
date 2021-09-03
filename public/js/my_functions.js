@@ -78,14 +78,7 @@ function loadLocalFile() {
 }
 
 //funciones generales:
-function loadDataToTemplate(idTemplate, idContentData, data) {
-    var template = $("#" + idTemplate).html();
-    Mustache.parse(template);
 
-    var renderedHtml = Mustache.render(template, {data: data});
-
-    $("#" + idContentData).html(renderedHtml);
-}
 
 function getTimeFromString(dateString) {
 

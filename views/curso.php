@@ -94,5 +94,10 @@
 
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
     
+    <script src="public/js/plugins/dataTables/datatables.min.js"></script>    
+    <script src="public/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="public/js/plugins/mustache/mustache.min.js"></script>
+    <script src="public/js/utilitario/utilitario.js"></script>
+
 </body>
 </html>

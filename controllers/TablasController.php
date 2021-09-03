@@ -29,6 +29,7 @@ class TablasController
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
             case "qry_tablas":$array_result = $this->validator->qryTablas();break;
+            case "cbx_tablas":$array_result = $this->validator->cbxTablas();break;            
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);

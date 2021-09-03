@@ -1,14 +1,14 @@
 <?php
 
-require_once __DIR__ . "/../services/General.php";
+require_once __DIR__ . "/../models/ModeloBase.php";
 
-class Ubigeo extends General
+class Ubigeo
 {
-    private $conexion;
+    private $model;
 
     public function __construct()
     {
-        $this->conexion = new Conexion();
+        $this->model = new ModeloBase();
     }
 
     public function getCbxUbigeo($data)
@@ -17,7 +17,7 @@ class Ubigeo extends General
         $filters = $data["filters_str"];
         try {
 
-            $cn = $this->conexion->getConexion();
+            $cn = $this->model->getConexion();
             $qry_sel = "SELECT  id_ubigeo as id, departamento||' - '||provincia||' - '||distrito as text
                       FROM tbl_ubigeo2019 $filters ";
 
@@ -49,7 +49,7 @@ class Ubigeo extends General
         $filters = $data["filters_str"];
         try {
 
-            $cn = $this->conexion->getConexion();
+            $cn = $this->model->getConexion();
             $qry_sel = "SELECT id, departamento||' - '||provincia||' - '||distrito as text
                       FROM tbl_ubigeo2019 $filters ";
 
@@ -77,7 +77,7 @@ class Ubigeo extends General
         $filters = $data["filters_str"];
         try {
 
-            $cn = $this->conexion->getConexion();
+            $cn = $this->model->getConexion();
             $qry_sel = "select id_pais as id,pais descripcion from (select id_pais,provincia pais
                         from tbl_ubigeo2019 where id_pais <> 'PER' group by provincia,id_pais
                         union select 'PER','PERÚ' order by pais) as paises order by 1 ";

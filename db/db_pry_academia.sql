@@ -3,15 +3,15 @@
 
  Source Server         : MYSQL_LOCAL
  Source Server Type    : MySQL
- Source Server Version : 100418
+ Source Server Version : 100130
  Source Host           : localhost:3306
  Source Schema         : db_pry_academia
 
  Target Server Type    : MySQL
- Target Server Version : 100418
+ Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 02/09/2021 13:07:32
+ Date: 02/09/2021 22:05:33
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `tbl_accesos_rol`  (
   `id_rol` int(32) NOT NULL,
   `id_submenu` int(32) NOT NULL,
   PRIMARY KEY (`id_rol`, `id_submenu`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_accesos_rol
@@ -41,13 +41,15 @@ CREATE TABLE `tbl_accesos_usuario`  (
   `id_usuario` int(32) NOT NULL,
   `id_submenu` int(32) NOT NULL,
   PRIMARY KEY (`id_usuario`, `id_submenu`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_accesos_usuario
 -- ----------------------------
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 2);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 3);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 4);
 
 -- ----------------------------
 -- Table structure for tbl_curso
@@ -56,12 +58,12 @@ DROP TABLE IF EXISTS `tbl_curso`;
 CREATE TABLE `tbl_curso`  (
   `id` int(32) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso
@@ -75,7 +77,6 @@ INSERT INTO `tbl_curso` VALUES (6, 'ONEM', '2021-08-31 12:32:31.653761', NULL, N
 INSERT INTO `tbl_curso` VALUES (7, 'CONAMAT', '2021-08-31 12:32:37.954210', NULL, NULL, 0x31);
 INSERT INTO `tbl_curso` VALUES (8, 'NOMBRAMIENTO', '2021-08-31 12:32:42.369781', NULL, NULL, 0x31);
 INSERT INTO `tbl_curso` VALUES (9, 'ACSCENSO DE NIVEL ESPECIALIZACION', '2021-08-31 12:33:29.542455', NULL, NULL, 0x31);
-INSERT INTO `tbl_curso` VALUES (11, 'curso prueba 2', '2021-09-01 17:04:36.338121', NULL, NULL, 0x31);
 
 -- ----------------------------
 -- Table structure for tbl_curso_beneficios
@@ -86,11 +87,7 @@ CREATE TABLE `tbl_curso_beneficios`  (
   `id_curso` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tbl_curso_beneficios
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_curso_caracteristicas
@@ -101,11 +98,7 @@ CREATE TABLE `tbl_curso_caracteristicas`  (
   `id_curso` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tbl_curso_caracteristicas
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado
@@ -114,14 +107,14 @@ DROP TABLE IF EXISTS `tbl_curso_programado`;
 CREATE TABLE `tbl_curso_programado`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_curso` int(32) NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   `fecha_inicio` date NULL DEFAULT NULL,
   `fecha_fin` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado
@@ -139,7 +132,7 @@ CREATE TABLE `tbl_curso_programado_tipo_pago`  (
   `id_tipo_pago` int(32) NOT NULL,
   `monto` float(255, 0) NOT NULL,
   PRIMARY KEY (`id_curso_programado`, `id_tipo_pago`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado_tipo_pago
@@ -155,7 +148,7 @@ CREATE TABLE `tbl_curso_programado_turno`  (
   `id_curso_programado` int(32) NOT NULL,
   `id_turno` int(32) NOT NULL,
   PRIMARY KEY (`id_curso_programado`, `id_turno`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado_turno
@@ -170,13 +163,13 @@ DROP TABLE IF EXISTS `tbl_estudiante`;
 CREATE TABLE `tbl_estudiante`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_persona` int(32) NOT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `update_password` int(32) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_estudiante
@@ -192,16 +185,12 @@ CREATE TABLE `tbl_matricula`  (
   `id_curso_programado` int(32) NOT NULL,
   `id_estudiante` int(32) NOT NULL,
   `id_tipo_pago` int(32) NOT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id_curso_programado`, `id_estudiante`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tbl_matricula
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_menu
@@ -214,13 +203,13 @@ CREATE TABLE `tbl_menu`  (
   `orden` int(11) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_menu
 -- ----------------------------
-INSERT INTO `tbl_menu` VALUES (1, 'MANTENIMIENTO', 'fa-table', 2, 0x31);
-INSERT INTO `tbl_menu` VALUES (2, 'PROCESOS', 'fa-cog', 1, 0x31);
+INSERT INTO `tbl_menu` VALUES (1, 'MANTENIMIENTO', 'fa-table', 1, 0x31);
+INSERT INTO `tbl_menu` VALUES (2, 'PROCESOS', 'fa-cog', 2, 0x31);
 INSERT INTO `tbl_menu` VALUES (3, 'REPORTES', 'fa-bar-chart', 3, 0x31);
 
 -- ----------------------------
@@ -237,7 +226,7 @@ CREATE TABLE `tbl_persona`  (
   `telefono` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `celular` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_ubigeo` varchar(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
@@ -245,7 +234,7 @@ CREATE TABLE `tbl_persona`  (
   `apellido_mat` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_sexo` int(1) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_persona
@@ -263,11 +252,7 @@ CREATE TABLE `tbl_personal`  (
   `id_persona` int(32) NULL DEFAULT NULL,
   `id_cargo` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of tbl_personal
--- ----------------------------
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_submenu
@@ -275,21 +260,24 @@ CREATE TABLE `tbl_personal`  (
 DROP TABLE IF EXISTS `tbl_submenu`;
 CREATE TABLE `tbl_submenu`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
-  `id_menu` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `name_menu` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `id_tipo_menu` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1:web , 2:admin',
-  `alias` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `file_view` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `icon_class` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_menu` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `name_menu` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `id_tipo_menu` varchar(32) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL COMMENT '1:web , 2:admin',
+  `alias` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `file_view` varchar(80) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `icon_class` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
+  `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_submenu
 -- ----------------------------
-INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tablas.php', NULL, 0x31);
-INSERT INTO `tbl_submenu` VALUES (2, '2', 'MATRICULA', '2', 'matriculas', 'matricula.php', NULL, 0x31);
+INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tablas.php', NULL, 0x31, 1);
+INSERT INTO `tbl_submenu` VALUES (2, '1', 'PERSONAL', '2', 'personal', 'personal.php', NULL, 0x31, 3);
+INSERT INTO `tbl_submenu` VALUES (3, '1', 'CURSO', '2', 'curso', 'curso.php', NULL, 0x31, 2);
+INSERT INTO `tbl_submenu` VALUES (4, '1', 'ALUMNO', '2', 'alumno', 'alumno.php', NULL, 0x31, 4);
 
 -- ----------------------------
 -- Table structure for tbl_tablas
@@ -301,7 +289,7 @@ CREATE TABLE `tbl_tablas`  (
   `cod_referencial` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `estado` tinyint(255) NULL DEFAULT 1
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_tablas
@@ -344,7 +332,7 @@ CREATE TABLE `tbl_ubigeo`  (
   `lng` decimal(30, 10) NULL DEFAULT NULL,
   `idz` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_ubigeo`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_ubigeo
@@ -3788,127 +3776,6 @@ INSERT INTO `tbl_ubigeo` VALUES ('943203', 'EUROPA', 'MOLDAVIA', 'DONDUSENI', 'M
 INSERT INTO `tbl_ubigeo` VALUES ('943204', 'EUROPA', 'MOLDAVIA', 'LIPCANI', 'MDA', 1, NULL, NULL, NULL);
 INSERT INTO `tbl_ubigeo` VALUES ('943205', 'EUROPA', 'MOLDAVIA', 'SLOBODZEJA', 'MDA', 1, NULL, NULL, NULL);
 INSERT INTO `tbl_ubigeo` VALUES ('943206', 'EUROPA', 'MOLDAVIA', 'TIRASPOL', 'MDA', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943301', 'EUROPA', 'ESLOVENIA', 'LIUBLIANA', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943302', 'EUROPA', 'ESLOVENIA', 'BRANIK', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943303', 'EUROPA', 'ESLOVENIA', 'POSTOJNA', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943304', 'EUROPA', 'ESLOVENIA', 'BEVKE', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943305', 'EUROPA', 'ESLOVENIA', 'MARIBOR', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943306', 'EUROPA', 'ESLOVENIA', 'PALANKA', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943307', 'EUROPA', 'ESLOVENIA', 'MARIBOR', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943308', 'EUROPA', 'ESLOVENIA', 'HRASTNIK', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943309', 'EUROPA', 'ESLOVENIA', 'KOBARID', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943310', 'EUROPA', 'ESLOVENIA', 'PTUJ', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943311', 'EUROPA', 'ESLOVENIA', 'KOROSKA', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943312', 'EUROPA', 'ESLOVENIA', 'CELJE', 'SVN', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943401', 'EUROPA', 'UCRANIA', 'RIVNE', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943402', 'EUROPA', 'UCRANIA', 'ODESSA', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943403', 'EUROPA', 'UCRANIA', 'KIEV', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943404', 'EUROPA', 'UCRANIA', 'KHARKOV', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943405', 'EUROPA', 'UCRANIA', 'DNIPROPETROVSK', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943406', 'EUROPA', 'UCRANIA', 'KHERSON', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943407', 'EUROPA', 'UCRANIA', 'GORLOVKA', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943408', 'EUROPA', 'UCRANIA', 'DONETSK', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943409', 'EUROPA', 'UCRANIA', 'KIROVOHRAD', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943410', 'EUROPA', 'UCRANIA', 'CHERNOVTSI', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943411', 'EUROPA', 'UCRANIA', 'CRIMEA', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943412', 'EUROPA', 'UCRANIA', 'POLTAVA', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943413', 'EUROPA', 'UCRANIA', 'LVOV', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943414', 'EUROPA', 'UCRANIA', 'VINNITSA', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943415', 'EUROPA', 'UCRANIA', 'LUHANSK', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943416', 'EUROPA', 'UCRANIA', 'ZAPOROZHIE', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943417', 'EUROPA', 'UCRANIA', 'CHERKASSI', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943418', 'EUROPA', 'UCRANIA', 'CHERNIHIV', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943419', 'EUROPA', 'UCRANIA', 'JMELNITSKY', 'UKR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943501', 'EUROPA', 'UZBEKISTAN', 'TASHKENT', 'UZB', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943502', 'EUROPA', 'UZBEKISTAN', 'ANDIJAN', 'UZB', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943601', 'EUROPA', 'BIELORRUSIA', 'MINSK', 'BLR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943602', 'EUROPA', 'BIELORRUSIA', 'MOGILEV', 'BLR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943603', 'EUROPA', 'BIELORRUSIA', 'VITEBSK', 'BLR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943605', 'EUROPA', 'BIELORRUSIA', 'GOMEL', 'BLR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943701', 'EUROPA', 'REPUBLICA DE MACEDONIA', 'SKOPJE', 'MKD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943702', 'EUROPA', 'REPUBLICA DE MACEDONIA', 'BITOLA', 'MKD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943703', 'EUROPA', 'REPUBLICA DE MACEDONIA', 'OHRID', 'MKD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943704', 'EUROPA', 'REPUBLICA DE MACEDONIA', 'KAVADARCI', 'MKD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943801', 'EUROPA', 'ESLOVAQUIA', 'BRATISLAVA', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943802', 'EUROPA', 'ESLOVAQUIA', 'NITRA', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943803', 'EUROPA', 'ESLOVAQUIA', 'KUTY', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943804', 'EUROPA', 'ESLOVAQUIA', 'KOSICE', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943834', 'EUROPA', 'ESLOVAQUIA', 'KOSICE', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943835', 'EUROPA', 'ESLOVAQUIA', 'BANSKA BYSTRICKA', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943836', 'EUROPA', 'ESLOVAQUIA', 'TOPOLCANY', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943837', 'EUROPA', 'ESLOVAQUIA', 'ZILINA', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943838', 'EUROPA', 'ESLOVAQUIA', 'PRESOV', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943839', 'EUROPA', 'ESLOVAQUIA', 'TRNAVA', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943840', 'EUROPA', 'ESLOVAQUIA', 'TRENCIN', 'SVK', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943901', 'EUROPA', 'LETONIA', 'RIGA', 'LVA', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943902', 'EUROPA', 'LETONIA', 'TUKUMS', 'LVA', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943903', 'EUROPA', 'LETONIA', 'CESIS', 'LVA', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('943904', 'EUROPA', 'LETONIA', 'LIEPAJA', 'LVA', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944001', 'EUROPA', 'LITUANIA', 'VILNA', 'LTU', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944002', 'EUROPA', 'LITUANIA', 'UKMERGE', 'LTU', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944003', 'EUROPA', 'LITUANIA', 'KAUNAS', 'LTU', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944004', 'EUROPA', 'LITUANIA', 'VILNIUS', 'LTU', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944101', 'EUROPA', 'IRLANDA', 'BELFAST', 'IRL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944102', 'EUROPA', 'IRLANDA', 'LONDONDERRY', 'IRL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944201', 'EUROPA', 'ANDORRA', 'PRINCIPADO DE LES ESCALDES', 'AND', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944202', 'EUROPA', 'ANDORRA', 'PRINCIPADO DE ANDORRA LA VELLA', 'AND', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944203', 'EUROPA', 'ANDORRA', 'PRINCIPADO DE CANILLO', 'AND', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944204', 'EUROPA', 'ANDORRA', 'PRINCIPADO DE LA MASSANA', 'AND', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944205', 'EUROPA', 'ANDORRA', 'PRINCIPADO DE SAN JULIAN DE LORIA', 'AND', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944301', 'EUROPA', 'ALBANIA', 'TIRANA', 'ALB', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944401', 'EUROPA', 'ESTONIA', 'TALLINN', 'EST', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944402', 'EUROPA', 'ESTONIA', 'TARTU', 'EST', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944501', 'EUROPA', 'BOSNIA Y HERZEGOVINA', 'SARAJEVO', 'BIH', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944502', 'EUROPA', 'BOSNIA Y HERZEGOVINA', 'TUZLA', 'BIH', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944503', 'EUROPA', 'BOSNIA Y HERZEGOVINA', 'BOSNIA CENTRAL', 'BIH', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944601', 'EUROPA', 'AZERBAIYAN', 'BAKU', 'AZE', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944701', 'EUROPA', 'SAN MARINO', 'SAN MARINO', 'SMR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944801', 'EUROPA', 'SERBIA', 'BELGRADO', 'SRB', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944802', 'EUROPA', 'SERBIA', 'SUMADIJA', 'SRB', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('944901', 'EUROPA', 'REPUBLICA DE MACEDONIA', 'SKOPJE', 'MKD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945001', 'EUROPA', 'REINO UNIDO', 'ESCOCIA', 'GBR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945002', 'EUROPA', 'REINO UNIDO', 'GALES', 'GBR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945003', 'EUROPA', 'REINO UNIDO', 'INGLATERRA', 'GBR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945004', 'EUROPA', 'REINO UNIDO', 'IRLANDA DEL NORTE', 'GBR', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945101', 'EUROPA', 'PAISES BAJOS', 'GRONINGA', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945102', 'EUROPA', 'PAISES BAJOS', 'FRISIA', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945103', 'EUROPA', 'PAISES BAJOS', 'DRENTE', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945104', 'EUROPA', 'PAISES BAJOS', 'OVERIJSSEL', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945105', 'EUROPA', 'PAISES BAJOS', 'GÜELDRES', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945106', 'EUROPA', 'PAISES BAJOS', 'UTRECHT', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945107', 'EUROPA', 'PAISES BAJOS', 'FLEVOLANDA', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945108', 'EUROPA', 'PAISES BAJOS', 'HOLANDA SEPTENTRIONAL', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945109', 'EUROPA', 'PAISES BAJOS', 'HOLANDA MERIDIONAL', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945110', 'EUROPA', 'PAISES BAJOS', 'ZELANDA', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945111', 'EUROPA', 'PAISES BAJOS', 'BRABANTE SEPTENTRIONAL', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('945112', 'EUROPA', 'PAISES BAJOS', 'LIMBURGO', 'NLD', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950101', 'OCEANIA', 'AUSTRALIA', 'ADELAIDA', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950102', 'OCEANIA', 'AUSTRALIA', 'BRISBANE', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950103', 'OCEANIA', 'AUSTRALIA', 'CAMBERRA', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950104', 'OCEANIA', 'AUSTRALIA', 'MELBOURNE', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950105', 'OCEANIA', 'AUSTRALIA', 'SIDNEY', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950106', 'OCEANIA', 'AUSTRALIA', 'PERTH', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950107', 'OCEANIA', 'AUSTRALIA', 'VICTORIA', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950108', 'OCEANIA', 'AUSTRALIA', 'QUEENSLAND', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950109', 'OCEANIA', 'AUSTRALIA', 'TASMANIA', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950110', 'OCEANIA', 'AUSTRALIA', 'NUEVA GALES DEL SUR', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950111', 'OCEANIA', 'AUSTRALIA', 'TERRITORIO DEL NORTE', 'AUS', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950201', 'OCEANIA', 'NUEVA ZELANDA', 'AUCKLAND', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950202', 'OCEANIA', 'NUEVA ZELANDA', 'WELLINGTON', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950203', 'OCEANIA', 'NUEVA ZELANDA', 'OTAGO', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950204', 'OCEANIA', 'NUEVA ZELANDA', 'NAPIER', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950205', 'OCEANIA', 'NUEVA ZELANDA', 'HASTINGS', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950206', 'OCEANIA', 'NUEVA ZELANDA', 'CHRISTCHURCH', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950207', 'OCEANIA', 'NUEVA ZELANDA', 'BAHIA DE PLENTY', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950208', 'OCEANIA', 'NUEVA ZELANDA', 'INVERCARGILL', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950209', 'OCEANIA', 'NUEVA ZELANDA', 'HAMILTON', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950210', 'OCEANIA', 'NUEVA ZELANDA', 'MANAWATU-WANGANUI', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950211', 'OCEANIA', 'NUEVA ZELANDA', 'CANTERBURY', 'NZL', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950301', 'OCEANIA', 'PAPUA NUEVA GUINEA', 'PUERTO MORESBY', 'PNG', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950401', 'OCEANIA', 'SAMOA AMERICANA', 'PAGO PAGO', 'ASM', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950501', 'OCEANIA', 'PALAOS', 'KOROR', 'PLW', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950601', 'OCEANIA', 'MICRONESIA', 'POHNPEI', 'FSM', 1, NULL, NULL, NULL);
-INSERT INTO `tbl_ubigeo` VALUES ('950701', 'OCEANIA', 'KIRIBATI', 'BETIO', 'KIR', 1, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_usuario
@@ -3919,14 +3786,14 @@ CREATE TABLE `tbl_usuario`  (
   `id_persona` int(32) NULL DEFAULT NULL,
   `usuario` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `password` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
   `update_password` binary(1) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_usuario
@@ -3938,7 +3805,7 @@ INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f2
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_curso`;
 delimiter ;;
-CREATE PROCEDURE `sp_curso`(_action varchar(10),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso`(_action varchar(10),
 	_id int(32),
 	_description VARCHAR(255))
 BEGIN
@@ -3961,7 +3828,7 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_login`;
 delimiter ;;
-CREATE PROCEDURE `sp_login`(_usuario varchar(255),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_login`(_usuario varchar(255),
 	_password varchar(255))
 BEGIN
 		DECLARE _id_usuario int default null;
@@ -3991,7 +3858,7 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_tablas`;
 delimiter ;;
-CREATE PROCEDURE `sp_tablas`(_action varchar(10),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_tablas`(_action varchar(10),
 	_id_tabla int(32),
 	_id_registro int(32),
 	_description VARCHAR(255),

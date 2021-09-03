@@ -1,19 +1,19 @@
 <?php
 
-require_once __DIR__ . "/../services/General.php";
+require_once __DIR__ . "/../models/ModeloBase.php";
 
-class Usuario extends General
+class Usuario
 {
-    private $conexion;
+    private $model;
 
     public function __construct()
     {
-        $this->conexion = new Conexion();
+        $this->model = new ModeloBase();
     }
 
     public function login($data)
     {
-        return $this->conexion->getRow(
+        return $this->model->getRow(
             "call sp_login(:usuario,:clave)",
             $data
         );
