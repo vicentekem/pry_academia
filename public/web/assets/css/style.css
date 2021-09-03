@@ -280,6 +280,33 @@ form.php-email-form {
   gap: 0.5rem;
 }
 
+/* Sobre Nosotro */
+.spacio__caja {
+  justify-content: space-between;
+  /* background-color: rebeccapurple; */
+}
+.contenido__img {
+  width: 50%;
+  /* background-color: red; */
+}
+.imagen {
+  width: 100%;
+}
+.contenido__title{
+  /* background-color: red; */
+  width: 100%;
+  
+}
+.title__nosotros {
+  text-align: center;
+  font-size: 40px;
+  /* font-size: 40px; */
+  font-weight: bold;
+  line-height: 50px;
+  color: #222;
+  font-family: "Raleway", sans-serif;
+}
+
 /* Mobile Navigation  */
 
 /* .hamburger-btn{
@@ -754,9 +781,9 @@ section {
   .counts .image img {
     max-width: 70%;
   }
-  section {
+  /* section {
     padding: 4rem 0 8rem 0;
-  }
+  } */
 }
 /* } faltaba agregar*/
 @media (max-width: 667px) {

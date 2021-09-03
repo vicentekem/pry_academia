@@ -32,8 +32,10 @@
   <link href="public/web/assets/css/header.css" rel="stylesheet">
   <!-- template Matricula virtual -->
   <link href="public/web/assets/css/from.css" rel="stylesheet">
+  <!-- Sobre Nosotros -->
+  <link href="public/web/assets/css/sobreNosotros" rel="stylesheet">
 
-  <!-- =======================================================
+  <!-- ======================================================
   * Template Name: Vesperr - v4.3.0
   * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
   * Author: BootstrapMade.com
