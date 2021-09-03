@@ -65,7 +65,8 @@ h2 {
   height: 3px;
   width: 80%;
   border-radius: 5px;
-  background: linear-gradient(135deg, #71a0e6,#1cd2d8,#93EDC7 ); 
+  /* background: linear-gradient(135deg, #71a0e6,#1cd2d8,#93EDC7 );  */
+  background: linear-gradient(135deg,#93c9ed ,#93EDC7 ); 
 }
 .from__before--header::before{
 height: 4px;
@@ -92,7 +93,8 @@ height: 4px;
 }
 .campo input[type="text"]:focus {
   /* border-radius: 5px; */
-  border-color: #9b59b6;
+  /* border-color: #9b59b6; */
+  border-color: #7ed0f3;
 }
 .bloqueo{
   background-color: var(--gris);
