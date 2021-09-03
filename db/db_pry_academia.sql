@@ -11,7 +11,7 @@
  Target Server Version : 100418
  File Encoding         : 65001
 
- Date: 31/08/2021 23:40:26
+ Date: 02/09/2021 13:07:32
 */
 
 SET NAMES utf8mb4;
@@ -61,7 +61,7 @@ CREATE TABLE `tbl_curso`  (
   `create_up` datetime(6) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
 
 -- ----------------------------
 -- Records of tbl_curso
@@ -75,6 +75,37 @@ INSERT INTO `tbl_curso` VALUES (6, 'ONEM', '2021-08-31 12:32:31.653761', NULL, N
 INSERT INTO `tbl_curso` VALUES (7, 'CONAMAT', '2021-08-31 12:32:37.954210', NULL, NULL, 0x31);
 INSERT INTO `tbl_curso` VALUES (8, 'NOMBRAMIENTO', '2021-08-31 12:32:42.369781', NULL, NULL, 0x31);
 INSERT INTO `tbl_curso` VALUES (9, 'ACSCENSO DE NIVEL ESPECIALIZACION', '2021-08-31 12:33:29.542455', NULL, NULL, 0x31);
+INSERT INTO `tbl_curso` VALUES (11, 'curso prueba 2', '2021-09-01 17:04:36.338121', NULL, NULL, 0x31);
+
+-- ----------------------------
+-- Table structure for tbl_curso_beneficios
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_curso_beneficios`;
+CREATE TABLE `tbl_curso_beneficios`  (
+  `id` int(32) NOT NULL,
+  `id_curso` int(32) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_curso_beneficios
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for tbl_curso_caracteristicas
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_curso_caracteristicas`;
+CREATE TABLE `tbl_curso_caracteristicas`  (
+  `id` int(32) NOT NULL,
+  `id_curso` int(32) NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of tbl_curso_caracteristicas
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado
@@ -3903,6 +3934,29 @@ CREATE TABLE `tbl_usuario`  (
 INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 0x31);
 
 -- ----------------------------
+-- Procedure structure for sp_curso
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_curso`;
+delimiter ;;
+CREATE PROCEDURE `sp_curso`(_action varchar(10),
+	_id int(32),
+	_description VARCHAR(255))
+BEGIN
+CASE _action
+	WHEN 'ins' THEN
+		INSERT into tbl_curso(description) VALUES(_description);
+	WHEN 'upd' THEN
+		UPDATE tbl_curso set description=_description where id=_id;
+	WHEN 'del' THEN
+		UPDATE tbl_curso SET estado=0 WHERE id=_id;
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for sp_login
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_login`;
@@ -3914,7 +3968,7 @@ BEGIN
 		DECLARE msg varchar(255) default '';
 		set msg = CONCAT('El usuario ', _usuario , ' no existe' );
 		
-    -- select * from tbl_usuario;
+    	-- select * from tbl_usuario;
 		IF (select id from tbl_usuario where usuario = _usuario) is null THEN
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
 		ELSEIF (select id from tbl_usuario 
@@ -3928,6 +3982,31 @@ BEGIN
 			where usuario = _usuario and `password`= md5(_password);
 		END IF;
 		
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_tablas
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_tablas`;
+delimiter ;;
+CREATE PROCEDURE `sp_tablas`(_action varchar(10),
+	_id_tabla int(32),
+	_id_registro int(32),
+	_description VARCHAR(255),
+	_cod_referencial VARCHAR(255))
+BEGIN
+CASE _action
+	WHEN 'ins' THEN
+		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_id_registro,_cod_referencial,_description);
+	WHEN 'upd' THEN
+		UPDATE tbl_tablas set description=_description where id_tabla=_id_tabla AND id_registro=_id_registro;
+	WHEN 'del' THEN
+		UPDATE tbl_tablas SET estado=0 WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
 END
 ;;
 delimiter ;

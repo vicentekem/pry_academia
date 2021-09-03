@@ -7,13 +7,12 @@
 
   <title>ACADEMY</title>
   <meta content="" name="description">
-  <meta content="" name="keywords">
+  <!-- <meta content="" name="keywords"> -->
 
  <!-- Favicons -->
  <link href="public/web/assets/img/logo.svg" rel="icon">
   <!-- <link href="../../../public/img/logo.svg" rel="icon"> -->
   <!-- <link href="public/web/assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
-
   <!-- Google Fonts -->
   <link href="public/web/https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
@@ -33,8 +32,10 @@
   <link href="public/web/assets/css/header.css" rel="stylesheet">
   <!-- template Matricula virtual -->
   <link href="public/web/assets/css/from.css" rel="stylesheet">
+  <!-- Sobre Nosotros -->
+  <link href="public/web/assets/css/sobreNosotros" rel="stylesheet">
 
-  <!-- =======================================================
+  <!-- ======================================================
   * Template Name: Vesperr - v4.3.0
   * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
   * Author: BootstrapMade.com

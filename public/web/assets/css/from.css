@@ -66,7 +66,9 @@ h2 {
   width: 80%;
   border-radius: 5px;
   background: linear-gradient(135deg, #71a0e6,#1cd2d8,#93EDC7 ); 
-
+}
+.from__before--header::before{
+height: 4px;
 }
 
 .campo {
@@ -94,6 +96,7 @@ h2 {
 }
 .bloqueo{
   background-color: var(--gris);
+  cursor: no-drop;
   /* border-color: none; */
 }
 
@@ -123,7 +126,7 @@ h2 {
   margin-bottom: 2.5rem;
 }
 .from__datos--personal{
-  margin-top: -1.1rem;
+  margin-top: -0.1rem;
 }
 .campo__campo {
   margin-bottom: 1.5rem;
