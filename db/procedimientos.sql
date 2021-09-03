@@ -70,7 +70,8 @@ END $
 DELIMITER ;
 
 
-
+select id,description, (select count(id) from tbl_curso) as total_count from tbl_curso where description like '%%'
+limit 5,7;
 
 
 

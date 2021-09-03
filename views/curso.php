@@ -10,11 +10,15 @@
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
     }
-    
-    include __DIR__ . '/includes/admin/head.php';
-
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <?php include __DIR__ . '/includes/admin/head.php';?>
+    <link href="public/js/plugins/dataTable/datatables.min.css" rel="stylesheet">
 
+</head>
 <body>
     <div id="wrapper">
 

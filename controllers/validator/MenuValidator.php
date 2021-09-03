@@ -12,11 +12,7 @@ class MuestraValidator
         $this->repository = new Muestra();
     }
 
-    
-    function getMuestras()
-    {
-              
-    }
+        
 
 
 }

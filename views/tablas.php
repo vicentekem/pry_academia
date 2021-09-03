@@ -2,19 +2,30 @@
 
     global $siteName;
     global $currentPage;
-    global $menup;
+    global $menu_sup;
     
-    $menup = "Mantenimiento";
+    $menu_sup = "Mantenimiento";
     $currentPage = "Tablas";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
     }
-    
-    include __DIR__ . '/includes/admin/head.php';
 
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+
+    <?php include __DIR__ . '/includes/admin/head.php';?>
+    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <style>
+        #tbl_tablas_wrapper{
+            padding-left : 0 !important;
+            padding-right : 0 !important;            
+        }       
+    </style>
+</head>
 <body>
     <div id="wrapper">
 
@@ -46,29 +57,43 @@
 
                         <div class="row">
 
-                            <div class="form-group input-group col-12 col-md-7 col-lg-11">
-                                <input type="search" id="txt_fltr_nombre" placeholder="Buscar"
-                                        class="form-control text-uppercase" oninput="buscarTabla()"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-info" onclick="buscarTabla()">
-                                        <span class="fa fa-search"></span>
-                                    </button>
+                            <div class="form-group mb-0 col-12 col-md-5">
+                                <label for="cbx_id_tabla">Tabla</label>
+                                <select class='form-control text-uppercase' onchange = "crud_tablas.reloadTable()"
+                                        name='cbx_id_tabla' id='cbx_id_tabla' style="width: 100%;">
+                                    <option>-Seleccione-</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group mb-0 col-12 col-md-5">
+                                <label for="txt_search">Buscar</label>
+                                <div class="form-group input-group">
+                                    <input type="search" id="txt_search" placeholder="Buscar"
+                                        class="form-control text-uppercase" onsearch="crud_tablas.reloadTable()"/>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-info" onclick="crud_tablas.reloadTable()">
+                                            <span class="fa fa-search"></span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="form-group col-12 col-md-2 col-lg-1 ">
+                            <div class="form-group mb-0 col-12 col-md-2">
+                                <label for="" style="display:block;opacity:0" >...</label>
                                 <button class="btn btn-success" onclick="openModal('ins_dependencia')">
                                     Nuevo
                                 </button>
                             </div>
                         </div>
 
-                        <div class="table-responsive w-100 text-sm">
-                            <table id="lista_datatables" class="table table-bordered table-hover">
+                        <div class="table-responsive w-100 text-sm mx-0">
+
+                            <table id="tbl_tablas" class="table table-bordered table-hover w-100">
                                 <thead>
                                 <tr>
                                     <th>Accion</th>
-                                    <th>Nombre Hospital</th>
+                                    <th>Descripcion</th>
+                                    <th>Codigo Referencial</th>
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
@@ -88,7 +113,14 @@
         </div>
     </div>
 
+
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
-    <script src="../public/includes/tablas.js"></script>
+
+    <script src="public/js/plugins/dataTables/datatables.min.js"></script>
+    <script src="public/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+    <script src="public/js/my_functions.js"></script>
+
+    <script src="public/js/scripts/tablas.js"></script>
+
 </body>
 </html>

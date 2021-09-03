@@ -8,9 +8,13 @@ if (!isset($_SESSION["usuario_academia"])) {
 }
 ?>
 
-
-<?php include __DIR__ . '/includes/admin/head.php'?>
-
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <?php include __DIR__ . '/includes/admin/head.php';?>
+    
+</head>
 <body>
     <div id="wrapper">
 
