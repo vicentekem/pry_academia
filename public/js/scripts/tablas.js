@@ -73,6 +73,9 @@ const loadCbx = ()=>{
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
+
+    
+
     crud_tablas.init("tbl_tablas");
     loadCbx();
 });

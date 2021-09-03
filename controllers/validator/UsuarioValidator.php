@@ -6,7 +6,7 @@
  * Time: 08:34 AM
  */
 
-require_once __DIR__ . "/../../config/Conexion.php";
+require_once __DIR__ . "/../../models/Usuario.php";
 require_once __DIR__ . "/../../utilitario/Utilitario.php";
 
 class UsuarioValidator

@@ -19,12 +19,8 @@
 
     <?php include __DIR__ . '/includes/admin/head.php';?>
     <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
-    <style>
-        #tbl_tablas_wrapper{
-            padding-left : 0 !important;
-            padding-right : 0 !important;            
-        }       
-    </style>
+    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    
 </head>
 <body>
     <div id="wrapper">
@@ -67,12 +63,9 @@
                             <div class="form-group mb-0 col-12 col-md-5">
                                 <label for="txt_search">Buscar</label>
                                 <div class="form-group input-group">
-                                    <input type="search" id="txt_search" placeholder="Buscar"
-                                        class="form-control text-uppercase" onsearch="crud_tablas.reloadTable()"/>
+                                    <input type="search" id="txt_search" placeholder="Buscar" class="form-control text-uppercase"/>
                                     <div class="input-group-append">
-                                        <button class="btn btn-info" onclick="crud_tablas.reloadTable()">
-                                            <span class="fa fa-search"></span>
-                                        </button>
+                                        <button id="btn_search" class="btn btn-info"> <span class="fa fa-search"></span></button>
                                     </div>
                                 </div>
                             </div>

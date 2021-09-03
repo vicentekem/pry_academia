@@ -2,9 +2,9 @@
 
     global $siteName;
     global $currentPage;
-    global $menup;
+    global $menu_sup;
     
-    $menup = "Mantenimiento";
+    $menu_sup = "Mantenimiento";
     $currentPage = "Cursos";
     
     if (!isset($_SESSION["usuario_academia"])) {

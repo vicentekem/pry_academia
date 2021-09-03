@@ -46,7 +46,7 @@ class ModeloBase
         try{
             $cn = $this->conexion->getConexion();
             $stmt = $cn->prepare($sql);
-            $this->bindFilters($stmt,$data);            
+            $this->conexion->bindFilters($stmt,$data);
             $ok = $stmt->execute();
             if ($ok) {
                 if($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $result["row"] = $row;}

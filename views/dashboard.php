@@ -1,12 +1,18 @@
 <?php
 
-global $siteName;
-global $currentPage;
+    global $siteName;
+    global $currentPage;
+    global $menu_sup;
+    
+    $menu_sup = "";
+    //$currentPage = "Inicio";
+    
+    if (!isset($_SESSION["usuario_academia"])) {
+        header('location:?url=login');
+    }
 
-if (!isset($_SESSION["usuario_academia"])) {
-    header('location:?url=login');
-}
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -24,10 +30,10 @@ if (!isset($_SESSION["usuario_academia"])) {
             <div class="row border-bottom">
                 <?php include __DIR__ . '/includes/admin/header.php'?>
             </div>
-            <div class="row  border-bottom white-bg dashboard-header">
-                <h1>Bienvenido</h1>
-            </div>
 
+            <!-- <div class="row  border-bottom white-bg dashboard-header">
+                <h1>Bienvenido</h1>
+            </div> -->
         </div>
     </div>
 
