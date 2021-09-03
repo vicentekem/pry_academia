@@ -15,7 +15,7 @@
          <ul>
            <li><a class="link" href="?index.php">Incio</a></li>
            <li><a class="link" href="?url=sobre__nosotros.php">Sobre Notros</a></li>
-           <li><a class="link" href="#services">Ciclos</a></li>
+           <li><a class="link" href="?url=ciclos.php">Ciclos</a></li>
            <li><a class="link" href="?url=matricula_virtual">Matricula Virtual</a></li>
            <li><a class="link" href="#team">Contacto</a></li>
            <li><a href="?url=login" class="btn">Login</a></li>

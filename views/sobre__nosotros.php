@@ -5,7 +5,7 @@
   <?php include "views/includes/public/menu.php"; ?>
 
   <!-- ================================================================= -->
-
+  <!-- ================================================================= -->
   <section class="datos__section">
     <div class="container">
       <div class="contenedor__tarjeta">
@@ -60,8 +60,9 @@
     </div>
   </section>
 
-
-
+<!-- ========================================= -->
+  <?php include "views/quienes__Somos.php"; ?>
+  
 
   <!-- ========================================= -->
   <main id="main">
