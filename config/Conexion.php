@@ -11,7 +11,7 @@ class Conexion
     private $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => null];
 
     function getConexion(){
-
+        
         $conexion = null;
 
         try{
@@ -36,23 +36,54 @@ class Conexion
         return $conexion;
     }
 
-    function getAllRows($sql, $data = []){
+    private function bind( &$stmt,$data ){
+
+        foreach ($data as $key => &$value) {
+            $pos =  strpos($key, ' ');
+            $type = substr($key,$pos + 1);
+            $key =  substr($key,0 , $pos ? $pos : strlen( $key ) );
+            $pdo_param = null;
+            if( $value === null ) $pdo_param = PDO::PARAM_NULL;
+            switch($type){
+                case 'int' : $pdo_param = PDO::PARAM_INT;break;
+                case 'bool' : $pdo_param = PDO::PARAM_BOOL;break;
+                case 'null' : $pdo_param = PDO::PARAM_NULL;break;
+                default : $pdo_param = PDO::PARAM_STR;
+            }
+            
+            if( $value && ( $key != 'filters_str' && $key != 'limit' ) ){
+                $stmt->bindParam(":" . $key, $value,$pdo_param);
+            }
+        }
+        if($data && isset( $data["start int"]) && isset($data["length int"]) ){                             
+            $stmt->bindParam(":start",  $data["start int"],PDO::PARAM_INT );
+            $stmt->bindParam(":length", $data["length int"],PDO::PARAM_INT);
+        }
+    }
+
+    function getAllRows($sql, $data = [],$sql_count = ""){
 
         $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => ""];
         try{
             $cn = $this->getConexion();
             $stmt = $cn->prepare($sql);
-
-            foreach ($data as $key => &$value) { 
-                if( $value && ( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);
-            }
-
+            $this->bind($stmt,$data);
             $ok = $stmt->execute();
             if ($ok) {
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $result["rows"][] = $row;
                 }
             }
+
+            if($sql_count){
+                $stmt = $cn->prepare($sql_count);                
+                $ok = $stmt->execute();
+                if ($ok) {
+                    if($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $result["cant_rows"] = $row["cant_rows"];
+                    }
+                }
+            }
+            
             $stmt = null;
             $cn = null;
         }catch( Exception $e ){
@@ -69,11 +100,8 @@ class Conexion
         try{
             $cn = $this->getConexion();
             $stmt = $cn->prepare($sql);
-
-            foreach ($data as $key => &$value) { 
-                if( $value && ( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);
-            }
-
+            $this->bind($stmt,$data);
+            
             $ok = $stmt->execute();
             if ($ok) {
                 if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
@@ -101,7 +129,7 @@ class Conexion
             $stmt = $cn->prepare($sql);
            
             foreach ($data as $key => &$value) { 
-                if( $value && ( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);
+                if( /*$value &&*/ ( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);
             }
             
             $ok = $stmt->execute();
