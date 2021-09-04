@@ -8,7 +8,7 @@
 
   <section class="datos__section contenedor--bg">
     <!-- <div class="container"> -->
-    <div class="contenedor__tarjeta limite">
+    <div class="contenedor__tarjeta">
       <!-- header -->
       <div class="campo__header">
         <!-- buscar -->
@@ -23,8 +23,6 @@
           </div>
         </div>
 
-        <!-- fin buscar -->
-
         <!-- cursos -->
         <div class="campo campo1">
           <select class="campo__caja">
@@ -34,7 +32,7 @@
             <option>True Detective</option>
           </select>
         </div>
-        <!-- fin cursos -->
+
         <!-- Nivel -->
         <div class="campo campo1">
           <select class="campo__caja">
@@ -44,10 +42,10 @@
             <option>True Detective</option>
           </select>
         </div>
-        <!-- fin nivel -->
+
       </div>
       <!-- targetas -->
-      <div class="curso__card--general limite">
+      <div class="curso__card--general ">
 
         <!-- tarjeta 1 -->
         <div class="curso__card">
