@@ -15,16 +15,77 @@
 }
 
 .limite {
-  max-width: 1200px;
+  width: 1120px;
   margin: 0 auto;
+  margin-top: 3rem;
+}
+.campo__header{
+    display: flex;
+    justify-content:flex-end ;
+    height: 2rem;
+    gap:2rem;
+    margin-bottom: 3rem;
+}
+/* header secundario */
+.search{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.box__search{
+    display: flex;
+    width: 50%;
+    /* align-items: center; */
+}
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration { display: none; }
+
+.box__imput{
+    /* height: 2rem; */
+/* height: 35px; */
+width: 100%;
+padding-left: 10px;
+border-top-left-radius: 11rem;
+border-bottom-left-radius: 11rem;
+outline: none;
+border-bottom-width: 3px;
+transition: all 0.3s ease;
+border: none;
+}
+
+.svg__imput {
+    width: 17%;
+    display: flex;
+    align-items: center;
+    
+    border-top-right-radius: 11rem;
+border-bottom-right-radius: 11rem;
+background-color: var(--blanco);
+padding-right: 1rem;
+}
+
+.svg__icono{
+    width: 100%;
 }
 /* curso-bloque__general */
-@media (min-width: 768px) {
+@media (max-width: 1920px) {
   .curso__card--general {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
     /* width: 100%; */
+  }
+}
+@media (max-width: 1200px) {
+  .curso__card--general {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    
+  }
+  .curso__imagen img{
+width: 100%;
   }
 }
 
@@ -38,19 +99,26 @@
 .curso__card:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
+/*==========img======== */
 .curso__imagen {
   border-top-right-radius: 0.5rem;
 }
 .curso__imagen img {
   transition: transform 0.3s ease-out;
-  max-width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
 }
 .curso__imagen img:hover {
   transform: scale(0.8);
 }
 
-/* =====imagen======= */
+/* ====contenido Curso======= */
+.curso__contenido {
+  padding: 1rem 1.5rem 1rem;
+}
 .curso__title {
   line-height: 1.3rem;
   font-weight: 700;
@@ -58,16 +126,28 @@
   color: #333;
   font-family: var(--font);
 }
-
+.curso__view {
+  margin-top: 4rem;
+}
 /* =======texto======== */
 .curso__text {
-  font-family: var(--font2);
   font-weight: 400;
-  font-size: 0.875rem;
+  font-size: 0.99rem;
   color: var(--plomo);
+}
+.curso__btn {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
 }
 
 /* ======botom========= */
+.svg__icon {
+  height: 1em;
+  /* width: 1em; */
+  margin-right: 0.5rem;
+}
 .curso__btn {
   font-family: var(--font2);
   font-weight: 400;
@@ -75,13 +155,15 @@
   background-color: var(--color-alt);
   color: var(--primero);
   transition: all 0.3s ease-out;
+  border-radius: 0.4rem;
+  padding-left: 0.5rem;
 }
 .curso__btn:hover {
   background-color: var(--primero);
   color: white;
 }
 
-/* ========================================= */
+/* =====profesor========= */
 .curso__profesor {
   width: 100%;
   padding-left: 0.5rem;
@@ -89,9 +171,8 @@
   background: var(--gris);
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  display: flex;
   height: 2rem;
-  align-items: center;
+  display: flex;
   align-items: center;
 }
 .curso__profesor p {
@@ -100,4 +181,18 @@
   color: var(--plomo);
   font-family: 0.8125rem;
   margin: 0;
+  padding-left: 1rem;
+}
+.img__profesor {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.img__radios {
+  border-radius: 50%;
+  position: relative;
+}
+.foto {
+  position: absolute;
+  width: 100%;
+  border-radius: 50%;
 }
