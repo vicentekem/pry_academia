@@ -112,6 +112,11 @@
 .box--with {
   width: 100%;
 }
+.box--with:focus{
+  /* color:var(--primero); */
+  /* font-weight: 400; */
+  text-transform: capitalize;
+}
 
 /* styless imput */
 .filtro{
@@ -150,7 +155,7 @@
   bottom:1px; 
   border-radius: 0.5rem;
   position:absolute;
-  background:#2a9d8f; 
+  background:#2a9d90; 
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;

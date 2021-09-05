@@ -17,7 +17,7 @@
           <div class="filtro search">
 
             <div class="filtro__flex">
-              <input class="box__imput box--with" type="search" name="" placeholder="buscar..." id="">
+              <input class="box__imput box--with" type="search" name="" placeholder="Buscar..." id="">
 
               <span class="bar"></span>
             </div>
