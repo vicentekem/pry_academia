@@ -7,210 +7,397 @@
   <!-- ================================================================= -->
 
   <section class="datos__section contenedor--bg">
+
     <!-- <div class="container"> -->
-    <div class="contenedor__tarjeta">
-      <!-- header -->
-      <div class="campo__header">
-        <!-- buscar -->
-        <div class="search">
-          <div class="box__search">
-            <input class="box__imput" type="search" name="" placeholder="que buscaras" id="">
-            <div class="svg__imput">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icono" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    <div class="campo__tarjeta">
+      <!-- header filtro -->
+      <div class="campo__header--bg">
+        <div class="campo__header campo__responsive contenido__card ">
+          <!-- buscar -->
+          <div class="filtro search">
+
+            <div class="filtro__flex">
+              <input class="box__imput box--with" type="search" name="" placeholder="buscar..." id="">
+
+              <span class="bar"></span>
+            </div>
+
+
+            <button type="submit" class="searchButton">
+              <!-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg> -->
+
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#b7defa" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="10" cy="10" r="7" />
+                <line x1="21" y1="21" x2="15" y2="15" />
               </svg>
-            </div>
+            </button>
+
           </div>
-        </div>
 
-        <!-- cursos -->
-        <div class="campo campo1">
-          <select class="campo__caja">
-            <option>Cursos</option>
-            <option>How I met your mother</option>
-            <option>Fargo</option>
-            <option>True Detective</option>
-          </select>
-        </div>
+          <!-- cursos -->
+          <div class=" filtro campo__curso hhh">
+            <select class="box--with">
+              <option>Cursos</option>
+              <option>How I met your mother</option>
+              <option>Fargo</option>
+              <option>True Detective</option>
+            </select>
+          </div>
 
-        <!-- Nivel -->
-        <div class="campo campo1">
-          <select class="campo__caja">
-            <option>Nivel</option>
-            <option>How I met your mother</option>
-            <option>Fargo</option>
-            <option>True Detective</option>
-          </select>
-        </div>
+          <!-- Nivel -->
+          <div class=" filtro campo__curso hhh">
+            <select class="box--with">
+              <option>Nivel</option>
+              <option>How I met your mother</option>
+              <option>Fargo</option>
+              <option>True Detective</option>
+            </select>
+          </div>
 
+        </div>
       </div>
-      <!-- targetas -->
-      <div class="curso__card--general ">
 
-        <!-- tarjeta 1 -->
-        <div class="curso__card">
+      <!-- =============================================== -->
 
-          <!-- curso--imagen -->
-          <div class="curso__imagen">
-            <a href="#"><img src="public/web/assets/img/cursos/curso1.jpg" class="imagen--estilos"></a>
-          </div>
+      <!-- contenido--targetas -->
+      <div class="curso__contenedor--sapace">
+        <div class="curso__card--general curso__media ">
 
-          <!-- contenido curso -->
-          <div class=" curso__contenido ">
-            <a href="#">
-              <h3 class="curso__title">
-                <span>Aritmetica</span>
-              </h3>
-            </a>
-            <p class="curso__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-              est suscipit itaque?
-            </p>
-            <div class="curso__view">
-              <a href="#" class="curso__btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Cruso</span>
-              </a>
+          <!-- tarjeta 1 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso1.jpg" class="imagen--estilos"></a>
             </div>
-          </div>
 
-          <!-- curso profesor -->
-          <div class="curso__profesor">
-            <div class="img__profesor">
-              <div class="img__radios">
-                <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
               </div>
             </div>
-            <p>nombre</p>
-          </div>
-        </div>
-        <!-- find tarjeta 1 -->
 
-        <!-- tarjeta 2 -->
-        <div class="curso__card">
-
-          <!-- curso--imagen -->
-          <div class="curso__imagen">
-            <a href="#"><img src="public/web/assets/img/cursos/curso2.jpg" class="imagen--estilos"></a>
-          </div>
-
-          <!-- contenido curso -->
-          <div class=" curso__contenido ">
-            <a href="#">
-              <h3 class="curso__title">
-                <span>Aritmetica</span>
-              </h3>
-            </a>
-            <p class="curso__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-              est suscipit itaque?
-            </p>
-            <div class="curso__view">
-              <a href="#" class="curso__btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Cruso</span>
-              </a>
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
             </div>
           </div>
+          <!-- find tarjeta 1 -->
 
-          <!-- curso profesor -->
-          <div class="curso__profesor">
-            <div class="img__profesor">
-              <div class="img__radios">
-                <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+          <!-- tarjeta 2 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso2.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
               </div>
             </div>
-            <p>nombre</p>
-          </div>
-        </div>
-        <!-- find tarjeta 2 -->
 
-        <!-- tarjeta 3 -->
-        <div class="curso__card">
-
-          <!-- curso--imagen -->
-          <div class="curso__imagen">
-            <a href="#"><img src="public/web/assets/img/cursos/curso3.jpg" class="imagen--estilos"></a>
-          </div>
-
-          <!-- contenido curso -->
-          <div class=" curso__contenido ">
-            <a href="#">
-              <h3 class="curso__title">
-                <span>Aritmetica</span>
-              </h3>
-            </a>
-            <p class="curso__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-              est suscipit itaque?
-            </p>
-            <div class="curso__view">
-              <a href="#" class="curso__btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Cruso</span>
-              </a>
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
             </div>
           </div>
+          <!-- find tarjeta 2 -->
 
-          <!-- curso profesor -->
-          <div class="curso__profesor">
-            <div class="img__profesor">
-              <div class="img__radios">
-                <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+          <!-- tarjeta 3 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso3.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
               </div>
             </div>
-            <p>nombre</p>
-          </div>
-        </div>
-        <!-- find tarjeta 3 -->
 
-        <!-- tarjeta 4 -->
-        <div class="curso__card">
-
-          <!-- curso--imagen -->
-          <div class="curso__imagen">
-            <a href="#"><img src="public/web/assets/img/cursos/curso4.jpg" class="imagen--estilos"></a>
-          </div>
-
-          <!-- contenido curso -->
-          <div class=" curso__contenido ">
-            <a href="#">
-              <h3 class="curso__title">
-                <span>Aritmetica</span>
-              </h3>
-            </a>
-            <p class="curso__text">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-              est suscipit itaque?
-            </p>
-            <div class="curso__view">
-              <a href="#" class="curso__btn">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                <span>Cruso</span>
-              </a>
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
             </div>
           </div>
+          <!-- find tarjeta 3 -->
 
-          <!-- curso profesor -->
-          <div class="curso__profesor">
-            <div class="img__profesor">
-              <div class="img__radios">
-                <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+          <!-- tarjeta 4 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso4.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
               </div>
             </div>
-            <p>nombre</p>
-          </div>
-        </div>
-        <!-- find tarjeta -->
 
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
+            </div>
+          </div>
+          <!-- find tarjeta -->
+
+
+
+
+          <!-- tarjeta 1 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso1.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
+            </div>
+          </div>
+          <!-- find tarjeta 1 -->
+
+          <!-- tarjeta 2 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso2.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
+            </div>
+          </div>
+          <!-- find tarjeta 2 -->
+
+          <!-- tarjeta 3 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso3.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
+            </div>
+          </div>
+          <!-- find tarjeta 3 -->
+
+          <!-- tarjeta 4 -->
+          <div class="curso__card">
+
+            <!-- curso--imagen -->
+            <div class="curso__imagen">
+              <a href="#"><img src="public/web/assets/img/cursos/curso4.jpg" class="imagen--estilos"></a>
+            </div>
+
+            <!-- contenido curso -->
+            <div class=" curso__contenido ">
+              <a href="#">
+                <h3 class="curso__title">
+                  <span>Aritmetica</span>
+                </h3>
+              </a>
+              <p class="curso__text">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
+                est suscipit itaque?
+              </p>
+              <div class="curso__view">
+                <a href="#" class="curso__btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <span>Cruso</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- curso profesor -->
+            <div class="curso__profesor">
+              <div class="img__profesor">
+                <div class="img__radios">
+                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                </div>
+              </div>
+              <p>nombre</p>
+            </div>
+          </div>
+          <!-- find tarjeta -->
+
+        </div>
       </div>
     </div>
     <!-- </div> -->
