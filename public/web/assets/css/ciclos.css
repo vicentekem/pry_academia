@@ -135,6 +135,12 @@
   /* border-bottom: 3px solid #2a9d8f; */
   outline:none;
 }
+.filtro select{
+  border: none;
+}
+.filtro:focus{
+  background-color: #d9fce7;
+}
 
 
 
