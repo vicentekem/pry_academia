@@ -18,3 +18,9 @@
 <link href="public/css/animate.css" rel="stylesheet">
 <link href="public/css/style.css" rel="stylesheet">
 
+<style>
+    .dataTables_wrapper.container-fluid{
+        padding-left : 0 !important;
+        padding-right : 0 !important;
+    }
+</style>

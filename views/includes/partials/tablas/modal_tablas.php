@@ -4,7 +4,7 @@
         <div class="modal-content">
 
             <div class="modal-header">
-                <h4 class="modal-title" id="modalTitle">Descargar Excel</h4>
+                <h4 class="modal-title" id="el_modal_title">Crud Tablas</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -14,9 +14,21 @@
 
                 <form class="row" action="" id="formCrud">
 
+                    <input type="hidden" id="cbx_crud_id_registro">
+
                     <div class="form-group col-12">
-                        <label for="txt_fecha_filtro_excel">Fecha Seguimiento<span class="text-danger">*</span> </label>
-                        <input  id="txt_fecha_filtro_excel" class="form-control" type="text"  value="" readonly />
+                        <label  for="cbx_crud_id_tabla"> Tabla <span class="text-danger">*</span> </label>
+                        <select id="cbx_crud_id_tabla" class="form-control"></select>
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label  for="txt_crud_cod_ref"> Codigo Referencial</label>
+                        <input id="txt_crud_cod_ref" class="form-control" />
+                    </div>
+
+                    <div class="form-group col-12">
+                        <label  for="txt_crud_descripcion"> Descripcion <span class="text-danger">*</span> </label>
+                        <input id="txt_crud_descripcion" class="form-control" />
                     </div>
 
                 </form>
