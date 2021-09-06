@@ -158,8 +158,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     let filter_container_jq = $("#filter_container");    
     let btn_save_tabla = $("#btn_save_tabla");
 
+    filter_container_jq.on("click", event => searchEventListener( event ) );
     filter_container_jq.on("change", event => searchEventListener( event ) );
     filter_container_jq.on("search", event => searchEventListener( event ) );
+
     btn_save_tabla.on("click", ()=>{ crud_tablas.saveData(); });
 
     btn_new_tabla.addEventListener("click",()=>{ crud_tablas.openModal(); });
