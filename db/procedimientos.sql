@@ -36,9 +36,17 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso`(
 BEGIN
 CASE _action
 	WHEN 'ins' THEN
+		IF(SELECT id FROM tbl_curso where description=_description) IS NULL THEN
 		INSERT into tbl_curso(description) VALUES(_description);
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso ya existe', MYSQL_ERRNO = 1001;	
+		END if;
 	WHEN 'upd' THEN
+		IF(SELECT id FROM tbl_curso where description=_description and id<>_id) IS NULL THEN
 		UPDATE tbl_curso set description=_description where id=_id;
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
+		END IF;
 	WHEN 'del' THEN
 		UPDATE tbl_curso SET estado=0 WHERE id=_id;
 	ELSE
@@ -56,11 +64,22 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_tablas`(
 	_cod_referencial VARCHAR(255)
 )
 BEGIN
+	DECLARE _idregistro int;
+	set _idregistro=(SELECT max(id_registro)+1 from tbl_tablas where id_tabla=_id_tabla);
+	
 CASE _action
-	WHEN 'ins' THEN
-		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_id_registro,_cod_referencial,_description);
+		WHEN 'ins' THEN
+		IF(SELECT id_registro FROM tbl_tablas where description=_description) IS NULL THEN
+		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_idregistro,_cod_referencial,_description);
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El registro ya existe' , MYSQL_ERRNO = 1001;	
+		END if;
 	WHEN 'upd' THEN
+		IF(SELECT id_registro FROM tbl_tablas where description=_description and id_registro<>_id_registro and id_tabla=_id_tabla) IS NULL THEN
 		UPDATE tbl_tablas set description=_description, cod_referencial=_cod_referencial where id_tabla=_id_tabla AND id_registro=_id_registro;
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
+		END IF;
 	WHEN 'del' THEN
 		UPDATE tbl_tablas SET estado=0 WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
 	ELSE
@@ -68,10 +87,6 @@ CASE _action
 END CASE;
 END $
 DELIMITER ;
-
-
-select id,description, (select count(id) from tbl_curso) as total_count from tbl_curso where description like '%%'
-limit 5,7;
 
 
 

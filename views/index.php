@@ -6,7 +6,7 @@
 
 <!-- ================================================================= -->
 
-  <section class="home">
+  <section class="home space__content">
         <div class="container">
             <img src="public/web/assets/img/grupo/shape1.svg" alt="shape" class="shape shape1">
             <img src="public/web/assets/img/grupo/shape2.svg" alt="shape" class="shape shape2">
