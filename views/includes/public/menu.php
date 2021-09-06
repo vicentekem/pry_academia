@@ -13,8 +13,8 @@
        </div>
        <div class="navigation-bar">
          <ul>
-           <li><a class="link" href="?index.php">Incio</a></li>
-           <li><a class="link" href="?url=sobre__nosotros.php">Sobre Notros</a></li>
+           <li><a class="link" href="?index.php">Inicio</a></li>
+           <li><a class="link" href="?url=sobre__nosotros.php">Sobre Nosotros</a></li>
            <li><a class="link" href="?url=ciclos.php">Ciclos</a></li>
            <li><a class="link" href="?url=matricula_virtual">Matricula Virtual</a></li>
            <li><a class="link" href="#team">Contacto</a></li>

@@ -17,9 +17,13 @@
 <html>
 <head>
 
+    <link href="public/css/plugins/select2/select2.min.css" rel="stylesheet">
+    <link href="public/css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
+    
     <?php include __DIR__ . '/includes/admin/head.php';?>
-    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
-    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    
+    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">    
+    
     
 </head>
 <body>
@@ -51,19 +55,21 @@
 
                     <div class="ibox-content">
 
-                        <div class="row">
+                        <div class="row" id="filter_container">
 
-                            <div class="form-group mb-0 col-12 col-md-5">
+                            <div class="form-group mb-0 col-12 col-md-5 col-lg-3">
                                 <label for="cbx_id_tabla">Tabla</label>
-                                <select class='form-control text-uppercase' onchange = "crud_tablas.reloadTable()"
-                                        name='cbx_id_tabla' id='cbx_id_tabla' style="width: 100%;">                                    
+                                <select class="form-control text-uppercase select2 cbx-filter"
+                                    name='cbx_id_tabla' id='cbx_id_tabla' style="width: 100%;">
+
                                 </select>
                             </div>
 
-                            <div class="form-group mb-0 col-12 col-md-5">
+                            <div class="form-group mb-0 col-12 col-md-5 col-lg-7">
                                 <label for="txt_search">Buscar</label>
                                 <div class="form-group input-group">
-                                    <input type="search" id="txt_search" placeholder="Buscar" class="form-control text-uppercase"/>
+                                    <input type="search" id="txt_search" placeholder="Buscar" 
+                                        class="form-control text-uppercase txt-filter"/>
                                     <div class="input-group-append">
                                         <button id="btn_search" class="btn btn-info"> <span class="fa fa-search"></span></button>
                                     </div>
@@ -71,10 +77,8 @@
                             </div>
 
                             <div class="form-group mb-0 col-12 col-md-2">
-                                <label for="" style="display:block;opacity:0" >...</label>
-                                <button class="btn btn-success" onclick="openModal('ins_dependencia')">
-                                    Nuevo
-                                </button>
+                                <label for="" style="display:block;opacity:0">...</label>
+                                <button id="btn_new_tabla" class="btn btn-success">Nuevo</button>
                             </div>
                         </div>
 
@@ -106,12 +110,14 @@
     </div>
 
     <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
+    <?php include __DIR__ . "/includes/partials/tablas/modal_tablas.php" ?>
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
 
-    <script src="public/js/plugins/dataTables/datatables.min.js"></script>    
+    <script src="public/js/plugins/dataTables/datatables.min.js"></script>
     <script src="public/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="public/js/plugins/mustache/mustache.min.js"></script>
-    <script src="public/js/utilitario/utilitario.js"></script>
+    <script src="public/js/plugins/select2/select2.full.min.js"></script>
+    <script src="public/js/utilitario/utilitario.js"></script>    
 
     <script src="public/js/scripts/tablas.js"></script>
 
