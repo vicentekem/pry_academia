@@ -332,6 +332,12 @@ input[type="search"]::-webkit-search-results-decoration {
   letter-spacing: 0.15rem;
   color: #333;
   font-family: var(--font);
+  transition: all 0.3s ease-out;
+  
+}
+.curso__title:hover{
+  text-decoration: underline;
+  font-weight: 500;
 }
 .curso__view {
   margin-top: 4rem;
