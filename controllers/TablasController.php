@@ -40,8 +40,8 @@ class TablasController
         $action = isset($_POST['action']) ? $_POST['action'] : "";
 
         switch ($action){
-            case "ins_tabla": $array_result = $this->validator->saveTablas(false);break;
-            case "upd_tabla": $array_result = $this->validator->saveTablas(true);break;
+            case "ins_tabla": $array_result = $this->validator->saveTabla(false);break;
+            case "upd_tabla": $array_result = $this->validator->saveTabla(true);break;
             default: $array_result["error"] = "Error al procesar la petición";
         }
         echo json_encode($array_result);

@@ -8,12 +8,12 @@ const ajaxRequest = (action,type,controller,parameters,successCallback,errorCall
         data: parameters,
         processData: true,
         success: function (result) {
-            if (result.error === "") { successCallback(result);}
-            else{ errorCallback(); }
+            if(successCallback && typeof successCallback === 'function' ) successCallback(result);            
         },
         timeout: 12000, // sets timeout to 12 seconds
         error: function (request, status, err) {
             if(errorCallback && typeof errorCallback === 'function' ) errorCallback();
+
             if (status == "timeout") {
                 showMessage("Su petición demoro mas de lo permitido", "error");
             } else {

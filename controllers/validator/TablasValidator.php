@@ -19,8 +19,7 @@ class TablasValidator
     
     public function qryTablas()
     {
-        $result = ["error" => ""];
-
+        $result = [ "error" => "" ];
         $data["start int"] = isset($_GET["start"]) ? $_GET["start"] : null;
         $data["length int"] = isset($_GET["length"]) ? $_GET["length"] : null;
 
@@ -33,11 +32,28 @@ class TablasValidator
     }
 
     public function cbxTablas()
-    {
-        $result = ["error" => ""];
+    {        
+        $result = [ "error" => "" ];
         $data["id_tabla int"] = Utilitario::getIntParam("id_tabla");
         if ($result["error"] === "") $result = $this->model->cbxTablas($data);
         return $result;
+    }
+
+    public function saveTabla($upd){
+
+        $result = [ "error" => "" ];
+
+        $data["id_registro int"] = $upd ? Utilitario::getIntParam("id_registro") : null;
+        $data["id_tabla int"] = Utilitario::getIntParam("id_tabla");
+        $data["cod_ref"] = Utilitario::getParam("cod_ref");
+        $data["descripcion"] = Utilitario::getParam("descripcion");
+
+        $action = $upd ? 'upd' : 'ins';       
+       
+        if ($result["error"] === "") $result = $this->model->saveTabla($action,$data);
+
+        return $result;
+
     }
 
 }

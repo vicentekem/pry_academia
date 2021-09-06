@@ -71,7 +71,7 @@
                                     <input type="search" id="txt_search" placeholder="Buscar" 
                                         class="form-control text-uppercase txt-filter"/>
                                     <div class="input-group-append">
-                                        <button id="btn_search" class="btn btn-info"> <span class="fa fa-search"></span></button>
+                                        <button id="btn_search" class="btn btn-info btn-filter"> <span class="fa fa-search"></span></button>
                                     </div>
                                 </div>
                             </div>

@@ -13,12 +13,14 @@ class Utilitario
         return count($filters) > 0 ? "WHERE " . implode(" AND ",$filters) : "";
     }
 
+
+
     static function getParam($param){
-        return isset($_GET[$param]) ? $_GET[$param] : "";
+        return isset($_REQUEST[$param]) ? $_REQUEST [$param] : "";
     }
 
     static function getIntParam($param){
-        $value = isset($_GET[$param]) ? $_GET[$param] : null;
+        $value = isset($_REQUEST [$param]) ? $_REQUEST[$param] : null;
         if($value === ""){ $value = null;}
         else if(is_numeric($value)){ $value = (int)$value; }
         return $value;

@@ -1,11 +1,18 @@
 let crud_tablas = {
     
     dtable: null,
-    id_element: null,
-    init : (id_table)=>{
+    id_table: "tbl_tablas",
+    id_modal: "modal_crud_tablas",
 
-        crud_tablas.id_element = id_table;
-        crud_tablas.dtable = $('#' + id_table).DataTable({
+    init : ()=>{
+
+        crud_tablas.initDataTable();
+        crud_tablas.initActionsTadaTables();
+        
+    },
+
+    initDataTable: ()=>{        
+        crud_tablas.dtable = $('#' + crud_tablas.id_table).DataTable({
             pageLength: 10,//cantidad de registros a mostrar por paginas
             searching : false,//si es true agrega un buscador a la tabla
             ordering:false,//si es true se habilita la opcion de ordenar por columna
@@ -50,17 +57,65 @@ let crud_tablas = {
                 { data: "estado"}
             ]
         });
+    },
 
-        $("#tbl_tablas tbody").on("click", ".upd-row", function(event){
+    initActionsTadaTables: ()=>{
+        $("#" + crud_tablas.id_table + " tbody").on("click", ".upd-row", function(event){
             event.preventDefault();
-
             var id_row = $(this).attr("id").match(/\d+/)[0];
             var data = crud_tablas.dtable.row(id_row).data();
-            
-            $("#txt_crud_descripcion").val(data.description);
-            $("#modal_crud_tablas").modal("show");
-            console.log(data);
+            crud_tablas.openModal(data);            
         });
+    },
+
+    openModal : (data = {})=>{
+
+        if(data.id){
+            $("#txt_crud_action").val("upd_tabla");
+            $("#cbx_crud_id_registro").val(data.id);
+            $("#cbx_crud_id_tabla").val(data.id_tabla).attr("disabled",true).trigger("change.select2");
+            $("#txt_crud_cod_ref").val(data.cod_referencial);
+            $("#txt_crud_descripcion").val(data.description);
+
+            $("#" + crud_tablas.id_modal + " #emodal_title").html("Editar Registro");
+            $("#" + crud_tablas.id_modal).modal("show");
+
+        }else{
+            $("#txt_crud_action").val("ins_tabla");
+            $("#cbx_crud_id_registro").val("");
+            $("#cbx_crud_id_tabla").val(data.id_tabla || "").attr("disabled",false).trigger("change.select2");
+            $("#txt_crud_cod_ref").val("");
+            $("#txt_crud_descripcion").val("");
+            $("#" + crud_tablas.id_modal + " #emodal_title").html("Nuevo Registro");
+            $("#" + crud_tablas.id_modal).modal("show");        
+        }
+    },
+
+    saveData: ()=>{
+        let action = $("#txt_crud_action").val();
+        let id_registro = $("#cbx_crud_id_registro").val();
+        let id_tabla = $("#cbx_crud_id_tabla").val();
+        let cod_ref = $("#txt_crud_cod_ref").val();
+        let descripcion = $("#txt_crud_descripcion").val();
+
+        let data = {
+            id_registro : id_registro,
+            id_tabla : id_tabla,
+            cod_ref : cod_ref,
+            descripcion : descripcion
+        }
+
+        ajaxRequest(action,"post","TablasController.php",data,(result)=>{
+
+            if(result.error === ""){
+                $("#modal_crud_tablas").modal("hide");
+                showMessage(result.success,"success");
+                crud_tablas.reloadTable();
+            }else{
+                showMessage(result.error,"error");
+            }
+        });
+
     },
 
     reloadTable : ()=>{
@@ -68,6 +123,9 @@ let crud_tablas = {
     }
 
 };
+
+
+
 
 const loadCbx = ()=>{
 
@@ -91,14 +149,16 @@ const searchEventListener = (event)=>{
 
 document.addEventListener('DOMContentLoaded',()=>{
 
-    let btn_new_tabla = document.getElementById("btn_new_tabla");    
-    let filter_container_jq = $("#filter_container");
+    let btn_new_tabla = document.getElementById("btn_new_tabla");
+    let filter_container_jq = $("#filter_container");    
+    let btn_save_tabla = $("#btn_save_tabla");
 
     filter_container_jq.on("change", event => searchEventListener( event ) );
     filter_container_jq.on("search", event => searchEventListener( event ) );
-    
-    btn_new_tabla.addEventListener("click",()=>{ $("#modal_crud_tablas").modal("show") });
+    btn_save_tabla.on("click", ()=>{ crud_tablas.saveData(); });
 
-    crud_tablas.init("tbl_tablas");
+    btn_new_tabla.addEventListener("click",()=>{ crud_tablas.openModal(); });
+
+    crud_tablas.init();
     loadCbx();
 });
