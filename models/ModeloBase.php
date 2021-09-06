@@ -15,7 +15,9 @@ class ModeloBase
 
     public function getError($ex){
         $pos = strpos($ex->getMessage(), '1001');
-        $msg = substr( $ex->getMessage(),$pos + 5);        
+        if($pos){
+            $msg = substr( $ex->getMessage(),$pos + 5);     
+        }else{ $msg = $ex->getMessage();}        
         return $msg;
     }
 
@@ -60,17 +62,28 @@ class ModeloBase
     }
 
     function executeProcess($sql,$data = [],$success_msg = ""){
+
         $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => ""];
-        try{            
+
+        try{
+            
             $cn = $this->conexion->getConexion();
             $stmt = $cn->prepare($sql);
-            $this->bindProcedure($stmt,$data);
+            $this->conexion->bindProcedure($stmt,$data);            
             $ok = $stmt->execute();
+            
             if ($ok) { $result["success"] = $success_msg; }
+            else {
+                $result["error"] = "ocurrio un error";
+            }
             $stmt = null;
             $cn = null;
         }
-        catch( Exception $ex ){ $result["error"] = $this->getError($ex);}        
+        catch( Exception $ex ){
+            //exit( $ex->getMessage() );
+            $result["error"] = $this->getError($ex);
+        }
+
         return $result;
     }
 
