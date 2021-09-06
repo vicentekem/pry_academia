@@ -88,9 +88,7 @@ END CASE;
 END $
 
 
-drop procedure if exists sp_persona$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`( 
-_action varchar(10),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`(_action varchar(10),
 _id int(32),
 _dni varchar(8),
 _nombre VARCHAR(255),
@@ -102,8 +100,7 @@ _telefono varchar(25),
 _fecha_nac VARCHAR(50),
 _id_ubigeo VARCHAR(6),
 _id_sexo INT(1),
-_id_usuario int(11)
-)
+_id_usuario int(11))
 begin
 case _action
 	WHEN 'ins' then
@@ -115,7 +112,7 @@ case _action
 	END if;
 	WHEN 'upd' THEN
 		IF(SELECT id FROM tbl_persona where dni=_dni and id<>_id) IS NULL THEN
-		UPDATE tbl_persona set id=_id,dni=_dni,nombre=_nombre,apellido_pat=_apellidop,apellido_mat=_apellidom,correo=_correo,telefono=_telefono,celular=_celular,fecha_nac=_fecha_nac,id_ubigeo=_id_ubigeo,id_sexo=_id_sexo,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP;
+		UPDATE tbl_persona set dni=_dni,nombre=_nombre,apellido_pat=_apellidop,apellido_mat=_apellidom,correo=_correo,telefono=_telefono,celular=_celular,fecha_nac=STR_TO_DATE(_fecha_nac,'%d/%m/%Y'),id_ubigeo=_id_ubigeo,id_sexo=_id_sexo,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP WHERE dni=_dni and id=_id;
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
@@ -124,5 +121,4 @@ case _action
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
-END$
-
+END $
