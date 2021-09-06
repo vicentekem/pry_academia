@@ -69,7 +69,7 @@ BEGIN
 	
 CASE _action
 		WHEN 'ins' THEN
-		IF(SELECT id_registro FROM tbl_tablas where description=_description) IS NULL THEN
+		IF(SELECT id_registro FROM tbl_tablas where description=_description and id_tabla=_id_tabla) IS NULL THEN
 		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_idregistro,_cod_referencial,_description);
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El registro ya existe' , MYSQL_ERRNO = 1001;	
@@ -86,6 +86,35 @@ CASE _action
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
 END $
+
+
+/*drop procedure if exists sp_persona$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`( 
+_action varchar(10),
+_id int(32),
+_dni varchar(8),
+_nombre VARCHAR(255),
+_apellidop VARCHAR(255),
+_apellidom VARCHAR(255),
+_correo VARCHAR(255),
+_celular VARCHAR(25),
+_telefono varchar(25),
+_fecha_nac DATE(expr),
+_id_sexo INT(1)
+)
+begin
+case _action
+	WHEN 'ins' then
+	IF(SELECT id FROM tbl_persona where dni=_dni) IS NULL THEN
+	INSERT INTO tbl_persona(id,dni,nombre,apellido_pat,apellido_mat,correo,telefono,celular,fecha_nac,id_ubigeo,id_sexo) 
+								 VALUES(_id,_dni,_nombre,_apellidop,_apellidom,_correo,_telefono,_celular,_fecha_nac,_id_ubigeo,_id_sexo)
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El Dni ya existe' , MYSQL_ERRNO = 1001;	
+		END if;
+End case;
+END$
+*/
+
 DELIMITER ;
 
 
