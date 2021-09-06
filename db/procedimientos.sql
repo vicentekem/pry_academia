@@ -47,9 +47,9 @@ CASE _action
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
 		END IF;
-	WHEN 'del' THEN
-		UPDATE tbl_curso SET estado=0 WHERE id=_id;
-	ELSE
+	WHEN 'est' THEN
+		UPDATE tbl_curso SET estado=!estado WHERE id=_id;
+		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
 END $
@@ -80,15 +80,15 @@ CASE _action
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
-	WHEN 'del' THEN
-		UPDATE tbl_tablas SET estado=0 WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
+	WHEN 'est' THEN
+		UPDATE tbl_tablas SET estado=!estado WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
 END $
 
 
-/*drop procedure if exists sp_persona$
+drop procedure if exists sp_persona$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`( 
 _action varchar(10),
 _id int(32),
@@ -99,24 +99,31 @@ _apellidom VARCHAR(255),
 _correo VARCHAR(255),
 _celular VARCHAR(25),
 _telefono varchar(25),
-_fecha_nac DATE(expr),
-_id_sexo INT(1)
+_fecha_nac VARCHAR(50),
+_id_ubigeo VARCHAR(6),
+_id_sexo INT(1),
+_id_usuario int(11)
 )
 begin
 case _action
 	WHEN 'ins' then
 	IF(SELECT id FROM tbl_persona where dni=_dni) IS NULL THEN
-	INSERT INTO tbl_persona(id,dni,nombre,apellido_pat,apellido_mat,correo,telefono,celular,fecha_nac,id_ubigeo,id_sexo) 
-								 VALUES(_id,_dni,_nombre,_apellidop,_apellidom,_correo,_telefono,_celular,_fecha_nac,_id_ubigeo,_id_sexo)
+	INSERT INTO tbl_persona(id,dni,nombre,apellido_pat,apellido_mat,correo,telefono,celular,fecha_nac,id_ubigeo,id_sexo,user_create_at,create_at) 
+					VALUES(_id,_dni,_nombre,_apellidop,_apellidom,_correo,_telefono,_celular,STR_TO_DATE(_fecha_nac,'%d/%m/%Y'),_id_ubigeo,_id_sexo,_id_usuario,CURRENT_TIMESTAMP);
+	ELSE
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El Dni ya existe' , MYSQL_ERRNO = 1001;	
+	END if;
+	WHEN 'upd' THEN
+		IF(SELECT id FROM tbl_persona where dni=_dni and id<>_id) IS NULL THEN
+		UPDATE tbl_persona set id=_id,dni=_dni,nombre=_nombre,apellido_pat=_apellidop,apellido_mat=_apellidom,correo=_correo,telefono=_telefono,celular=_celular,fecha_nac=_fecha_nac,id_ubigeo=_id_ubigeo,id_sexo=_id_sexo,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP;
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El Dni ya existe' , MYSQL_ERRNO = 1001;	
-		END if;
-End case;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
+		END IF;
+		WHEN 'est' THEN
+		UPDATE tbl_persona SET estado=!estado WHERE id=_id AND dni=_dni;
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
 END$
-*/
-
-DELIMITER ;
-
-
 
 
