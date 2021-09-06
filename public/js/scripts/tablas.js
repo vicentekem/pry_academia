@@ -47,14 +47,19 @@ let crud_tablas = {
             ],
             columns: [
                 {
-                    render: function(data, type, row, meta){                        
+                    render: function(data, type, row, meta){                    
                         var btn_edit = `<a class='fa fa-edit text-warning upd-row' id=upd_${meta.row} href='#' style='font-size: 1.1em'></a>`;
                         return "<div class='text-center'>" + btn_edit + "</div>";
                     }
                 },
                 { data: "description"},
                 { data: "cod_referencial"},
-                { data: "estado"}
+                { 
+                    render: function(data, type, row, meta){
+                        return row.estado ? `<small class="label label-primary">Activado</small>` : 
+                        `<small class="label label-error">Desactivado</small>`;
+                    }
+                }
             ]
         });
     },

@@ -24,12 +24,12 @@
 
                     <div class="form-group col-12">
                         <label  for="txt_crud_cod_ref"> Codigo Referencial</label>
-                        <input id="txt_crud_cod_ref" class="form-control" />
+                        <input id="txt_crud_cod_ref" class="form-control text-uppercase" />
                     </div>
 
                     <div class="form-group col-12">
                         <label  for="txt_crud_descripcion"> Descripcion <span class="text-danger">*</span> </label>
-                        <input id="txt_crud_descripcion" class="form-control" />
+                        <input id="txt_crud_descripcion" class="form-control text-uppercase" />
                     </div>
 
                 </form>
