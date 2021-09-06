@@ -17,6 +17,7 @@ $urls["inicio"] = "index.php";
 //$urls["cursos"] = "cursos.php";
 $urls["sobre__nosotros.php"] = "sobre__nosotros.php";
 $urls["ciclos.php"] = "ciclos.php";
+$urls["temarios.php"] = "temarios.php";
 $urls["matricula_virtual"] = "matricula_virtual.php";
 $urls["error"] = "error.php";
 $urls[""] = "index.php";

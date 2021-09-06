@@ -36,6 +36,9 @@
   <link href="public/web/assets/css/sobre-nosotros.css" rel="stylesheet">
   <!-- Ciclos -->
   <link href="public/web/assets/css/ciclos.css" rel="stylesheet">
+  <!-- Temario -->
+  <link href="public/web/assets/css/temarios.css" rel="stylesheet">
+  <!-- ======================================================
   <!-- ======================================================
   * Template Name: Vesperr - v4.3.0
   * Template URL: https://bootstrapmade.com/vesperr-free-bootstrap-template/
