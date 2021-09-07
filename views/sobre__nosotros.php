@@ -5,6 +5,13 @@
   <?php include "views/includes/public/menu.php"; ?>
 
   <!-- ================================================================= -->
+
+  <!-- ========================================= -->
+  <?php include "views/quienes__Somos.php"; ?>
+
+  <!-- ========================================= -->
+
+
   <!-- ================================================================= -->
   <section class="datos__section">
     <div class="container">
@@ -13,9 +20,10 @@
         <div class="datos__titulo">
           <h3 class="title">Somos un grupo de profesionales con la misión de democratizar la educación en Latinoamérica</h3>
           <p class="text">
-          Creamos experiencias de aprendizaje y desarrollo profesional increíbles para futuro
+            Creamos experiencias de aprendizaje y desarrollo profesional increíbles para tu futuro
           </p>
         </div>
+
         <!-- targetas -->
         <div class="datos__cards">
 
@@ -56,13 +64,117 @@
             </div>
           </div>
         </div>
+
+        <!-- valores -->
       </div>
     </div>
   </section>
 
-<!-- ========================================= -->
-  <?php include "views/quienes__Somos.php"; ?>
-  
+  <!-- valores -->
+  <section class="cont__valor">
+    <div class="cont__caja">
+      <div class="valor--title">
+        <h2>Nuestros valores</h2>
+      </div>
+
+      <!-- caja valor -->
+      <div class="cont__contenido">
+
+        <!-- volor1 -->
+        <div class="valor">
+          <!-- icono valor -->
+          <div class="caja__valor">
+            <div class="valor__icon">
+              <!-- <img src="public/web/assets/img/valores/valor01.svg" alt=""> -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <!-- contenido valor -->
+            <div class="valor__texto">
+              <h3>Generosidad</h3>
+              <p>Con mi ayuda lograrás tus metas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- volor2 -->
+        <div class="valor">
+          <!-- icono valor -->
+          <div class="caja__valor">
+            <div class="valor__icon">
+              <!-- <img src="public/web/assets/img/valores/valor01.svg" alt=""> -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <!-- contenido valor -->
+            <div class="valor__texto">
+              <h3>Generosidad</h3>
+              <p>Con mi ayuda lograrás tus metas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- volor3 -->
+        <div class="valor">
+          <!-- icono valor -->
+          <div class="caja__valor">
+            <div class="valor__icon">
+              <!-- <img src="public/web/assets/img/valores/valor01.svg" alt=""> -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <!-- contenido valor -->
+            <div class="valor__texto">
+              <h3>Generosidad</h3>
+              <p>Con mi ayuda lograrás tus metas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- volor4 -->
+        <div class="valor">
+          <!-- icono valor -->
+          <div class="caja__valor">
+            <div class="valor__icon">
+              <!-- <img src="public/web/assets/img/valores/valor01.svg" alt=""> -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <!-- contenido valor -->
+            <div class="valor__texto">
+              <h3>Generosidad</h3>
+              <p>Con mi ayuda lograrás tus metas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- volor5 -->
+        <div class="valor">
+          <!-- icono valor -->
+          <div class="caja__valor">
+            <div class="valor__icon">
+              <!-- <img src="public/web/assets/img/valores/valor01.svg" alt=""> -->
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <!-- contenido valor -->
+            <div class="valor__texto">
+              <h3>Generosidad</h3>
+              <p>Con mi ayuda lograrás tus metas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================= -->
+
 
   <!-- ========================================= -->
   <main id="main">
