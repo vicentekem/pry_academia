@@ -12,7 +12,7 @@
             
             <div class="modal-body">
 
-                <form class="row" action="" id="formCrud">
+                <form class="row" action="" id="frm_crud_tabla">
 
                     <input type="hidden" id="cbx_crud_id_registro">
                     <input type="hidden" id="txt_crud_action">
@@ -37,7 +37,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>                
-                <button type="button" id="btn_save_tabla" form="formCrud" class="btn btn-primary">Guardar</button>
+                <button type="button" id="btn_save_tabla" form="frm_crud_tabla" class="btn btn-primary">Guardar</button>
             </div>
         </div>
     </div>

@@ -1,15 +1,15 @@
 
 <?php
 
-require_once "validator/TablasValidator.php";
+require_once "validator/CursoValidator.php";
 
-class TablasController
+class CursoController
 {
     private $validator;
 
     public function __construct()
     {
-        $this->validator = new TablasValidator();
+        $this->validator = new CursoValidator();
     }
 
     public function procesarPeticion()
@@ -28,8 +28,8 @@ class TablasController
     {
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
-            case "qry_tablas":$array_result = $this->validator->qryTablas();break;
-            case "cbx_tablas":$array_result = $this->validator->cbxTablas();break;            
+            case "qry_curso":$array_result = $this->validator->qryCurso();break;
+            case "cbx_curso":$array_result = $this->validator->cbxCurso();break;            
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);
@@ -40,9 +40,9 @@ class TablasController
         $action = isset($_POST['action']) ? $_POST['action'] : "";
 
         switch ($action){
-            case "ins_tabla": $array_result = $this->validator->saveTabla('ins');break;
-            case "upd_tabla": $array_result = $this->validator->saveTabla('upd');break;
-            case "est_tabla": $array_result = $this->validator->saveTabla('est');break;
+            case "ins_curso": $array_result = $this->validator->saveCurso('ins');break;
+            case "upd_curso": $array_result = $this->validator->saveCurso('upd');break;
+            case "est_curso": $array_result = $this->validator->saveCurso('est');break;
             default: $array_result["error"] = "Error al procesar la petición";
         }
         echo json_encode($array_result);
@@ -50,5 +50,5 @@ class TablasController
 
 }
 
-$controller = new TablasController();
+$controller = new CursoController();
 $controller->procesarPeticion();
