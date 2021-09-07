@@ -16,7 +16,7 @@ class Utilitario
 
 
     static function getParam($param){
-        return isset($_REQUEST[$param]) ? $_REQUEST [$param] : "";
+        return isset($_REQUEST[$param]) ? strtoupper($_REQUEST [$param]) : "";
     }
 
     static function getIntParam($param){
