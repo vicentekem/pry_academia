@@ -93,12 +93,26 @@
 
             <!-- curso profesor -->
             <div class="curso__profesor">
-              <div class="img__profesor">
-                <div class="img__radios">
-                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+              <div class="curso__profesor--medida">
+                <div class="img__profesor">
+                  <div class="img__radios">
+                    <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                  </div>
                 </div>
+                <p>nombre</p>
               </div>
-              <p>nombre</p>
+
+              <!-- Precio curso -->
+              <div class="curso__precio">
+                <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>S/.300</span>
+                </a>
+
+              </div>
+
             </div>
           </div>
           <!-- find tarjeta 1 -->
@@ -108,12 +122,12 @@
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
-              <a href="#"><img src="public/web/assets/img/cursos/curso2.jpg" class="imagen--estilos"></a>
+              <a href="?url=temarios.php"><img src="public/web/assets/img/cursos/curso2.jpg" class="imagen--estilos"></a>
             </div>
 
             <!-- contenido curso -->
             <div class=" curso__contenido ">
-              <a href="#">
+              <a href="?url=temarios.php">
                 <h3 class="curso__title">
                   <span>Aritmetica</span>
                 </h3>
@@ -123,7 +137,7 @@
                 est suscipit itaque?
               </p>
               <div class="curso__view">
-                <a href="#" class="curso__btn">
+                <a href="?url=ciclos.php" class="curso__btn">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -134,12 +148,26 @@
 
             <!-- curso profesor -->
             <div class="curso__profesor">
-              <div class="img__profesor">
-                <div class="img__radios">
-                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+              <div class="curso__profesor--medida">
+                <div class="img__profesor">
+                  <div class="img__radios">
+                    <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                  </div>
                 </div>
+                <p>nombre</p>
               </div>
-              <p>nombre</p>
+
+              <!-- Precio curso -->
+              <div class="curso__precio">
+                <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>S/.300</span>
+                </a>
+
+              </div>
+
             </div>
           </div>
           <!-- find tarjeta 2 -->
@@ -149,12 +177,12 @@
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
-              <a href="#"><img src="public/web/assets/img/cursos/curso3.jpg" class="imagen--estilos"></a>
+              <a href="?url=temarios.php"><img src="public/web/assets/img/cursos/curso3.jpg" class="imagen--estilos"></a>
             </div>
 
             <!-- contenido curso -->
             <div class=" curso__contenido ">
-              <a href="#">
+              <a href="?url=temarios.php">
                 <h3 class="curso__title">
                   <span>Aritmetica</span>
                 </h3>
@@ -164,7 +192,7 @@
                 est suscipit itaque?
               </p>
               <div class="curso__view">
-                <a href="#" class="curso__btn">
+                <a href="?url=ciclos.php" class="curso__btn">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -175,12 +203,26 @@
 
             <!-- curso profesor -->
             <div class="curso__profesor">
-              <div class="img__profesor">
-                <div class="img__radios">
-                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+              <div class="curso__profesor--medida">
+                <div class="img__profesor">
+                  <div class="img__radios">
+                    <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                  </div>
                 </div>
+                <p>nombre</p>
               </div>
-              <p>nombre</p>
+
+              <!-- Precio curso -->
+              <div class="curso__precio">
+                <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>S/.300</span>
+                </a>
+
+              </div>
+
             </div>
           </div>
           <!-- find tarjeta 3 -->
@@ -190,12 +232,12 @@
 
             <!-- curso--imagen -->
             <div class="curso__imagen">
-              <a href="#"><img src="public/web/assets/img/cursos/curso4.jpg" class="imagen--estilos"></a>
+              <a href="?url=temarios.php"><img src="public/web/assets/img/cursos/curso4.jpg" class="imagen--estilos"></a>
             </div>
 
             <!-- contenido curso -->
             <div class=" curso__contenido ">
-              <a href="#">
+              <a href="?url=temarios.php">
                 <h3 class="curso__title">
                   <span>Aritmetica</span>
                 </h3>
@@ -205,7 +247,7 @@
                 est suscipit itaque?
               </p>
               <div class="curso__view">
-                <a href="#" class="curso__btn">
+                <a href="?url=ciclos.php" class="curso__btn">
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 svg__icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
@@ -216,12 +258,26 @@
 
             <!-- curso profesor -->
             <div class="curso__profesor">
-              <div class="img__profesor">
-                <div class="img__radios">
-                  <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+              <div class="curso__profesor--medida">
+                <div class="img__profesor">
+                  <div class="img__radios">
+                    <img src="public/web/assets/img/cursos_profesor/ps1.jpg" class="foto" alt="">
+                  </div>
                 </div>
+                <p>nombre</p>
               </div>
-              <p>nombre</p>
+
+              <!-- Precio curso -->
+              <div class="curso__precio">
+                <a href="#">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                  <span>S/.300</span>
+                </a>
+
+              </div>
+
             </div>
           </div>
           <!-- find tarjeta -->

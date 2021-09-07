@@ -5,7 +5,7 @@
     global $menu_sup;
     
     $menu_sup = "Mantenimiento";
-    $currentPage = "Cursos";
+    $currentPage = "Curso";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
@@ -15,8 +15,12 @@
 <html>
 <head>
     
+    <link href="public/css/plugins/select2/select2.min.css" rel="stylesheet">
+    <link href="public/css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
+    
     <?php include __DIR__ . '/includes/admin/head.php';?>
-    <link href="public/js/plugins/dataTable/datatables.min.css" rel="stylesheet">
+    <link href="public/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
 
 </head>
 <body>
@@ -46,29 +50,30 @@
                         </div>
                     </div>
 
-                    <div class="ibox-content">
+                    <div class="ibox-content" id="filter_container">
 
                         <div class="row">
 
-                            <div class="form-group input-group col-12 col-md-7 col-lg-11">
-                                <input type="search" id="txt_fltr_nombre" placeholder="Buscar"
-                                        class="form-control text-uppercase" oninput="buscarTabla()"/>
-                                <div class="input-group-append">
-                                    <button class="btn btn-info" onclick="buscarTabla()">
-                                        <span class="fa fa-search"></span>
-                                    </button>
+                            <div class="form-group mb-0 col-12 col-md-5 col-lg-11">
+                                <label for="txt_search">Buscar</label>
+                                <div class="form-group input-group">
+                                    <input type="search" id="txt_search" placeholder="Buscar" 
+                                        class="form-control text-uppercase txt-filter"/>
+                                    <div class="input-group-append">
+                                        <button id="btn_search" class="btn btn-info btn-filter"> <span class="fa fa-search btn-filter"></span></button>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="form-group col-12 col-md-2 col-lg-1 ">
-                                <button class="btn btn-success" onclick="openModal('ins_dependencia')">
+                                <button class="btn btn-success" id="btn_new_curso">
                                     Nuevo
                                 </button>
                             </div>
                         </div>
 
                         <div class="table-responsive w-100 text-sm">
-                            <table id="lista_datatables" class="table table-bordered table-hover">
+                            <table id="tbl_curso" class="table table-bordered table-hover w-100">
                                 <thead>
                                 <tr>
                                     <th>Accion</th>
@@ -92,12 +97,18 @@
         </div>
     </div>
 
+    <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
+    <?php include __DIR__ . "/includes/partials/curso/modal_curso.php" ?>
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
-    
-    <script src="public/js/plugins/dataTables/datatables.min.js"></script>    
+
+    <script src="public/js/plugins/dataTables/datatables.min.js"></script>
     <script src="public/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="public/js/plugins/mustache/mustache.min.js"></script>
-    <script src="public/js/utilitario/utilitario.js"></script>
+    <script src="public/js/plugins/select2/select2.full.min.js"></script>
+    <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
+    <script src="public/js/utilitario/utilitario.js"></script>    
+
+    <script src="public/js/scripts/curso.js"></script>
 
 </body>
 </html>

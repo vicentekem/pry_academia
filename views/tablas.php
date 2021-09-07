@@ -21,9 +21,8 @@
     <link href="public/css/plugins/select2/select2-bootstrap4.min.css" rel="stylesheet">
     
     <?php include __DIR__ . '/includes/admin/head.php';?>
-    
-    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">    
-    
+    <link href="public/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="public/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
     
 </head>
 <body>
@@ -47,7 +46,7 @@
                 <div class="ibox">
 
                     <div class="ibox-title">
-                        <h3 style="display: inline-block"> Mantenimiento de Tablas </h3>
+                        <h3 style="display: inline-block" > Mantenimiento de Tablas </h3>
 
                         <div class="ibox-tools">
                         </div>
@@ -58,7 +57,7 @@
                         <div class="row" id="filter_container">
 
                             <div class="form-group mb-0 col-12 col-md-5 col-lg-3">
-                                <label for="cbx_id_tabla">Tabla</label>
+                                <label for="cbx_id_tabla" >Tabla</label>
                                 <select class="form-control text-uppercase select2 cbx-filter"
                                     name='cbx_id_tabla' id='cbx_id_tabla' style="width: 100%;">
 
@@ -71,7 +70,7 @@
                                     <input type="search" id="txt_search" placeholder="Buscar" 
                                         class="form-control text-uppercase txt-filter"/>
                                     <div class="input-group-append">
-                                        <button id="btn_search" class="btn btn-info btn-filter"> <span class="fa fa-search"></span></button>
+                                        <button id="btn_search" class="btn btn-info btn-filter"> <span class="fa fa-search btn-filter"></span></button>
                                     </div>
                                 </div>
                             </div>
@@ -117,6 +116,7 @@
     <script src="public/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="public/js/plugins/mustache/mustache.min.js"></script>
     <script src="public/js/plugins/select2/select2.full.min.js"></script>
+    <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="public/js/utilitario/utilitario.js"></script>    
 
     <script src="public/js/scripts/tablas.js"></script>

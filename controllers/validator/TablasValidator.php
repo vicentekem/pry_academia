@@ -39,22 +39,22 @@ class TablasValidator
         return $result;
     }
 
-    public function saveTabla($upd){
+    public function saveTabla($action){
 
         $result = [ "error" => "" ];
 
-        $data["id_registro int"] = $upd ? Utilitario::getIntParam("id_registro") : null;
+        $data["id_registro int"] = Utilitario::getIntParam("id_registro");
         $data["id_tabla int"] = Utilitario::getIntParam("id_tabla");
         $data["cod_ref"] = Utilitario::getParam("cod_ref");
         $data["descripcion"] = Utilitario::getParam("descripcion");
 
-        $action = $upd ? 'upd' : 'ins';       
-       
+        //exit( json_encode( $data ) );
         if ($result["error"] === "") $result = $this->model->saveTabla($action,$data);
 
         return $result;
 
     }
+
 
 }
 

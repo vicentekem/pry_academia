@@ -7,8 +7,7 @@ class Tablas
 {
     private $model;
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->model = new ModeloBase();
     }
 
@@ -52,7 +51,6 @@ class Tablas
             "call sp_tablas( '$action' ,:id_tabla,:id_registro,:descripcion,:cod_ref) ", $data,
             "Datos guardados exitosamente"
         );
-
     }
 
 }

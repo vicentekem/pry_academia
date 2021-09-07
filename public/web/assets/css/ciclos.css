@@ -409,3 +409,43 @@ input[type="search"]::-webkit-search-results-decoration {
   width: 100%;
   border-radius: 50%;
 }
+
+/* curso precio */
+.curso__profesor--medida{
+  width: 80%;
+padding-right: 0.5rem;
+background: var(--gris);
+border-bottom-right-radius: 0.5rem;
+border-bottom-left-radius: 0.5rem;
+height: 2rem;
+display: flex;
+align-items: center;
+}
+.curso__precio{
+width: 20%;
+}
+.curso__precio a{
+  display: flex;
+align-items: center;
+justify-content: flex-end;
+}
+.curso__precio svg{
+  min-width: 12px;
+  width: 100%;
+}
+@media (max-width: 1428px) {
+  .curso__precio svg{
+    min-width: 17px;
+  }
+  .curso__profesor--medida {
+    width: 75%;
+  }
+  .curso__precio {
+    width: 25%;
+}
+}
+@media (max-width: 868px) {
+  .curso__precio svg{
+    width: 20px;
+  }
+}

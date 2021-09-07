@@ -1,32 +1,32 @@
-let crud_tablas = {
+let crud_curso = {
     
     dtable: null,
-    id_table: "tbl_tablas",
-    id_modal: "modal_crud_tablas",
+    id_table: "tbl_curso",
+    id_modal: "modal_crud_curso",
 
     init : ()=>{
-        let btn_new_tabla = $("#btn_new_tabla");
-        let frm_crud_tabla = $("#frm_crud_tabla");
+        let btn_new_curso = $("#btn_new_curso");
+        let frm_crud_curso = $("#frm_crud_curso");
         let filter_container_jq = $("#filter_container");
-        let btn_save_tabla = $("#btn_save_tabla");
+        let btn_save_curso = $("#btn_save_curso");
 
-        filter_container_jq.on("click", event => searchEventListener( event ) );
+        filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
         filter_container_jq.on("search", event => searchEventListener( event ) );
+
+        frm_crud_curso.on('submit', (event)=> crud_curso.saveData(event));
+
+        btn_new_curso.on("click",  (event)=> crud_curso.openModal());
+        btn_save_curso.on("click", (event)=> crud_curso.saveData(event));
         
-        frm_crud_tabla.on('submit', (event)=> crud_tablas.saveData(event));
-        
-        btn_new_tabla.on("click",(event)=>{ crud_tablas.openModal(); });
-        btn_save_tabla.on("click", (event)=>{ crud_tablas.saveData(event); });
-        
-        crud_tablas.initDataTable();
-        crud_tablas.initActionsTadaTables();        
+        crud_curso.initDataTable();
+        crud_curso.initActionsTadaTables();        
     },
 
     initDataTable: ()=>{        
-        crud_tablas.dtable = $('#' + crud_tablas.id_table).DataTable({
+        crud_curso.dtable = $('#' + crud_curso.id_table).DataTable({
             pageLength: 10,//cantidad de registros a mostrar por paginas
-            searching : false,//si es true agrega un buscador a la tabla
+            searching : false,//si es true agrega un buscador a la curso
             ordering:false,//si es true se habilita la opcion de ordenar por columna
             serverSide: true,//si es true hace la llamada al servidor por cada pagina
             responsive: true,
@@ -36,10 +36,10 @@ let crud_tablas = {
             },
             ajax: {
                 type:"GET",
-                url: "controllers/TablasController.php",
+                url: "controllers/CursoController.php",
                 data: function(dtp){
-                    dtp.action = 'qry_tablas';                    
-                    dtp.id_tabla = $("#cbx_id_tabla").val();
+                    dtp.action = 'qry_curso';                    
+                    dtp.id_curso = $("#cbx_id_curso").val();
                     dtp.search   = $("#txt_search").val();
                     return dtp;
                 },
@@ -54,8 +54,7 @@ let crud_tablas = {
             columnDefs:[
                 {orderable: false, targets: 0, searchable: false,width:"10%", name:'id'},
                 {orderable: false, targets: 1, searchable: false, width:"70%",name:'description'},
-                {orderable: false, targets: 2, searchable: false, width:"10%",name:'cod_referencial'},
-                {orderable: false, targets: 3, searchable: false, width:"10%",name:'estado'}
+                {orderable: false, targets: 2, searchable: false, width:"10%",name:'estado'}
             ],
             columns: [
                 {
@@ -69,8 +68,7 @@ let crud_tablas = {
                         return `<div class='text-center'> ${btn_edit} ${btn_est}</div>`;
                     }
                 },
-                { data: "description"},
-                { data: "cod_referencial"},
+                { data: "description"},                
                 { 
                     render: function(data, type, row, meta){
                         return row.estado == 1 ? `<small class="label label-primary">Activado</small>` : 
@@ -83,19 +81,18 @@ let crud_tablas = {
 
     initActionsTadaTables: ()=>{
 
-        $("#" + crud_tablas.id_table + " tbody").on("click", ".upd-row", function(event){
+        $("#" + crud_curso.id_table + " tbody").on("click", ".upd-row", function(event){
             event.preventDefault();
             var id_row = $(this).attr("id").match(/\d+/)[0];
-            var data = crud_tablas.dtable.row(id_row).data();
-            crud_tablas.openModal(data);            
+            var data = crud_curso.dtable.row(id_row).data();
+            crud_curso.openModal(data);            
         });
 
-        $("#" + crud_tablas.id_table + " tbody").on("click", ".est-row", function(event){
+        $("#" + crud_curso.id_table + " tbody").on("click", ".est-row", function(event){
             event.preventDefault();
             var id_row = $(this).attr("id").match(/\d+/)[0];
-            var data = crud_tablas.dtable.row(id_row).data();
-            data.id_registro = data.id;
-            crud_tablas.changeEst(data);
+            var data = crud_curso.dtable.row(id_row).data();            
+            crud_curso.changeEst(data);
         });
 
     },
@@ -112,7 +109,7 @@ let crud_tablas = {
             closeOnConfirm: false
         }, function () {
 
-            ajaxRequest('est_tabla',"post","TablasController.php",data,(result)=>{
+            ajaxRequest('est_curso',"post","CursoController.php",data,(result)=>{
                 if(result.error === ""){
                     let txtmsg = data.estado == 0 ? "Activado" : "Desactivado";
                     //swal(txtmsg,, "success");
@@ -124,7 +121,7 @@ let crud_tablas = {
                         confirmButtonColor: "#1AB394",
                         closeOnConfirm: true
                     });
-                    crud_tablas.reloadTable();
+                    crud_curso.reloadTable();
                 }else{
                     swal({
                         title: "Error",
@@ -143,45 +140,38 @@ let crud_tablas = {
 
     openModal : ( data = {} )=>{        
         if(data.id){
-            $("#txt_crud_action").val("upd_tabla");
-            $("#cbx_crud_id_registro").val(data.id);
-            $("#cbx_crud_id_tabla").val(data.id_tabla).attr("disabled",true).trigger("change.select2");
-            $("#txt_crud_cod_ref").val(data.cod_referencial);
+            $("#txt_crud_action").val("upd_curso");
+            $("#txt_crud_id").val(data.id);
             $("#txt_crud_descripcion").val(data.description);
-            $("#" + crud_tablas.id_modal + " #emodal_title").html("Editar Registro");
-            $("#" + crud_tablas.id_modal).modal("show");
+            $("#" + crud_curso.id_modal + " #emodal_title").html("Editar Registro");
+            $("#" + crud_curso.id_modal).modal("show");
         }else{            
-            $("#txt_crud_action").val("ins_tabla");
-            $("#cbx_crud_id_registro").val("");
-            $("#cbx_crud_id_tabla").val(data.id_tabla || "").attr("disabled",false).trigger("change.select2");
+            $("#txt_crud_action").val("ins_curso");
+            $("#txt_crud_id").val("");
             $("#txt_crud_cod_ref").val("");
             $("#txt_crud_descripcion").val("");
-            $("#" + crud_tablas.id_modal + " #emodal_title").html("Nuevo Registro");
-            $("#" + crud_tablas.id_modal).modal("show");        
+            $("#" + crud_curso.id_modal + " #emodal_title").html("Nuevo Registro");
+            $("#" + crud_curso.id_modal).modal("show");        
         }
     },
 
-    saveData: (event)=>{
+    saveData: (event)=>{        
         event.preventDefault();
         let action = $("#txt_crud_action").val();
-        let id_registro = $("#cbx_crud_id_registro").val();
-        let id_tabla = $("#cbx_crud_id_tabla").val();
-        let cod_ref = $("#txt_crud_cod_ref").val();
+        let id = $("#txt_crud_id").val();
         let descripcion = $("#txt_crud_descripcion").val();
 
         let data = {
-            id_registro : id_registro,
-            id_tabla : id_tabla,
-            cod_ref : cod_ref,
+            id : id,            
             descripcion : descripcion
         }
 
-        ajaxRequest(action,"post","TablasController.php",data,(result)=>{
+        ajaxRequest(action,"post","CursoController.php",data,(result)=>{
 
             if(result.error === ""){
-                $("#" + crud_tablas.id_modal).modal("hide");
+                $("#" + crud_curso.id_modal).modal("hide");
                 showMessage(result.success,"success");
-                crud_tablas.reloadTable();
+                crud_curso.reloadTable();
             }else{
                 showMessage(result.error,"error");
             }
@@ -190,7 +180,7 @@ let crud_tablas = {
     },
 
     reloadTable : ()=>{
-        if(crud_tablas.dtable) crud_tablas.dtable.draw();
+        if(crud_curso.dtable) crud_curso.dtable.draw();
     }
 
 };
@@ -200,26 +190,26 @@ let crud_tablas = {
 
 const loadCbx = ()=>{
 
-    ajaxRequest("cbx_tablas","get","TablasController.php",{ id_tabla:0 },
+    /*ajaxRequest("cbx_curso","get","CursoController.php",
     (result) => {
-        loadDataToTemplate('tmpl_cbx_tabla','cbx_id_tabla',result["rows"],true);
-        loadDataToTemplate('tmpl_cbx_tabla','cbx_crud_id_tabla',result["rows"],true);
-    });
+        loadDataToTemplate('tmpl_cbx_curso','cbx_id_curso',result["rows"],true);
+        loadDataToTemplate('tmpl_cbx_curso','cbx_crud_id_curso',result["rows"],true);
+    });*/
 
 }
 
 const searchEventListener = (event)=>{
     let target = event.target;    
     switch(event.type){
-        case 'click':  if( target.classList.contains("btn-filter")) crud_tablas.reloadTable(); ;break;
-        case 'change': if( target.classList.contains("cbx-filter")) crud_tablas.reloadTable(); ;break;
-        case 'search': if( target.classList.contains("txt-filter")) crud_tablas.reloadTable(); ;break;
+        case 'click':  if( target.classList.contains("btn-filter")) crud_curso.reloadTable(); ;break;
+        case 'change': if( target.classList.contains("cbx-filter")) crud_curso.reloadTable(); ;break;
+        case 'search': if( target.classList.contains("txt-filter")) crud_curso.reloadTable(); ;break;
     }
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
     
-    crud_tablas.init();
+    crud_curso.init();
     loadCbx();
     
 });
