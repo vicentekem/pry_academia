@@ -209,6 +209,58 @@
 
 
 
+    <!-- valores -->
+    <section class="cont__valor">
+        <div class="cont__caja">
+            <div class="valor--title__dos">
+                <h2>Turnos y Horarios</h2>
+            </div>
+
+            <!-- caja valor -->
+            <div class="cont__contenido contenido__flext">
+
+                <!-- volor1 -->
+                <div class="valor valor2 caja__cursor">
+                    <!-- icono valor -->
+                    <div class="caja__valor">
+                        <div class="valor__icon icon--svg">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                            </svg>
+
+                        </div>
+                        <!-- contenido valor -->
+                        <div class="valor__texto">
+                            <h3>Turno Mañana</h3>
+                            <p>De Lunes a Sabado </br>de 8 a 1PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- volor2 -->
+                <div class="valor valor2 caja__cursor">
+                    <!-- icono valor -->
+                    <div class="caja__valor ">
+                        <div class="valor__icon icon--svg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+</svg>
+
+                        </div>
+                        <!-- contenido valor -->
+                        <div class="valor__texto">
+                            <h3>Turno Tarde</h3>
+                            <p>De Lunes a Sabado </br>de 2 a 7PM</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
 
     <!-- ========================================= -->
 
