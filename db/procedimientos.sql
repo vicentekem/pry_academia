@@ -87,8 +87,9 @@ CASE _action
 END CASE;
 END $
 
-
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`(_action varchar(10),
+drop procedure if exists sp_persona$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`(
+_action varchar(10),
 _id int(32),
 _dni varchar(8),
 _nombre VARCHAR(255),
@@ -122,3 +123,36 @@ case _action
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
 END $
+
+drop procedure if exists sp_usuario$
+CREATE DEFINER=`root`@`localhost` PROCEDURE sp_usuario(
+_action varchar(10),
+_id int(11),
+_id_persona int(32),
+_usuario VARCHAR(50),
+_password varchar(150),
+_id_usuario VARCHAR(32))
+BEGIN
+case _action 
+ WHEN 'ins' THEN
+	IF(SELECT id from tbl_usuario where id=_id) IS NULL THEN
+	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
+				VALUES(_id,_id_persona,_usuario,_password,CURRENT_TIMESTAMP,_id_usuario,0);
+	ELSE
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID ya existe' , MYSQL_ERRNO = 1001;	
+	END if;
+ WHEN'upd' THEN
+	IF(SELECT id from tbl_usuario where id_persona=_id_persona and id<>_id) is NULL THEN
+	UPDATE tbl_usuario SET id_persona=_id_persona,usuario=_usuario,`password`=_password,create_up=CURRENT_TIMESTAMP,user_create_up=_id_usuario WHERE id=_id and id_persona=_id_persona;
+	ELSE
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar usuario', MYSQL_ERRNO = 1001;
+	END IF;
+ WHEN 'est' THEN
+		UPDATE tbl_usuario SET estado=!estado WHERE id=_id AND id_persona=_id_persona;
+ WHEN 'passw' THEN
+		UPDATE tbl_usuario SET update_password=!update_password WHERE id=_id AND id_persona=_id_persona;
+ ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
+ END CASE;
+END $
+
