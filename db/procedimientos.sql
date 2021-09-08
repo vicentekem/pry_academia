@@ -133,24 +133,33 @@ _usuario VARCHAR(50),
 _password varchar(150),
 _id_usuario VARCHAR(32))
 BEGIN
+DECLARE msg varchar(255) default '';
+ set msg = CONCAT('El usuario ', _usuario , ' ya existe' );
 case _action 
  WHEN 'ins' THEN
-	IF(SELECT id from tbl_usuario where id=_id) IS NULL THEN
+	IF(SELECT id from tbl_usuario where usuario<>_usuario) is NULL then
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
+		ELSEIF(SELECT id from tbl_usuario where id_persona<>_id_persona) IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una cuenta con este DNI', MYSQL_ERRNO = 1001;
+		ELSE
 	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
-				VALUES(_id,_id_persona,_usuario,_password,CURRENT_TIMESTAMP,_id_usuario,0);
+				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
+		END if;
+		/*
+	IF(SELECT id from tbl_usuario where id_persona=_id_persona OR usuario=_usuario LIMIT 1) IS NULL THEN
+	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
+				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
 	ELSE
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El ID ya existe' , MYSQL_ERRNO = 1001;	
-	END if;
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El usuario ya existe' , MYSQL_ERRNO = 1001;	
+	END if;*/
  WHEN'upd' THEN
 	IF(SELECT id from tbl_usuario where id_persona=_id_persona and id<>_id) is NULL THEN
-	UPDATE tbl_usuario SET id_persona=_id_persona,usuario=_usuario,`password`=_password,create_up=CURRENT_TIMESTAMP,user_create_up=_id_usuario WHERE id=_id and id_persona=_id_persona;
+	UPDATE tbl_usuario SET usuario=_usuario,`password`=MD5(_password),create_up=CURRENT_TIMESTAMP,user_create_up=_id_usuario,update_password=1 WHERE id=_id and id_persona=_id_persona;
 	ELSE
 	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar usuario', MYSQL_ERRNO = 1001;
 	END IF;
  WHEN 'est' THEN
 		UPDATE tbl_usuario SET estado=!estado WHERE id=_id AND id_persona=_id_persona;
- WHEN 'passw' THEN
-		UPDATE tbl_usuario SET update_password=!update_password WHERE id=_id AND id_persona=_id_persona;
  ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
  END CASE;

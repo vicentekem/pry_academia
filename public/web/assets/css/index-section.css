@@ -1,0 +1,51 @@
+
+:root {
+    --primero: #1192ee;
+    --marron: #663d14;
+    --gris: #eef2f4;
+    --blanco: #ffffff;
+    --negro: #333;
+    --plomo: #7a7a7a;
+    --font: "Relaway", sans-serif;
+    --font2: "Open Sans", sans-serif;
+    --color: #e7f4fd;
+    --color-alt: #b7defa;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+.box__section{
+    width: 100%;
+    margin: 8rem 0 6rem 0;
+   
+}
+.caja__section{
+    width: 50%;
+    margin: 0 auto;
+}
+.caja__section--title{
+    text-align: center;
+}
+.caja__section--title h2{
+font-size: 2.8rem;
+font-weight: 600;
+color: #333;
+text-transform: capitalize;
+}
+.caja__section--parrafo p{
+    font-size: 1.5rem;
+    text-align: center;
+}
+.valor__pleno{
+    text-align: center;
+    cursor: pointer;
+}
+.valor__pleno svg:hover{
+    color: #3498db;
+}
+.min__heigth{
+    min-height: 184px;
+}
