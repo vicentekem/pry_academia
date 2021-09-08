@@ -1,10 +1,4 @@
-:root {
-  --primero: #784dc3;
-  --marron: #663d14;
-  --gris: #e1e1e1;
-  --blanco: #ffffff;
-  --negro: #000000;
-}
+@import url("./myStyles.css");
 html {
   box-sizing: border-box;
   /*font-size: 62.5%;1rem = 10px*/
@@ -85,19 +79,18 @@ height: 4px;
   font-size: 16px;
   border-radius: 5px;
   padding-left: 10px;
-  border: 1px solid #ccc;
-  /* background-color: #eeeeee; */
-  background-color: #fff;
+  border: 1px solid var(--lead-secondary);
+  background-color: var(--white);
   border-bottom-width: 3px;
   transition: all 0.3s ease;
 }
 .campo input[type="text"]:focus {
   /* border-radius: 5px; */
   /* border-color: #9b59b6; */
-  border-color: #7ed0f3;
+  border-color: var(--blue-secondary);
 }
 .bloqueo{
-  background-color: var(--gris);
+  background-color: var(--gray);
   cursor: no-drop;
   /* border-color: none; */
 }
@@ -152,12 +145,12 @@ height: 4px;
 }
 .from__btn {
   width: 150px;
-  background-color: #d9f1fc;
+  background-color: var(--green-sure-white);
   border: none;
   outline: none;
   height: 49px;
   border-radius: 30px;
-  color: #0089c8;
+  color: var(--blue-opaque);
   text-transform: uppercase;
   font-weight: 600;
   margin: 10px 0;
@@ -166,8 +159,8 @@ height: 4px;
 }
 
 .from__btn:hover {
-  background-color: #0089c8;
-  color: #fff;
+  background-color: var(--blue-opaque);
+  color: var(white);
 }
 
 /* 
