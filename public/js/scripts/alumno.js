@@ -1,32 +1,32 @@
-let crud_personal = {
+let crud_alumno = {
     
     dtable: null,
-    id_table: "tbl_personal",
-    id_modal: "modal_crud_personal",
+    id_table: "tbl_alumno",
+    id_modal: "modal_crud_alumno",
 
     init : ()=>{
-        let btn_new_personal = $("#btn_new_personal");
-        let frm_crud_personal = $("#frm_crud_personal");
+        let btn_new_alumno = $("#btn_new_alumno");
+        let frm_crud_alumno = $("#frm_crud_alumno");
         let filter_container_jq = $("#filter_container");
-        let btn_save_personal = $("#btn_save_personal");
+        let btn_save_alumno = $("#btn_save_alumno");
 
         filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
         filter_container_jq.on("search", event => searchEventListener( event ) );
 
-        frm_crud_personal.on('submit', (event)=> crud_personal.saveData(event));
+        frm_crud_alumno.on('submit', (event)=> crud_alumno.saveData(event));
 
-        btn_new_personal.on("click",  (event)=> crud_personal.openModal());
-        btn_save_personal.on("click", (event)=> crud_personal.saveData(event));
+        btn_new_alumno.on("click",  (event)=> crud_alumno.openModal());
+        btn_save_alumno.on("click", (event)=> crud_alumno.saveData(event));
         
-        crud_personal.initDataTable();
-        crud_personal.initActionsTadaTables();        
+        crud_alumno.initDataTable();
+        crud_alumno.initActionsTadaTables();        
     },
 
     initDataTable: ()=>{
-        crud_personal.dtable = $('#' + crud_personal.id_table).DataTable({
+        crud_alumno.dtable = $('#' + crud_alumno.id_table).DataTable({
             pageLength: 10,//cantidad de registros a mostrar por paginas
-            searching : false,//si es true agrega un buscador a la personal
+            searching : false,//si es true agrega un buscador a la alumno
             ordering:false,//si es true se habilita la opcion de ordenar por columna
             serverSide: true,//si es true hace la llamada al servidor por cada pagina
             responsive: true,
@@ -36,10 +36,10 @@ let crud_personal = {
             },
             ajax: {
                 type:"GET",
-                url: "controllers/PersonalController.php",
+                url: "controllers/AlumnoController.php",
                 data: function(dtp){
-                    dtp.action = 'qry_personal';                    
-                    dtp.id_personal = $("#cbx_id_personal").val();
+                    dtp.action = 'qry_alumno';                    
+                    dtp.id_alumno = $("#cbx_id_alumno").val();
                     dtp.search   = $("#txt_search").val();
                     return dtp;
                 },
@@ -56,9 +56,9 @@ let crud_personal = {
                 {orderable: false, targets: 1, searchable: false, width:"12%"},
                 {orderable: false, targets: 2, searchable: false, width:"35%"},
                 {orderable: false, targets: 3, searchable: false, width:"10%"},
-                {orderable: false, targets: 4, searchable: false, width:"17%"},
-                {orderable: false, targets: 5, searchable: false, width:"10%"},
-                {orderable: false, targets: 6, searchable: false, width:"8%"}
+                {orderable: false, targets: 4, searchable: false, width:"12%"},
+                {orderable: false, targets: 5, searchable: false, width:"8%"},
+                
             ],
             columns: [
                 {
@@ -66,15 +66,13 @@ let crud_personal = {
                         var btn_edit = `<a class='fa fa-edit  text-warning upd-row' id=upd_${meta.row} href='#' style='font-size: 1.1em'></a>`;
                         var btn_est  = row.estado == 1 ? 
                             `<a class='fa fa-times text-danger   est-row' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>` : 
-                            `<a class='fa fa-check text-info  est-row' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>`;
-                            
+                            `<a class='fa fa-check text-info  est-row' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>`;                            
 
                         return `<div class='text-center'> ${btn_edit} ${btn_est}</div>`;
                     }
                 },
                 { data: "dni"},
-                { data: "nombre_completo"},
-                { data: "cargo"},
+                { data: "nombre_completo"},                
                 { data: "correo"},
                 { data: "celular"},
                 { 
@@ -89,18 +87,18 @@ let crud_personal = {
 
     initActionsTadaTables: ()=>{
 
-        $("#" + crud_personal.id_table + " tbody").on("click", ".upd-row", function(event){
+        $("#" + crud_alumno.id_table + " tbody").on("click", ".upd-row", function(event){
             event.preventDefault();
             var id_row = $(this).attr("id").match(/\d+/)[0];
-            var data = crud_personal.dtable.row(id_row).data();
-            crud_personal.openModal(data);            
+            var data = crud_alumno.dtable.row(id_row).data();
+            crud_alumno.openModal(data);            
         });
 
-        $("#" + crud_personal.id_table + " tbody").on("click", ".est-row", function(event){
+        $("#" + crud_alumno.id_table + " tbody").on("click", ".est-row", function(event){
             event.preventDefault();
             var id_row = $(this).attr("id").match(/\d+/)[0];
-            var data = crud_personal.dtable.row(id_row).data();            
-            crud_personal.changeEst(data);
+            var data = crud_alumno.dtable.row(id_row).data();            
+            crud_alumno.changeEst(data);
         });
 
     },
@@ -117,7 +115,7 @@ let crud_personal = {
             closeOnConfirm: false
         }, function () {
 
-            ajaxRequest('est_personal',"post","PersonalController.php",data,(result)=>{
+            ajaxRequest('est_alumno',"post","AlumnoController.php",data,(result)=>{
                 if(result.error === ""){
                     let txtmsg = data.estado == 0 ? "Activado" : "Desactivado";
                     //swal(txtmsg,, "success");
@@ -129,7 +127,7 @@ let crud_personal = {
                         confirmButtonColor: "#1AB394",
                         closeOnConfirm: true
                     });
-                    crud_personal.reloadTable();
+                    crud_alumno.reloadTable();
                 }else{
                     swal({
                         title: "Error",
@@ -147,11 +145,11 @@ let crud_personal = {
     },
 
     loadDataToModal : ( data )=>{
-        ajaxRequest("get_personal","get","PersonalController.php",{id:data.id},(result)=>{
+        ajaxRequest("get_alumno","get","AlumnoController.php",{id:data.id},(result)=>{
 
             let d = result.row;
 
-            $("#txt_crud_action").val("upd_personal");
+            $("#txt_crud_action").val("upd_alumno");
 
             $("#txt_crud_id").val(d.id);
             $("#txt_crud_id_persona").val(d.id_persona);
@@ -160,23 +158,22 @@ let crud_personal = {
             $("#txt_crud_ape_pat").val(d.apellido_pat);
             $("#txt_crud_ape_mat").val(d.apellido_mat);
             $("#cbx_crud_id_distrito").html( d.id_ubigeo ? `<option value='${d.id_ubigeo}' selected >${d.ubigeo}</option>` : "").change();
-            $("#cbx_crud_id_cargo").val(d.id_cargo).change();
             $("#cbx_crud_id_sexo").val(d.id_sexo);
             $("#txt_crud_correo").val(d.correo);
             $("#txt_crud_celular").val(d.celular);
             $("#txt_crud_telefono").val(d.telefono);
 
-            $("#" + crud_personal.id_modal + " #emodal_title").html("Editar Personal");
-            $("#" + crud_personal.id_modal).modal("show");
+            $("#" + crud_alumno.id_modal + " #emodal_title").html("Editar Alumno");
+            $("#" + crud_alumno.id_modal).modal("show");
         });
     },
 
     openModal : ( data = {} )=>{        
         if(data.id){
-            crud_personal.loadDataToModal(data);
+            crud_alumno.loadDataToModal(data);
         }else{
 
-            $("#txt_crud_action").val("ins_personal");
+            $("#txt_crud_action").val("ins_alumno");
             
             $("#txt_crud_id").val("");
             $("#txt_crud_id_persona").val("");
@@ -185,14 +182,13 @@ let crud_personal = {
             $("#txt_crud_ape_pat").val("");
             $("#txt_crud_ape_mat").val("");
             $("#cbx_crud_id_distrito").html("").change();
-            $("#cbx_crud_id_cargo").val("").change();
             $("#cbx_crud_id_sexo").val("");
             $("#txt_crud_correo").val("");
             $("#txt_crud_celular").val("");
             $("#txt_crud_telefono").val("");
             
-            $("#" + crud_personal.id_modal + " #emodal_title").html("Nuevo Personal");
-            $("#" + crud_personal.id_modal).modal("show");        
+            $("#" + crud_alumno.id_modal + " #emodal_title").html("Nuevo Alumno");
+            $("#" + crud_alumno.id_modal).modal("show");        
         }
     },
 
@@ -206,13 +202,13 @@ let crud_personal = {
         let nombre = $("#txt_crud_nombre").val();
         let ape_pat = $("#txt_crud_ape_pat").val();
         let ape_mat = $("#txt_crud_ape_mat").val();
-        let id_distrito = $("#cbx_crud_id_distrito").val();
-        let id_cargo = $("#cbx_crud_id_cargo").val();
         let id_sexo = $("#cbx_crud_id_sexo").val();
+        let id_distrito = $("#cbx_crud_id_distrito").val();        
         let correo = $("#txt_crud_correo").val();
         let celular = $("#txt_crud_celular").val();
         let telefono = $("#txt_crud_telefono").val();
 
+        
         let data = {
             id : id,
             id_persona: id_persona,
@@ -220,20 +216,19 @@ let crud_personal = {
             nombre : nombre,
             ape_pat : ape_pat,
             ape_mat : ape_mat,
-            id_distrito : id_distrito,
-            id_sexo : id_sexo,
-            id_cargo : id_cargo,
+            id_sexo: id_sexo,
+            id_distrito : id_distrito,            
             correo : correo,
             celular : celular,
             telefono : telefono
         }
 
-        ajaxRequest(action,"post","PersonalController.php",data,(result)=>{
+        ajaxRequest(action,"post","AlumnoController.php",data,(result)=>{
 
             if(result.error === ""){
-                $("#" + crud_personal.id_modal).modal("hide");
+                $("#" + crud_alumno.id_modal).modal("hide");
                 showMessage(result.success,"success");
-                crud_personal.reloadTable();
+                crud_alumno.reloadTable();
             }else{
                 showMessage(result.error,"error");
             }
@@ -242,19 +237,14 @@ let crud_personal = {
     },
 
     reloadTable : ()=>{
-        if(crud_personal.dtable) crud_personal.dtable.draw();
+        if(crud_alumno.dtable) crud_alumno.dtable.draw();
     }
 
 };
 
 
 
-
 const loadCbx = ()=>{
-
-    ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:5},(result) => {
-        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_cargo',result["rows"],true);
-    });
 
     ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:6},(result) => {
         loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_sexo',result["rows"]);
@@ -266,17 +256,15 @@ const loadCbx = ()=>{
 const searchEventListener = (event)=>{
     let target = event.target;    
     switch(event.type){
-        case 'click':  if( target.classList.contains("btn-filter")) crud_personal.reloadTable(); ;break;
-        case 'change': if( target.classList.contains("cbx-filter")) crud_personal.reloadTable(); ;break;
-        case 'search': if( target.classList.contains("txt-filter")) crud_personal.reloadTable(); ;break;
+        case 'click':  if( target.classList.contains("btn-filter")) crud_alumno.reloadTable(); ;break;
+        case 'change': if( target.classList.contains("cbx-filter")) crud_alumno.reloadTable(); ;break;
+        case 'search': if( target.classList.contains("txt-filter")) crud_alumno.reloadTable(); ;break;
     }
 }
 
-
-
 document.addEventListener('DOMContentLoaded',()=>{
         
-    crud_personal.init();
+    crud_alumno.init();
     loadCbx();
     
 });

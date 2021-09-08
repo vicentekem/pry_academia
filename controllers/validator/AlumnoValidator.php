@@ -6,18 +6,18 @@
  * Time: 08:34 AM
  */
 
-require_once __DIR__ . "/../../models/Personal.php";
+require_once __DIR__ . "/../../models/Alumno.php";
 require_once __DIR__ . "/../../utilitario/Utilitario.php";
 
-class PersonalValidator
+class AlumnoValidator
 {
     private $model;
     public function __construct()
     {
-        $this->model = new Personal();
+        $this->model = new Alumno();
     }
     
-    public function qryPersonal()
+    public function qryAlumno()
     {
         $result = [ "error" => "" ];
         $data["start int"] = isset($_GET["start"]) ? $_GET["start"] : null;
@@ -25,24 +25,23 @@ class PersonalValidator
 
         $data["search"] = Utilitario::getParam("search");
 
-        if ($result["error"] === "") $result = $this->model->qryPersonal($data);        
+        if ($result["error"] === "") $result = $this->model->qryAlumno($data);        
 
         return $result;
     }
 
-    public function getPersonal()
+    public function getAlumno()
     {
         $result = [ "error" => "" ];
         
         $data["id int"] = Utilitario::getIntParam("id");
         
-        if ($result["error"] === "") $result = $this->model->getPersonal($data);        
+        if ($result["error"] === "") $result = $this->model->getAlumno($data);        
 
         return $result;
     }
 
-
-    public function savePersonal($action){
+    public function saveAlumno($action){
 
         $result = [ "error" => "" ];
 
@@ -53,15 +52,14 @@ class PersonalValidator
         $data["ape_pat"] = Utilitario::getParam("ape_pat");
         $data["ape_mat"] = Utilitario::getParam("ape_mat");
         $data["id_distrito"] = Utilitario::getParam("id_distrito");
-        $data["id_cargo int"] = Utilitario::getIntParam("id_cargo");
-        $data["id_sexo int"] = Utilitario::getIntParam("id_sexo");
+        $data["id_sexo int"] = Utilitario::getParam("id_sexo");
         $data["correo"] = Utilitario::getParam("correo");
         $data["celular"] = Utilitario::getParam("celular");
         $data["telefono"] = Utilitario::getParam("telefono");
 
         $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
-        //exit( json_encode($data) );
-        if ($result["error"] === "") $result = $this->model->savePersonal($action,$data);
+        
+        if ($result["error"] === "") $result = $this->model->saveAlumno($action,$data);
 
         return $result;
 
@@ -69,16 +67,6 @@ class PersonalValidator
 
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

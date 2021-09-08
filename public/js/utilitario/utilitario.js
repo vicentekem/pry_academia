@@ -28,11 +28,11 @@ const loadDataToTemplate = (id_template, id_content_data, data, is_select2, is_m
     var template = $("#" + id_template).html();
     Mustache.parse(template);
     var rendered_html = Mustache.render(template, {data: data});
-
+    
     if( is_select2 ) {
         $("#" + id_content_data).html(rendered_html).select2({ theme: 'bootstrap4', width:'100%'});
     }else{
-        $("#" + id_contentData).html(rendered_html);
+        $("#" + id_content_data).html(rendered_html);
     }
 }
 
