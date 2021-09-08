@@ -32,6 +32,10 @@
   <link href="public/web/assets/css/header.css" rel="stylesheet">
   <!-- template Matricula virtual -->
   <link href="public/web/assets/css/from.css" rel="stylesheet">
+  <!-- index-section -->
+  <link href="public/web/assets/css/index-section.css" rel="stylesheet">
+  <!-- Quines somos -->
+  <link href="public/web/assets/css/quienes-somos.css" rel="stylesheet">
   <!-- Sobre Nosotros -->
   <link href="public/web/assets/css/sobre-nosotros.css" rel="stylesheet">
   <!-- Ciclos -->

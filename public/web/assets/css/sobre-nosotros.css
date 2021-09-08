@@ -125,12 +125,17 @@
   border-radius: 0.5rem;
   padding: 1rem 0 1rem 0;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .valor__icon {
   width: 50%;
   margin: 0 auto;
 }
+.valor__icon:hover{
+  color: #ff5222;
+}
+
 /* .valor__icon img {
   width: 100%;
   border-top-left-radius: 0.5rem;
@@ -151,7 +156,6 @@
 .valor--title h2 {
   font-weight: 600;
   letter-spacing: 2px;
-  font-family: CaeciliaLTPro-85Heavy;
   font-size: 3rem;
   color: var(--negro);
 }
@@ -161,6 +165,7 @@
 }
 .valor__texto {
   margin: 1rem 0 1rem 0;
+  text-align: center;
 }
 .valor__texto h3 {
   font-size: 1.1rem;
@@ -168,6 +173,9 @@
 .valor__texto p {
   margin: 0;
   font-size: 0.9rem;
+}
+.valores{
+  height: 13rem;
 }
 
 @media (max-width: 1194px) {

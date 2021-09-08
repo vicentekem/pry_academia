@@ -165,7 +165,6 @@
 .contenido--title h2 {
   font-weight: 600;
   letter-spacing: 2px;
-  font-family: CaeciliaLTPro-85Heavy;
   font-size: 3rem;
   color: var(--negro);
 }
@@ -297,7 +296,6 @@
 .programa__title h2{
   font-weight: 600;
 letter-spacing: 2px;
-font-family: CaeciliaLTPro-85Heavy;
 font-size: 3rem;
 color: var(--negro);
 }
@@ -384,7 +382,6 @@ margin: 3.5rem 0 4rem 0;
 .valor--title__dos h2{
   font-weight: 600;
   letter-spacing: 2px;
-  font-family: CaeciliaLTPro-85Heavy;
   font-size: 3rem;
   color: var(--negro);
 }
