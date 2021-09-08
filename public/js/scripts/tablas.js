@@ -161,6 +161,15 @@ let crud_tablas = {
         }
     },
 
+    validateData : (action,data)=>{
+        let msg = "";
+
+        if( action === 'upd_tabla' && data.id_registro == ""){msg = "El id es requerido";}
+        else if(data.descripcion == ""){ msg = "La descripción es requerida"  }
+
+        return msg;
+    },
+
     saveData: (event)=>{
         event.preventDefault();
         let action = $("#txt_crud_action").val();
@@ -175,6 +184,9 @@ let crud_tablas = {
             cod_ref : cod_ref,
             descripcion : descripcion
         }
+
+        let err_msg = crud_tablas.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");
 
         ajaxRequest(action,"post","TablasController.php",data,(result)=>{
 

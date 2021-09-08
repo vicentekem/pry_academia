@@ -192,6 +192,7 @@ let crud_alumno = {
         }
     },
 
+    
     saveData: (event)=>{        
         event.preventDefault();
         let action = $("#txt_crud_action").val();
@@ -222,6 +223,7 @@ let crud_alumno = {
             celular : celular,
             telefono : telefono
         }
+
 
         ajaxRequest(action,"post","AlumnoController.php",data,(result)=>{
 
