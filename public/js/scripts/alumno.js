@@ -167,7 +167,7 @@ let crud_alumno = {
             $("#" + crud_alumno.id_modal).modal("show");
         });
     },
-
+   
     openModal : ( data = {} )=>{        
         if(data.id){
             crud_alumno.loadDataToModal(data);
@@ -192,7 +192,18 @@ let crud_alumno = {
         }
     },
 
-    
+    validateData : (action,data)=>{
+        let msg = "";
+
+        if( action === 'upd_alumno' && data.id == ""){msg = "El id es requerido";}
+        else if(data.dni == ""){ msg = "El DNI es requerido"  }
+        else if(data.nombre == ""){ msg = "El nombre es requerido"  }
+        else if(data.ape_pat == ""){ msg = "El apellido paterno es requerido"  }
+        else if(data.ape_mat == ""){ msg = "El apellido materno es requerido"  }
+
+        return msg;
+    },
+
     saveData: (event)=>{        
         event.preventDefault();
         let action = $("#txt_crud_action").val();
@@ -223,7 +234,8 @@ let crud_alumno = {
             celular : celular,
             telefono : telefono
         }
-
+        let err_msg = crud_alumno.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");
 
         ajaxRequest(action,"post","AlumnoController.php",data,(result)=>{
 

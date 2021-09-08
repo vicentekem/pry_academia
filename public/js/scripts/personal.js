@@ -195,7 +195,18 @@ let crud_personal = {
             $("#" + crud_personal.id_modal).modal("show");        
         }
     },
+    
+    validateData : (action,data)=>{
+        let msg = "";
 
+        if( action === 'upd_personal' && data.id == ""){msg = "El id es requerido";}
+        else if(data.dni == ""){ msg = "El DNI es requerido"  }
+        else if(data.nombre == ""){ msg = "El nombre es requerido"  }
+        else if(data.ape_pat == ""){ msg = "El apellido paterno es requerido"  }
+        else if(data.ape_mat == ""){ msg = "El apellido materno es requerido"  }
+        else if(data.id_cargo == ""){ msg = "El cargo es requerido"  }
+        return msg;
+    },
     saveData: (event)=>{        
         event.preventDefault();
         let action = $("#txt_crud_action").val();
@@ -227,6 +238,9 @@ let crud_personal = {
             celular : celular,
             telefono : telefono
         }
+
+        let err_msg = crud_personal.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");
 
         ajaxRequest(action,"post","PersonalController.php",data,(result)=>{
 
