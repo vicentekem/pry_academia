@@ -113,3 +113,16 @@ const ajaxSelect2 = (id_select,action,controller,formatRow,formatRowSelection)=>
     });
 
 }
+
+const isValidDNI = (dni) => {
+    return /^([0-9]{8})$/.test(dni);
+}
+
+const isValidNumber = (n) => {
+    return /^([0-9]+)$/.test(n);
+}
+
+
+const isValidEmail = (mail) => {
+    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(mail);
+}
