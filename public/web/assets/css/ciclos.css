@@ -46,7 +46,7 @@
 .campo__header--bg {
   background-color: var(--blanco);
   width: 100%;
-  padding: 2rem 0 2rem 0;
+  /* padding: 2rem 0 2rem 0; */
 }
 .campo__header {
   padding: 1rem 0 1rem 0;
@@ -121,9 +121,13 @@
 /* styless imput */
 .filtro{
   display: flex;
+
 }
+
+
 .filtro__flex{
   width: 95%;
+  border:1px solid red;
 }
 .filtro input{
   border: none;
@@ -132,14 +136,13 @@
 }
 .filtro input:focus{
   border: none;
-  /* border-bottom: 3px solid #2a9d8f; */
   outline:none;
 }
 .filtro select{
   border: none;
 }
 .filtro:focus{
-  background-color: #d9fce7;
+  /* background-color: #d9fce7; */
 }
 
 
@@ -161,7 +164,7 @@
   bottom:1px; 
   border-radius: 0.5rem;
   position:absolute;
-  background:#2a9d90; 
+  /* background:#2a9d90;  */
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;
@@ -257,7 +260,7 @@ input[type="search"]::-webkit-search-results-decoration {
 
 /* curso__contenedor--sapace */
 .curso__contenedor--sapace {
-  padding: 3rem 0 5rem 0;
+  padding: 1rem 0 5rem 0;
 }
 /* contenedor de tarjetas */
 .curso__card--general {

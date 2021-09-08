@@ -15,14 +15,10 @@
         <div class="campo__header campo__responsive contenido__card ">
           <!-- buscar -->
           <div class="filtro search">
-
             <div class="filtro__flex">
               <input class="box__imput box--with" type="search" name="" placeholder="Buscar..." id="">
-
-              <span class="bar"></span>
             </div>
-
-
+            
             <button type="submit" class="searchButton">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="#b7defa" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -282,9 +278,6 @@
           </div>
           <!-- find tarjeta -->
 
-
-
-
           <!-- tarjeta 1 -->
           <div class="curso__card">
 
@@ -451,6 +444,7 @@
 
         </div>
       </div>
+
     </div>
     <!-- </div> -->
   </section>
