@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../config/Conexion.php";
 
+@session_start();
 
 class ModeloBase
 {
