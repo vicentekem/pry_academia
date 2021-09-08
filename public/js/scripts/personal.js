@@ -201,10 +201,12 @@ let crud_personal = {
 
         if( action === 'upd_personal' && data.id == ""){msg = "El id es requerido";}
         else if(data.dni == ""){ msg = "El DNI es requerido"  }
+        else if(isValidDNI(data.dni)==false){msg="DNI no valido"}
         else if(data.nombre == ""){ msg = "El nombre es requerido"  }
         else if(data.ape_pat == ""){ msg = "El apellido paterno es requerido"  }
         else if(data.ape_mat == ""){ msg = "El apellido materno es requerido"  }
         else if(data.id_cargo == ""){ msg = "El cargo es requerido"  }
+        else if(isValidEmail(data.correo)==false && data.correo!=""){msg="Correo no valido"}
         return msg;
     },
     saveData: (event)=>{        
