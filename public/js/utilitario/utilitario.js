@@ -28,11 +28,11 @@ const loadDataToTemplate = (id_template, id_content_data, data, is_select2, is_m
     var template = $("#" + id_template).html();
     Mustache.parse(template);
     var rendered_html = Mustache.render(template, {data: data});
-
+    
     if( is_select2 ) {
         $("#" + id_content_data).html(rendered_html).select2({ theme: 'bootstrap4', width:'100%'});
     }else{
-        $("#" + id_contentData).html(rendered_html);
+        $("#" + id_content_data).html(rendered_html);
     }
 }
 
@@ -57,4 +57,59 @@ const showMessage =(message, type) => {
     };
 
     toastr[type](message);
+}
+
+
+
+const ajaxSelect2 = (id_select,action,controller,formatRow,formatRowSelection)=>{
+    
+    formatRow = typeof formatRow === "function" ? formatRow :
+        row => {
+            if (row.loading) return row.text;
+            return $(`<div>${row.text}<div>`);
+        };
+
+    formatRowSelection = typeof formatRowSelection === "function" ? formatRowSelection : row => row.text;
+
+    $('#' + id_select).select2({
+        theme: 'bootstrap4',
+        width:'100%',
+        placeholder: 'Nada Seleccionado',
+        language: {
+            inputTooShort: function () {
+                return 'por favor ingrese 2 o más caracteres.'
+            }
+        },
+        ajax: {            
+            url: 'controllers/' + controller,
+            dataType: 'json',
+            data: function (params) {
+                return {
+                    action: action,
+                    q: params.term, // search term
+                    //page: params.page
+                };
+            },
+            processResults: function (data, params) {                
+                // parse the results into the format expected by Select2
+                // since we are using custom formatting functions we do not need to
+                // alter the remote JSON data, except to indicate that infinite
+                // scrolling can be used
+                //params.page = params.page || 1;
+                return {
+                    results: data.rows,
+                    /*pagination: {
+                        more: (params.page * 30) < data.total_count
+                    }*/
+                };
+            },
+        },
+        escapeMarkup: function (markup) {
+            return markup
+        },
+        minimumInputLength: 2,
+        templateResult: formatRow,
+        templateSelection: formatRowSelection
+    });
+
 }

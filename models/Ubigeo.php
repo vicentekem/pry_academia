@@ -11,36 +11,15 @@ class Ubigeo
         $this->model = new ModeloBase();
     }
 
-    public function getCbxUbigeo($data)
+    public function cbxUbigeo($data)
     {
-        $result = ["error" => "", "rows" => []];
-        $filters = $data["filters_str"];
-        try {
-
-            $cn = $this->model->getConexion();
-            $qry_sel = "SELECT  id_ubigeo as id, departamento||' - '||provincia||' - '||distrito as text
-                      FROM tbl_ubigeo2019 $filters ";
-
-            $stmt = $cn->prepare($qry_sel);
-            foreach ($data as $key => &$value) { if( $value &&( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);}
-
-            $ok = $stmt->execute();
-
-            if ($ok) {
-
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $result["rows"][] = $row;
-                }
-
-            } else {
-                $result["error"] = "Error";
-            }
-
-        } catch (Exception $ex) {
-            $cn = null;
-            $result["error"] = "Error";
-        }
-        return $result;
+        $where = Utilitario::generarFiltros($data,[
+            "q" => "CONCAT(departamento,' ',provincia,' ',distrito) LIKE CONCAT('%',:q,'%')"
+        ]);
+        
+        return $this->model->getAllRows(
+            "SELECT id_ubigeo as id,CONCAT(departamento,' - ',provincia,' - ',distrito) as text FROM tbl_ubigeo $where", $data
+        );
     }
 
     public function getUbigeoById($data)

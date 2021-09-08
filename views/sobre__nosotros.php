@@ -72,7 +72,7 @@
 
   <!-- valores -->
   <section class="cont__valor">
-    <div class="cont__caja">
+    <div  class="cont__caja">
       <div class="valor--title">
         <h2>Nuestros valores</h2>
       </div>
@@ -81,7 +81,7 @@
       <div class="cont__contenido">
 
         <!-- volor1 -->
-        <div class="valor">
+        <div class="valor valores">
           <!-- icono valor -->
           <div class="caja__valor">
             <div class="valor__icon">
@@ -99,7 +99,7 @@
         </div>
 
         <!-- volor2 -->
-        <div class="valor">
+        <div class="valor valores">
           <!-- icono valor -->
           <div class="caja__valor">
             <div class="valor__icon">
@@ -110,14 +110,14 @@
             </div>
             <!-- contenido valor -->
             <div class="valor__texto">
-              <h3>Generosidad</h3>
-              <p>Con mi ayuda lograrás tus metas.</p>
+              <h3>Puntualidad</h3>
+              <p>Para hacerlo bien, lo hago a tiempo.</p>
             </div>
           </div>
         </div>
 
         <!-- volor3 -->
-        <div class="valor">
+        <div class="valor valores">
           <!-- icono valor -->
           <div class="caja__valor">
             <div class="valor__icon">
@@ -128,14 +128,14 @@
             </div>
             <!-- contenido valor -->
             <div class="valor__texto">
-              <h3>Generosidad</h3>
-              <p>Con mi ayuda lograrás tus metas.</p>
+              <h3>Responsabilidad</h3>
+              <p>Si hay que hacerlo, depende de mí.</p>
             </div>
           </div>
         </div>
 
         <!-- volor4 -->
-        <div class="valor">
+        <div class="valor valores">
           <!-- icono valor -->
           <div class="caja__valor">
             <div class="valor__icon">
@@ -146,14 +146,14 @@
             </div>
             <!-- contenido valor -->
             <div class="valor__texto">
-              <h3>Generosidad</h3>
-              <p>Con mi ayuda lograrás tus metas.</p>
+              <h3>Autoestima</h3>
+              <p>Las caídas son solo peldaños en el ascenso.</p>
             </div>
           </div>
         </div>
 
         <!-- volor5 -->
-        <div class="valor">
+        <div class="valor valores">
           <!-- icono valor -->
           <div class="caja__valor">
             <div class="valor__icon">
@@ -164,8 +164,8 @@
             </div>
             <!-- contenido valor -->
             <div class="valor__texto">
-              <h3>Generosidad</h3>
-              <p>Con mi ayuda lograrás tus metas.</p>
+              <h3>Perseverancia</h3>
+              <p>Nunca dejaré de luchar por ser mejor</p>
             </div>
           </div>
         </div>

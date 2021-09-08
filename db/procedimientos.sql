@@ -1,4 +1,3 @@
-
 DELIMITER $
 drop procedure if exists sp_login$
 CREATE PROCEDURE sp_login( 
@@ -37,19 +36,19 @@ BEGIN
 CASE _action
 	WHEN 'ins' THEN
 		IF(SELECT id FROM tbl_curso where description=_description) IS NULL THEN
-		INSERT into tbl_curso(description) VALUES(_description);
+			INSERT into tbl_curso(description) VALUES(_description);
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso ya existe', MYSQL_ERRNO = 1001;	
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso ya existe', MYSQL_ERRNO = 1001;	
 		END if;
 	WHEN 'upd' THEN
 		IF(SELECT id FROM tbl_curso where description=_description and id<>_id) IS NULL THEN
-		UPDATE tbl_curso set description=_description where id=_id;
+			UPDATE tbl_curso set description=_description where id=_id;
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
 		END IF;
 	WHEN 'est' THEN
-		UPDATE tbl_curso SET estado=!estado WHERE id=_id;
-		ELSE
+			UPDATE tbl_curso SET estado=!estado WHERE id=_id;
+	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
 END $
@@ -69,16 +68,16 @@ BEGIN
 	
 CASE _action
 		WHEN 'ins' THEN
-		IF(SELECT id_registro FROM tbl_tablas where description=_description and id_tabla=_id_tabla) IS NULL THEN
-		INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_idregistro,_cod_referencial,_description);
-		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El registro ya existe' , MYSQL_ERRNO = 1001;	
-		END if;
+			IF(SELECT id_registro FROM tbl_tablas where description=_description and id_tabla=_id_tabla) IS NULL THEN
+				INSERT into tbl_tablas(id_tabla,id_registro,cod_referencial,description) VALUES(_id_tabla,_idregistro,_cod_referencial,_description);
+			ELSE
+				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El registro ya existe' , MYSQL_ERRNO = 1001;	
+			END if;
 	WHEN 'upd' THEN
 		IF(SELECT id_registro FROM tbl_tablas where description=_description and id_registro<>_id_registro and id_tabla=_id_tabla) IS NULL THEN
-		UPDATE tbl_tablas set description=_description, cod_referencial=_cod_referencial where id_tabla=_id_tabla AND id_registro=_id_registro;
+			UPDATE tbl_tablas set description=_description, cod_referencial=_cod_referencial where id_tabla=_id_tabla AND id_registro=_id_registro;
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
 	WHEN 'est' THEN
 		UPDATE tbl_tablas SET estado=!estado WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
@@ -166,4 +165,121 @@ case _action
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
  END CASE;
 END $
+
+drop procedure if exists sp_personal$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_personal`(
+	_action varchar(10),
+	_id int(32),
+	_id_persona varchar(255),
+	_dni varchar(8),
+	_nombre VARCHAR(255),
+	_apellidop VARCHAR(255),
+	_apellidom VARCHAR(255),
+	_correo VARCHAR(255),
+	_celular VARCHAR(25),
+	_telefono VARCHAR(25),
+	_fecha_nac VARCHAR(50),
+	_id_ubigeo VARCHAR(6),
+	_id_sexo INT(1),
+	_id_cargo INT(32),
+	_id_usuario int(11)
+)
+BEGIN
+
+		CASE _action
+			WHEN 'ins' THEN
+			
+				SET _id_persona = (SELECT id FROM tbl_persona where dni=_dni);
+				
+				IF _id_persona IS NULL THEN
+				
+					CALL sp_persona(_action,null,_dni,_nombre,_apellidop,_apellidom,_correo,
+							_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);
+							
+					SET _id_persona =(SELECT LAST_INSERT_ID());
+					
+				END if;
+				
+				IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona AND id_cargo = _id_cargo) IS NULL THEN
+						INSERT INTO tbl_personal(id_persona,id_cargo) values(_id_persona,_id_cargo);
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El personal ya existe', MYSQL_ERRNO = 1001;	
+				END IF;
+				
+				
+			WHEN 'upd' THEN
+				
+				CALL sp_persona(_action,_id_persona,_dni,_nombre,_apellidop,_apellidom,_correo,
+					_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);
+				
+				IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona AND id_cargo = _id_cargo and id<>_id) IS NULL THEN
+						UPDATE tbl_personal SET id_cargo = _id_cargo WHERE id = _id;
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El personal ya tiene el cargo seleccionado', MYSQL_ERRNO = 1001;	
+				END IF;
+			WHEN 'est' THEN
+				UPDATE tbl_personal SET estado=!estado WHERE id= _id;
+			ELSE
+				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;				
+			
+		END CASE;
+END$
+
+DELIMITER $
+drop procedure if exists sp_alumno$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_alumno`(
+	_action varchar(10),
+	_id int(32),
+	_id_persona varchar(255),
+	_dni varchar(8),
+	_nombre VARCHAR(255),
+	_apellidop VARCHAR(255),
+	_apellidom VARCHAR(255),
+	_correo VARCHAR(255),
+	_celular VARCHAR(25),
+	_telefono VARCHAR(25),
+	_fecha_nac VARCHAR(50),
+	_id_ubigeo VARCHAR(6),
+	_id_sexo INT(1),
+	_id_usuario int(11)
+)
+BEGIN
+
+		CASE _action
+			WHEN 'ins' THEN
+			
+				SET _id_persona = (SELECT id FROM tbl_persona where dni=_dni);
+				
+				IF _id_persona IS NULL THEN
+				
+					CALL sp_persona(_action,null,_dni,_nombre,_apellidop,_apellidom,_correo,
+							_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);
+							
+					SET _id_persona =(SELECT LAST_INSERT_ID());
+					
+				END if;
+				
+				IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona) IS NULL THEN
+						INSERT INTO tbl_alumno(id_persona,id_cargo) values(_id_persona,_id_cargo);
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya existe', MYSQL_ERRNO = 1001;	
+				END IF;				
+				
+			WHEN 'upd' THEN
+				
+				CALL sp_persona(_action,_id_persona,_dni,_nombre,_apellidop,_apellidom,_correo,
+					_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);				
+				/* IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona AND id<>_id) IS NULL THEN
+						UPDATE tbl_alumno SET id_cargo = _id_cargo WHERE id = _id;
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya existe', MYSQL_ERRNO = 1001;	
+				END IF; */
+			WHEN 'est' THEN
+				UPDATE tbl_alumno SET estado=!estado WHERE id= _id;
+			ELSE
+				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+		END CASE;
+END$
+
+
 
