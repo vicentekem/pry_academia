@@ -1,16 +1,4 @@
-
-:root {
-    --primero: #1192ee;
-    --marron: #663d14;
-    --gris: #eef2f4;
-    --blanco: #ffffff;
-    --negro: #333;
-    --plomo: #7a7a7a;
-    --font: "Relaway", sans-serif;
-    --font2: "Open Sans", sans-serif;
-    --color: #e7f4fd;
-    --color-alt: #b7defa;
-  }
+@import url("./myStyles.css");
   *,
   *::before,
   *::after {
@@ -44,7 +32,7 @@ text-transform: capitalize;
     cursor: pointer;
 }
 .valor__pleno svg:hover{
-    color: #3498db;
+    color: var(--light-blue);
 }
 .min__heigth{
     min-height: 184px;

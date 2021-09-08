@@ -10,4 +10,31 @@
 
 
   
+
+  /*------ Temario ---------*/
+  --dark-sure:#333;
+  --green-sure-white: #d9fce7;
+  --green-sure: #00c894;
+  --shadow:rgba(174, 190, 205, 0.3); 
+  --orange: #ff5222;
+  --blue: #1192ee;
+  --smoke-white: #e7f4fd;
+  --lead:#7a7a7a;
+
+
+/* sobre nosotros */
+--dark-sure-white:#7a7a7a;
+ --white-sure:#f6f7fb;
+ --blue-white:rgb(174, 190, 205);
+
+ /* quines Somos */
+ --light-blue:#3498db;
+ --blue-secondary:#7ed0f3;
+ --lead:#636363;
+ --lead-secondary:#ccc;
+
+ /* from */
+ --gray: #e1e1e1;
+ --blue-opaque:#0089c8;
+
 }

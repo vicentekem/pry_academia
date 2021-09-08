@@ -5,7 +5,7 @@
     global $menu_sup;
     
     $menu_sup = "Mantenimiento";
-    $currentPage = "Curso";
+    $currentPage = "Alumno";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
@@ -44,17 +44,15 @@
                 <div class="ibox">
 
                     <div class="ibox-title">
-                        <h3 style="display: inline-block"> Mantenimiento de Cursos </h3>
-
-                        <div class="ibox-tools">
-                        </div>
+                        <h3 style="display: inline-block"> Mantenimiento de Alumno </h3>
+                        <div class="ibox-tools"></div>
                     </div>
 
                     <div class="ibox-content" id="filter_container">
 
                         <div class="row">
 
-                            <div class="form-group mb-0 col-12 col-md-5 col-lg-11">
+                            <div class="form-group mb-0 col-12 col-md-5 col-lg-10">
                                 <label for="txt_search">Buscar</label>
                                 <div class="form-group input-group">
                                     <input type="search" id="txt_search" placeholder="Buscar" 
@@ -65,18 +63,22 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-0 col-12 col-md-1">
+                            <div class="form-group mb-0 col-12 col-md-2">
                                 <label for="" style="display:block;opacity:0">...</label>
-                                <button id="btn_new_curso" class="btn btn-success">Nuevo</button>
+                                <button id="btn_new_alumno" class="btn btn-success">Nuevo</button>
                             </div>
+
                         </div>
 
                         <div class="table-responsive w-100 text-sm">
-                            <table id="tbl_curso" class="table table-bordered table-hover w-100">
+                            <table id="tbl_alumno" class="table table-bordered table-hover w-100">
                                 <thead>
                                 <tr>
                                     <th>Accion</th>
-                                    <th>Descripcion</th>
+                                    <th>DNI</th>
+                                    <th>Apellidos y nombres</th>                                    
+                                    <th>Correo</th>
+                                    <th>Nro. Celular</th>
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
@@ -97,7 +99,7 @@
     </div>
 
     <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
-    <?php include __DIR__ . "/includes/partials/curso/modal_curso.php" ?>
+    <?php include __DIR__ . "/includes/partials/alumno/modal_alumno.php" ?>
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
 
     <script src="public/js/plugins/dataTables/datatables.min.js"></script>
@@ -107,7 +109,7 @@
     <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="public/js/utilitario/utilitario.js"></script>    
 
-    <script src="public/js/scripts/curso.js"></script>
+    <script src="public/js/scripts/alumno.js"></script>
 
 </body>
 </html>

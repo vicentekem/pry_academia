@@ -19,26 +19,13 @@ class UbigeoValidator
         $this->repository = new Ubigeo();
     }
 
-    function getCbxUbigeo()
+    function cbxUbigeo()
     {
-        $data["filter_text"] = isset($_GET["filter_text"]) ? $_GET["filter_text"] : null;
-        $data["q"] = isset($_GET["q"]) ? $_GET["q"] : null;
-        $data["q"] = isset($_GET["q"]) ? $_GET["q"] : null;
+        
+        $data["q"] = Utilitario::getParam("q");
 
-        $filters = "";
-        $limit = "";
-        $start = isset($_GET["start"]) ? $_GET["start"] : null;
-        $length = isset($_GET["length"]) ? $_GET["length"] : null;
-
-        if($data["filter_text"]) $filters .= " and upper(distrito) like '%' || upper(:filter_text) || '%' ";
-        if($data["q"]) $filters .= " and upper(distrito) ilike '%' || :q || '%' ";
-        if( trim(substr($filters,0,4)) == "and" ){ $filters = substr($filters,4);}
-        if( strlen(trim($filters)) > 0 ){ $filters = "where " . $filters; }
-        if( $start >= 0 && $length > 0 ) $limit .= " limit $length offset $start ";
-
-        $data["filters_str"] = $filters;
-        $data["limit"] = $limit;
-        $result = $this->repository->getCbxUbigeo($data);
+        
+        $result = $this->repository->cbxUbigeo($data);
 
         return $result;
     }

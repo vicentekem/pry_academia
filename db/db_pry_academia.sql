@@ -3,15 +3,15 @@
 
  Source Server         : MYSQL_LOCAL
  Source Server Type    : MySQL
- Source Server Version : 100418
+ Source Server Version : 100130
  Source Host           : localhost:3306
  Source Schema         : db_pry_academia
 
  Target Server Type    : MySQL
- Target Server Version : 100418
+ Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 06/09/2021 15:57:48
+ Date: 08/09/2021 12:27:15
 */
 
 SET NAMES utf8mb4;
@@ -25,7 +25,7 @@ CREATE TABLE `tbl_accesos_rol`  (
   `id_rol` int(32) NOT NULL,
   `id_submenu` int(32) NOT NULL,
   PRIMARY KEY (`id_rol`, `id_submenu`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_accesos_rol
@@ -41,7 +41,7 @@ CREATE TABLE `tbl_accesos_usuario`  (
   `id_usuario` int(32) NOT NULL,
   `id_submenu` int(32) NOT NULL,
   PRIMARY KEY (`id_usuario`, `id_submenu`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_accesos_usuario
@@ -52,18 +52,39 @@ INSERT INTO `tbl_accesos_usuario` VALUES (1, 3);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 4);
 
 -- ----------------------------
+-- Table structure for tbl_alumno
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_alumno`;
+CREATE TABLE `tbl_alumno`  (
+  `id` int(32) NOT NULL AUTO_INCREMENT,
+  `id_persona` int(32) NOT NULL,
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `user_create_at` int(32) NULL DEFAULT NULL,
+  `create_up` datetime(6) NULL DEFAULT NULL,
+  `update_password` int(32) NULL DEFAULT NULL,
+  `estado` tinyint(1) NULL DEFAULT 1,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_alumno
+-- ----------------------------
+INSERT INTO `tbl_alumno` VALUES (1, 2, '2021-08-31 12:21:10.803778', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_alumno` VALUES (2, 3, '2021-08-31 12:23:23.870108', NULL, NULL, NULL, 1);
+
+-- ----------------------------
 -- Table structure for tbl_curso
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_curso`;
 CREATE TABLE `tbl_curso`  (
   `id` int(32) UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso
@@ -77,36 +98,36 @@ INSERT INTO `tbl_curso` VALUES (6, 'ONEM', '2021-08-31 12:32:31.653761', NULL, N
 INSERT INTO `tbl_curso` VALUES (7, 'CONAMAT', '2021-08-31 12:32:37.954210', NULL, NULL, 1);
 INSERT INTO `tbl_curso` VALUES (8, 'NOMBRAMIENTO', '2021-08-31 12:32:42.369781', NULL, NULL, 1);
 INSERT INTO `tbl_curso` VALUES (9, 'ACSCENSO DE NIVEL ESPECIALIZACION', '2021-08-31 12:33:29.542455', NULL, NULL, 1);
+INSERT INTO `tbl_curso` VALUES (10, 'NUEVO CURO', '2021-09-06 17:00:38.004706', NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for tbl_curso_beneficios
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_curso_beneficios`;
 CREATE TABLE `tbl_curso_beneficios`  (
-  `id` int(32) NOT NULL,
+  `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_curso` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tbl_curso_beneficios
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_curso_caracteristicas
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_curso_caracteristicas`;
 CREATE TABLE `tbl_curso_caracteristicas`  (
-  `id` int(32) NOT NULL,
+  `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_curso` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_caracteristicas
 -- ----------------------------
+INSERT INTO `tbl_curso_caracteristicas` VALUES (4, 1, 'primer ejemplo');
+INSERT INTO `tbl_curso_caracteristicas` VALUES (5, 1, 'otro ejemplo pe.');
+INSERT INTO `tbl_curso_caracteristicas` VALUES (6, 1, 'otro mass');
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado
@@ -115,14 +136,14 @@ DROP TABLE IF EXISTS `tbl_curso_programado`;
 CREATE TABLE `tbl_curso_programado`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_curso` int(32) NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `estado` binary(1) NULL DEFAULT 1,
   `fecha_inicio` date NULL DEFAULT NULL,
   `fecha_fin` date NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado
@@ -140,7 +161,7 @@ CREATE TABLE `tbl_curso_programado_tipo_pago`  (
   `id_tipo_pago` int(32) NOT NULL,
   `monto` float(255, 0) NOT NULL,
   PRIMARY KEY (`id_curso_programado`, `id_tipo_pago`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado_tipo_pago
@@ -156,7 +177,7 @@ CREATE TABLE `tbl_curso_programado_turno`  (
   `id_curso_programado` int(32) NOT NULL,
   `id_turno` int(32) NOT NULL,
   PRIMARY KEY (`id_curso_programado`, `id_turno`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado_turno
@@ -165,44 +186,19 @@ INSERT INTO `tbl_curso_programado_turno` VALUES (1, 2);
 INSERT INTO `tbl_curso_programado_turno` VALUES (2, 1);
 
 -- ----------------------------
--- Table structure for tbl_estudiante
--- ----------------------------
-DROP TABLE IF EXISTS `tbl_estudiante`;
-CREATE TABLE `tbl_estudiante`  (
-  `id` int(32) NOT NULL AUTO_INCREMENT,
-  `id_persona` int(32) NOT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
-  `user_create_at` int(32) NULL DEFAULT NULL,
-  `create_up` datetime(6) NULL DEFAULT NULL,
-  `update_password` int(32) NULL DEFAULT NULL,
-  `estado` tinyint(1) NULL DEFAULT 1,
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tbl_estudiante
--- ----------------------------
-INSERT INTO `tbl_estudiante` VALUES (1, 2, '2021-08-31 12:21:10.803778', NULL, NULL, NULL, 1);
-INSERT INTO `tbl_estudiante` VALUES (2, 3, '2021-08-31 12:23:23.870108', NULL, NULL, NULL, 1);
-
--- ----------------------------
 -- Table structure for tbl_matricula
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_matricula`;
 CREATE TABLE `tbl_matricula`  (
   `id_curso_programado` int(32) NOT NULL,
-  `id_estudiante` int(32) NOT NULL,
+  `id_alumno` int(32) NOT NULL,
   `id_tipo_pago` int(32) NOT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_curso_programado`, `id_estudiante`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
-
--- ----------------------------
--- Records of tbl_matricula
--- ----------------------------
+  PRIMARY KEY (`id_curso_programado`, `id_alumno`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tbl_menu
@@ -215,7 +211,7 @@ CREATE TABLE `tbl_menu`  (
   `orden` int(11) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_menu
@@ -238,7 +234,7 @@ CREATE TABLE `tbl_persona`  (
   `telefono` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `celular` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_ubigeo` varchar(6) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
@@ -246,29 +242,30 @@ CREATE TABLE `tbl_persona`  (
   `id_sexo` int(1) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_persona
 -- ----------------------------
-INSERT INTO `tbl_persona` VALUES (1, '70389257', 'joel', 'vicente', NULL, NULL, NULL, NULL, NULL, '2021-08-27 12:13:45.860842', NULL, NULL, NULL, NULL, NULL, 1);
-INSERT INTO `tbl_persona` VALUES (2, '70786548', 'brayhan', 'barragan', NULL, NULL, NULL, NULL, NULL, '2021-08-31 12:17:50.211782', NULL, NULL, NULL, NULL, NULL, 1);
-INSERT INTO `tbl_persona` VALUES (3, '12345678', 'kevin', 'quispe', NULL, NULL, NULL, NULL, NULL, '2021-08-31 12:18:26.986157', NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `tbl_persona` VALUES (1, '70389257', 'JOEL', 'VICENTE', NULL, '', '', '', '140406', '2021-08-27 12:13:45.860842', NULL, '2021-09-08 10:21:17.000000', 1, 'QUISPE', 1, 1);
+INSERT INTO `tbl_persona` VALUES (2, '70786548', 'BRAYHAN', 'BARRAGAN', NULL, '', '', '', '', '2021-08-31 12:17:50.211782', NULL, '2021-09-08 10:14:15.000000', 1, '', 1, 1);
+INSERT INTO `tbl_persona` VALUES (3, '12345678', 'KEVIN', 'VICENTE', NULL, '', '', '', '140406', '2021-08-31 12:18:26.986157', NULL, '2021-09-08 11:28:30.000000', 1, '', 1, 1);
 
 -- ----------------------------
 -- Table structure for tbl_personal
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_personal`;
 CREATE TABLE `tbl_personal`  (
-  `id` int(32) NOT NULL,
+  `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_persona` int(32) NULL DEFAULT NULL,
   `id_cargo` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_personal
 -- ----------------------------
+INSERT INTO `tbl_personal` VALUES (1, 1, 1);
 
 -- ----------------------------
 -- Table structure for tbl_submenu
@@ -285,7 +282,7 @@ CREATE TABLE `tbl_submenu`  (
   `estado` binary(1) NULL DEFAULT 1,
   `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_submenu
@@ -305,7 +302,7 @@ CREATE TABLE `tbl_tablas`  (
   `cod_referencial` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_tablas
@@ -314,8 +311,8 @@ INSERT INTO `tbl_tablas` VALUES (0, 1, '', 'TIPO_MENU', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 1, NULL, 'PAGINA_WEB', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 2, NULL, 'ADMIN', 1);
 INSERT INTO `tbl_tablas` VALUES (0, 2, NULL, 'ROLES', 1);
-INSERT INTO `tbl_tablas` VALUES (2, 1, NULL, 'ADMINISTRADOR', 1);
-INSERT INTO `tbl_tablas` VALUES (2, 2, NULL, 'ESTUDIANTE', 1);
+INSERT INTO `tbl_tablas` VALUES (2, 1, NULL, 'SUPERADMIN', 1);
+INSERT INTO `tbl_tablas` VALUES (2, 2, NULL, 'ADMINISTRADOR', 1);
 INSERT INTO `tbl_tablas` VALUES (0, 3, NULL, 'TIPO_PAGO', 1);
 INSERT INTO `tbl_tablas` VALUES (3, 1, NULL, 'MATRICULA', 1);
 INSERT INTO `tbl_tablas` VALUES (3, 2, NULL, 'MENSUALIDAD', 1);
@@ -334,6 +331,7 @@ INSERT INTO `tbl_tablas` VALUES (7, 2, NULL, 'CONFIRMADO', 1);
 INSERT INTO `tbl_tablas` VALUES (7, 3, NULL, 'ANULADO', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 3, NULL, 'estudiante', 1);
 INSERT INTO `tbl_tablas` VALUES (2, 3, '', 'PROFESOR', 1);
+INSERT INTO `tbl_tablas` VALUES (2, 4, '', 'ESTUDIANTE', 1);
 
 -- ----------------------------
 -- Table structure for tbl_ubigeo
@@ -350,7 +348,7 @@ CREATE TABLE `tbl_ubigeo`  (
   `lng` decimal(30, 10) NULL DEFAULT NULL,
   `idz` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`id_ubigeo`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_ubigeo
@@ -3804,14 +3802,14 @@ CREATE TABLE `tbl_usuario`  (
   `id_persona` int(32) NULL DEFAULT NULL,
   `usuario` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `password` varchar(150) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `create_at` datetime(6) NULL DEFAULT current_timestamp(6),
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
   `update_password` tinyint(1) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = COMPACT;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_usuario
@@ -3819,13 +3817,86 @@ CREATE TABLE `tbl_usuario`  (
 INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 1);
 
 -- ----------------------------
+-- Table structure for tbl_usuario_rol
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_usuario_rol`;
+CREATE TABLE `tbl_usuario_rol`  (
+  `id_usuario` int(32) NOT NULL,
+  `id_rol` int(32) NOT NULL,
+  PRIMARY KEY (`id_usuario`, `id_rol`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Procedure structure for sp_alumno
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_alumno`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_alumno`(
+	_action varchar(10),
+	_id int(32),
+	_id_persona varchar(255),
+	_dni varchar(8),
+	_nombre VARCHAR(255),
+	_apellidop VARCHAR(255),
+	_apellidom VARCHAR(255),
+	_correo VARCHAR(255),
+	_celular VARCHAR(25),
+	_telefono VARCHAR(25),
+	_fecha_nac VARCHAR(50),
+	_id_ubigeo VARCHAR(6),
+	_id_sexo INT(1),
+	_id_usuario int(11)
+)
+BEGIN
+
+		CASE _action
+			WHEN 'ins' THEN
+			
+				SET _id_persona = (SELECT id FROM tbl_persona where dni=_dni);
+				
+				IF _id_persona IS NULL THEN
+				
+					CALL sp_persona(_action,null,_dni,_nombre,_apellidop,_apellidom,_correo,
+							_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);
+							
+					SET _id_persona =(SELECT LAST_INSERT_ID());
+					
+				END if;
+				
+				IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona) IS NULL THEN
+						INSERT INTO tbl_alumno(id_persona,id_cargo) values(_id_persona,_id_cargo);
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya existe', MYSQL_ERRNO = 1001;	
+				END IF;				
+				
+			WHEN 'upd' THEN
+				
+				CALL sp_persona(_action,_id_persona,_dni,_nombre,_apellidop,_apellidom,_correo,
+					_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);				
+				/* IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona AND id<>_id) IS NULL THEN
+						UPDATE tbl_alumno SET id_cargo = _id_cargo WHERE id = _id;
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya existe', MYSQL_ERRNO = 1001;	
+				END IF; */
+			WHEN 'est' THEN
+				UPDATE tbl_alumno SET estado=!estado WHERE id= _id;
+			ELSE
+				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+		END CASE;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for sp_curso
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_curso`;
 delimiter ;;
-CREATE PROCEDURE `sp_curso`(_action varchar(10),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso`( 
+	_action varchar(10),
 	_id int(32),
-	_description VARCHAR(255))
+	_description VARCHAR(255)
+)
 BEGIN
 CASE _action
 	WHEN 'ins' THEN
@@ -3854,8 +3925,10 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_login`;
 delimiter ;;
-CREATE PROCEDURE `sp_login`(_usuario varchar(255),
-	_password varchar(255))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_login`( 
+	_usuario varchar(255),
+	_password varchar(255)
+)
 BEGIN
 		DECLARE _id_usuario int default null;
 		DECLARE msg varchar(255) default '';
@@ -3884,7 +3957,8 @@ delimiter ;
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_persona`;
 delimiter ;;
-CREATE PROCEDURE `sp_persona`(_action varchar(10),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_persona`(
+_action varchar(10),
 _id int(32),
 _dni varchar(8),
 _nombre VARCHAR(255),
@@ -3908,7 +3982,7 @@ case _action
 	END if;
 	WHEN 'upd' THEN
 		IF(SELECT id FROM tbl_persona where dni=_dni and id<>_id) IS NULL THEN
-		UPDATE tbl_persona set id=_id,dni=_dni,nombre=_nombre,apellido_pat=_apellidop,apellido_mat=_apellidom,correo=_correo,telefono=_telefono,celular=_celular,fecha_nac=_fecha_nac,id_ubigeo=_id_ubigeo,id_sexo=_id_sexo,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP;
+		UPDATE tbl_persona set dni=_dni,nombre=_nombre,apellido_pat=_apellidop,apellido_mat=_apellidom,correo=_correo,telefono=_telefono,celular=_celular,fecha_nac=STR_TO_DATE(_fecha_nac,'%d/%m/%Y'),id_ubigeo=_id_ubigeo,id_sexo=_id_sexo,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP WHERE dni=_dni and id=_id;
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
@@ -3922,15 +3996,82 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for sp_personal
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_personal`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_personal`(
+	_action varchar(10),
+	_id int(32),
+	_id_persona varchar(255),
+	_dni varchar(8),
+	_nombre VARCHAR(255),
+	_apellidop VARCHAR(255),
+	_apellidom VARCHAR(255),
+	_correo VARCHAR(255),
+	_celular VARCHAR(25),
+	_telefono VARCHAR(25),
+	_fecha_nac VARCHAR(50),
+	_id_ubigeo VARCHAR(6),
+	_id_sexo INT(1),
+	_id_cargo INT(32),
+	_id_usuario int(11)
+)
+BEGIN
+
+		CASE _action
+			WHEN 'ins' THEN
+			
+				SET _id_persona = (SELECT id FROM tbl_persona where dni=_dni);
+				
+				IF _id_persona IS NULL THEN
+				
+					CALL sp_persona(_action,null,_dni,_nombre,_apellidop,_apellidom,_correo,
+							_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);
+							
+					SET _id_persona =(SELECT LAST_INSERT_ID());
+					
+				END if;
+				
+				IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona AND id_cargo = _id_cargo) IS NULL THEN
+						INSERT INTO tbl_personal(id_persona,id_cargo) values(_id_persona,_id_cargo);
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El personal ya existe', MYSQL_ERRNO = 1001;	
+				END IF;
+				
+				
+			WHEN 'upd' THEN
+				
+				CALL sp_persona(_action,_id_persona,_dni,_nombre,_apellidop,_apellidom,_correo,
+					_celular,_telefono,_fecha_nac,_id_ubigeo,_id_sexo,_id_usuario);
+				
+				IF (SELECT id FROM tbl_personal WHERE id_persona = _id_persona AND id_cargo = _id_cargo and id<>_id) IS NULL THEN
+						UPDATE tbl_personal SET id_cargo = _id_cargo WHERE id = _id;
+				ELSE
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El personal ya tiene el cargo seleccionado', MYSQL_ERRNO = 1001;	
+				END IF;
+			WHEN 'est' THEN
+				UPDATE tbl_personal SET estado=!estado WHERE id= _id;
+			ELSE
+				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;				
+			
+		END CASE;
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for sp_tablas
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_tablas`;
 delimiter ;;
-CREATE PROCEDURE `sp_tablas`(_action varchar(10),
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_tablas`( 
+	_action varchar(10),
 	_id_tabla int(32),
 	_id_registro int(32),
 	_description VARCHAR(255),
-	_cod_referencial VARCHAR(255))
+	_cod_referencial VARCHAR(255)
+)
 BEGIN
 	DECLARE _idregistro int;
 	set _idregistro=(SELECT max(id_registro)+1 from tbl_tablas where id_tabla=_id_tabla);
@@ -3953,6 +4094,89 @@ CASE _action
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_test_loop
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_test_loop`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_test_loop`(
+	_action varchar(10),
+	_data text
+)
+BEGIN
+	
+	DECLARE strLen    INT DEFAULT 0;
+	DECLARE subStrLen INT DEFAULT 0;
+		
+	DELETE FROM tbl_curso_caracteristicas WHERE id_curso = 1;
+	
+	do_this: loop
+		
+		SET strLen = CHAR_LENGTH(_data);
+
+		if strLen > 0 THEN
+			insert into tbl_curso_caracteristicas(id_curso,description) values(1, SUBSTRING_INDEX( _data , '|', 1 ) );
+		END IF;
+				
+		SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _data , '|',1 )) + 2;
+		SET _data = MID( _data , subStrLen, strLen);
+		
+		IF _data = '' THEN
+			LEAVE do_this;
+		END IF;
+	END LOOP;
+	
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_usuario
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_usuario`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario`(
+_action varchar(10),
+_id int(11),
+_id_persona int(32),
+_usuario VARCHAR(50),
+_password varchar(150),
+_id_usuario VARCHAR(32))
+BEGIN
+DECLARE msg varchar(255) default '';
+ set msg = CONCAT('El usuario ', _usuario , ' ya existe' );
+case _action 
+ WHEN 'ins' THEN
+	IF(SELECT id from tbl_usuario where usuario<>_usuario) is NULL then
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
+		ELSEIF(SELECT id from tbl_usuario where id_persona<>_id_persona) IS NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una cuenta con este DNI', MYSQL_ERRNO = 1001;
+		ELSE
+	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
+				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
+		END if;
+		/*
+	IF(SELECT id from tbl_usuario where id_persona=_id_persona OR usuario=_usuario LIMIT 1) IS NULL THEN
+	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
+				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
+	ELSE
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El usuario ya existe' , MYSQL_ERRNO = 1001;	
+	END if;*/
+ WHEN'upd' THEN
+	IF(SELECT id from tbl_usuario where id_persona=_id_persona and id<>_id) is NULL THEN
+	UPDATE tbl_usuario SET usuario=_usuario,`password`=MD5(_password),create_up=CURRENT_TIMESTAMP,user_create_up=_id_usuario,update_password=1 WHERE id=_id and id_persona=_id_persona;
+	ELSE
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar usuario', MYSQL_ERRNO = 1001;
+	END IF;
+ WHEN 'est' THEN
+		UPDATE tbl_usuario SET estado=!estado WHERE id=_id AND id_persona=_id_persona;
+ ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
+ END CASE;
 END
 ;;
 delimiter ;

@@ -1,20 +1,15 @@
+
 <?php
-/**
- * Created by PhpStorm.
- * User: Ubigeo
- * Date: 28/05/2019
- * Time: 09:36
- */
 
-require_once "validator/UbigeoValidator.php";
+require_once "validator/AlumnoValidator.php";
 
-class UbigeoController
+class AlumnoController
 {
     private $validator;
 
     public function __construct()
     {
-        $this->validator = new UbigeoValidator();
+        $this->validator = new AlumnoValidator();
     }
 
     public function procesarPeticion()
@@ -32,20 +27,22 @@ class UbigeoController
     public function controllerGet()
     {
         $action = isset($_GET['action']) ? $_GET['action'] : "";
-
         switch ($action) {
-            case "cbx_ubigeo":$array_result = $this->validator->cbxUbigeo();break;
-            case "get_ubigeo_by_id":$array_result = $this->validator->getUbigeoById();break;
-            case "cbx_paises":$array_result = $this->validator->CbxPaises();break;
+            case "qry_alumno":$array_result = $this->validator->qryAlumno();break;
+            case "get_alumno":$array_result = $this->validator->getAlumno();break;            
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);
     }
-
+    
     public function controllerPost()
     {
         $action = isset($_POST['action']) ? $_POST['action'] : "";
-        switch ($action) {
+
+        switch ($action){
+            case "ins_alumno": $array_result = $this->validator->saveAlumno('ins');break;
+            case "upd_alumno": $array_result = $this->validator->saveAlumno('upd');break;
+            case "est_alumno": $array_result = $this->validator->saveAlumno('est');break;
             default: $array_result["error"] = "Error al procesar la petición";
         }
         echo json_encode($array_result);
@@ -53,7 +50,5 @@ class UbigeoController
 
 }
 
-$controller = new UbigeoController();
+$controller = new AlumnoController();
 $controller->procesarPeticion();
-
-
