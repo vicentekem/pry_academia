@@ -136,14 +136,12 @@ DECLARE msg varchar(255) default '';
  set msg = CONCAT('El usuario ', _usuario , ' ya existe' );
 case _action 
  WHEN 'ins' THEN
-	IF(SELECT id from tbl_usuario where usuario=_usuario) is not null then
+	IF(SELECT id from tbl_usuario where usuario<>_usuario) is NULL then
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
-		ELSEIF(SELECT id from tbl_usuario where id_persona=_id_persona) IS NOT NULL THEN
+		ELSEIF(SELECT id from tbl_usuario where id_persona<>_id_persona) IS NULL THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una cuenta con este DNI', MYSQL_ERRNO = 1001;
-		ELSEIF(SELECT id from tbl_persona where id=_id_persona) IS NULL THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El DNI no está registrado en la base de datos', MYSQL_ERRNO = 1001;
 		ELSE
-		INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
+	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
 				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
 		END if;
 		/*
