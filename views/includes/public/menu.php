@@ -1,6 +1,8 @@
  <!-- header -->
+
  <header class="nav-container" id="header">
    <div class="container ">
+
      <nav class="nav d-flex">
        <a href="#" class="logo">
          <img src="public/web/assets/img/logo.svg" alt="logo">
