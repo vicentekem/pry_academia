@@ -31,11 +31,13 @@
   gap: 0.5rem;
   width: 90%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   /* border: 1px solid red; */
   margin: 0 auto;
   /* border-radius: 1px solid red; */
 }
+
+
 .search {
   min-width: 100px;
   width: calc(35% - 0.5rem);
@@ -52,7 +54,8 @@
   padding: 1rem 0 1rem 0;
 }
 .filtro {
-  border: 1px solid var(--gris);
+  /* border: 1px solid var(--gris); */
+  border: 1px solid #e3e3e3;
   padding: 0.5rem;
   border-radius: 0.5rem;
   /* min-width: 100px;
@@ -88,7 +91,8 @@
     width: calc(29% - 0.5rem);
   }
   .campo__responsive {
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: center;
   }
   .searchButton {
     min-width: 20%;
@@ -121,13 +125,13 @@
 /* styless imput */
 .filtro{
   display: flex;
+  width: 50%;
 
 }
 
 
 .filtro__flex{
   width: 95%;
-  border:1px solid red;
 }
 .filtro input{
   border: none;

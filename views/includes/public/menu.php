@@ -19,7 +19,7 @@
            <li><a class="link" href="?url=sobre__nosotros.php">Sobre Nosotros</a></li>
            <li><a class="link" href="?url=ciclos.php">Ciclos</a></li>
            <li><a class="link" href="?url=matricula_virtual">Matricula Virtual</a></li>
-           <li><a class="link" href="#team">Contacto</a></li>
+           <li><a class="link" href="#contactos">Contacto</a></li>
            <li><a href="?url=login" class="btn">Login</a></li>
          </ul>
        </div>

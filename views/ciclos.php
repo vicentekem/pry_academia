@@ -30,24 +30,24 @@
           </div>
 
           <!-- cursos -->
-          <div class=" filtro campo__curso hhh">
+          <!-- <div class=" filtro campo__curso hhh">
             <select class="box--with">
               <option>Cursos</option>
               <option>How I met your mother</option>
               <option>Fargo</option>
               <option>True Detective</option>
             </select>
-          </div>
+          </div> -->
 
           <!-- Nivel -->
-          <div class=" filtro campo__curso hhh">
+          <!-- <div class=" filtro campo__curso hhh">
             <select class="box--with">
               <option>Nivel</option>
               <option>How I met your mother</option>
               <option>Fargo</option>
               <option>True Detective</option>
             </select>
-          </div>
+          </div> -->
 
         </div>
       </div>
