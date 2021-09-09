@@ -7,8 +7,8 @@
 </script>
 
 <script id="tmpl_cbx_main" type="x-tmpl-mustache">
-    <option value=''>-SELECCIONE-</option>
+    <option value = "">-SELECCIONE-</option>
     {{#data}}
-         <option value='{{id}}' {{#selected}} selected {{/selected}}> {{description}} </option>
+         <option value='{{id}}'> {{description}} </option>
     {{/data}}
 </script>

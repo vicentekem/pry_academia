@@ -280,7 +280,7 @@ const loadCbx = ()=>{
 }
 
 const searchEventListener = (event)=>{
-    let target = event.target;    
+    let target = event.target;
     switch(event.type){
         case 'click':  if( target.classList.contains("btn-filter")) crud_personal.reloadTable(); ;break;
         case 'change': if( target.classList.contains("cbx-filter")) crud_personal.reloadTable(); ;break;

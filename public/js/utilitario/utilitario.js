@@ -36,6 +36,7 @@ const loadDataToTemplate = (id_template, id_content_data, data, is_select2, is_m
     }
 }
 
+
 const showMessage =(message, type) => {
 
     toastr.options = {
