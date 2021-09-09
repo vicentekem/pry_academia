@@ -30,14 +30,14 @@ class CursoProgramadoValidator
         return $result;
     }
 
-    public function selCursoProgramado()
+    public function pwCursoProgramado()
     {
         $result = [ "error" => "" ];        
 
         $data["search"] = Utilitario::getParam("search");
 
 
-        if ($result["error"] === "") $result = $this->model->selCursoProgramado($data);        
+        if ($result["error"] === "") $result = $this->model->pwCursoProgramado($data);        
 
         return $result;
     }

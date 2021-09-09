@@ -29,7 +29,7 @@ class CursoProgramadoController
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
             case "qry_curso_programado":$array_result = $this->validator->qryCursoProgramado();break;
-            case "sel_curso_programado":$array_result = $this->validator->selCursoProgramado();break;
+            case "pw_curso_programado":$array_result = $this->validator->pwCursoProgramado();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);
