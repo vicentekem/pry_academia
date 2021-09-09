@@ -89,6 +89,11 @@ height: 4px;
   /* border-color: #9b59b6; */
   border-color: var(--blue-secondary);
 }
+.campo input[type="email"]:focus {
+  /* border-radius: 5px; */
+  /* border-color: #9b59b6; */
+  border-color: var(--blue-secondary);
+}
 .bloqueo{
   background-color: var(--gray);
   cursor: no-drop;

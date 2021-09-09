@@ -139,20 +139,10 @@
 						</div>
 
 						<!--=== Celular ===-->
-						<div class="campo campo8 campo__campo">
-							<label>Celular </label>
-							<input class="campo__caja" type="txt" '>
+						<div class="campo campo1 campo__campo">
+							<label>Celular</label>
+							<input class="campo__caja" type="text" placeholder='Su DNI'>
 						</div>
-
-						<!-- <div class="campo5 campo">
-						<div class="campo__">
-							<label for="">Ingresa tu cupon de descuento</label>
-							<div>
-								<input class="campo__caja"  type="text">
-							</div>
-							<button>Procesar Cupón</button>
-						</div>
-					</div> -->
 					</div>
 				</div>
 			</div>
