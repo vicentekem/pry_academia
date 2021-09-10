@@ -42,7 +42,6 @@ class CursoProgramado
 
     public function cbxCursoProgramado($data = [])
     {
-
         return $this->model->getAllRows(
             "SELECT cp.id,c.description,ctp.monto as monto_matricula
             FROM tbl_curso c
@@ -50,7 +49,18 @@ class CursoProgramado
             INNER JOIN tbl_curso_programado_tipo_pago ctp on cp.id = ctp.id_curso_programado and ctp.id_tipo_pago = 1           
             ORDER by c.description", $data
         );
+    }
 
+    public function cbxTurnosForCurso($data = [])
+    {
+        $where = Utilitario::generarFiltros($data,[ "id_curso_programado" => "ct.id_curso_programado = :id_curso_programado" ]);
+        return $this->model->getAllRows(
+            "SELECT ct.id_turno,ct.hora_inicio,ct.hora_fin,t.description
+            FROM tbl_curso_programado cp
+            INNER JOIN tbl_curso_programado_turno ct on cp.id = ct.id_curso_programado
+            INNER JOIN tbl_tablas t on ct.id_turno = t.id_registro and t.id_tabla = 4
+            $where", $data
+        );
     }
 
     public function saveCursoProgramado($action,$data){

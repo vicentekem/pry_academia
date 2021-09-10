@@ -35,7 +35,9 @@ class UbigeoController
 
         switch ($action) {
             case "cbx_ubigeo":$array_result = $this->validator->cbxUbigeo();break;
-            case "get_ubigeo_by_id":$array_result = $this->validator->getUbigeoById();break;
+            case "cbx_distritos":$array_result = $this->validator->cbxDistritos();break;
+            case "cbx_provincias":$array_result = $this->validator->cbxProvincias();break;
+            case "cbx_departamentos":$array_result = $this->validator->cbxDepartamentos();break;
             case "cbx_paises":$array_result = $this->validator->CbxPaises();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }

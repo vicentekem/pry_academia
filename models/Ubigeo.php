@@ -22,64 +22,27 @@ class Ubigeo
         );
     }
 
-    public function getUbigeoById($data)
+    public function cbxDepartamentos()
     {
-        $result = ["error" => "", "rows" => []];
-        $filters = $data["filters_str"];
-        try {
-
-            $cn = $this->model->getConexion();
-            $qry_sel = "SELECT id, departamento||' - '||provincia||' - '||distrito as text
-                      FROM tbl_ubigeo2019 $filters ";
-
-            $stmt = $cn->prepare($qry_sel);
-            foreach ($data as $key => &$value) { if( $value &&( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);}
-
-            $ok = $stmt->execute();
-
-            if ($ok) {
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $result["rows"][] = $row;}
-            } else {
-                $result["error"] = "Error";
-            }
-
-        } catch (Exception $ex) {
-            $cn = null;
-            $result["error"] = "Error";
-        }
-        return $result;
+        return $this->model->getAllRows(
+            "SELECT distinct SUBSTR(id_ubigeo,1,2) as id,departamento as description FROM tbl_ubigeo where id_pais = 'PER'"
+        );
     }
 
-    public function getCbxPaises($data)
+    public function cbxProvincias($data)
     {
-        $result = ["error" => "", "rows" => []];
-        $filters = $data["filters_str"];
-        try {
+        return $this->model->getAllRows(
+            "SELECT distinct SUBSTR(id_ubigeo,1,4) as id,provincia as description 
+            FROM tbl_ubigeo where id_pais = 'PER' and SUBSTR(id_ubigeo,1,2) = :id_departamento ", $data
+        );
+    }
 
-            $cn = $this->model->getConexion();
-            $qry_sel = "select id_pais as id,pais descripcion from (select id_pais,provincia pais
-                        from tbl_ubigeo2019 where id_pais <> 'PER' group by provincia,id_pais
-                        union select 'PER','PERÚ' order by pais) as paises order by 1 ";
-
-            $stmt = $cn->prepare($qry_sel);
-            //foreach ($data as $key => &$value) { if( $value &&( $key != 'filters_str' && $key != 'limit' ) ) $stmt->bindParam(":" . $key, $value);}
-            $ok = $stmt->execute();
-
-            if ($ok) {
-
-                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                    $result["rows"][] = $row;
-                }
-
-            } else {
-                $result["error"] = "Error";
-            }
-
-        } catch (Exception $ex) {
-            $cn = null;
-            $result["error"] = "Error";
-        }
-        return $result;
+    public function cbxDistritos($data)
+    {
+        return $this->model->getAllRows(
+            "SELECT distinct id_ubigeo as id,distrito as description
+            FROM tbl_ubigeo where id_pais = 'PER' and SUBSTR(id_ubigeo,1,4) = :id_provincia", $data
+        );
     }
 
 }

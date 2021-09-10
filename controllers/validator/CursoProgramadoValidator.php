@@ -33,10 +33,7 @@ class CursoProgramadoValidator
     public function pwCursoProgramado()
     {
         $result = [ "error" => "" ];        
-
         $data["search"] = Utilitario::getParam("search");
-
-
         if ($result["error"] === "") $result = $this->model->pwCursoProgramado($data);        
 
         return $result;
@@ -46,6 +43,14 @@ class CursoProgramadoValidator
     {
         $result = [ "error" => "" ];        
         if ($result["error"] === "") $result = $this->model->cbxCursoProgramado([]);
+        return $result;
+    }
+
+    public function cbxTurnosForCurso()
+    {
+        $result = [ "error" => "" ];
+        $data["id_curso_programado int"] = Utilitario::getIntParam("id_curso_programado");
+        if ($result["error"] === "") $result = $this->model->cbxTurnosForCurso($data);
         return $result;
     }
 

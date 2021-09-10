@@ -20,53 +20,29 @@ class UbigeoValidator
     }
 
     function cbxUbigeo()
-    {
-        
+    {        
         $data["q"] = Utilitario::getParam("q");
-
-        
         $result = $this->repository->cbxUbigeo($data);
-
         return $result;
     }
 
-    function getUbigeoById()
-    {
-        $data["ubigeo_reniec"] = isset($_GET["ubigeo_reniec"]) ? $_GET["ubigeo_reniec"] : null;
-        $data["ubigeo_inei"] = isset($_GET["ubigeo_inei"]) ? $_GET["ubigeo_inei"] : null;
-
-        $filters = "";
-        $limit = "";
-        $start = isset($_GET["start"]) ? $_GET["start"] : null;
-        $length = isset($_GET["length"]) ? $_GET["length"] : null;
-
-        if($data["ubigeo_reniec"]) $filters .= " and id_ubigeo = :ubigeo_reniec ";
-        if($data["ubigeo_inei"]) $filters .= " and id_inei = :ubigeo_inei ";
-        if( trim(substr($filters,0,4)) == "and" ){ $filters = substr($filters,4);}
-        if( strlen(trim($filters)) > 0 ){ $filters = "where " . $filters; }
-        if( $start >= 0 && $length > 0 ) $limit .= " limit $length offset $start ";
-
-        $data["filters_str"] = $filters;
-        $data["limit"] = $limit;
-        $result = $this->repository->getUbigeoById($data);
-
+    function cbxDepartamentos()
+    {   
+        $result = $this->repository->cbxDepartamentos();
         return $result;
     }
 
-    function getCbxPaises()
+    function cbxProvincias()
     {
-        $data["filter_text"] = isset($_GET["filter_text"]) ? $_GET["filter_text"] : null;
-        $filters = "";
-        $limit = "";
-        $start = isset($_GET["start"]) ? $_GET["start"] : null;
-        $length = isset($_GET["length"]) ? $_GET["length"] : null;
-        if($data["filter_text"]) $filters .= " and upper(distrito) like '%' || upper(:filter_text) || '%' ";
-        if( trim(substr($filters,0,4)) == "and" ){ $filters = substr($filters,4);}
-        if( strlen(trim($filters)) > 0 ){ $filters = "where " . $filters; }
-        if( $start >= 0 && $length > 0 ) $limit .= " limit $length offset $start ";
-        $data["filters_str"] = $filters;
-        $data["limit"] = $limit;
-        $result = $this->repository->getCbxPaises($data);
+        $data["id_departamento"] = Utilitario::getParam("id_departamento");     
+        $result = $this->repository->cbxProvincias($data);
+        return $result;
+    }
+
+    function cbxDistritos()
+    {   
+        $data["id_provincia"] = Utilitario::getParam("id_provincia");
+        $result = $this->repository->cbxDistritos($data);
         return $result;
     }
 
