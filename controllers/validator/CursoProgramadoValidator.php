@@ -42,6 +42,13 @@ class CursoProgramadoValidator
         return $result;
     }
 
+    public function cbxCursoProgramado()
+    {
+        $result = [ "error" => "" ];        
+        if ($result["error"] === "") $result = $this->model->cbxCursoProgramado([]);
+        return $result;
+    }
+
     public function saveCursoProgramado($action){
 
         $result = [ "error" => "" ];

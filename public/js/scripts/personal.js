@@ -265,10 +265,10 @@ let crud_personal = {
 
 
 
-
 const loadCbx = ()=>{
 
     ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:5},(result) => {
+        //result["rows"] === result.rows
         loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_cargo',result["rows"],true);
     });
 
@@ -287,7 +287,6 @@ const searchEventListener = (event)=>{
         case 'search': if( target.classList.contains("txt-filter")) crud_personal.reloadTable(); ;break;
     }
 }
-
 
 
 document.addEventListener('DOMContentLoaded',()=>{
