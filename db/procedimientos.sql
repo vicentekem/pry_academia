@@ -31,29 +31,116 @@ drop procedure if exists sp_curso$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso`( 
 	_action varchar(10),
 	_id int(32),
-	_description VARCHAR(255)
+	_description VARCHAR(255),
+	_caractaristicas text,
+	_beneficios text
 )
 BEGIN
+
+DECLARE strLen    INT DEFAULT 0;
+DECLARE subStrLen INT DEFAULT 0;
+
+
 CASE _action
 	WHEN 'ins' THEN
 		IF(SELECT id FROM tbl_curso where description=_description) IS NULL THEN
-		INSERT into tbl_curso(description) VALUES(_description);
+		
+			INSERT into tbl_curso(description) VALUES(_description);
+			SET _id = (SELECT LAST_INSERT_ID());
+			
+			/*BUCLE PARA INSERTAR CARACTERISTICAS*/
+			ins_caracteristicas: LOOP
+		
+				SET strLen = CHAR_LENGTH(_caractaristicas);
+
+				if strLen > 0 THEN
+					insert into tbl_curso_caracteristicas(id_curso,description) values(_id, SUBSTRING_INDEX( _caractaristicas , '|', 1 ) );
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _caractaristicas , '|',1 )) + 2;
+				SET _caractaristicas = MID( _caractaristicas , subStrLen, strLen);
+				
+				IF _caractaristicas = '' THEN
+					LEAVE ins_caracteristicas;
+				END IF;
+			END LOOP ins_caracteristicas;
+			
+			/*BUCLE PARA INSERTAR BENEFICIOS*/
+			ins_beneficios: LOOP
+		
+				SET strLen = CHAR_LENGTH(_beneficios);
+
+				if strLen > 0 THEN
+					insert into tbl_curso_beneficios(id_curso,description) values(_id, SUBSTRING_INDEX( _beneficios , '|', 1 ) );
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _beneficios , '|',1 )) + 2;
+				SET _beneficios = MID( _beneficios , subStrLen, strLen);
+				
+				IF _beneficios = '' THEN
+					LEAVE ins_beneficios;
+				END IF;
+			END LOOP ins_beneficios;
+
+			
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso ya existe', MYSQL_ERRNO = 1001;	
-		END if;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso ya existe', MYSQL_ERRNO = 1001;	
+		END IF;
+		
 	WHEN 'upd' THEN
 		IF(SELECT id FROM tbl_curso where description=_description and id<>_id) IS NULL THEN
-		UPDATE tbl_curso set description=_description where id=_id;
+		
+			UPDATE tbl_curso set description=_description where id=_id;
+			
+			DELETE FROM tbl_curso_caracteristicas WHERE id_curso = _id;
+			DELETE FROM tbl_curso_beneficios WHERE id_curso = _id;
+			
+			/*BUCLE PARA INSERTAR CARACTERISTICAS*/
+			ins_caracteristicas: LOOP
+		
+				SET strLen = CHAR_LENGTH(_caractaristicas);
+
+				if strLen > 0 THEN
+					insert into tbl_curso_caracteristicas(id_curso,description) values(_id, SUBSTRING_INDEX( _caractaristicas , '|', 1 ) );
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _caractaristicas , '|',1 )) + 2;
+				SET _caractaristicas = MID( _caractaristicas , subStrLen, strLen);
+				
+				IF _caractaristicas = '' THEN
+					LEAVE ins_caracteristicas;
+				END IF;
+			END LOOP ins_caracteristicas;
+			
+			
+			/*BUCLE PARA INSERTAR BENEFICIOS*/
+			ins_beneficios: LOOP
+		
+				SET strLen = CHAR_LENGTH(_beneficios);
+
+				if strLen > 0 THEN
+					insert into tbl_curso_beneficios(id_curso,description) values(_id, SUBSTRING_INDEX( _beneficios , '|', 1 ) );
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _beneficios , '|',1 )) + 2;
+				SET _beneficios = MID( _beneficios , subStrLen, strLen);
+				
+				IF _beneficios = '' THEN
+					LEAVE ins_beneficios;
+				END IF;
+			END LOOP ins_beneficios;
+			/*FIN DEL BUCLE*/
+			
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
 		END IF;
 	WHEN 'est' THEN
 		UPDATE tbl_curso SET estado=!estado WHERE id=_id;
-		ELSE
+	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
-END CASE;
-END $
 
+END CASE;
+END$
 
 drop procedure if exists sp_tablas$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_tablas`( 
@@ -283,3 +370,42 @@ BEGIN
 		END CASE;
 END$
 
+
+drop procedure if exists sp_accesos$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_accesos`(
+_id_usuario int(32),
+_id_rol INT(32),
+_accesos VARCHAR(50)
+)
+BEGIN
+DECLARE strLen INT DEFAULT 0;
+DECLARE subStrlen INT DEFAULT 0;
+
+SET strLen=CHAR_LENGTH(_accesos);
+		ins_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+		
+		
+		IF strLen > 0 THEN
+			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , '|', 1 ))is NULL THEN
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso no existe', MYSQL_ERRNO = 1001;
+			
+			ELSEIF(SELECT id from tbl_usuario 
+				where id=_id_usuario ) IS NULL  THEN
+						SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El Usuario no existe', MYSQL_ERRNO = 1001;
+			ELSEIF(SELECT id_usuario from tbl_accesos_usuario 
+				where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL  THEN
+					
+					insert into tbl_accesos_usuario(id_usuario,id_rol,id_submenu) values(_id_usuario,_id_rol,SUBSTRING_INDEX( _accesos , '|', 1 ) );
+						
+			END IF;
+		END IF;
+				
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , '|',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+				
+	IF _accesos='' THEN
+		LEAVE ins_accesos; 
+	END IF; 
+END LOOP ins_accesos;
+END
