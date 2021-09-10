@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal_crud_curso" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
@@ -18,8 +18,13 @@
                 <input type="hidden" id="txt_crud_action">
 
                 <div class="form-group col-12">
-                    <label  for="txt_crud_descripcion"> Descripcion <span class="text-danger">*</span> </label>
+                    <label  for="txt_crud_descripcion">Nombre del curso<span class="text-danger">*</span> </label>
                     <input id="txt_crud_descripcion" class="form-control text-uppercase" />
+                </div>
+
+                <div class="form-group col-12">
+                    <label  for="txt_crud_descripcion">Descripción<span class="text-danger">*</span> </label>
+                    <textarea id="txt_crud_descripcion" class="form-control"></textarea>
                 </div>
 
             </form>

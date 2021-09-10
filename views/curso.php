@@ -69,6 +69,9 @@
                                 <label for="" style="display:block;opacity:0">...</label>
                                 <button id="btn_new_curso" class="btn btn-success">Nuevo</button>
                             </div>
+
+                            
+
                         </div>
 
                         <div class="table-responsive w-100 text-sm">
@@ -76,7 +79,7 @@
                                 <thead>
                                 <tr>
                                     <th>Accion</th>
-                                    <th>Descripcion</th>
+                                    <th>Nombre</th>
                                     <th>Estado</th>
                                 </tr>
                                 </thead>
