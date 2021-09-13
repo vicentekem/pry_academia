@@ -314,7 +314,6 @@ BEGIN
 		END CASE;
 END$
 
-DELIMITER $
 drop procedure if exists sp_alumno$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_alumno`(
 	_action varchar(10),
@@ -373,6 +372,7 @@ END$
 
 drop procedure if exists sp_accesos$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_accesos`(
+_action VARCHAR(10),
 _id_usuario int(32),
 _id_rol INT(32),
 _accesos VARCHAR(50)
@@ -381,6 +381,9 @@ BEGIN
 DECLARE strLen INT DEFAULT 0;
 DECLARE subStrlen INT DEFAULT 0;
 
+
+case _action 
+WHEN 'ins' THEN
 SET strLen=CHAR_LENGTH(_accesos);
 		ins_accesos: LOOP
 		SET strLen = CHAR_LENGTH(_accesos);
@@ -388,7 +391,7 @@ SET strLen=CHAR_LENGTH(_accesos);
 		
 		IF strLen > 0 THEN
 			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , '|', 1 ))is NULL THEN
-					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso no existe', MYSQL_ERRNO = 1001;
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La tabla no existe', MYSQL_ERRNO = 1001;
 			
 			ELSEIF(SELECT id from tbl_usuario 
 				where id=_id_usuario ) IS NULL  THEN
@@ -408,4 +411,58 @@ SET strLen=CHAR_LENGTH(_accesos);
 		LEAVE ins_accesos; 
 	END IF; 
 END LOOP ins_accesos;
-END
+
+WHEN 'dlt' THEN
+		SET strLen=CHAR_LENGTH(_accesos);
+		dlt_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+		
+		IF(SELECT id_usuario FROM tbl_accesos_usuario 
+		where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error', MYSQL_ERRNO = 1001;
+		ELSE
+			DELETE FROM tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 );
+		END IF;
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , '|',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+	IF _accesos='' THEN
+		LEAVE dlt_accesos; 
+	END IF; 
+END LOOP dlt_accesos;
+END CASE;
+END$
+
+
+drop procedure if exists `sp_curso_programado`$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso_programado`(
+_action varchar(10),
+_id int(32),
+_id_curso int(32),
+_fecha_inicio VARCHAR(50),
+_fecha_fin VARCHAR(50),
+_url_img VARCHAR(255),
+_id_usuario int(32),
+_id_persona int(32))
+begin
+case _action
+	WHEN 'ins' then
+	IF(SELECT ID FROM tbl_curso WHERE id=11_id) is NULL THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso no existe' , MYSQL_ERRNO = 1001;	
+	ELSEIF(SELECT id FROM tbl_curso_programado where id=_id) IS NULL THEN
+		INSERT INTO tbl_curso_programado(id,id_curso,create_at,user_create_at,fecha_inicio,fecha_fin,url_img,id_persona) 
+					VALUES(_id,_id_curso,CURRENT_TIMESTAMP,_id_usuario,STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),_url_img,_id_persona);
+	ELSE
+	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error' , MYSQL_ERRNO = 1001;	
+	END if;
+	WHEN 'upd' THEN
+		IF(SELECT id FROM tbl_curso_programado where id_curso=_id_curso and id<>_id) IS NULL THEN
+		UPDATE tbl_curso_programado set id_curso=_id_curso,fecha_inicio=STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),fecha_fin=STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),url_img=_url_img/*,user_create_up=_id_usuario*/,create_up=CURRENT_TIMESTAMP WHERE id=_id;
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
+		END IF;
+		WHEN 'est' THEN
+		UPDATE tbl_curso_programado SET estado=!estado WHERE id=_id AND id_curso=_id_curso;
+		ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
+END$
