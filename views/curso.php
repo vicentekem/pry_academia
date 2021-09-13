@@ -45,16 +45,14 @@
 
                     <div class="ibox-title">
                         <h3 style="display: inline-block"> Mantenimiento de Cursos </h3>
-
-                        <div class="ibox-tools">
-                        </div>
+                        <div class="ibox-tools"></div>
                     </div>
 
                     <div class="ibox-content" id="filter_container">
 
                         <div class="row">
 
-                            <div class="form-group mb-0 col-12 col-md-5 col-lg-11">
+                            <div class="form-group mb-0 col-12 col-md-5 col-lg-10">
                                 <label for="txt_search">Buscar</label>
                                 <div class="form-group input-group">
                                     <input type="search" id="txt_search" placeholder="Buscar" 
@@ -65,12 +63,10 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-0 col-12 col-md-1">
+                            <div class="form-group mb-0 col-12 col-md-2">
                                 <label for="" style="display:block;opacity:0">...</label>
                                 <button id="btn_new_curso" class="btn btn-success">Nuevo</button>
                             </div>
-
-                            
 
                         </div>
 

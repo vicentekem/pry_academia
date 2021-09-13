@@ -14,7 +14,7 @@ let crud_curso = {
         filter_container_jq.on("change", event => searchEventListener( event ) );
         filter_container_jq.on("search", event => searchEventListener( event ) );
 
-        frm_crud_curso.on('submit', (event)=> crud_curso.saveData(event));
+        frm_crud_curso.on('submit', (event)=> event.preventDefault);
 
         btn_new_curso.on("click",  (event)=> crud_curso.openModal());
         btn_save_curso.on("click", (event)=> crud_curso.saveData(event));
@@ -138,19 +138,38 @@ let crud_curso = {
 
     },
 
-    openModal : ( data = {} )=>{        
-        if(data.id){
+    loadDataToModal : ( data )=>{
+        ajaxRequest("get_curso","get","CursoController.php",{id:data.id},(result)=>{
+
+            let d = result.row;
+            let caracteristicas = result.rows_caracteristicas;
+            let beneficios = result.rows_beneficios;
+
             $("#txt_crud_action").val("upd_curso");
-            $("#txt_crud_id").val(data.id);
-            $("#txt_crud_descripcion").val(data.description);
+            $("#txt_crud_id").val(d.id);
+            $("#txt_crud_descripcion").val(d.description);
+            $("#txt_crud_resumen").val(d.resumen);
+            list_caracteristicas.items = caracteristicas.map((el,i)=>{ return {id:i,title:el.description } })
+            list_beneficios.items = beneficios.map((el,i)=>{ return {id: i,title:el.description } })
+            list_caracteristicas.render();
+            list_beneficios.render();
             $("#" + crud_curso.id_modal + " #emodal_title").html("Editar Registro");
             $("#" + crud_curso.id_modal).modal("show");
+
+        });
+    },
+
+    openModal : ( data = {} )=>{        
+        if(data.id){
+            crud_curso.loadDataToModal(data);
         }else{            
             $("#txt_crud_action").val("ins_curso");
             $("#txt_crud_id").val("");
-            $("#txt_crud_cod_ref").val("");
             $("#txt_crud_descripcion").val("");
-            $("#" + crud_curso.id_modal + " #emodal_title").html("Nuevo Registro");
+            $("#txt_crud_resumen").val("");
+            $("#lst_caracteristicas").html("");
+            $("#lst_beneficios").html("");
+            $("#" + crud_curso.id_modal + " #emodal_title").html("Registrar Curso");
             $("#" + crud_curso.id_modal).modal("show");        
         }
     },
@@ -160,14 +179,20 @@ let crud_curso = {
         let action = $("#txt_crud_action").val();
         let id = $("#txt_crud_id").val();
         let descripcion = $("#txt_crud_descripcion").val();
+        let resumen = $("#txt_crud_resumen").val();
+
+        let caracteristicas = list_caracteristicas.getString();
+        let beneficios = list_beneficios.getString();
 
         let data = {
-            id : id,            
-            descripcion : descripcion
+            id : id,
+            descripcion : descripcion,
+            resumen : resumen,
+            caracteristicas : caracteristicas,
+            beneficios : beneficios
         }
 
         ajaxRequest(action,"post","CursoController.php",data,(result)=>{
-
             if(result.error === ""){
                 $("#" + crud_curso.id_modal).modal("hide");
                 showMessage(result.success,"success");
@@ -185,18 +210,59 @@ let crud_curso = {
 
 };
 
+let createList = (id_input,id_btn_add,id_lst_container,errorMessage = "")=>{
+    let list = {
+        input_el : $("#" + id_input),
+        btn_add : $("#" + id_btn_add),
+        lst_container : $("#" + id_lst_container),
+        items : [],
+        init: ()=>{
 
+            list.btn_add.on('click', ()=> { list.add(); });
+            list.input_el.on('keyup', (event)=> { if(event.key === 'Enter') list.add(); });
 
+            list.lst_container.on('click',( event )=>{
+                let element = event.target;
+                if(element.localName == 'a'){
+                    event.preventDefault();
+                    let id_item = element.dataset.iditem;
+                    list.delete(id_item);
+                }
+            });
+        },
 
-const loadCbx = ()=>{
+        add : () =>{
+            let item = { id : (new Date).getTime(), title : list.input_el.val().trim() };
+            if(item.title.trim()!== ""){ list.items.push(item); }
+            else{ return showMessage(errorMessage,"error"); }
+            list.input_el.val("");
+            list.render();
+        },
 
-    /*ajaxRequest("cbx_curso","get","CursoController.php",
-    (result) => {
-        loadDataToTemplate('tmpl_cbx_curso','cbx_id_curso',result["rows"],true);
-        loadDataToTemplate('tmpl_cbx_curso','cbx_crud_id_curso',result["rows"],true);
-    });*/
+        render : ()=>{
+            let items_HTML = "";
+            list.items.forEach( ( item )=>{
+                items_HTML += `<li> ${item.title} <a href="#" class="text-danger ml-1" data-iditem="${item.id}" title="eliminar">x</a></li>`;
+            });
+            list.lst_container.html(items_HTML);
+        },
 
-}
+        delete: (id_item)=>{
+            let index_item = list.items.findIndex( (t) => t.id == id_item );
+            list.items.splice( index_item, 1);
+            list.render();
+        },
+
+        getString : ()=>{            
+            return list.items.map( (item)=>{ return item.title } ).join('|');
+        }
+
+    }
+    return list;
+};
+
+let list_caracteristicas = createList('txt_crud_caracteristica','btn_add_caracteristica','lst_caracteristicas','ingrese una caracteristica');
+let list_beneficios = createList('txt_crud_beneficio','btn_add_beneficio','lst_beneficios','ingrese beneficio');
 
 const searchEventListener = (event)=>{
     let target = event.target;    
@@ -209,7 +275,8 @@ const searchEventListener = (event)=>{
 
 document.addEventListener('DOMContentLoaded',()=>{
     
+    list_caracteristicas.init();
+    list_beneficios.init();
     crud_curso.init();
-    loadCbx();
     
 });

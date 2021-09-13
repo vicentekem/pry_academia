@@ -37,13 +37,25 @@ class CursoValidator
         return $result;
     }
 
+    public function getCurso()
+    {
+        $result = [ "error" => "" ];        
+        $data["id int"] = Utilitario::getParam("id");                
+        if ($result["error"] === "") $result = $this->model->getCurso($data);        
+
+        return $result;
+    }
+
     public function saveCurso($action){
 
         $result = [ "error" => "" ];
 
         $data["id int"] = Utilitario::getIntParam("id");
         $data["descripcion"] = Utilitario::getParam("descripcion");
-
+        $data["resumen"] = Utilitario::getParam("resumen",false);
+        $data["caracteristicas"] = Utilitario::getParam("caracteristicas",false);
+        $data["beneficios"] = Utilitario::getParam("beneficios",false);
+        
         if ($result["error"] === "") $result = $this->model->saveCurso($action,$data);
 
         return $result;
@@ -52,12 +64,6 @@ class CursoValidator
 
 
 }
-
-
-
-
-
-
 
 
 
