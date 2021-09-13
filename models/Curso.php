@@ -29,6 +29,25 @@ class Curso
 
     }
 
+    public function getCurso($data)
+    {
+
+        $where = Utilitario::generarFiltros($data,[
+            "id" => "c.id = :id"
+        ]);
+
+        $result = $this->model->getRow( "SELECT c.id,c.description,c.resumen,c.estado FROM tbl_curso c $where", $data);
+        $result["rows_caracteristicas"] = $this->model->getAllRows( 
+            "SELECT c.id,cc.description FROM tbl_curso c inner join tbl_curso_caracteristicas cc on c.id = cc.id_curso $where", $data
+        )["rows"];
+        $result["rows_beneficios"] = $this->model->getAllRows( 
+            "SELECT c.id,cb.description FROM tbl_curso c inner join tbl_curso_beneficios cb on c.id = cb.id_curso $where", $data
+        )["rows"];
+
+        return $result;
+
+    }
+
     public function cbxCurso($data){
 
         $where = Utilitario::generarFiltros($data,[]);
@@ -41,7 +60,7 @@ class Curso
     public function saveCurso($action,$data){
         
         return $this->model->executeProcess(
-            "call sp_curso( '$action' ,:id,:descripcion) ", $data,
+            "call sp_curso( '$action' ,:id,:descripcion,:resumen,:caracteristicas,:beneficios) ", $data,
             "Datos guardados exitosamente"
         );
 

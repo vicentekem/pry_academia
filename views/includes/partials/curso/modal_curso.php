@@ -23,8 +23,30 @@
                 </div>
 
                 <div class="form-group col-12">
-                    <label  for="txt_crud_descripcion">Descripción<span class="text-danger">*</span> </label>
-                    <textarea id="txt_crud_descripcion" class="form-control"></textarea>
+                    <label  for="txt_crud_resumen">Descripción<span class="text-danger">*</span> </label>
+                    <textarea id="txt_crud_resumen" class="form-control"></textarea>
+                </div>
+
+                <div class="form-group col-12 col-lg-6">
+                    <label  for="txt_crud_caracteristica">Caracteristica</label>
+                    <div class="form-group input-group">
+                        <input type="text" id="txt_crud_caracteristica" placeholder="" class="form-control"/>
+                        <div class="input-group-append">
+                            <button type="button" id="btn_add_caracteristica" class="btn btn-info"> <span class="fa fa-plus"></span></button>
+                        </div>
+                    </div>
+                    <div> <ul class="task-list" id="lst_caracteristicas"></ul> </div>
+                </div>
+
+                <div class="form-group col-12 col-lg-6">
+                    <label  for="txt_crud_beneficio">Beneficios</label>
+                    <div class="form-group input-group">
+                        <input type="text" id="txt_crud_beneficio" placeholder="" class="form-control"/>
+                        <div class="input-group-append">
+                            <button type="button" id="btn_add_beneficio" class="btn btn-info"> <span class="fa fa-plus"></span></button>
+                        </div>
+                    </div>
+                    <div> <ul class="task-list" id="lst_beneficios"></ul> </div>
                 </div>
 
             </form>

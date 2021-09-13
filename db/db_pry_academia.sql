@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 09/09/2021 22:38:16
+ Date: 10/09/2021 17:06:46
 */
 
 SET NAMES utf8mb4;
@@ -92,7 +92,7 @@ CREATE TABLE `tbl_curso`  (
 -- ----------------------------
 -- Records of tbl_curso
 -- ----------------------------
-INSERT INTO `tbl_curso` VALUES (1, 'ARITMETICA', '2021-08-31 12:30:59.569567', NULL, NULL, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam est suscipit itaque?');
+INSERT INTO `tbl_curso` VALUES (1, 'ARITMETICA', '2021-08-31 12:30:59.569567', NULL, NULL, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam est suscipit itaque?sds');
 INSERT INTO `tbl_curso` VALUES (2, 'ALGEBRA', '2021-08-31 12:31:04.793439', NULL, NULL, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam est suscipit itaque?');
 INSERT INTO `tbl_curso` VALUES (3, 'GEOMETRIA', '2021-08-31 12:31:53.927558', NULL, NULL, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam est suscipit itaque?');
 INSERT INTO `tbl_curso` VALUES (4, 'TRIGONOMETRIA', '2021-08-31 12:32:03.854089', NULL, NULL, 1, 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam est suscipit itaque?');
@@ -112,7 +112,12 @@ CREATE TABLE `tbl_curso_beneficios`  (
   `id_curso` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_curso_beneficios
+-- ----------------------------
+INSERT INTO `tbl_curso_beneficios` VALUES (12, 1, 'wqda');
 
 -- ----------------------------
 -- Table structure for tbl_curso_caracteristicas
@@ -123,7 +128,13 @@ CREATE TABLE `tbl_curso_caracteristicas`  (
   `id_curso` int(32) NULL DEFAULT NULL,
   `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_curso_caracteristicas
+-- ----------------------------
+INSERT INTO `tbl_curso_caracteristicas` VALUES (11, 1, 'sssss');
+INSERT INTO `tbl_curso_caracteristicas` VALUES (12, 1, '1233rqdqds');
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado
@@ -284,7 +295,7 @@ CREATE TABLE `tbl_submenu`  (
   `estado` binary(1) NULL DEFAULT 1,
   `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_submenu
@@ -293,6 +304,7 @@ INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tablas.php',
 INSERT INTO `tbl_submenu` VALUES (2, '1', 'PERSONAL', '2', 'personal', 'personal.php', NULL, 0x31, 3);
 INSERT INTO `tbl_submenu` VALUES (3, '1', 'CURSO', '2', 'curso', 'curso.php', NULL, 0x31, 2);
 INSERT INTO `tbl_submenu` VALUES (4, '1', 'ALUMNO', '2', 'alumno', 'alumno.php', NULL, 0x31, 4);
+INSERT INTO `tbl_submenu` VALUES (5, '2', 'ACCESOS', '2', 'accesos', 'accesos.php', NULL, 0x31, 1);
 
 -- ----------------------------
 -- Table structure for tbl_tablas
@@ -3903,6 +3915,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_curso`(
 	_action varchar(10),
 	_id int(32),
 	_description VARCHAR(255),
+	_resumen varchar(255),
 	_caractaristicas text,
 	_beneficios text
 )
@@ -3911,12 +3924,11 @@ BEGIN
 DECLARE strLen    INT DEFAULT 0;
 DECLARE subStrLen INT DEFAULT 0;
 
-
 CASE _action
 	WHEN 'ins' THEN
 		IF(SELECT id FROM tbl_curso where description=_description) IS NULL THEN
 		
-			INSERT into tbl_curso(description) VALUES(_description);
+			INSERT into tbl_curso(description,resumen) VALUES(_description,_resumen);
 			SET _id = (SELECT LAST_INSERT_ID());
 			
 			/*BUCLE PARA INSERTAR CARACTERISTICAS*/
@@ -3961,7 +3973,7 @@ CASE _action
 	WHEN 'upd' THEN
 		IF(SELECT id FROM tbl_curso where description=_description and id<>_id) IS NULL THEN
 		
-			UPDATE tbl_curso set description=_description where id=_id;
+			UPDATE tbl_curso set description=_description,resumen=_resumen where id=_id;
 			
 			DELETE FROM tbl_curso_caracteristicas WHERE id_curso = _id;
 			DELETE FROM tbl_curso_beneficios WHERE id_curso = _id;

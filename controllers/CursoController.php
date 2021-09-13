@@ -30,6 +30,7 @@ class CursoController
         switch ($action) {
             case "qry_curso":$array_result = $this->validator->qryCurso();break;
             case "cbx_curso":$array_result = $this->validator->cbxCurso();break;            
+            case "get_curso":$array_result = $this->validator->getCurso();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);
