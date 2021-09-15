@@ -15,11 +15,19 @@
        </div>
        <div class="navigation-bar">
          <ul>
-           <li><a class="link" href="?index.php">Inicio</a></li>
-           <li><a class="link" href="?url=sobre__nosotros.php">Sobre Nosotros</a></li>
-           <li><a class="link" href="?url=ciclos.php">Ciclos</a></li>
-           <li><a class="link" href="?url=matricula_virtual">Matricula Virtual</a></li>
-           <li><a class="link" href="#contactos">Contacto</a></li>
+            <?php 
+              require_once __DIR__ . "/../../../models/menu.php";                
+              $menuModel = new Menu();
+              $menus = $menuModel->getPublicMenu();
+              foreach( $menus["rows"] as $menu ){
+            ?>
+
+              <li><a class="link" href="?url=<?php echo $menu["alias"]; ?>"><?php echo $menu["name_menu"]; ?></a></li>
+              <!-- <li><a class="link" href="?url=sobre__nosotros.php">Sobre Nosotros</a></li>
+              <li><a class="link" href="?url=ciclos.php">Ciclos</a></li>
+              <li><a class="link" href="?url=matricula_virtual">Matricula Virtual</a></li> -->
+            <?php } ?>
+            <li><a class="link" href="#contactos">Contacto</a></li>
            <li><a href="?url=login" class="btn">Login</a></li>
          </ul>
        </div>

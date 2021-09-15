@@ -33,7 +33,7 @@ class CursoValidator
     public function cbxCurso()
     {
         $result = [ "error" => "" ];        
-        if ($result["error"] === "") $result = $this->model->cbxCurso($data);
+        if ($result["error"] === "") $result = $this->model->cbxCurso();
         return $result;
     }
 

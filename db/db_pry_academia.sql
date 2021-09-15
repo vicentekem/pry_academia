@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 13/09/2021 17:41:51
+ Date: 15/09/2021 16:54:58
 */
 
 SET NAMES utf8mb4;
@@ -52,7 +52,7 @@ INSERT INTO `tbl_accesos_usuario` VALUES (1, 2, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 3, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 4, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 6, 1);
-INSERT INTO `tbl_accesos_usuario` VALUES (1, 12, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 11, 1);
 
 -- ----------------------------
 -- Table structure for tbl_alumno
@@ -167,7 +167,7 @@ CREATE TABLE `tbl_curso_programado`  (
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
-  `estado` binary(1) NOT NULL DEFAULT 1,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
   `fecha_inicio` date NULL DEFAULT NULL,
   `fecha_fin` date NULL DEFAULT NULL,
   `url_img` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
@@ -179,9 +179,9 @@ CREATE TABLE `tbl_curso_programado`  (
 -- ----------------------------
 -- Records of tbl_curso_programado
 -- ----------------------------
-INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, NULL, 0x31, '2021-09-06', '2021-12-17', 'public/img/cursos/curso1.jpg', 1, NULL);
-INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, NULL, 0x31, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, NULL);
-INSERT INTO `tbl_curso_programado` VALUES (3, 2, '2021-08-31 12:55:30.022456', NULL, NULL, 0x31, '2021-09-13', '2021-11-26', 'public/img/cursos/curso3.jpg', 1, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, NULL, 1, '2021-09-06', '2021-12-17', 'public/img/cursos/curso1.jpg', 1, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, NULL, 1, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (3, 2, '2021-08-31 12:55:30.022456', NULL, NULL, 1, '2021-09-13', '2021-11-26', 'public/img/cursos/curso3.jpg', 1, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado_tipo_pago
@@ -191,15 +191,16 @@ CREATE TABLE `tbl_curso_programado_tipo_pago`  (
   `id_curso_programado` int(32) NOT NULL,
   `id_tipo_pago` int(32) NOT NULL,
   `monto` float(255, 0) NOT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_curso_programado`, `id_tipo_pago`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado_tipo_pago
 -- ----------------------------
-INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (1, 1, 70);
-INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (2, 1, 60);
-INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (3, 1, 85);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (1, 1, 70, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (2, 1, 60, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (3, 1, 85, 1);
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado_turno
@@ -210,14 +211,15 @@ CREATE TABLE `tbl_curso_programado_turno`  (
   `id_turno` int(32) NOT NULL,
   `hora_inicio` time(6) NULL DEFAULT NULL,
   `hora_fin` time(6) NULL DEFAULT NULL,
+  `estado` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_curso_programado`, `id_turno`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado_turno
 -- ----------------------------
-INSERT INTO `tbl_curso_programado_turno` VALUES (1, 2, '08:00:00.000000', '11:00:00.000000');
-INSERT INTO `tbl_curso_programado_turno` VALUES (2, 1, '02:00:00.000000', '05:00:00.000000');
+INSERT INTO `tbl_curso_programado_turno` VALUES (1, 2, '08:00:00.000000', '11:00:00.000000', 1);
+INSERT INTO `tbl_curso_programado_turno` VALUES (2, 1, '02:00:00.000000', '05:00:00.000000', 1);
 
 -- ----------------------------
 -- Table structure for tbl_matricula
@@ -364,13 +366,12 @@ INSERT INTO `tbl_submenu` VALUES (2, '1', 'PERSONAL', '2', 'personal', 'personal
 INSERT INTO `tbl_submenu` VALUES (3, '1', 'CURSO', '2', 'curso', 'curso.php', NULL, 0x31, 2);
 INSERT INTO `tbl_submenu` VALUES (4, '1', 'ALUMNO', '2', 'alumno', 'alumno.php', NULL, 0x31, 4);
 INSERT INTO `tbl_submenu` VALUES (5, '4', 'ACCESOS', '2', 'accesos', 'accesos.php', NULL, 0x31, 1);
-INSERT INTO `tbl_submenu` VALUES (6, '2', 'PROGRAMAR CURSO', '2', 'programar_curso', 'curso_programado.php', NULL, 0x31, 1);
-INSERT INTO `tbl_submenu` VALUES (7, NULL, 'Inicio', '1', 'inicio', 'inicio.php', NULL, 0x31, 1);
-INSERT INTO `tbl_submenu` VALUES (8, NULL, 'Sobre Nosotros', '1', 'sobre_nosotros', 'quienes_Somos.php', NULL, 0x31, 2);
+INSERT INTO `tbl_submenu` VALUES (6, '2', 'PROGRAMAR CURSO', '2', 'programar_curso', 'programar_curso.php', NULL, 0x31, 1);
+INSERT INTO `tbl_submenu` VALUES (7, NULL, 'Inicio', '1', 'inicio', 'index.php', NULL, 0x31, 1);
+INSERT INTO `tbl_submenu` VALUES (8, NULL, 'Sobre Nosotros', '1', 'sobre_nosotros', 'sobre_nosotros.php', NULL, 0x31, 2);
 INSERT INTO `tbl_submenu` VALUES (9, NULL, 'Ciclos', '1', 'ciclos', 'ciclos.php', NULL, 0x31, 3);
 INSERT INTO `tbl_submenu` VALUES (10, NULL, 'Matricula Virtual', '1', 'matricula_virtual', 'matricula_virtual.php', NULL, 0x31, 4);
-INSERT INTO `tbl_submenu` VALUES (11, NULL, 'Contacto', '1', 'contacto', '', NULL, 0x31, 0);
-INSERT INTO `tbl_submenu` VALUES (12, '2', 'REGISTRAR PAGO', '2', 'registrar_pago', 'registrar_pago.php', NULL, 0x31, 2);
+INSERT INTO `tbl_submenu` VALUES (11, '2', 'REGISTRAR PAGO', '2', 'registrar_pago', 'registrar_pago.php', NULL, 0x31, 2);
 
 -- ----------------------------
 -- Table structure for tbl_tablas

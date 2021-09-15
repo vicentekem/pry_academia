@@ -48,17 +48,12 @@ class Curso
 
     }
 
-    public function cbxCurso($data){
-
-        $where = Utilitario::generarFiltros($data,[]);
-
-        return $this->model->getAllRows(
-            "SELECT id_registro as id,description FROM tbl_curso $where", $data
-        );
+    public function cbxCurso()
+    {
+        return $this->model->getAllRows("SELECT id,description FROM tbl_curso WHERE estado = 1");
     }
 
-    public function saveCurso($action,$data){
-        
+    public function saveCurso($action,$data){        
         return $this->model->executeProcess(
             "call sp_curso( '$action' ,:id,:descripcion,:resumen,:caracteristicas,:beneficios) ", $data,
             "Datos guardados exitosamente"

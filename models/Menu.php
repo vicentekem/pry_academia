@@ -18,10 +18,9 @@ class Menu
             INNER JOIN tbl_accesos_usuario au ON u.id=au.id_usuario
             INNER JOIN tbl_submenu sm on au.id_submenu =sm.id
             INNER JOIN tbl_menu m on sm.id_menu=m.id
-            WHERE u.id = :id
+            WHERE u.id = :id and sm.estado = 1
             ORDER BY m.orden",
-        ["id" => $idusuario]);
-    
+        ["id" => $idusuario]);    
     }
 
     public function getSubMenusForMenuAndUser($idusuario,$idmenu)
@@ -32,7 +31,7 @@ class Menu
             INNER JOIN tbl_accesos_usuario au ON u.id=au.id_usuario
             inner JOIN tbl_submenu sm on au.id_submenu =sm.id
             INNER JOIN tbl_menu m on sm.id_menu=m.id
-            WHERE m.id=:id_menu and u.id = :id_usuario
+            WHERE m.id=:id_menu and u.id = :id_usuario and sm.estado = 1
             ORDER BY  sm.orden"
         ,["id_usuario" => $idusuario , "id_menu"=> $idmenu]);
     }
@@ -45,10 +44,17 @@ class Menu
             INNER JOIN tbl_accesos_usuario au ON u.id=au.id_usuario
             inner JOIN tbl_submenu sm on au.id_submenu =sm.id
             INNER JOIN tbl_menu m on sm.id_menu=m.id
-            WHERE u.id = :id_usuario"
+            WHERE u.id = :id_usuario and sm.estado = 1" 
         ,["id_usuario" => $idusuario]
         );
+    }
 
+    public function getPublicMenu()
+    {
+        return $this->model->getAllRows(
+            "SELECT sm.id,sm.id_menu,sm.alias,sm.file_view,sm.name_menu
+            FROM tbl_submenu sm WHERE sm.id_tipo_menu = 1 and sm.estado = 1 ORDER BY sm.orden"
+        );
     }
 
 }
