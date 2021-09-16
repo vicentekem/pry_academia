@@ -53,7 +53,7 @@
                         <div class="row">
 
                             <input type="hidden" id="txt_crud_id">
-                            <input type="hidden" id="txt_crud_action" value="">
+                            <input type="hidden" id="txt_crud_action" value="ins_curso_programado">
 
                             <div class="col-12 col-lg-4 row mx-0 px-1">
 

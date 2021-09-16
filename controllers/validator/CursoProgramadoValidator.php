@@ -59,7 +59,16 @@ class CursoProgramadoValidator
         $result = [ "error" => "" ];
 
         $data["id int"] = Utilitario::getIntParam("id");
-        $data["descripcion"] = Utilitario::getParam("descripcion");
+        $data["id_curso int"] = Utilitario::getIntParam("id_curso");
+        $data["id_persona int"] = Utilitario::getIntParam("id_persona");
+        $data["fecha_inicio"] = Utilitario::getParam("fecha_inicio");
+        $data["fecha_fin"] = Utilitario::getParam("fecha_fin");
+        $data["tipos_pago"] = Utilitario::getParam("tipos_pago");
+        $data["turnos"] = Utilitario::getParam("turnos");
+
+        $fl_img_curso = isset($_FILES["fl_img_curso"]) ? $_FILES["fl_img_curso"] : null;
+        
+        exit( $data["fl_img_curso"] );
 
         if ($result["error"] === "") $result = $this->model->saveCursoProgramado($action,$data);
 

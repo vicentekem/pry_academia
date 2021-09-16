@@ -187,13 +187,12 @@ let crud_curso_programado = {
         let msg = "";
 
         if( action === 'upd_curso_programado' && data.id == ""){msg = "El id es requerido";}
-        else if(data.dni == ""){ msg = "El DNI es requerido"  }
-        else if(isValidDNI(data.dni)==false){msg="DNI no valido"}
-        else if(data.nombre == ""){ msg = "El nombre es requerido"  }
-        else if(data.ape_pat == ""){ msg = "El apellido paterno es requerido"  }
-        else if(data.ape_mat == ""){ msg = "El apellido materno es requerido"  }
-        else if(data.id_cargo == ""){ msg = "El cargo es requerido"  }
-        else if(isValidEmail(data.correo)==false && data.correo!=""){msg="Correo no valido"}
+        else if(data.id_curso == ""){ msg = "Seleccione curso"  }        
+        else if(data.id_persona == ""){ msg = "Seleccione el profesor"  }
+        else if(data.fecha_inicio == ""){ msg = "Ingrese de inicio"  }
+        else if(data.fecha_fin == ""){ msg = "Ingrese fecha final"  }
+        else if(data.tipos_pago == ""){ msg = "Agregue tipos de pago" }
+        else if(data.turnos == ""){ msg = "Agregue turnos" }        
         return msg;
     },
 
@@ -233,11 +232,13 @@ let crud_curso_programado = {
         fd.append("turnos",turnos);
         fd.append("fl_img_curso", fl_img_curso.length > 0 ? fl_img_curso.files[0] : "");
 
-        ajaxFDRequest(action,"post","CursoProgramadoController.php",data,(result)=>{
+        ajaxFDRequest(action,"post","CursoProgramadoController.php",fd,(result)=>{
             if(result.error === ""){
-                $("#" + crud_curso_programado.id_modal).modal("hide");
+                /*$("#" + crud_curso_programado.id_modal).modal("hide");
                 showMessage(result.success,"success");
-                crud_curso_programado.reloadTable();
+                crud_curso_programado.reloadTable();*/
+                console.log(result);
+                console.log("Datos Guardados");
             }else{
                 showMessage(result.error,"error");
             }
