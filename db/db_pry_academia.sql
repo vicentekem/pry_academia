@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 15/09/2021 23:46:00
+ Date: 15/09/2021 22:28:11
 */
 
 SET NAMES utf8mb4;
@@ -4033,7 +4033,7 @@ BEGIN
 					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya existe', MYSQL_ERRNO = 1001;	
 				END IF; */
 			WHEN 'est' THEN
-				UPDATE tbl_alumno SET estado= not estado WHERE id= _id;
+				UPDATE tbl_alumno SET estado=!estado WHERE id= _id;
 			ELSE
 				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 		END CASE;
@@ -4153,7 +4153,7 @@ CASE _action
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
 		END IF;
 	WHEN 'est' THEN
-		UPDATE tbl_curso SET estado= not estado WHERE id=_id;
+		UPDATE tbl_curso SET estado=!estado WHERE id=_id;
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 
@@ -4194,7 +4194,7 @@ case _action
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
 		WHEN 'est' THEN
-		UPDATE tbl_curso_programado SET estado=!estado WHERE id=_id AND id_curso=_id_curso;
+		UPDATE tbl_curso_programado SET estado= NOT estado WHERE id=_id AND id_curso=_id_curso;
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
@@ -4269,7 +4269,7 @@ case _action
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
 		WHEN 'est' THEN
-		UPDATE tbl_persona SET estado= not estado WHERE id=_id AND dni=_dni;
+		UPDATE tbl_persona SET estado=!estado WHERE id=_id AND dni=_dni;
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
@@ -4333,7 +4333,7 @@ BEGIN
 					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El personal ya tiene el cargo seleccionado', MYSQL_ERRNO = 1001;	
 				END IF;
 			WHEN 'est' THEN
-				UPDATE tbl_personal SET estado= not estado WHERE id= _id;
+				UPDATE tbl_personal SET estado=!estado WHERE id= _id;
 			ELSE
 				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;				
 			
@@ -4372,7 +4372,7 @@ CASE _action
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
 	WHEN 'est' THEN
-		UPDATE tbl_tablas SET estado= not estado WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
+		UPDATE tbl_tablas SET estado=!estado WHERE id_tabla=_id_tabla AND id_registro=_id_registro;
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
@@ -4421,7 +4421,7 @@ case _action
 	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar usuario', MYSQL_ERRNO = 1001;
 	END IF;
  WHEN 'est' THEN
-		UPDATE tbl_usuario SET estado= not estado WHERE id=_id AND id_persona=_id_persona;
+		UPDATE tbl_usuario SET estado=!estado WHERE id=_id AND id_persona=_id_persona;
  ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
  END CASE;
