@@ -40,6 +40,15 @@ class Personal
 
     }
 
+    public function cbxPersonal()
+    {
+        return $this->model->getAllRows(
+            "SELECT 
+                pe.id as id_personal,p.id,trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) description
+            FROM tbl_personal pe INNER JOIN tbl_persona p on pe.id_persona = p.id WHERE p.estado = 1"
+        );
+    }
+
     public function getPersonal($data)
     {
         $where = Utilitario::generarFiltros($data,[

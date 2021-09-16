@@ -41,6 +41,13 @@ class PersonalValidator
         return $result;
     }
 
+    public function cbxPersonal()
+    {
+        $result = [ "error" => "" ];
+        if ($result["error"] === "") $result = $this->model->cbxPersonal();        
+
+        return $result;
+    }
 
     public function savePersonal($action){
 

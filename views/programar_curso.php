@@ -58,7 +58,7 @@
                             <div class="col-12 col-lg-4 row mx-0 px-1">
 
                                 <div class="form-group col-12 px-1">
-                                    <img src="public/img/cursos/curso1.jpg" alt="">
+                                    <img class="w-100" id="img_curso_programado" src="public/img/default.png" alt="">
                                 </div>
 
                                 <div class="form-group col-12 px-1">                                    
@@ -70,8 +70,13 @@
                             <div class="col-12 col-lg-8 row mx-0 px-1 align-items-start align-content-start">
 
                                 <div class="form-group col-12 px-1">
-                                    <label  for="cbx_crud_id_curso">Seleccione Curso<span class="text-danger">*</span> </label>
+                                    <label  for="cbx_crud_id_curso">Curso<span class="text-danger">*</span> </label>
                                     <select id="cbx_crud_id_curso" class="form-control" ></select>
+                                </div>
+
+                                <div class="form-group col-12 px-1">
+                                    <label  for="cbx_crud_id_profesor">Profesor<span class="text-danger">*</span> </label>
+                                    <select id="cbx_crud_id_profesor" class="form-control" ></select>
                                 </div>
 
                                 <div class="form-group col-12 col-lg-4 px-1"                                >
@@ -150,7 +155,7 @@
                                 <div class="col-12 col-lg-1 row mx-0 px-0 pl-1 align-items-start align-content-start">
                                     <div class="form-group mb-0 col-12 px-0">
                                         <label for="" style="display:block;opacity:0">...</label>
-                                        <button id="btn_add_tipo_pago" class="btn btn-success"><i class="fa fa-plus"></i></button>
+                                        <button id="btn_add_turno" class="btn btn-success"><i class="fa fa-plus"></i></button>
                                     </div>
                                 </div>
 

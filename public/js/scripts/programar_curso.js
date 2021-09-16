@@ -10,17 +10,24 @@ let crud_curso_programado = {
         let filter_container_jq = $("#filter_container");
         let btn_save_curso_programado = $("#btn_save_curso_programado");
 
-        filter_container_jq.on("click",  event => searchEventListener( event ) );
-        filter_container_jq.on("change", event => searchEventListener( event ) );
-        filter_container_jq.on("search", event => searchEventListener( event ) );
+        $("#txt_crud_descripcion").on("change",(event)=>{
+            let target = event.target;
+            let default_url = "public/img/default.png";
+            let src = target.files[0] ? URL.createObjectURL( target.files[0] ) : default_url;
+            $("#img_curso_programado").attr("src", src );
+        })
 
-        frm_crud_curso_programado.on('submit', (event)=> event.preventDefault);
+        //filter_container_jq.on("click",  event => searchEventListener( event ) );
+        //filter_container_jq.on("change", event => searchEventListener( event ) );
+        //filter_container_jq.on("search", event => searchEventListener( event ) );
 
-        btn_new_curso_programado.on("click",  (event)=> crud_curso_programado.openModal());
-        btn_save_curso_programado.on("click", (event)=> crud_curso_programado.saveData(event));
+        //frm_crud_curso_programado.on('submit', (event)=> event.preventDefault);
+
+        //btn_new_curso_programado.on("click",  (event)=> crud_curso_programado.openModal());
+        //btn_save_curso_programado.on("click", (event)=> crud_curso_programado.saveData(event));
         
-        crud_curso_programado.initDataTable();
-        crud_curso_programado.initActionsTadaTables();        
+        //crud_curso_programado.initDataTable();
+        //crud_curso_programado.initActionsTadaTables();
     },
 
     initDataTable: ()=>{        
@@ -223,7 +230,7 @@ let tbl_tipo_pago = {
             if(element.localName == 'a'){
                 event.preventDefault();
                 let id_item = element.dataset.iditem;
-                list.delete(id_item);
+                tbl_tipo_pago.remove(id_item);
             }
         });
 
@@ -242,7 +249,15 @@ let tbl_tipo_pago = {
 
         if(id_tipo_pago == ""){ msg = "Seleccione tipo de pago"; }
         else if(monto == ""){ msg = "Ingrese monto"; }
-        else if( isNaN(monto) ){ msg = "El monto debe ser numérico"; }
+        else if( isNaN(monto) ){ msg = "El monto debe ser numérico"; }        
+        
+        for(let i=0;i<tbl_tipo_pago.items.length;i++){
+            if(tbl_tipo_pago.items[i].id_tipo_pago === id_tipo_pago){
+                msg = "El tipo de pago " + tipo_pago + " ya se encuentra agregado";
+                break;
+            }
+        }
+
         if(msg) return showMessage(msg,"error");
 
         let d = {
@@ -250,39 +265,119 @@ let tbl_tipo_pago = {
             id_tipo_pago: id_tipo_pago,
             tipo_pago: tipo_pago,
             monto: monto
-        }        
+        }
+
         tbl_tipo_pago.items.push(d);
-        tbl_tipo_pago.items.clear();
-        list.render();
+        tbl_tipo_pago.clear();
+        tbl_tipo_pago.render();
     },
 
     remove:(id_item)=>{
-        let index_item = list.items.findIndex( (item) => item.id == id_item );
-        list.items.splice( index_item, 1);
-        list.render();
+        let index_item = tbl_tipo_pago.items.findIndex( (item) => item.id == id_item );
+        tbl_tipo_pago.items.splice( index_item, 1);
+        tbl_tipo_pago.render();
     },
 
     render : ()=>{
         let items_HTML = "";
-        list.items.forEach( ( item )=>{
+        tbl_tipo_pago.items.forEach( ( item )=>{
             items_HTML += `
             <tr>
-                <td><a href="#" class="text-danger fa fa-trash-alt" data-iditem="${item.id}" title="eliminar"></a></td>
+                <td class="text-center"><a href="#" class="text-danger fa fa-trash" data-iditem="${item.id}" title="eliminar" style="font-size:1.2em"></a></td>
                 <td>${item.tipo_pago}</td>
                 <td>${item.monto}</td>
             </tr>`;
         });
-        list.lst_container.html(items_HTML);
+        $("#tbl_tipo_pago").html(items_HTML);
     },
 
     getString : ()=>{
-        return list.items.map( (item)=>{ return item.id_tipo_pago + "," + item.monto; } ).join('|');
+        return tbl_tipo_pago.items.map( (item)=>{ return item.id_tipo_pago + "," + item.monto; } ).join('|');
     }
 
 };
 
-//let list_caracteristicas = createCrudTable('txt_crud_caracteristica','btn_add_caracteristica','lst_caracteristicas','ingrese una caracteristica');
-//let list_beneficios = createCrudTable('txt_crud_beneficio','btn_add_beneficio','lst_beneficios','ingrese beneficio');
+let tbl_turno = {
+    items : [],
+    tbl: $("#tbl_turno"),
+    init : ()=>{        
+        let btn_add = $("#btn_add_turno");
+        btn_add.on("click",()=>{ tbl_turno.add() });
+
+        tbl_turno.tbl.on('click',( event )=>{
+            let element = event.target;
+            if(element.localName == 'a'){
+                event.preventDefault();
+                let id_item = element.dataset.iditem;
+                tbl_turno.remove(id_item);
+            }
+        });
+
+    },
+
+    clear: ()=>{
+        $("#cbx_crud_id_turno").val("");
+        $("#txt_crud_hora_inicio").val("");
+        $("#txt_crud_hora_fin").val("");
+    },
+
+    add: ()=>{        
+        let id_turno = $("#cbx_crud_id_turno").val().trim();
+        let turno = $("#cbx_crud_id_turno option:selected").text().trim();
+        let hora_inicio = $("#txt_crud_hora_inicio").val().trim();
+        let hora_fin = $("#txt_crud_hora_fin").val().trim();
+        let msg = "";
+
+        if(id_turno == ""){ msg = "Seleccione turno";}
+        else if(hora_inicio == ""){ msg = "Ingrese hora de inicio"; }
+        else if(hora_fin == ""){ msg = "Ingrese hora final"; }
+
+        for(let i=0;i<tbl_turno.items.length;i++){
+            if(tbl_turno.items[i].id_turno === id_turno){
+                msg = "El turno " + turno + " ya se encuentra agregado";
+                break;
+            }
+        }
+
+        if(msg) return showMessage(msg,"error");
+
+        let d = {
+            id: (new Date).getTime(),
+            id_turno: id_turno,
+            turno: turno,
+            hora_inicio: hora_inicio,
+            hora_fin: hora_fin
+        }        
+        tbl_turno.items.push(d);
+        tbl_turno.clear();
+        tbl_turno.render();
+    },
+
+    remove:(id_item)=>{
+        let index_item = tbl_tipo_pago.items.findIndex( (item) => item.id == id_item );
+        tbl_turno.items.splice( index_item, 1);
+        tbl_turno.render();
+    },
+
+    render : ()=>{
+        let items_HTML = "";
+        tbl_turno.items.forEach( ( item )=>{
+            items_HTML += `
+            <tr>
+                <td class="text-center"><a href="#" class="text-danger fa fa-trash" data-iditem="${item.id}" title="eliminar" style="font-size:1.2em"></a></td>
+                <td>${item.turno}</td>
+                <td>${item.hora_inicio}</td>
+                <td>${item.hora_fin}</td>
+            </tr>`;
+        });
+        tbl_turno.tbl.html(items_HTML);
+    },
+
+    getString : ()=>{
+        return tbl_turno.items.map( (item)=>{ return item.id_turno + "," + item.hora_inicio + "," + item.hora_fin; } ).join('|');
+    }
+
+};
 
 const initInputMask = () => {
     $("#txt_crud_fecha_inicio").inputmask("dd/mm/yyyy");
@@ -295,6 +390,10 @@ const loadCbx = ()=>{
 
     ajaxRequest("cbx_curso","get","CursoController.php",null,(result) => {        
         loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_curso',result["rows"],true);
+    });
+
+    ajaxRequest("cbx_personal","get","PersonalController.php",null,(result) => {
+        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_profesor',result["rows"],true);
     });
 
     ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:3},(result) => {
@@ -317,8 +416,11 @@ const searchEventListener = (event)=>{
 
 document.addEventListener('DOMContentLoaded',()=>{
     
-    tbl_tipo_pago.init();    
+    crud_curso_programado.init();
+    tbl_tipo_pago.init();
+    tbl_turno.init();
     loadCbx();
     initInputMask();
     
 });
+
