@@ -183,6 +183,20 @@ let crud_curso_programado = {
         }
     },
 
+    validateData : (action,data)=>{
+        let msg = "";
+
+        if( action === 'upd_curso_programado' && data.id == ""){msg = "El id es requerido";}
+        else if(data.dni == ""){ msg = "El DNI es requerido"  }
+        else if(isValidDNI(data.dni)==false){msg="DNI no valido"}
+        else if(data.nombre == ""){ msg = "El nombre es requerido"  }
+        else if(data.ape_pat == ""){ msg = "El apellido paterno es requerido"  }
+        else if(data.ape_mat == ""){ msg = "El apellido materno es requerido"  }
+        else if(data.id_cargo == ""){ msg = "El cargo es requerido"  }
+        else if(isValidEmail(data.correo)==false && data.correo!=""){msg="Correo no valido"}
+        return msg;
+    },
+
     saveData: (event)=>{        
         event.preventDefault();
         let action = $("#txt_crud_action").val();
@@ -204,13 +218,22 @@ let crud_curso_programado = {
             fecha_inicio : fecha_inicio,
             fecha_fin : fecha_fin,
             tipos_pago : tipos_pago,
-            turnos:turnos
+            turnos : turnos
         }
 
-        console.log(fl_img_curso);        
-        return;
+        let err_msg = crud_personal.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");
 
-        ajaxRequest(action,"post","CursoProgramadoController.php",data,(result)=>{
+        fd.append("id",id);
+        fd.append("id_curso",id_curso);
+        fd.append("id_persona",id_persona);
+        fd.append("fecha_inicio",fecha_inicio);
+        fd.append("fecha_fin",fecha_fin);
+        fd.append("tipos_pago",tipos_pago);
+        fd.append("turnos",turnos);
+        fd.append("fl_img_curso", fl_img_curso.length > 0 ? fl_img_curso.files[0] : "");
+
+        ajaxFDRequest(action,"post","CursoProgramadoController.php",data,(result)=>{
             if(result.error === ""){
                 $("#" + crud_curso_programado.id_modal).modal("hide");
                 showMessage(result.success,"success");

@@ -24,6 +24,33 @@ const ajaxRequest = (action,type,controller,parameters,successCallback,errorCall
     });
 }
 
+const ajaxFDRequest = (action,type,controller,fd,successCallback,errorCallback) => {
+    if(!fd) fd = new FormData();
+    fd.append("action",action);
+    $.ajax({
+        url: "controllers/" + controller,
+        dataType: "json",
+        type: type,
+        data: fd,
+        contentType: false,
+        processData: false,
+        success: function (result) {
+            if(successCallback && typeof successCallback === 'function' ) successCallback(result);            
+        },
+        timeout: 12000, // sets timeout to 12 seconds
+        error: function (request, status, err) {
+            if(errorCallback && typeof errorCallback === 'function' ) errorCallback();
+
+            if (status == "timeout") {
+                showMessage("Su petición demoro mas de lo permitido", "error");
+            } else {
+                // another error occured
+                showMessage("ocurrio un error en su petición.", "error");
+            }
+        }
+    });
+}
+
 const loadDataToTemplate = (id_template, id_content_data, data, is_select2, is_multiselect) => {
     var template = $("#" + id_template).html();
     Mustache.parse(template);
