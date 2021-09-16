@@ -26,12 +26,13 @@ const ajaxRequest = (action,type,controller,parameters,successCallback,errorCall
 
 const ajaxFDRequest = (action,type,controller,fd,successCallback,errorCallback) => {
     if(!fd) fd = new FormData();
-    fd.append("action",action);
+    fd.append("action",action);    
     $.ajax({
         url: "controllers/" + controller,
         dataType: "json",
         type: type,
         data: fd,
+        cache: false,
         contentType: false,
         processData: false,
         success: function (result) {

@@ -4033,7 +4033,7 @@ BEGIN
 					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya existe', MYSQL_ERRNO = 1001;	
 				END IF; */
 			WHEN 'est' THEN
-				UPDATE tbl_alumno SET estado=!estado WHERE id= _id;
+				UPDATE tbl_alumno SET estado= NOT estado WHERE id= _id;
 			ELSE
 				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 		END CASE;
