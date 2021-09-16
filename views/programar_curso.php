@@ -62,7 +62,7 @@
                                 </div>
 
                                 <div class="form-group col-12 px-1">                                    
-                                    <input  id="txt_crud_descripcion" type="file" class=""/>
+                                    <input  id="fl_crud_img_curso" type="file" class=""/>
                                 </div>
 
                             </div>                            
@@ -175,8 +175,8 @@
                                 </div>
                             </div>
 
-                            <div class="form-group col-12">                                
-                                <button type="button" id="btn_save_curso" form="frm_crud_curso" class="btn btn-primary">Guardar</button>
+                            <div class="form-group col-12">
+                                <button type="button" id="btn_save_curso_programado" form="frm_crud_curso" class="btn btn-primary">Guardar</button>
                             </div>
 
                         </div>

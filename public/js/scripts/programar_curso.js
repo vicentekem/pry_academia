@@ -2,19 +2,21 @@ let crud_curso_programado = {
     
     dtable: null,
     id_table: "tbl_curso_programado",
-    id_modal: "modal_crud_curso_programado",
-
+    id_modal: "modal_crud_curso_programado",    
     init : ()=>{
+
         let btn_new_curso_programado = $("#btn_new_curso_programado");
         let frm_crud_curso_programado = $("#frm_crud_curso_programado");
         let filter_container_jq = $("#filter_container");
         let btn_save_curso_programado = $("#btn_save_curso_programado");
+        let input_file = $("#fl_crud_img_curso");
+        let img_curso = $("#img_curso_programado");
 
-        $("#txt_crud_descripcion").on("change",(event)=>{
+        input_file.on("change",(event)=>{
             let target = event.target;
-            let default_url = "public/img/default.png";
-            let src = target.files[0] ? URL.createObjectURL( target.files[0] ) : default_url;
-            $("#img_curso_programado").attr("src", src );
+            let default_src = "public/img/default.png";
+            let src = target.files[0] ? URL.createObjectURL( target.files[0] ) : default_src;
+            img_curso.attr("src", src );
         })
 
         //filter_container_jq.on("click",  event => searchEventListener( event ) );
@@ -24,7 +26,7 @@ let crud_curso_programado = {
         //frm_crud_curso_programado.on('submit', (event)=> event.preventDefault);
 
         //btn_new_curso_programado.on("click",  (event)=> crud_curso_programado.openModal());
-        //btn_save_curso_programado.on("click", (event)=> crud_curso_programado.saveData(event));
+        btn_save_curso_programado.on("click", (event)=> crud_curso_programado.saveData(event));
         
         //crud_curso_programado.initDataTable();
         //crud_curso_programado.initActionsTadaTables();
@@ -185,19 +187,28 @@ let crud_curso_programado = {
         event.preventDefault();
         let action = $("#txt_crud_action").val();
         let id = $("#txt_crud_id").val();
-        let descripcion = $("#txt_crud_descripcion").val();
-        let resumen = $("#txt_crud_resumen").val();
+        let id_curso = $("#cbx_crud_id_curso").val();
+        let id_persona = $("#cbx_crud_id_profesor").val();
+        let fecha_inicio = $("#txt_crud_fecha_inicio").val();
+        let fecha_fin = $("#txt_crud_fecha_fin").val();
+        let fl_img_curso = document.getElementById("fl_crud_img_curso");
+        let tipos_pago = tbl_tipo_pago.getString();
+        let turnos = tbl_turno.getString();
 
-        let caracteristicas = list_caracteristicas.getString();
-        let beneficios = list_beneficios.getString();
+        let fd = new FormData();
 
         let data = {
             id : id,
-            descripcion : descripcion,
-            resumen : resumen,
-            caracteristicas : caracteristicas,
-            beneficios : beneficios
+            id_curso : id_curso,
+            id_persona : id_persona,
+            fecha_inicio : fecha_inicio,
+            fecha_fin : fecha_fin,
+            tipos_pago : tipos_pago,
+            turnos:turnos
         }
+
+        console.log(fl_img_curso);        
+        return;
 
         ajaxRequest(action,"post","CursoProgramadoController.php",data,(result)=>{
             if(result.error === ""){
