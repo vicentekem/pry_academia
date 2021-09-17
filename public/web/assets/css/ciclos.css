@@ -284,9 +284,14 @@ input[type="search"]::-webkit-search-results-decoration {
 .curso__card {
   min-width: 250px;
   width: calc(25% - 1rem);
+  /* min-height: 470px; */
   background-color: var(--blanco);
   box-shadow: 0 2px 4px rgba(174, 190, 205, 0.3);
   border-radius: 0.5rem;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .curso__card:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -332,23 +337,26 @@ input[type="search"]::-webkit-search-results-decoration {
 /* ====contenido Curso======= */
 .curso__contenido {
   padding: 1rem 1.5rem 1rem;
+    min-height: 16rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 .curso__title {
   line-height: 1.3rem;
   font-weight: 700;
-  letter-spacing: 0.15rem;
   color: #333;
   font-family: var(--font);
   transition: all 0.3s ease-out;
+  text-align: justify;
+    font-size: 24px;
   
 }
 .curso__title:hover{
   text-decoration: underline;
   font-weight: 500;
 }
-.curso__view {
-  margin-top: 4rem;
-}
+
 /* =======texto======== */
 .curso__text {
   font-weight: 400;
@@ -391,7 +399,6 @@ input[type="search"]::-webkit-search-results-decoration {
   background: var(--gris);
   border-bottom-right-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  height: 2rem;
   display: flex;
   align-items: center;
 }
@@ -402,6 +409,7 @@ input[type="search"]::-webkit-search-results-decoration {
   font-family: 0.8125rem;
   margin: 0;
   padding-left: 1rem;
+  font-size: 12px;
 }
 .img__profesor {
   width: 1.5rem;
@@ -437,13 +445,13 @@ align-items: center;
 justify-content: flex-end;
 }
 .curso__precio svg{
-  min-width: 12px;
-  width: 100%;
+  min-width: 20px;
+    width: 35%;
 }
 @media (max-width: 1428px) {
-  .curso__precio svg{
+  /* .curso__precio svg{
     min-width: 17px;
-  }
+  } */
   .curso__profesor--medida {
     width: 75%;
   }

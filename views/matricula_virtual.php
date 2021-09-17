@@ -22,34 +22,25 @@
 					</div>
 					<div class="campo campo1">
 						<label class="campo__label">Ciclo</label>
-						<select class="campo__caja">
-							<option>Lost</option>
-							<option>How I met your mother</option>
-							<option>Fargo</option>
-							<option>True Detective</option>
+						<select id="Ciclos" class="campo__caja">
+
 						</select>
 					</div>
 					<div class="campo2 campo">
 						<label>Turnos</label>
-						<select class="campo__caja">
-							<option>Lost</option>
-							<option>How I met your mother</option>
-							<option>Fargo</option>
-							<option>True Detective</option>
+						<select id="turnos" class="campo__caja">
+
 						</select>
 					</div>
-					<div class="campo3 campo">
+					<!-- <div class="campo3 campo">
 						<label>Tipo Pago</label>
 						<select class="campo__caja">
-							<option>Lost</option>
-							<option>How I met your mother</option>
-							<option>Fargo</option>
-							<option>True Detective</option>
+	
 						</select>
-					</div>
+					</div> -->
 					<div class="campo4 campo ">
 						<label>Monto</label>
-						<input class="campo__caja bloqueo" type="text" disabled>
+						<input id="precio" class="campo__caja bloqueo" type="text" disabled>
 					</div>
 					<!-- <div class="campo5 campo">
 						<div class="campo__">
@@ -96,33 +87,24 @@
 						<!--=== Departamento de Residencia ===-->
 						<div class="campo campo5 campo__campo">
 							<label class="campo__label">Departamento de residencia</label>
-							<select class="campo__caja">
-								<option>Lost</option>
-								<option>How I met your mother</option>
-								<option>Fargo</option>
-								<option>True Detective</option>
+							<select id="departamento" class="campo__caja">
+								
 							</select>
 						</div>
 
 						<!--=== Provincia de Residenci ===-->
 						<div class="campo campo5 campo__campo">
 							<label class="campo__label">Provincia de residencia</label>
-							<select class="campo__caja">
-								<option>Lost</option>
-								<option>How I met your mother</option>
-								<option>Fargo</option>
-								<option>True Detective</option>
+							<select id="provincia" class="campo__caja">
+								
 							</select>
 						</div>
 
 						<!--=== Distrito de Residenci ===-->
 						<div class="campo campo5 campo__campo">
 							<label class="campo__label">Distrito de residencia</label>
-							<select class="campo__caja">
-								<option>Lost</option>
-								<option>How I met your mother</option>
-								<option>Fargo</option>
-								<option>True Detective</option>
+							<select id="distrito" class="campo__caja">
+								
 							</select>
 						</div>
 
@@ -149,7 +131,7 @@
 			<!-- ============================================ -->
 			<div class="from__caja--boton">
 				<button class="from__btn transparent" id="sign-in-btn">
-				Enviar
+					Enviar
 				</button>
 			</div>
 
@@ -163,6 +145,8 @@
 
 	<?php include "views/includes/public/footer.php"; ?>
 
+
+	<?php include "views/includes/templates/cbx_templates.php"; ?>
 
 	<!-- Vendor JS Files -->
 	<script src="public/web/assets/vendor/aos/aos.js"></script>
@@ -180,5 +164,11 @@
 	<script src="public/web/assets/js/header/header.js"></script>
 	<!-- <script src="public/web/assets/js/header/jquery.min.js"></script> -->
 	<script src="public/web/assets/js/header/main.js"></script>
+
+	<script src="public/js/plugins/mustache/mustache.min.js"></script>
+
+	<script src="public/js/utilitario/utilitario.js"></script>
+
+	<script src="public/js/scripts/matricula_virtual.js"></script>
 
 </body>
