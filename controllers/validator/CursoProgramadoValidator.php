@@ -65,10 +65,22 @@ class CursoProgramadoValidator
         $data["fecha_fin"] = Utilitario::getParam("fecha_fin");
         $data["tipos_pago"] = Utilitario::getParam("tipos_pago");
         $data["turnos"] = Utilitario::getParam("turnos");
+        $data["url_img"] = "public/img/default.png";
 
         $fl_img_curso = isset($_FILES["fl_img_curso"]) ? $_FILES["fl_img_curso"] : null;
-        
-        exit( $data["fl_img_curso"] );
+        if($action === 'upd'){ $url_img_old = Utilitario::getParam("url_img_old"); }
+
+        if($fl_img_curso){
+            $file_name = $_FILES['fl_img_curso']['name'];
+            $file_tmp  = $_FILES['fl_img_curso']['tmp_name'];
+            $explode = explode('.',$_FILES['fl_img_curso']['name']);
+            $file_ext=strtolower(end($explode));
+            $url_img_new = __DIR__ . "/../../public/img/cursos/" . uniqid() . "." . $file_ext;
+            $data["url_img"] = "public/img/cursos/" . $file_name;
+            move_uploaded_file($file_tmp,$url_img_new);
+        }
+
+        exit( json_encode($fl_img_curso) );
 
         if ($result["error"] === "") $result = $this->model->saveCursoProgramado($action,$data);
 

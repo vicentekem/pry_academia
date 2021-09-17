@@ -220,8 +220,8 @@ let crud_curso_programado = {
             turnos : turnos
         }
 
-        let err_msg = crud_personal.validateData(action,data);
-        if(err_msg != "") return showMessage( err_msg , "error");
+        /*let err_msg = crud_personal.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");*/
 
         fd.append("id",id);
         fd.append("id_curso",id_curso);
@@ -230,8 +230,8 @@ let crud_curso_programado = {
         fd.append("fecha_fin",fecha_fin);
         fd.append("tipos_pago",tipos_pago);
         fd.append("turnos",turnos);
-        fd.append("fl_img_curso", fl_img_curso.length > 0 ? fl_img_curso.files[0] : "");
-
+        fd.append("fl_img_curso", fl_img_curso.files.length > 0 ? fl_img_curso.files[0] : "");
+        
         ajaxFDRequest(action,"post","CursoProgramadoController.php",fd,(result)=>{
             if(result.error === ""){
                 /*$("#" + crud_curso_programado.id_modal).modal("hide");
@@ -450,6 +450,7 @@ const searchEventListener = (event)=>{
 }
 
 document.addEventListener('DOMContentLoaded',()=>{
+    
     
     crud_curso_programado.init();
     tbl_tipo_pago.init();
