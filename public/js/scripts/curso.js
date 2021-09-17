@@ -12,7 +12,11 @@ let crud_curso = {
 
         filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
-        filter_container_jq.on("search", event => searchEventListener( event ) );
+        filter_container_jq.on("keyup", event => {
+            if(event.keyCode == 13){
+                searchEventListener(event);
+            }
+        });
 
         frm_crud_curso.on('submit', (event)=> event.preventDefault);
 
@@ -267,9 +271,10 @@ let list_beneficios = createList('txt_crud_beneficio','btn_add_beneficio','lst_b
 const searchEventListener = (event)=>{
     let target = event.target;    
     switch(event.type){
-        case 'click':  if( target.classList.contains("btn-filter")) crud_curso.reloadTable(); ;break;
+        case 'click' :  if( target.classList.contains("btn-filter")) crud_curso.reloadTable(); ;break;
         case 'change': if( target.classList.contains("cbx-filter")) crud_curso.reloadTable(); ;break;
         case 'search': if( target.classList.contains("txt-filter")) crud_curso.reloadTable(); ;break;
+        case 'keyup' : if( target.classList.contains("txt-filter")) crud_curso.reloadTable(); ;break;
     }
 }
 

@@ -39,6 +39,14 @@ class CursoProgramadoValidator
         return $result;
     }
 
+    public function getCursoProgramado()
+    {
+        $result = [ "error" => "" ];
+        $data["id int"] = Utilitario::getParam("id");
+        if ($result["error"] === "") $result = $this->model->getCursoProgramado($data);
+        return $result;
+    }
+
     public function cbxCursoProgramado()
     {
         $result = [ "error" => "" ];        
@@ -63,31 +71,42 @@ class CursoProgramadoValidator
         $data["id_persona int"] = Utilitario::getIntParam("id_persona");
         $data["fecha_inicio"] = Utilitario::getParam("fecha_inicio");
         $data["fecha_fin"] = Utilitario::getParam("fecha_fin");
+        $data["link_clase"] = Utilitario::getParam("link_clase");
         $data["tipos_pago"] = Utilitario::getParam("tipos_pago");
         $data["turnos"] = Utilitario::getParam("turnos");
         $data["url_img"] = "public/img/default.png";
+        $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
+
+        $url_img = Utilitario::getParam("url_img",false);
 
         $fl_img_curso = isset($_FILES["fl_img_curso"]) ? $_FILES["fl_img_curso"] : null;
-        if($action === 'upd'){ $url_img_old = Utilitario::getParam("url_img_old"); }
+        
+        if($action === 'upd' && $fl_img_curso){ 
+            $url_img_old = $this->model->getUrlCursoProgramado(["id int" => $data["id int"]])["row"]["url_img"];                        
+            $url_img_old = __DIR__ . "/../../" . $url_img_old;            
+            if($url_img_old !== "public/img/default.png" && file_exists($url_img_old)){
+                unlink( $url_img_old );
+            }            
+        }
 
         if($fl_img_curso){
             $file_name = $_FILES['fl_img_curso']['name'];
             $file_tmp  = $_FILES['fl_img_curso']['tmp_name'];
             $explode = explode('.',$_FILES['fl_img_curso']['name']);
             $file_ext=strtolower(end($explode));
-            $url_img_new = __DIR__ . "/../../public/img/cursos/" . uniqid() . "." . $file_ext;
-            $data["url_img"] = "public/img/cursos/" . $file_name;
+            $file_name_db = uniqid() . "." . $file_ext;
+            $url_img_new = __DIR__ . "/../../public/img/cursos/" . $file_name_db;
+            $data["url_img"] = "public/img/cursos/" . $file_name_db;
             move_uploaded_file($file_tmp,$url_img_new);
+        }else{
+            $data["url_img"] = $url_img;
         }
-
-        exit( json_encode($fl_img_curso) );
-
+        
         if ($result["error"] === "") $result = $this->model->saveCursoProgramado($action,$data);
-
+        
         return $result;
 
     }
-
 
 }
 
