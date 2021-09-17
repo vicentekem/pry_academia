@@ -4,8 +4,8 @@
     global $currentPage;
     global $menu_sup;
     
-    $menu_sup = "Procesos";
-    $currentPage = "PROGRAMAR CURSO";
+    $menu_sup = "Cursos";
+    $currentPage = "CURSO PROGRAMADO";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
@@ -57,7 +57,7 @@
 
                     <div class="ibox-content" id="filter_container">
 
-                        <?php                            
+                        <?php
                             switch($action){
                                 case 'ins'  : include __DIR__ . "/includes/partials/curso_programado/form_curso_programado.php";break;
                                 case 'upd'  : include __DIR__ . "/includes/partials/curso_programado/form_curso_programado.php";break;

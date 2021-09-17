@@ -19,11 +19,15 @@
 </div>
 
 <div class="table-responsive w-100 text-sm">
-    <table id="tbl_curso" class="table table-bordered table-hover w-100">
+    <table id="tbl_curso_programado" class="table table-bordered table-hover w-100">
         <thead>
         <tr>
             <th>Accion</th>
-            <th>Nombre</th>
+            <th>Curso</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Final</th>
+            <th>Profesor</th>
+            <th>Link clase</th>
             <th>Estado</th>
         </tr>
         </thead>

@@ -4,7 +4,7 @@
     global $currentPage;
     global $menu_sup;
     
-    $menu_sup = "Mantenimiento";
+    $menu_sup = "Cursos";
     $currentPage = "Curso";
     
     if (!isset($_SESSION["usuario_academia"])) {

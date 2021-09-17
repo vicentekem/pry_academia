@@ -2,34 +2,38 @@ let crud_curso_programado = {
     
     dtable: null,
     id_table: "tbl_curso_programado",
-    id_modal: "modal_crud_curso_programado",    
+    id_modal: "modal_crud_curso_programado",
+    action : getParameterByName("action"),
+    url_img_old : "",
     init : ()=>{
-
-        let btn_new_curso_programado = $("#btn_new_curso_programado");
-        let frm_crud_curso_programado = $("#frm_crud_curso_programado");
+        
         let filter_container_jq = $("#filter_container");
         let btn_save_curso_programado = $("#btn_save_curso_programado");
         let input_file = $("#fl_crud_img_curso");
         let img_curso = $("#img_curso_programado");
-
+        
         input_file.on("change",(event)=>{
-            let target = event.target;
+            let target = event.target;            
             let default_src = "public/img/default.png";
             let src = target.files[0] ? URL.createObjectURL( target.files[0] ) : default_src;
+            crud_curso_programado.url_img_old = img_curso.attr("src");
             img_curso.attr("src", src );
         })
 
-        //filter_container_jq.on("click",  event => searchEventListener( event ) );
-        //filter_container_jq.on("change", event => searchEventListener( event ) );
-        //filter_container_jq.on("search", event => searchEventListener( event ) );
-
-        //frm_crud_curso_programado.on('submit', (event)=> event.preventDefault);
-
-        //btn_new_curso_programado.on("click",  (event)=> crud_curso_programado.openModal());
-        btn_save_curso_programado.on("click", (event)=> crud_curso_programado.saveData(event));
+        filter_container_jq.on("click",  event => searchEventListener( event ) );
+        filter_container_jq.on("change", event => searchEventListener( event ) );
+        filter_container_jq.on("search", event => searchEventListener( event ) );
         
-        //crud_curso_programado.initDataTable();
-        //crud_curso_programado.initActionsTadaTables();
+        btn_save_curso_programado.on("click", (event)=> crud_curso_programado.saveData(event));
+
+        if(crud_curso_programado.action=="" || crud_curso_programado.action =="list"){
+            crud_curso_programado.initDataTable();
+            crud_curso_programado.initActionsTadaTables();
+        }else if(crud_curso_programado.action == "upd" || crud_curso_programado.action == "view"){
+            let id = getParameterByName("id");
+            crud_curso_programado.loadData(id);
+        }
+        
     },
 
     initDataTable: ()=>{        
@@ -61,9 +65,13 @@ let crud_curso_programado = {
                 }
             },
             columnDefs:[
-                {orderable: false, targets: 0, searchable: false,width:"10%", name:'id'},
-                {orderable: false, targets: 1, searchable: false, width:"70%",name:'description'},
-                {orderable: false, targets: 2, searchable: false, width:"10%",name:'estado'}
+                {orderable: false, targets: 0, searchable: false, width:"8%"},
+                {orderable: false, targets: 1, searchable: false, width:"20%"},
+                {orderable: false, targets: 2, searchable: false, width:"11%"},
+                {orderable: false, targets: 2, searchable: false, width:"11%"},
+                {orderable: false, targets: 2, searchable: false, width:"20%"},
+                {orderable: false, targets: 2, searchable: false, width:"20%"},
+                {orderable: false, targets: 2, searchable: false, width:"10%"}
             ],
             columns: [
                 {
@@ -77,10 +85,18 @@ let crud_curso_programado = {
                         return `<div class='text-center'> ${btn_edit} ${btn_est}</div>`;
                     }
                 },
-                { data: "description"},                
+                { data: "description"},
+                { data: "fecha_inicio"},
+                { data: "fecha_fin"},
+                { data: "profesor"},                
                 { 
                     render: function(data, type, row, meta){
-                        return row.estado == 1 ? `<small class="label label-primary">Activado</small>` : 
+                        return `<a href="#" style="word-break: break-all;">${row.link_clase || ""}</a>`;
+                    }
+                },
+                { 
+                    render: function(data, type, row, meta){
+                        return row.estado == 1 ? `<div class="text-center"><small class="label label-primary">Activado</small></div>` : 
                         `<small class="label label-danger">Desactivado</small>`;
                     }
                 }
@@ -93,8 +109,8 @@ let crud_curso_programado = {
         $("#" + crud_curso_programado.id_table + " tbody").on("click", ".upd-row", function(event){
             event.preventDefault();
             var id_row = $(this).attr("id").match(/\d+/)[0];
-            var data = crud_curso_programado.dtable.row(id_row).data();
-            crud_curso_programado.openModal(data);            
+            var data = crud_curso_programado.dtable.row(id_row).data();            
+            location.href="?url=curso_programado&action=upd&id=" + data.id;
         });
 
         $("#" + crud_curso_programado.id_table + " tbody").on("click", ".est-row", function(event){
@@ -147,40 +163,48 @@ let crud_curso_programado = {
 
     },
 
-    loadDataToModal : ( data )=>{
-        ajaxRequest("get_curso_programado","get","CursoProgramadoController.php",{id:data.id},(result)=>{
+    loadData: ( id )=>{
+
+        ajaxRequest("get_curso_programado","get","CursoProgramadoController.php",{id:id},(result)=>{
 
             let d = result.row;
-            let caracteristicas = result.rows_caracteristicas;
-            let beneficios = result.rows_beneficios;
 
+            let montos = result.montos;
+            let horarios = result.horarios;
+            
             $("#txt_crud_action").val("upd_curso_programado");
             $("#txt_crud_id").val(d.id);
-            $("#txt_crud_descripcion").val(d.description);
-            $("#txt_crud_resumen").val(d.resumen);
-            list_caracteristicas.items = caracteristicas.map((el,i)=>{ return {id:i,title:el.description } })
-            list_beneficios.items = beneficios.map((el,i)=>{ return {id: i,title:el.description } })
-            list_caracteristicas.render();
-            list_beneficios.render();
-            $("#" + crud_curso_programado.id_modal + " #emodal_title").html("Editar Registro");
-            $("#" + crud_curso_programado.id_modal).modal("show");
+
+            ajaxRequest("cbx_curso","get","CursoController.php",null,(result) => {    
+                result.rows.map((row)=>{
+                    row.selected = d.id_curso == row.id;
+                    return row;
+                });
+                loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_curso',result["rows"],true);
+            });
+        
+            ajaxRequest("cbx_personal","get","PersonalController.php",null,(result) => {
+                result.rows.map((row)=>{
+                    row.selected = d.id_profesor == row.id;
+                    return row;
+                });
+                loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_profesor',result["rows"],true);
+            });
+            
+            $("#cbx_crud_id_curso").attr("disabled",true).trigger("change");
+            $("#cbx_crud_id_profesor").attr("disabled",crud_curso_programado.action == 'view').trigger("change");
+            $("#txt_crud_link_clase").val(d.link_clase).attr("disabled",crud_curso_programado.action == 'view');
+            $("#txt_crud_fecha_inicio").val(d.fecha_inicio).attr("disabled",crud_curso_programado.action == 'view');
+            $("#txt_crud_fecha_fin").val(d.fecha_fin).attr("disabled",crud_curso_programado.action == 'view')
+
+            $("#img_curso_programado").attr("src",d.url_img_curso);
+
+            tbl_tipo_pago.items = montos;
+            tbl_turno.items = horarios;
+            tbl_tipo_pago.render();
+            tbl_turno.render();
 
         });
-    },
-
-    openModal : ( data = {} )=>{        
-        if(data.id){
-            crud_curso_programado.loadDataToModal(data);
-        }else{            
-            $("#txt_crud_action").val("ins_curso_programado");
-            $("#txt_crud_id").val("");
-            $("#txt_crud_descripcion").val("");
-            $("#txt_crud_resumen").val("");
-            $("#lst_caracteristicas").html("");
-            $("#lst_beneficios").html("");
-            $("#" + crud_curso_programado.id_modal + " #emodal_title").html("Registrar CursoProgramado");
-            $("#" + crud_curso_programado.id_modal).modal("show");        
-        }
     },
 
     validateData : (action,data)=>{
@@ -189,7 +213,7 @@ let crud_curso_programado = {
         if( action === 'upd_curso_programado' && data.id == ""){msg = "El id es requerido";}
         else if(data.id_curso == ""){ msg = "Seleccione curso"  }        
         else if(data.id_persona == ""){ msg = "Seleccione el profesor"  }
-        else if(data.fecha_inicio == ""){ msg = "Ingrese de inicio"  }
+        else if(data.fecha_inicio == ""){ msg = "Ingrese fecha de inicio"  }
         else if(data.fecha_fin == ""){ msg = "Ingrese fecha final"  }
         else if(data.tipos_pago == ""){ msg = "Agregue tipos de pago" }
         else if(data.turnos == ""){ msg = "Agregue turnos" }        
@@ -205,6 +229,8 @@ let crud_curso_programado = {
         let fecha_inicio = $("#txt_crud_fecha_inicio").val();
         let fecha_fin = $("#txt_crud_fecha_fin").val();
         let fl_img_curso = document.getElementById("fl_crud_img_curso");
+        let link_clase = $("#txt_crud_link_clase").val();
+        let url_img = $("#img_curso_programado").attr("src");
         let tipos_pago = tbl_tipo_pago.getString();
         let turnos = tbl_turno.getString();
 
@@ -216,13 +242,15 @@ let crud_curso_programado = {
             id_persona : id_persona,
             fecha_inicio : fecha_inicio,
             fecha_fin : fecha_fin,
+            link_clase:link_clase,
             tipos_pago : tipos_pago,
+            url_img:url_img,
             turnos : turnos
         }
 
-        /*let err_msg = crud_personal.validateData(action,data);
-        if(err_msg != "") return showMessage( err_msg , "error");*/
-
+        let err_msg = crud_curso_programado.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");
+        
         fd.append("id",id);
         fd.append("id_curso",id_curso);
         fd.append("id_persona",id_persona);
@@ -230,20 +258,19 @@ let crud_curso_programado = {
         fd.append("fecha_fin",fecha_fin);
         fd.append("tipos_pago",tipos_pago);
         fd.append("turnos",turnos);
+        fd.append("url_img",url_img);
+        fd.append("url_img_old",crud_curso_programado.url_img_old);
         fd.append("fl_img_curso", fl_img_curso.files.length > 0 ? fl_img_curso.files[0] : "");
         
         ajaxFDRequest(action,"post","CursoProgramadoController.php",fd,(result)=>{
             if(result.error === ""){
-                /*$("#" + crud_curso_programado.id_modal).modal("hide");
+                //$("#" + crud_curso_programado.id_modal).modal("hide");
                 showMessage(result.success,"success");
-                crud_curso_programado.reloadTable();*/
-                console.log(result);
-                console.log("Datos Guardados");
+                setTimeout(()=> location.href = "?url=curso_programado&action=list", 300 );                
             }else{
                 showMessage(result.error,"error");
             }
         });
-
     },
 
     reloadTable : ()=>{
@@ -422,14 +449,16 @@ const initInputMask = () => {
 }
 
 const loadCbx = ()=>{
-
-    ajaxRequest("cbx_curso","get","CursoController.php",null,(result) => {        
-        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_curso',result["rows"],true);
-    });
-
-    ajaxRequest("cbx_personal","get","PersonalController.php",null,(result) => {
-        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_profesor',result["rows"],true);
-    });
+    let action = getParameterByName("action");
+    if(action == 'ins'){
+        ajaxRequest("cbx_curso","get","CursoController.php",null,(result) => {        
+            loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_curso',result["rows"],true);
+        });
+    
+        ajaxRequest("cbx_personal","get","PersonalController.php",null,(result) => {
+            loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_profesor',result["rows"],true);
+        });
+    }    
 
     ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:3},(result) => {
         loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_tipo_pago',result["rows"]);

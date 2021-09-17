@@ -1,6 +1,17 @@
+<?php
+    $action = isset($_GET["action"]) ? $_GET["action"] : "";
+    $id = isset($_GET["id"]) ? $_GET["id"] : "";
+    switch($action){
+        case 'ins'  : $action="ins_curso_programado";break;
+        case 'upd'  : $action="upd_curso_programado";break;
+        case 'list' : $action="";break;
+        default     : $action="";
+    }
+?>
+
 <div class="row">
-    <input type="hidden" id="txt_crud_id">
-    <input type="hidden" id="txt_crud_action" value="ins_curso_programado">
+    <input type="hidden" id="txt_crud_id" value="<?php echo $id?>">
+    <input type="hidden" id="txt_crud_action" value="<?php echo $action ?>">
 
     <div class="col-12 col-lg-4 row mx-0 px-1">
 
@@ -11,8 +22,7 @@
         <div class="form-group col-12 px-1">                                    
             <input  id="fl_crud_img_curso" type="file" class=""/>
         </div>
-
-    </div>                            
+    </div>
 
     <div class="col-12 col-lg-8 row mx-0 px-1 align-items-start align-content-start">
 
@@ -24,6 +34,11 @@
         <div class="form-group col-12 px-1">
             <label  for="cbx_crud_id_profesor">Profesor<span class="text-danger">*</span> </label>
             <select id="cbx_crud_id_profesor" class="form-control" ></select>
+        </div>
+
+        <div class="form-group col-12 px-1">
+            <label for="txt_crud_link_clase">Link</span> </label>
+            <input  id="txt_crud_link_clase" class="form-control" placeholder="">
         </div>
 
         <div class="form-group col-12 col-lg-4 px-1"                                >

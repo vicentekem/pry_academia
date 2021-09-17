@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 15/09/2021 22:28:11
+ Date: 16/09/2021 11:16:21
 */
 
 SET NAMES utf8mb4;
@@ -256,6 +256,7 @@ INSERT INTO `tbl_menu` VALUES (1, 'MANTENIMIENTO', 'fa-table', 1, 1);
 INSERT INTO `tbl_menu` VALUES (2, 'PROCESOS', 'fa-cog', 2, 1);
 INSERT INTO `tbl_menu` VALUES (3, 'REPORTES', 'fa-bar-chart', 3, 1);
 INSERT INTO `tbl_menu` VALUES (4, 'HERRAMIENTAS', 'fa-bar-chart', 4, 1);
+INSERT INTO `tbl_menu` VALUES (5, 'CURSOS', 'fa-book', 2, 1);
 
 -- ----------------------------
 -- Table structure for tbl_opcion
@@ -356,22 +357,23 @@ CREATE TABLE `tbl_submenu`  (
   `estado` binary(1) NULL DEFAULT 1,
   `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_submenu
 -- ----------------------------
 INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tablas.php', NULL, 0x31, 1);
-INSERT INTO `tbl_submenu` VALUES (2, '1', 'PERSONAL', '2', 'personal', 'personal.php', NULL, 0x31, 3);
-INSERT INTO `tbl_submenu` VALUES (3, '1', 'CURSO', '2', 'curso', 'curso.php', NULL, 0x31, 2);
-INSERT INTO `tbl_submenu` VALUES (4, '1', 'ALUMNO', '2', 'alumno', 'alumno.php', NULL, 0x31, 4);
+INSERT INTO `tbl_submenu` VALUES (2, '1', 'PERSONAL', '2', 'personal', 'personal.php', NULL, 0x31, 2);
+INSERT INTO `tbl_submenu` VALUES (3, '5', 'CURSO', '2', 'curso', 'curso.php', NULL, 0x31, 1);
+INSERT INTO `tbl_submenu` VALUES (4, '1', 'ALUMNO', '2', 'alumno', 'alumno.php', NULL, 0x31, 3);
 INSERT INTO `tbl_submenu` VALUES (5, '4', 'ACCESOS', '2', 'accesos', 'accesos.php', NULL, 0x31, 1);
-INSERT INTO `tbl_submenu` VALUES (6, '2', 'PROGRAMAR CURSO', '2', 'programar_curso', 'programar_curso.php', NULL, 0x31, 1);
+INSERT INTO `tbl_submenu` VALUES (6, '5', 'CURSO PROGRAMADO', '2', 'curso_programado', 'curso_programado.php', NULL, 0x31, 2);
 INSERT INTO `tbl_submenu` VALUES (7, NULL, 'Inicio', '1', 'inicio', 'index.php', NULL, 0x31, 1);
 INSERT INTO `tbl_submenu` VALUES (8, NULL, 'Sobre Nosotros', '1', 'sobre_nosotros', 'sobre_nosotros.php', NULL, 0x31, 2);
 INSERT INTO `tbl_submenu` VALUES (9, NULL, 'Ciclos', '1', 'ciclos', 'ciclos.php', NULL, 0x31, 3);
 INSERT INTO `tbl_submenu` VALUES (10, NULL, 'Matricula Virtual', '1', 'matricula_virtual', 'matricula_virtual.php', NULL, 0x31, 4);
 INSERT INTO `tbl_submenu` VALUES (11, '2', 'REGISTRAR PAGO', '2', 'registrar_pago', 'registrar_pago.php', NULL, 0x31, 2);
+INSERT INTO `tbl_submenu` VALUES (12, '1', 'USUARIO', '2', '', NULL, NULL, 0x31, 4);
 
 -- ----------------------------
 -- Table structure for tbl_tablas

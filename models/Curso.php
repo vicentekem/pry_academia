@@ -45,7 +45,6 @@ class Curso
         )["rows"];
 
         return $result;
-
     }
 
     public function cbxCurso()

@@ -9,6 +9,6 @@
 <script id="tmpl_cbx_main" type="x-tmpl-mustache">
     <option value = "">-SELECCIONE-</option>
     {{#data}}
-         <option value='{{id}}'> {{description}} </option>
+         <option value='{{id}}' {{#selected}} selected {{/selected}} > {{description}} </option>
     {{/data}}
 </script>
