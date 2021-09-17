@@ -1,6 +1,6 @@
 <script id="tmpl_cbx_tabla" type="x-tmpl-mustache">
     <option value = "">-SELECCIONE-</option>
-    <!-- <option value='0'>TABLAS</option> -->
+    <option value='0'>TABLAS</option>
     {{#data}}
          <option value='{{id}}'> {{description}} </option>
     {{/data}}

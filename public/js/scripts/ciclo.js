@@ -3,8 +3,10 @@ let view_ciclo = {
     init : ()=>{
         let buscador = $('#buscador-ciclos')
 
-        buscador.on('search', ()=>{
-            view_ciclo.showCursos(); 
+        buscador.on('keyup', (event)=>{
+            if(event.keyCode == 13){
+                view_ciclo.showCursos(); 
+            }
          }
         )
 
