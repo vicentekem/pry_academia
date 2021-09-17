@@ -19,6 +19,7 @@
               require_once __DIR__ . "/../../../models/menu.php";                
               $menuModel = new Menu();
               $menus = $menuModel->getPublicMenu();
+              // exit(json_encode($menus));
               foreach( $menus["rows"] as $menu ){
             ?>
 
