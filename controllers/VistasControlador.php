@@ -13,8 +13,8 @@ class VistasControlador
         global $urls;
 
         if (in_array($url, array_keys( $urls ))) {
-            if( file_exists( "views/" .  $urls[$url] ) ){
-                include "views/" .  $urls[$url];
+            if( file_exists( "views/" .  $urls[$url] ) ){                
+                include "views/" .  $urls[$url];                
             }else{
                 echo "Página no encontrada";
             }
