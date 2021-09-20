@@ -60,7 +60,7 @@ let view_ciclo = {
         cbx_prov.on("change", (event) => {
             let idProv = event.target.value;
         ajaxRequest(
-            "cbx_ distritos",
+            "cbx_distritos",
             "get",
             "UbigeoController.php",
             { id_provincia: idProv },
