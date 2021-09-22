@@ -91,7 +91,8 @@ class CursoProgramado
 
         $result = $this->model->getRow(
             "SELECT cp.id,cp.id_curso,p.id as id_profesor,DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') fecha_inicio,
-                DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') fecha_fin,cp.link_clase,cp.url_img url_img_curso,c.resumen
+                DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') fecha_fin,cp.link_clase,cp.url_img url_img_curso,c.resumen,
+                c.description
             FROM tbl_curso c
             INNER JOIN tbl_curso_programado cp on c.id = cp.id_curso
             INNER JOIN tbl_persona p on cp.id_persona = p.id $where", $data
