@@ -440,6 +440,6 @@
 
   <script src="public/js/utilitario/utilitario.js"></script>
 
-  <script src="public/js/scripts/ciclo.js"></script>
+  <script src="public/js/scripts/ciclos.js"></script>
 
 </body>
