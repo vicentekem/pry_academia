@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 16/09/2021 11:16:21
+ Date: 22/09/2021 10:25:44
 */
 
 SET NAMES utf8mb4;
@@ -32,6 +32,10 @@ CREATE TABLE `tbl_accesos_rol`  (
 -- ----------------------------
 INSERT INTO `tbl_accesos_rol` VALUES (1, 1);
 INSERT INTO `tbl_accesos_rol` VALUES (1, 2);
+INSERT INTO `tbl_accesos_rol` VALUES (4, 1);
+INSERT INTO `tbl_accesos_rol` VALUES (4, 2);
+INSERT INTO `tbl_accesos_rol` VALUES (4, 11);
+INSERT INTO `tbl_accesos_rol` VALUES (4, 13);
 
 -- ----------------------------
 -- Table structure for tbl_accesos_usuario
@@ -53,6 +57,13 @@ INSERT INTO `tbl_accesos_usuario` VALUES (1, 3, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 4, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 6, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 11, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 12, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 13, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 14, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (2, 1, 4);
+INSERT INTO `tbl_accesos_usuario` VALUES (2, 2, 4);
+INSERT INTO `tbl_accesos_usuario` VALUES (2, 11, 4);
+INSERT INTO `tbl_accesos_usuario` VALUES (2, 13, 4);
 
 -- ----------------------------
 -- Table structure for tbl_alumno
@@ -173,15 +184,17 @@ CREATE TABLE `tbl_curso_programado`  (
   `url_img` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_persona` int(32) NOT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
+  `link_clase` varchar(750) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_curso_programado
 -- ----------------------------
-INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, NULL, 1, '2021-09-06', '2021-12-17', 'public/img/cursos/curso1.jpg', 1, NULL);
-INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, NULL, 1, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, NULL);
-INSERT INTO `tbl_curso_programado` VALUES (3, 2, '2021-08-31 12:55:30.022456', NULL, NULL, 1, '2021-09-13', '2021-11-26', 'public/img/cursos/curso3.jpg', 1, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, NULL, 1, '2021-09-06', '2021-12-17', 'public/img/cursos/curso1.jpg', 1, NULL, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, NULL, 1, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, NULL, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (3, 2, '2021-08-31 12:55:30.022456', NULL, NULL, 1, '2021-09-13', '2021-11-26', 'public/img/cursos/curso3.jpg', 1, NULL, NULL);
+INSERT INTO `tbl_curso_programado` VALUES (6, 9, '2021-09-16 15:38:18.000000', 1, '2021-09-17 01:03:55.000000', 1, '2021-09-20', '2012-12-15', 'public/img/cursos/61442fcba0bc6.jpg', 1, 1, '');
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado_tipo_pago
@@ -190,7 +203,7 @@ DROP TABLE IF EXISTS `tbl_curso_programado_tipo_pago`;
 CREATE TABLE `tbl_curso_programado_tipo_pago`  (
   `id_curso_programado` int(32) NOT NULL,
   `id_tipo_pago` int(32) NOT NULL,
-  `monto` float(255, 0) NOT NULL,
+  `monto` decimal(30, 2) NOT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id_curso_programado`, `id_tipo_pago`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
@@ -198,9 +211,11 @@ CREATE TABLE `tbl_curso_programado_tipo_pago`  (
 -- ----------------------------
 -- Records of tbl_curso_programado_tipo_pago
 -- ----------------------------
-INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (1, 1, 70, 1);
-INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (2, 1, 60, 1);
-INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (3, 1, 85, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (1, 1, 70.50, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (2, 1, 60.00, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (3, 1, 85.00, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (6, 1, 120.00, 1);
+INSERT INTO `tbl_curso_programado_tipo_pago` VALUES (6, 2, 80.50, 1);
 
 -- ----------------------------
 -- Table structure for tbl_curso_programado_turno
@@ -220,21 +235,32 @@ CREATE TABLE `tbl_curso_programado_turno`  (
 -- ----------------------------
 INSERT INTO `tbl_curso_programado_turno` VALUES (1, 2, '08:00:00.000000', '11:00:00.000000', 1);
 INSERT INTO `tbl_curso_programado_turno` VALUES (2, 1, '02:00:00.000000', '05:00:00.000000', 1);
+INSERT INTO `tbl_curso_programado_turno` VALUES (6, 1, '08:00:00.000000', '12:00:00.000000', 1);
+INSERT INTO `tbl_curso_programado_turno` VALUES (6, 2, '13:00:00.000000', '15:30:00.000000', 1);
 
 -- ----------------------------
 -- Table structure for tbl_matricula
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_matricula`;
 CREATE TABLE `tbl_matricula`  (
+  `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_curso_programado` int(32) NOT NULL,
   `id_alumno` int(32) NOT NULL,
-  `id_tipo_pago` int(32) NOT NULL,
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
-  PRIMARY KEY (`id_curso_programado`, `id_alumno`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+  `id_turno` int(32) NOT NULL COMMENT 'id_tabla: 4',
+  `monto` decimal(30, 2) NOT NULL,
+  `id_tipo_pago` int(32) NOT NULL DEFAULT 1 COMMENT 'id_tabla: 3',
+  `estado_matricula` int(32) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_matricula
+-- ----------------------------
+INSERT INTO `tbl_matricula` VALUES (1, 6, 3, '2021-09-21 23:58:27.143462', NULL, NULL, NULL, 1, 120.00, 1, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_menu
@@ -277,6 +303,24 @@ CREATE TABLE `tbl_opcion`  (
 ) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
+-- Table structure for tbl_pago
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_pago`;
+CREATE TABLE `tbl_pago`  (
+  `id` int(32) NOT NULL,
+  `id_matricula` int(32) NOT NULL,
+  `id_tipo_pago` int(32) NOT NULL,
+  `monto` decimal(30, 2) NULL DEFAULT NULL,
+  `fecha_pago` date NOT NULL,
+  `estado_pago` int(32) NULL DEFAULT NULL,
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `user_create_at` int(32) NULL DEFAULT NULL,
+  `create_up` datetime(6) NULL DEFAULT NULL,
+  `user_create_up` int(32) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
 -- Table structure for tbl_persona
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_persona`;
@@ -299,7 +343,7 @@ CREATE TABLE `tbl_persona`  (
   `estado` tinyint(1) NULL DEFAULT 1,
   `url_img` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_persona
@@ -307,6 +351,7 @@ CREATE TABLE `tbl_persona`  (
 INSERT INTO `tbl_persona` VALUES (1, '70389257', 'JOEL', 'VICENTE', NULL, '', '', '', '140406', '2021-08-27 12:13:45.860842', NULL, '2021-09-08 12:46:33.000000', 1, 'QUISPE', 1, 1, 'public/img/profile_small.jpg');
 INSERT INTO `tbl_persona` VALUES (2, '70786548', 'BRAYHAN', 'BARRAGAN', NULL, '', '', '', '', '2021-08-31 12:17:50.211782', NULL, '2021-09-08 10:14:15.000000', 1, '', 1, 1, 'public/img/profile_small.jpg');
 INSERT INTO `tbl_persona` VALUES (3, '12345678', 'KEVIN', 'VICENTE', NULL, '', '', '', '140406', '2021-08-31 12:18:26.986157', NULL, '2021-09-08 11:28:30.000000', 1, '', 1, 1, 'public/img/profile_small.jpg');
+INSERT INTO `tbl_persona` VALUES (4, '70389258', 'JORGE', 'QUISPE', NULL, 'JOAN.14.08.95@GMAIL.COM', NULL, '991234657', '140406', '2021-09-21 23:57:08.000000', NULL, NULL, NULL, 'QUISPE', NULL, 1, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_personal
@@ -357,7 +402,7 @@ CREATE TABLE `tbl_submenu`  (
   `estado` binary(1) NULL DEFAULT 1,
   `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_submenu
@@ -373,7 +418,9 @@ INSERT INTO `tbl_submenu` VALUES (8, NULL, 'Sobre Nosotros', '1', 'sobre_nosotro
 INSERT INTO `tbl_submenu` VALUES (9, NULL, 'Ciclos', '1', 'ciclos', 'ciclos.php', NULL, 0x31, 3);
 INSERT INTO `tbl_submenu` VALUES (10, NULL, 'Matricula Virtual', '1', 'matricula_virtual', 'matricula_virtual.php', NULL, 0x31, 4);
 INSERT INTO `tbl_submenu` VALUES (11, '2', 'REGISTRAR PAGO', '2', 'registrar_pago', 'registrar_pago.php', NULL, 0x31, 2);
-INSERT INTO `tbl_submenu` VALUES (12, '1', 'USUARIO', '2', '', NULL, NULL, 0x31, 4);
+INSERT INTO `tbl_submenu` VALUES (12, '1', 'USUARIO', '2', 'usuario', 'usuario.php', NULL, 0x31, 4);
+INSERT INTO `tbl_submenu` VALUES (13, '1', 'ROLES', '2', 'roles', 'roles.php', NULL, 0x31, 4);
+INSERT INTO `tbl_submenu` VALUES (14, '5', 'MIS CURSOS', '2', 'mis_cursos', 'mis_cursos.php', NULL, 0x31, 3);
 
 -- ----------------------------
 -- Table structure for tbl_tablas
@@ -3892,12 +3939,13 @@ CREATE TABLE `tbl_usuario`  (
   `update_password` tinyint(1) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_usuario
 -- ----------------------------
 INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `tbl_usuario` VALUES (2, 4, '70389258', '1192f784f2e3a9a28723e01e3029e882', '2021-09-21 23:58:26.958305', NULL, NULL, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for tbl_usuario_rol
@@ -3913,6 +3961,7 @@ CREATE TABLE `tbl_usuario_rol`  (
 -- Records of tbl_usuario_rol
 -- ----------------------------
 INSERT INTO `tbl_usuario_rol` VALUES (1, 1);
+INSERT INTO `tbl_usuario_rol` VALUES (2, 4);
 
 -- ----------------------------
 -- Procedure structure for sp_accesos
@@ -4176,26 +4225,160 @@ _id_curso int(32),
 _fecha_inicio VARCHAR(50),
 _fecha_fin VARCHAR(50),
 _url_img VARCHAR(255),
+_link_clase varchar(750),
+_tipos_pago text,
+_turnos text,
 _id_usuario int(32),
 _id_persona int(32))
 begin
+
+DECLARE strLen    INT  DEFAULT 0;
+DECLARE subStrLen INT  DEFAULT 0;
+DECLARE dataText  TEXT DEFAULT "";
+
+DECLARE _id_tipo_pago int DEFAULT 0;
+DECLARE _monto decimal(50,2) DEFAULT 0;
+
+DECLARE _id_turno int DEFAULT 0;
+DECLARE _hora_inicio time DEFAULT 0;
+DECLARE _hora_fin time DEFAULT 0;
+
+
 case _action
 	WHEN 'ins' then
-	IF(SELECT ID FROM tbl_curso WHERE id=11_id) is NULL THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso no existe' , MYSQL_ERRNO = 1001;	
-	ELSEIF(SELECT id FROM tbl_curso_programado where id=_id) IS NULL THEN
-		INSERT INTO tbl_curso_programado(id,id_curso,create_at,user_create_at,fecha_inicio,fecha_fin,url_img,id_persona) 
-					VALUES(_id,_id_curso,CURRENT_TIMESTAMP,_id_usuario,STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),_url_img,_id_persona);
-	ELSE
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error' , MYSQL_ERRNO = 1001;	
-	END if;
-	WHEN 'upd' THEN
-		IF(SELECT id FROM tbl_curso_programado where id_curso=_id_curso and id<>_id) IS NULL THEN
-		UPDATE tbl_curso_programado set id_curso=_id_curso,fecha_inicio=STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),fecha_fin=STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),url_img=_url_img/*,user_create_up=_id_usuario*/,create_up=CURRENT_TIMESTAMP WHERE id=_id;
+		IF(SELECT ID FROM tbl_curso WHERE id=_id_curso) is NULL THEN
+		
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El curso no existe' , MYSQL_ERRNO = 1001;
+			
+		ELSEIF(SELECT id FROM tbl_curso_programado where id=_id) IS NULL THEN
+		
+			INSERT INTO tbl_curso_programado(id_curso,create_at,user_create_at,fecha_inicio,fecha_fin,url_img,id_persona,link_clase)
+			VALUES(_id_curso,CURRENT_TIMESTAMP,_id_usuario,STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),
+					STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),_url_img,_id_persona,_link_clase);
+			
+			
+			SET _id = (SELECT LAST_INSERT_ID());
+			
+			/*BUCLE PARA INSERTAR TIPO DE PAGO*/
+			ins_tipo_pago: LOOP
+		
+				SET strLen = CHAR_LENGTH(_tipos_pago);
+
+				if strLen > 0 THEN
+					
+					SET dataText = SUBSTRING_INDEX( _tipos_pago , '|', 1 );
+					
+					SET _id_tipo_pago = SUBSTRING_INDEX( dataText , ',', 1 );
+					SET _monto = SUBSTRING( dataText,CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 1 )) + 2, CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 2 ))-2);
+					
+					insert into tbl_curso_programado_tipo_pago(id_curso_programado,id_tipo_pago,monto) 
+						values(_id, _id_tipo_pago, _monto);
+						
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _tipos_pago , '|',1 )) + 2;
+				SET _tipos_pago = MID( _tipos_pago , subStrLen, strLen);
+				
+				IF _tipos_pago = '' THEN
+					LEAVE ins_tipo_pago;
+				END IF;
+			END LOOP ins_tipo_pago;
+			
+			/*BUCLE PARA INSERTAR TURNOS*/
+			ins_turnos: LOOP
+		
+				SET strLen = CHAR_LENGTH(_turnos);
+
+				if strLen > 0 THEN
+					
+					SET dataText = SUBSTRING_INDEX( _turnos , '|', 1 );
+					
+					SET _id_turno = SUBSTRING_INDEX( dataText , ',', 1 );
+					SET _hora_inicio = STR_TO_DATE(SUBSTRING( dataText,CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 1 )) + 2, CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 2 ))-2),'%h:%i %p');
+					SET _hora_fin = STR_TO_DATE(SUBSTRING( dataText,CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 2 )) + 2, CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 3 ))-2),'%h:%i %p');
+					
+					insert into tbl_curso_programado_turno(id_curso_programado,id_turno,hora_inicio,hora_fin)
+						values(_id, _id_turno, _hora_inicio,_hora_fin);
+						
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _turnos , '|',1 )) + 2;
+				SET _turnos = MID( _turnos , subStrLen, strLen);
+				
+				IF _turnos = '' THEN
+					LEAVE ins_turnos;
+				END IF;
+			END LOOP ins_turnos;
+			
+
 		ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error' , MYSQL_ERRNO = 1001;	
+		END if;
+	WHEN 'upd' THEN
+	
+		IF(SELECT id FROM tbl_curso_programado where id_curso=_id_curso and id<>_id) IS NULL THEN
+			UPDATE tbl_curso_programado set id_curso=_id_curso,fecha_inicio=STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),link_clase = _link_clase,
+				fecha_fin=STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),url_img=_url_img,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP WHERE id=_id;
+			
+			DELETE FROM tbl_curso_programado_turno where id_curso_programado = _id;
+			DELETE FROM tbl_curso_programado_tipo_pago where id_curso_programado = _id;
+			
+			/*BUCLE PARA INSERTAR TIPO DE PAGO*/
+			ins_tipo_pago: LOOP
+		
+				SET strLen = CHAR_LENGTH(_tipos_pago);
+
+				if strLen > 0 THEN
+					
+					SET dataText = SUBSTRING_INDEX( _tipos_pago , '|', 1 );
+					
+					SET _id_tipo_pago = SUBSTRING_INDEX( dataText , ',', 1 );
+					SET _monto = SUBSTRING( dataText,CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 1 )) + 2, CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 2 ))-2);
+					
+					insert into tbl_curso_programado_tipo_pago(id_curso_programado,id_tipo_pago,monto) 
+						values(_id, _id_tipo_pago, _monto);
+						
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _tipos_pago , '|',1 )) + 2;
+				SET _tipos_pago = MID( _tipos_pago , subStrLen, strLen);
+				
+				IF _tipos_pago = '' THEN
+					LEAVE ins_tipo_pago;
+				END IF;
+			END LOOP ins_tipo_pago;
+			
+			
+			/*BUCLE PARA INSERTAR TURNOS*/
+			ins_turnos: LOOP
+		
+				SET strLen = CHAR_LENGTH(_turnos);
+
+				if strLen > 0 THEN
+					
+					SET dataText = SUBSTRING_INDEX( _turnos , '|', 1 );
+					
+					SET _id_turno = SUBSTRING_INDEX( dataText , ',', 1 );
+					SET _hora_inicio = STR_TO_DATE(SUBSTRING( dataText,CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 1 )) + 2, CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 2 ))-2),'%h:%i %p');
+					SET _hora_fin = STR_TO_DATE(SUBSTRING( dataText,CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 2 )) + 2, CHAR_LENGTH(SUBSTRING_INDEX( dataText , ',', 3 ))-2),'%h:%i %p');
+					
+					insert into tbl_curso_programado_turno(id_curso_programado,id_turno,hora_inicio,hora_fin)
+						values(_id, _id_turno, _hora_inicio,_hora_fin);
+						
+				END IF;
+
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _turnos , '|',1 )) + 2;
+				SET _turnos = MID( _turnos , subStrLen, strLen);
+				
+				IF _turnos = '' THEN
+					LEAVE ins_turnos;
+				END IF;
+			END LOOP ins_turnos;
+			
+		ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar tabla', MYSQL_ERRNO = 1001;
 		END IF;
-		WHEN 'est' THEN
+	WHEN 'est' THEN
 		UPDATE tbl_curso_programado SET estado= NOT estado WHERE id=_id AND id_curso=_id_curso;
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
@@ -4232,6 +4415,73 @@ BEGIN
 			where usuario = _usuario and `password`= md5(_password);
 		END IF;
 		
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_matricula
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_matricula`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_matricula`(
+_action varchar(10),
+_id int(32),
+_id_alumno int(32),
+_dni varchar(8),
+_nombre VARCHAR(255),
+_apellidop VARCHAR(255),
+_apellidom VARCHAR(255),
+_correo VARCHAR(255),
+_celular VARCHAR(25),
+_id_ubigeo VARCHAR(6),
+_id_curso_programado int(32),
+_id_turno int
+)
+begin
+
+DECLARE _id_persona int(32) default null;
+DECLARE _id_usuario_nuevo int(32) default null;
+DECLARE _monto decimal(30,2) default null;
+
+case _action
+	WHEN 'ins' then
+		
+		SET _id_persona = ( select id from tbl_persona where dni = _dni );
+		SET _id_alumno = (select id from tbl_alumno where id_persona = _id_persona);
+		
+		IF _id_alumno is null THEN					
+			call sp_alumno('ins', null, null, _dni, _nombre, _apellidop, _apellidom, _correo, _celular, null, null, _id_ubigeo, null, null);
+			SET _id_alumno = (SELECT LAST_INSERT_ID());
+		ELSEIF (SELECT id_curso_programado from tbl_matricula where id_curso_programado = _id_curso_programado and id_alumno = _id_alumno) is not null THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El alumno ya se encuentra matriculado para el curso seleccionado' , MYSQL_ERRNO = 1001;		
+		END IF;
+		
+		SET _id_persona = (SELECT id_persona FROM tbl_alumno where id = _id_alumno );
+		
+		IF (SELECT id FROM tbl_usuario where id_persona = _id_persona) IS NULL THEN
+			insert into tbl_usuario(id_persona,usuario,password) values (_id_persona,_dni,md5(_dni));
+			SET _id_usuario_nuevo = (SELECT LAST_INSERT_ID() );
+			insert into tbl_usuario_rol(id_usuario,id_rol) values (_id_usuario_nuevo,4);
+			INSERT INTO tbl_accesos_usuario (id_usuario,id_submenu,id_rol)
+			SELECT _id_usuario_nuevo,id_submenu,4
+			FROM tbl_accesos_rol
+			WHERE id_rol = 4;
+			
+		END IF;
+		
+		SET _monto = (select monto from tbl_curso_programado_tipo_pago where id_curso_programado = _id_curso_programado and id_tipo_pago = 1);
+		
+		INSERT INTO tbl_matricula(id_curso_programado,id_alumno,id_tipo_pago,id_turno,monto) 
+			VALUES (_id_curso_programado,_id_alumno,1,_id_turno,_monto);
+		
+		
+		
+	WHEN 'upd' THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error upd' , MYSQL_ERRNO = 1001;	
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
 END
 ;;
 delimiter ;
