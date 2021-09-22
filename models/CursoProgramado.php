@@ -85,6 +85,46 @@ class CursoProgramado
         return $result;
     }
 
+    public function getDataCursoProgramado($data)
+    {
+        $where = Utilitario::generarFiltros($data,["id" => "cp.id = :id"]);
+
+        $result = $this->model->getRow(
+            "SELECT cp.id,cp.id_curso,p.id as id_profesor,DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') fecha_inicio,
+                DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') fecha_fin,cp.link_clase,cp.url_img url_img_curso,c.resumen
+            FROM tbl_curso c
+            INNER JOIN tbl_curso_programado cp on c.id = cp.id_curso
+            INNER JOIN tbl_persona p on cp.id_persona = p.id $where", $data
+        );
+
+        $result["montos"] = $this->model->getAllRows(
+            "SELECT concat(cp.id,ctp.id_tipo_pago) id,ctp.id_tipo_pago,ttp.description as tipo_pago,ctp.monto
+            FROM tbl_curso_programado cp
+            INNER JOIN tbl_curso_programado_tipo_pago ctp on ctp.id_curso_programado = cp.id
+            INNER JOIN tbl_tablas ttp on ctp.id_tipo_pago = ttp.id_registro and ttp.id_tabla = 3 $where", $data
+        )["rows"];
+
+        $result["horarios"] = $this->model->getAllRows(
+            "SELECT concat(cp.id,ct.id_turno) id,ct.id_turno,tt.description as turno,
+                DATE_FORMAT(ct.hora_inicio,'%h:%i %p') hora_inicio,DATE_FORMAT(ct.hora_fin,'%h:%i %p') hora_fin
+            FROM tbl_curso_programado cp
+            INNER JOIN tbl_curso_programado_turno ct on ct.id_curso_programado = cp.id
+            INNER JOIN tbl_tablas tt on ct.id_turno = tt.id_registro and tt.id_tabla = 4 $where", $data
+        )["rows"];
+
+        $result["caracteristicas"] = $this->model->getAllRows( 
+            "SELECT cc.id,cc.description FROM tbl_curso c inner join  tbl_curso_programado cp on cp.id_curso = c.id
+            inner join tbl_curso_caracteristicas cc on c.id = cc.id_curso $where", $data
+        )["rows"];
+
+        $result["beneficios"] = $this->model->getAllRows( 
+            "SELECT cb.id,cb.description FROM tbl_curso c inner join  tbl_curso_programado cp on cp.id_curso = c.id
+            inner join tbl_curso_beneficios cb on c.id = cb.id_curso $where", $data
+        )["rows"];
+
+        return $result;
+    }
+
     public function cbxCursoProgramado($data = [])
     {
         return $this->model->getAllRows(

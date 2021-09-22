@@ -47,6 +47,14 @@ class CursoProgramadoValidator
         return $result;
     }
 
+    public function getDataCursoProgramado()
+    {
+        $result = [ "error" => "" ];
+        $data["id int"] = Utilitario::getParam("id");
+        if ($result["error"] === "") $result = $this->model->getDataCursoProgramado($data);
+        return $result;
+    }
+
     public function cbxCursoProgramado()
     {
         $result = [ "error" => "" ];        

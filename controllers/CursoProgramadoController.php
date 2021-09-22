@@ -31,6 +31,7 @@ class CursoProgramadoController
             case "qry_curso_programado":$array_result = $this->validator->qryCursoProgramado();break;
             case "pw_curso_programado" :$array_result = $this->validator->pwCursoProgramado();break;
             case "get_curso_programado" :$array_result = $this->validator->getCursoProgramado();break;
+            case "get_data_curso_programado" :$array_result = $this->validator->getDataCursoProgramado();break;
             case "cbx_curso_programado":$array_result = $this->validator->cbxCursoProgramado();break;
             case "cbx_turnos_x_curso":$array_result = $this->validator->cbxTurnosForCurso();break;
             default: $array_result["error"] = "Error al procesar la petición";break;

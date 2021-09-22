@@ -117,7 +117,7 @@ let view_ciclo = {
 
         let id_curso_programado = $("#cbx_ciclo").val();
         let id_turno = $("#cbx_turno").val();
-        
+
         let data = {
             id : id,
             id_persona: id_persona,
