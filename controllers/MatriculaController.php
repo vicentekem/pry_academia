@@ -27,10 +27,7 @@ class MatriculaController
     public function controllerGet()
     {
         $action = isset($_GET['action']) ? $_GET['action'] : "";
-        switch ($action) {
-            case "qry_matricula":$array_result = $this->validator->qryMatricula();break;
-            case "get_matricula":$array_result = $this->validator->getMatricula();break;
-            case "cbx_matricula":$array_result = $this->validator->cbxMatricula();break;            
+        switch ($action) {            
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);

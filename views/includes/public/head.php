@@ -42,6 +42,8 @@
   <link href="public/web/assets/css/ciclos.css" rel="stylesheet">
   <!-- Temario -->
   <link href="public/web/assets/css/temarios.css" rel="stylesheet">
+
+  <link href="public/css/plugins/toastr/toastr.min.css" rel="stylesheet">
   <!-- ======================================================
   <!-- ======================================================
   * Template Name: Vesperr - v4.3.0

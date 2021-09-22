@@ -7,12 +7,13 @@ $currentPage = "Inicio";
 // sintax : urls[ alias(url que se mostrará en la navegador ) ] =  (archivo que se va a renderizar)
 
 $urls = [];
+$urls[""] = "index.php";
 $urls["login"] = "login.php";
 $urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
 $urls["temarios.php"] = "temarios.php";
+$urls["correo"] = "correo.php";
 $urls["error"] = "error.php";
-$urls[""] = "index.php";
 
 require __DIR__ . "/Conexion.php";
 require __DIR__ . "/../models/Menu.php";

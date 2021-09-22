@@ -6,7 +6,7 @@
 
 	<!-- ================================================================= -->
 
-	<form class="container">
+	<div class="container">
 		<fieldset class="from__padre">
 			<!-- ============================================ -->
 			<div class="from__header from__header--spacio">
@@ -17,18 +17,23 @@
 					</div>
 				</div>
 				<div class="from__matricula">
+
 					<div class="from__titulo-matricula ">
 						<h2>Datos de Matricula</h2>
 					</div>
+
+					<input type="hidden" id="txt_action" value="ins_matricula">
+					<input type="hidden" id="txt_id">
+					<input type="hidden" id="txt_id_persona">
+
 					<div class="campo campo1">
 						<label class="campo__label">Ciclo</label>
-						<select id="Ciclos" class="campo__caja">
-
+						<select id="cbx_ciclo" class="campo__caja">
 						</select>
 					</div>
 					<div class="campo2 campo">
 						<label>Turnos</label>
-						<select id="turnos" class="campo__caja">
+						<select id="cbx_turno" class="campo__caja">
 
 						</select>
 					</div>
@@ -63,31 +68,31 @@
 						<!--=== DNI ===-->
 						<div class="campo campo1 campo__campo">
 							<label>DNI</label>
-							<input class="campo__caja" type="text" placeholder='Su DNI'>
+							<input id="txt_dni" class="campo__caja" type="text" placeholder='Su DNI'>
 						</div>
 
 						<!--=== Apellido Paterno===-->
 						<div class="campo campo2 campo__campo">
 							<label>Apelido Paterno</label>
-							<input class="campo__caja" type="text" placeholder='Su Apellido Paterno'>
+							<input id="txt_ape_pat" class="campo__caja" type="text" placeholder='Su Apellido Paterno'>
 						</div>
 
 						<!--=== Apellido Materno===-->
 						<div class="campo campo3 campo__campo">
 							<label>Apelido Materno</label>
-							<input class="campo__caja" type="text" placeholder='Su Apellido Materno'>
+							<input id="txt_ape_mat" class="campo__caja" type="text" placeholder='Su Apellido Materno'>
 						</div>
 
 						<!--=== Nombres ===-->
 						<div class="campo campo4 campo__campo">
 							<label>Nombres</label>
-							<input class="campo__caja" type="text" placeholder='Sus Nombres'>
+							<input id="txt_nombre" class="campo__caja" type="text" placeholder='Sus Nombres'>
 						</div>
 
 						<!--=== Departamento de Residencia ===-->
 						<div class="campo campo5 campo__campo">
 							<label class="campo__label">Departamento de residencia</label>
-							<select id="departamento" class="campo__caja">
+							<select id="cbx_departamento" class="campo__caja">
 								
 							</select>
 						</div>
@@ -95,7 +100,7 @@
 						<!--=== Provincia de Residenci ===-->
 						<div class="campo campo5 campo__campo">
 							<label class="campo__label">Provincia de residencia</label>
-							<select id="provincia" class="campo__caja">
+							<select id="cbx_provincia" class="campo__caja">
 								
 							</select>
 						</div>
@@ -103,7 +108,7 @@
 						<!--=== Distrito de Residenci ===-->
 						<div class="campo campo5 campo__campo">
 							<label class="campo__label">Distrito de residencia</label>
-							<select id="distrito" class="campo__caja">
+							<select id="cbx_distrito" class="campo__caja">
 								
 							</select>
 						</div>
@@ -111,32 +116,32 @@
 						<!--=== Correo ===-->
 						<div class="campo campo6 campo__campo">
 							<label>Correo Electronico</label>
-							<input class="campo__caja" type="email" placeholder='Su Correo Electronico'>
+							<input id="txt_correo" class="campo__caja" type="email" placeholder='Su Correo Electronico'>
 						</div>
 
 						<!--=== Confirme Correo Electronico ===-->
 						<div class="campo campo7 campo__campo">
 							<label>Confirme Correo Electronico </label>
-							<input class="campo__caja" type="email" placeholder='Su Correo Electronico '>
+							<input id="txt_confirmar_correo" class="campo__caja" type="email" placeholder='Su Correo Electronico '>
 						</div>
 
 						<!--=== Celular ===-->
 						<div class="campo campo1 campo__campo">
 							<label>Celular</label>
-							<input class="campo__caja" type="text" placeholder='Su DNI'>
+							<input id="txt_celular" class="campo__caja" type="text" placeholder='Su nro de celular'>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- ============================================ -->
 			<div class="from__caja--boton">
-				<button class="from__btn transparent" id="sign-in-btn">
+				<button id="btn_send_data" class="from__btn transparent" id="sign-in-btn">
 					Enviar
 				</button>
 			</div>
 
 		</fieldset>
-	</form>
+	</div>
 
 	<!-- ========================================= -->
 	<main id="main">
@@ -165,8 +170,8 @@
 	<!-- <script src="public/web/assets/js/header/jquery.min.js"></script> -->
 	<script src="public/web/assets/js/header/main.js"></script>
 
+	<script src="public/js/plugins/toastr/toastr.min.js"></script>
 	<script src="public/js/plugins/mustache/mustache.min.js"></script>
-
 	<script src="public/js/utilitario/utilitario.js"></script>
 
 	<script src="public/js/scripts/matricula_virtual.js"></script>
