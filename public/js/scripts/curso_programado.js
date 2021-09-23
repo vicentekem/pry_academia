@@ -33,7 +33,7 @@ let crud_curso_programado = {
             let id = getParameterByName("id");
             crud_curso_programado.loadData(id);
         }
-        
+
     },
 
     initDataTable: ()=>{        

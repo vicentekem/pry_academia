@@ -11,7 +11,7 @@ $urls[""] = "index.php";
 $urls["login"] = "login.php";
 $urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
-$urls["temarios.php"] = "temarios.php";
+$urls["ciclo"] = "ciclo.php";
 $urls["correo"] = "correo.php";
 $urls["error"] = "error.php";
 

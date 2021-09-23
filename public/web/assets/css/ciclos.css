@@ -31,7 +31,7 @@
   gap: 0.5rem;
   width: 90%;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
   /* border: 1px solid red; */
   margin: 0 auto;
   /* border-radius: 1px solid red; */
@@ -348,7 +348,7 @@ input[type="search"]::-webkit-search-results-decoration {
   color: #333;
   font-family: var(--font);
   transition: all 0.3s ease-out;
-  text-align: justify;
+  /* text-align: justify; */
     font-size: 24px;
   
 }

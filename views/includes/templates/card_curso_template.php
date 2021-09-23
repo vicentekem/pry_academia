@@ -5,13 +5,13 @@
             <!-- curso--imagen -->
             <div class="caja-imagen">
                 <div class="curso__imagen">
-                    <a href="?url=temarios.php"><img src={{url_img_curso}} class="imagen--estilos"></a>
+                    <a href="?url=ciclo&id={{id}}"><img src={{url_img_curso}} class="imagen--estilos"></a>
                 </div>
 
                 <!-- contenido curso -->
                 <div class=" curso__contenido ">
                     <div class="caja__contenido-curso">
-                        <a href="?url=temarios.php">
+                        <a href="?url=ciclo&id={{id}}">
                             <h3 class="curso__title">
                                 <span>{{description}}</span>
                             </h3>
