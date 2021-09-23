@@ -34,12 +34,14 @@ class MatriculaValidator
         $data["correo"] = Utilitario::getParam("correo");
         $data["celular"] = Utilitario::getParam("celular");
         $data["id_curso_programado int"] = Utilitario::getIntParam("id_curso_programado");
-        $data["id_turno int"] = Utilitario::getIntParam("id_turno");        
+        $data["id_turno int"] = Utilitario::getIntParam("id_turno");
         //$data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
  
         $result = $this->model->saveMatricula($action,$data);
 
-        if($result_mail["error"] == "") $result_mail = $this->mail->sendMail($data);
+        if($result["error"] == ""){
+            $result_mail = $this->mail->sendMail($data);            
+        }        
         return $result;
 
     }

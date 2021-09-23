@@ -51,6 +51,7 @@ class CursoProgramadoValidator
     {
         $result = [ "error" => "" ];
         $data["id int"] = Utilitario::getParam("id");
+        if( $data["id int"] == null || $data["id int"] == "") $result["error"] = "El id es requerido";
         if ($result["error"] === "") $result = $this->model->getDataCursoProgramado($data);
         return $result;
     }

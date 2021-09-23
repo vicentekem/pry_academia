@@ -87,7 +87,7 @@ class CursoProgramado
 
     public function getDataCursoProgramado($data)
     {
-        $where = Utilitario::generarFiltros($data,["id" => "cp.id = :id"]);
+        $where = Utilitario::generarFiltros($data,["id" => "cp.id = :id"]);        
 
         $result = $this->model->getRow(
             "SELECT cp.id,cp.id_curso,p.id as id_profesor,DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') fecha_inicio,
@@ -105,13 +105,19 @@ class CursoProgramado
             INNER JOIN tbl_tablas ttp on ctp.id_tipo_pago = ttp.id_registro and ttp.id_tabla = 3 $where", $data
         )["rows"];
 
-        $result["horarios"] = $this->model->getAllRows(
-            "SELECT concat(cp.id,ct.id_turno) id,ct.id_turno,tt.description as turno,
+        $horarios = $this->model->getAllRows(
+            "SELECT concat(cp.id,ct.id_turno) id,tt.id_registro as id_turno,tt.description as turno,
                 DATE_FORMAT(ct.hora_inicio,'%h:%i %p') hora_inicio,DATE_FORMAT(ct.hora_fin,'%h:%i %p') hora_fin
             FROM tbl_curso_programado cp
             INNER JOIN tbl_curso_programado_turno ct on ct.id_curso_programado = cp.id
-            INNER JOIN tbl_tablas tt on ct.id_turno = tt.id_registro and tt.id_tabla = 4 $where", $data
+            RIGHT JOIN tbl_tablas tt on ct.id_turno = tt.id_registro and ct.id_curso_programado = :id
+            WHERE tt.id_tabla = 4 ORDER BY tt.id_registro", $data
         )["rows"];
+        
+        $result["horarios"] = [];
+        for($i=0;$i<count($horarios);$i++){
+            $result["horarios"][ "turno_".$horarios[$i]["id_turno"] ] = $horarios[$i];
+        }        
 
         $result["caracteristicas"] = $this->model->getAllRows( 
             "SELECT cc.id,cc.description FROM tbl_curso c inner join  tbl_curso_programado cp on cp.id_curso = c.id
