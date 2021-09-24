@@ -1,3 +1,7 @@
+<input type="hidden" id="txt_session_id_usuario" value ="<?php echo $_SESSION["usuario_academia"]["id"]?>">
+<input type="hidden" id="txt_session_id_rol" value ="<?php echo $_SESSION["usuario_academia"]["id_rol"]?>">
+<input type="hidden" id="txt_session_id_persona" value ="<?php echo $_SESSION["usuario_academia"]["id_persona"]?>">
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

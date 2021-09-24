@@ -50,11 +50,12 @@ class Conexion
                 case 'null' : $pdo_param = PDO::PARAM_NULL; $value = null; break;
                 default : $pdo_param = PDO::PARAM_STR;
             }
-            if( ($value || $value === 0) && ($key != 'filters_str' && $key != 'limit')){                
+            if( ($value || $value === 0) && ($key != 'filters_str' && $key != 'limit')){
                 $stmt->bindParam(":" . $key, $value,$pdo_param);
             }
         }
-        if($data && isset( $data["start int"]) && isset($data["length int"]) ){                             
+
+        if($data && isset( $data["start int"]) && isset($data["length int"]) ){
             $stmt->bindParam(":start",  $data["start int"],PDO::PARAM_INT );
             $stmt->bindParam(":length", $data["length int"],PDO::PARAM_INT);
         }

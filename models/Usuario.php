@@ -17,7 +17,6 @@ class Usuario
             "call sp_login(:usuario,:clave)",
             $data
         );
-
     }
    
 
