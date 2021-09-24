@@ -43,9 +43,7 @@ class MatriculaValidator
             $result_mail = $this->mail->sendMail($data);            
         }        
         return $result;
-
     }
-
 
 }
 

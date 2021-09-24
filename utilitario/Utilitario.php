@@ -3,13 +3,14 @@
 class Utilitario
 {
 
-    static function generarFiltros($data,$data_filters,$admit_zero = false){
+    static function generarFiltros($data,$data_filters,$admit_zero = false,$extra_filter = []){
         $filters = [];
         foreach( $data as $key => $value ){
             $key = explode(" " , $key)[0];
             //echo var_dump( $key ) . " " . var_dump( $value === 0 || $value );
             if(($value === 0 || $value) && isset($data_filters[$key])) $filters[] = $data_filters[$key];
         }
+        $filters = array_merge($filters, $extra_filter);
         return count($filters) > 0 ? "WHERE " . implode(" AND ",$filters) : "";
     }
 

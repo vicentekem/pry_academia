@@ -63,19 +63,20 @@
                                 </div>
                             </div>
 
-                            <div class="form-group mb-0 col-12 col-md-2">
-                                <label for="" style="display:block;opacity:0">...</label>
-                                <button id="btn_new_curso" class="btn btn-success">Nuevo</button>
-                            </div>
 
                         </div>
 
                         <div class="table-responsive w-100 text-sm">
-                            <table id="tbl_curso" class="table table-bordered table-hover w-100">
+                            <table id="tbl_pago" class="table table-bordered table-hover w-100">
                                 <thead>
                                     <tr>
                                         <th>Accion</th>
-                                        <th>Nombre</th>
+                                        <th>Estudiante</th>
+                                        <th>Curso</th>
+                                        <th>Ciclo</th>
+                                        <th>Tipo</th>
+                                        <th>Fecha</th>
+                                        <th>Monto</th>
                                         <th>Estado</th>
                                     </tr>
                                 </thead>
@@ -91,12 +92,12 @@
 
             </div>
 
-
         </div>
     </div>
 
     <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
-    <?php include __DIR__ . "/includes/partials/curso/modal_curso.php" ?>
+    <?php include __DIR__ . "/includes/partials/pago/modal_adj_pago.php" ?>
+    <?php include __DIR__ . "/includes/partials/pago/modal_view_pago.php" ?>
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
 
     <script src="public/js/plugins/dataTables/datatables.min.js"></script>
@@ -106,7 +107,7 @@
     <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="public/js/utilitario/utilitario.js"></script>    
 
-    <script src="public/js/scripts/curso.js"></script>
+    <script src="public/js/scripts/registrar_pago.js"></script>
 
 </body>
 </html>

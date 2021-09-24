@@ -32,7 +32,7 @@ class ModeloBase
             $ok = $stmt->execute();
             if ($ok) { while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $result["rows"][] = $row; } }
             if($sql_count){
-                $stmt = $cn->prepare($sql_count);                
+                $stmt = $cn->prepare($sql_count);
                 $this->conexion->bindFilters($stmt,$data_count);
                 $ok = $stmt->execute();
                 if ($ok) { if($row = $stmt->fetch(PDO::FETCH_ASSOC)) { $result["cant_rows"] = $row["cant_rows"]; }}
