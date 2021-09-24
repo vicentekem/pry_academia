@@ -2,13 +2,13 @@
 <section id="contact" class="contact space--contactos">
       <div class="container">
 
-        <div class="section-title" data-aos="fade-up">
+        <div class="section-title" ">
           <h2>ACADEMY</h2>
         </div>
 
         <div class="row">
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-4 col-md-6" " data-aos-delay="100">
             <div class="contact-about">
               <h3>Academy</h3>
               <p>Cras fermentum odio eu feugiat. Justo eget magna fermentum iaculis eu non diam phasellus. Scelerisque felis imperdiet proin fermentum leo. Amet volutpat consequat mauris nunc congue.</p>
@@ -21,7 +21,7 @@
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 mt-4 mt-md-0" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-3 col-md-6 mt-4 mt-md-0" " data-aos-delay="200">
             <div class="info">
               <div>
                 <i class="ri-map-pin-line"></i>
@@ -41,7 +41,7 @@
             </div>
           </div>
 
-          <div class="col-lg-5 col-md-12" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-5 col-md-12" " data-aos-delay="300">
             <form action="forms/contact.php" method="post" role="form" class="php-email-form">
               <div class="form-group">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Tus nombres" required>

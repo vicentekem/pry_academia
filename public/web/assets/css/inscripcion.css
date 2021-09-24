@@ -1,0 +1,133 @@
+@import url("./myStyles.css");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+p {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+h2 {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+}
+.form-ims {
+  display: flex;
+  gap: 0.5rem;
+  width: 100vw;
+  height: 100vh;
+}
+.img-desc {
+  width: 50%;
+  background-image: url("../img/photo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.img-desc img {
+  width: 100%;
+}
+.contenido-desc {
+  width: 50%;
+  padding: 1rem 1rem 0 1rem;
+}
+.header-desc {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.desc-logo {
+  width: 50%;
+}
+.cont-logo {
+  width: 30%;
+  min-width: 100px;
+}
+.cont-logo img {
+  width: 100%;
+}
+.desc-social {
+  width: 50%;
+}
+.social-flex {
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
+}
+.social-ico svg {
+  font-size: 1.7rem;
+  color: #7a7a7a;
+}
+.titulo-desc {
+  margin: 4rem 0 3rem 0;
+}
+.titulo-desc h2 {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.input-des {
+  height: 2.3rem;
+  width: 100%;
+  min-width: 400px;
+  outline: none;
+  font-size: 16px;
+  border-radius: 15px;
+  padding-left: 10px;
+  border: 1px solid var(--lead-secondary);
+  background-color: var(--white);
+  border-bottom-width: 3px;
+  transition: all 0.3s ease;
+}
+.campo-desc {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+.campo-space {
+  margin-bottom: 1.5rem;
+}
+.flex-desc{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+@media (max-width: 1165px) {
+    .desc-logo {
+      width: 40%;
+    }
+    .desc-social{
+        width: 60%;
+    }
+}
+@media (max-width: 817px) {
+    .img-desc {
+      width: 40%;
+    }
+    .contenido-desc{
+        width: 60%;
+    }
+}
+@media (max-width: 681px) {
+    .form-ims{
+        flex-direction: column;
+    }
+    .img-desc{
+background-image: none;
+    }
+    .contenido-desc{
+        width: 100%;
+    }
+}

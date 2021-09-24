@@ -39,12 +39,16 @@
         </div>
         <!-- <img src="assets/images/curve.svg" alt="Curve image" class="curve-image"> -->
     </section>
-    <!-- ========================================================================= -->
+    <!-- ========================================================================= -->  
 
-    <?php include "views/quienes_somos.php"; ?>
-
+    <?php include "views/banner.php"; ?>
 
     <!--========================================================================= -->
+
+    
+    <?php include "views/quienes_somos.php"; ?>
+
+<!--========================================================================= -->
 
     <section class="box__section">
         <div class="caja__section">

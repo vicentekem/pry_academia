@@ -9,7 +9,9 @@ const loadView = () => {
     "CursoProgramadoController.php",
     {id: getParameterByName("id") },
     (result) => {
-      result.row.horarios = result.horarios;
+      result.row.horario_1= result.horarios.turno_1;
+      result.row.horario_2= result.horarios.turno_2;
+      // result.row.horarios = result.horarios[turno_2];
       result.row.monts = result.montos;
       result.row.caracteristica = result.caracteristicas;
       result.row.beneficios = result.beneficios;

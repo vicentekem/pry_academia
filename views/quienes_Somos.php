@@ -1,6 +1,3 @@
-<?php include "views/includes/public/head.php"; ?>
-
-
 <body>
     <section class="home box__somos">
         <div class=" container ">

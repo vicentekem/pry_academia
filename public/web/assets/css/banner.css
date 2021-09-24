@@ -1,0 +1,68 @@
+@import url("./myStyles.css");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.contenedor-baner {
+  margin: 4rem 0 6rem 0;
+  background-image: url("../img/wave.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.container-banner{
+  width: 100%;
+max-width: 1140px;
+margin: 0 auto;
+}
+
+.border-baner{
+  border: none;
+}
+.imagen-2 img{
+  display: none;
+}
+.shap22 {
+  top: 26%;
+  left: 81%;
+  animation: rotate 10s linear infinite;
+}
+.shap33 {
+  top: 41%;
+  left: 28%;
+  animation: rotate 10s linear infinite;
+}
+.shap44 {
+  top: 52%;
+  left: 64%;
+  animation: rotate 10s linear infinite;
+}
+.shap55 {
+  top: 49%;
+  left: 58%;
+  animation: rotate 10s linear infinite;
+}
+@media (max-width: 757px) {
+  .contenedor-baner {
+    background-image: none;
+  }
+  .imagen-1 img{
+    display: none;
+  }
+  .contenido-baner p{
+    text-align: center;
+  }
+  .contenedor-baner{
+    margin-bottom: 0;
+  }
+  .contenido-asets{
+    min-width: 271px;
+    width: 50%;
+    margin: 0 auto;
+  }
+  .btn-2 a{
+    margin:0 auto;
+  }
+
+}

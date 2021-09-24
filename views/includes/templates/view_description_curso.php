@@ -11,12 +11,12 @@
                     <!-- assets -->
                     <div class="caja__assets">
                         <!-- nivel -->
-                        <div class="curso__text curso__flex">
+                        <!-- <div class="curso__text curso__flex">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 512 512" class="svg-icon svg__nivel fill normal yellow-400 s-mr-1" id="" fill="currentColor" title="">
                                 <path d="M496.986,481.993h-44.999V151.002h44.999c13.303,0,20.017-16.117,10.65-25.562L387.639,4.443 c-5.865-5.914-15.435-5.914-21.3,0L246.342,125.44c-9.368,9.446-2.652,25.562,10.65,25.562h44.999V241H194.995 c-8.284,0-15,6.716-15,15v74.998H74.998c-8.284,0-15,6.716-15,15v135.996H15c-8.284,0-15,6.716-15,15c0,8.284,6.716,15,15,15 h481.987c8.284,0,15-6.716,15-15C511.986,488.709,505.27,481.993,496.986,481.993z M179.995,481.993H89.998V360.996h89.997 V481.993z M301.992,481.993h-91.997V270.999h91.997V481.993z M421.988,136.002v345.991h-89.997V136.002c0-8.284-6.716-15-15-15 h-23.997l83.996-84.696l83.996,84.696h-23.997C428.704,121.003,421.988,127.719,421.988,136.002z"></path>
                             </svg>
                             <p>Nibel: básico</p>
-                        </div>
+                        </div> -->
 
                         <!-- fecha -->
                         <div class="curso__text curso__flex">
@@ -60,14 +60,14 @@
 
                     <!-- Btn GO -->
                     <div class="btn__go">
-                        <a href="#" class="btn__center">
+                        <a href="?url=matricula_virtual" class="btn__center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15" class="svg-icon flex-none svg__icon--btn" id="" fill="currentColor" title="">
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 14.4951C11.366 14.4951 14.5 11.3611 14.5 7.49512C14.5 3.62912 11.366 0.495117 7.5 0.495117C3.63401 0.495117 0.5 3.62912 0.5 7.49512C0.5 11.3611 3.63401 14.4951 7.5 14.4951ZM7.50002 13.5142C10.8243 13.5142 13.5191 10.8194 13.5191 7.49511C13.5191 4.17084 10.8243 1.47598 7.50002 1.47598C4.17575 1.47598 1.4809 4.17084 1.4809 7.49511C1.4809 10.8194 4.17575 13.5142 7.50002 13.5142Z"></path>
                                 <rect x="5.42188" y="4.58569" width="0.875" height="6.125" rx="0.4375"></rect>
                                 <rect x="5.3125" y="5.19043" width="0.875" height="6.125" rx="0.4375" transform="rotate(-60 5.3125 5.19043)"></rect>
                                 <rect width="0.875" height="6.125" rx="0.4375" transform="matrix(0.5 0.866025 0.866025 -0.5 5.3125 10.1201)"></rect>
                             </svg>
-                            <span>GO</span>
+                            <span>Inscribete YA</span>
                         </a>
                     </div>
 
@@ -212,10 +212,16 @@
                             </div>
                             <!-- contenido valor -->
                             <div class="valor__texto">
-                                {{#horarios}}
-                                    <h3>Turno <span>{{turno}}</span></h3>
-                                    <p>{{hora_inicio}} </br> {{hora_fin}} </p>
-                                {{/horarios}}
+                                {{#horario_1}}
+                                    {{#id}}
+                                        <h3>Turno <span>{{turno}}</span></h3>
+                                        <p>{{hora_inicio}} </br> {{hora_fin}} </p>
+                                    {{/id}}
+
+                                    {{^id}}
+                                    próximamente
+                                    {{/id}}
+                                {{/horario_1}}
                             </div>
                         </div>
                     </div>
@@ -232,10 +238,16 @@
                             </div>
                             <!-- contenido valor -->
                             <div class="valor__texto">
-                                {{#horarios}}
-                                    <h3>Turno <span>{{turno}}</span></h3>
-                                    <p>{{hora_inicio}} </br> {{hora_fin}} </p>
-                                {{/horarios}}
+                                {{#horario_2}}
+                                    {{#id}}
+                                        <h3>Turno <span>{{turno}}</span></h3>
+                                        <p>{{hora_inicio}} </br> {{hora_fin}} </p>
+                                    {{/id}}
+
+                                    {{^id}}
+                                    próximamente
+                                    {{/id}}
+                                {{/horario_2}}
                             </div>
                         </div>
                     </div>
