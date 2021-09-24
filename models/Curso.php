@@ -18,13 +18,9 @@ class Curso
             "search" => "description like concat('%',:search,'%')"
         ]);
 
-        $where_count = Utilitario::generarFiltros($data,[
-            "search" => "description like concat('%',:search,'%')"
-        ]);
-        
         return $this->model->getAllRows(
             "SELECT id,description,estado FROM tbl_curso $where limit :start,:length ", $data,
-            "SELECT count(id) AS cant_rows FROM tbl_curso $where_count",["search" => $data["search"] ]
+            "SELECT count(id) AS cant_rows FROM tbl_curso $where",["search" => $data["search"] ]
         );
 
     }

@@ -29,8 +29,8 @@ class UsuarioController
 
         switch ($action){
 
-            case "qry_usuarios": $array_result = $this->validator->getUsuarios();break;
-            
+            case "qry_usuario": $array_result = $this->validator->qryUsuario();break;
+            case "get_usuario": $array_result = $this->validator->getUsuario();break;
             default:
                 $array_result["error"] = "Error al procesar la petición";
                 break;
@@ -59,9 +59,7 @@ class UsuarioController
                 }
                 break;
                 
-            case "login_ajax": $array_result = $this->validator->login();break;
-            
-
+            case "login_ajax": $array_result = $this->validator->login();break;            
             default:
                 $array_result["error"] = "Error al procesar la petición";
         }
