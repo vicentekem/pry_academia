@@ -56,9 +56,9 @@ let crud_curso = {
                 }
             },
             columnDefs:[
-                {orderable: false, targets: 0, searchable: false,width:"10%", name:'id'},
-                {orderable: false, targets: 1, searchable: false, width:"70%",name:'description'},
-                {orderable: false, targets: 2, searchable: false, width:"10%",name:'estado'}
+                {orderable: false, targets: 0, searchable: false,width:"10%"},
+                {orderable: false, targets: 1, searchable: false, width:"70%"},
+                {orderable: false, targets: 2, searchable: false, width:"10%"}
             ],
             columns: [
                 {

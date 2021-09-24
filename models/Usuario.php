@@ -11,6 +11,46 @@ class Usuario
         $this->model = new ModeloBase();
     }
 
+    public function qryUsuario($data)
+    {
+        $where = Utilitario::generarFiltros($data,[
+            "search" => "trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) like concat('%',:search,'%')"
+        ]);
+
+        return $this->model->getAllRows(
+            "SELECT u.id,trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) nombre_completo,
+                u.estado ,u.usuario,ur.id_rol,tr.description rol
+            FROM tbl_usuario u
+            INNER JOIN tbl_persona p on p.id = u.id_persona 
+            INNER JOIN tbl_usuario_rol ur on ur.id_usuario = u.id
+            INNER JOIN tbl_tablas tr on tr.id_registro = ur.id_rol and tr.id_tabla = 2
+            $where ORDER BY u.id limit :start,:length ", $data,
+
+            "SELECT count(u.id) AS cant_rows FROM tbl_usuario u
+                INNER JOIN tbl_persona p on p.id = u.id_persona
+                INNER JOIN tbl_usuario_rol ur on ur.id_usuario = u.id $where",["search" => $data["search"] ]
+
+        );
+
+    }
+
+    public function getUsuario($data)
+    {
+
+        $where = Utilitario::generarFiltros($data,[
+            "id" => "u.id = :id"
+        ]);
+
+        $result = $this->model->getRow( 
+            "SELECT u.id,u.usuario,ur.id_rol,u.id_persona
+            FROM tbl_usuario u
+            INNER JOIN tbl_persona p on p.id = u.id_persona 
+            INNER JOIN tbl_usuario_rol ur on ur.id_usuario = u.id
+            INNER JOIN tbl_tablas tr on tr.id_registro = ur.id_rol and tr.id_tabla = 2 $where", $data);
+        
+        return $result;
+    }
+
     public function login($data)
     {
         return $this->model->getRow(
