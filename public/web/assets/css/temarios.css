@@ -128,7 +128,7 @@
 .caja__img {
   box-shadow: 0 2px 4px var(--shadow);
   border-radius: 0.5rem;
-  height: 339px;
+  /* height: 339px; */
 
 }
 .caja__img img {
@@ -138,13 +138,13 @@
   display: block;
   border-radius: 0.5rem;
 }
-@supports(object-fit: cover){
+/* @supports(object-fit: contain){
   .caja__img img{
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center center;
   }
-}
+} */
 
 @media (max-width: 1024px) {
   .caja__flex {
