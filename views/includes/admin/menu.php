@@ -1,3 +1,8 @@
+
+<input type="hidden" id="txt_session_id_usuario" value ="<?php echo $_SESSION["usuario_academia"]["id"]?>">
+<input type="hidden" id="txt_session_id_rol" value ="<?php echo $_SESSION["usuario_academia"]["id_rol"]?>">
+<input type="hidden" id="txt_session_id_persona" value ="<?php echo $_SESSION["usuario_academia"]["id_persona"]?>">
+
 <nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">

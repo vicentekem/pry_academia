@@ -155,7 +155,7 @@ class CursoProgramado
         );
     }
 
-    public function getUrlCursoProgramado($data)
+    public function getUrlImgCursoProgramado($data)
     {   
         return $this->model->getRow(
             "SELECT cp.url_img FROM tbl_curso_programado cp where cp.id = :id", $data

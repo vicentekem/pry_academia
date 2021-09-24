@@ -11,21 +11,21 @@ let crud_pago = {
         let btn_save_pago = $("#btn_save_pago");
 
         let input_file = $("#fl_img_baucher");
-        let img_curso = $("#img_baucher");
+        let img_baucher = $("#img_baucher");
 
         input_file.on("change",(event)=>{
             let target = event.target;            
             let default_src = "public/img/default.png";
             let src = target.files[0] ? URL.createObjectURL( target.files[0] ) : default_src;
-            crud_curso_programado.url_img_old = img_curso.attr("src");
-            img_curso.attr("src", src );
+            crud_pago.url_img_old = img_baucher.attr("src");
+            img_baucher.attr("src", src );
         })
 
         filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
         filter_container_jq.on("keyup", event => { if(event.keyCode == 13){ searchEventListener(event); } });
 
-        btn_new_pago.on("click",  (event)=> crud_pago.openModal());
+        btn_new_pago.on("click",  ()=> crud_pago.openModal());
         btn_save_pago.on("click", (event)=> crud_pago.saveData(event));
         
         crud_pago.initDataTable();
@@ -116,7 +116,7 @@ let crud_pago = {
     openAdjuntarModal : ( data )=>{
         $("#txt_curso").val(data.curso);
         $("#txt_crud_id").val(data.id);
-        $("#txt_crud_action").val("ins_baucher_pago");
+        $("#txt_crud_action").val("upd_baucher_pago");
         $("#" + crud_pago.id_adj_modal + " #emodal_title").html("Registrar Pago");
         $("#" + crud_pago.id_adj_modal).modal("show");
     },
@@ -133,7 +133,7 @@ let crud_pago = {
         event.preventDefault();
         let action = $("#txt_crud_action").val();
         let id = $("#txt_crud_id").val();
-        let fl_img_pago = document.getElementById("fl_img_baucher");        
+        let fl_img_pago = document.getElementById("fl_img_baucher");
         let url_img = $("#img_baucher").attr("src");        
         let fd = new FormData();
         
@@ -141,11 +141,15 @@ let crud_pago = {
         
         fd.append("id",id);
         fd.append("url_img",url_img);
-        fd.append("fl_img_curso", fl_img_pago.files.length > 0 ? fl_img_pago.files[0] : "");
+        fd.append("fl_img_pago", fl_img_pago.files.length > 0 ? fl_img_pago.files[0] : "");
         
         ajaxFDRequest(action,"post","PagoController.php",fd,(result)=>{
-            if(result.error === ""){                
-                showMessage(result.success,"success");                
+            if(result.error === ""){
+                fl_img_pago.value = "";
+                $("#img_baucher").attr("src", "public/img/default.png" );
+                crud_pago.reloadTable();
+                $("#" + crud_pago.id_adj_modal).modal("hide");
+                showMessage(result.success,"success");
             }else{
                 showMessage(result.error,"error");
             }

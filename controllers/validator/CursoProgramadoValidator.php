@@ -91,11 +91,11 @@ class CursoProgramadoValidator
         $fl_img_curso = isset($_FILES["fl_img_curso"]) ? $_FILES["fl_img_curso"] : null;
         
         if($action === 'upd' && $fl_img_curso){ 
-            $url_img_old = $this->model->getUrlCursoProgramado(["id int" => $data["id int"]])["row"]["url_img"];                        
+            $url_img_old = $this->model->getUrlImgCursoProgramado(["id int" => $data["id int"]])["row"]["url_img"];                        
             $url_img_old = __DIR__ . "/../../" . $url_img_old;            
             if($url_img_old !== "public/img/default.png" && file_exists($url_img_old)){
                 unlink( $url_img_old );
-            }            
+            }
         }
 
         if($fl_img_curso){

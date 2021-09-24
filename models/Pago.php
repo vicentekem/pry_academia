@@ -77,12 +77,18 @@ class Pago
         return $this->model->getAllRows("SELECT id,description FROM tbl_pago WHERE estado = 1");
     }
 
-    public function savePago($action,$data){        
+    public function getUrlImgBaucherPago($data)
+    {
+        return $this->model->getRow(
+            "SELECT url_img FROM tbl_pago p where p.id = :id", $data
+        );
+    }
+
+    public function savePago($action,$data){
         return $this->model->executeProcess(
-            "call sp_pago( '$action' ,:id,:descripcion,:resumen,:caracteristicas,:beneficios) ", $data,
+            "call sp_pago( '$action' ,:id,:url_img,:id_usuario) ", $data,
             "Datos guardados exitosamente"
         );
-
     }
 
 }

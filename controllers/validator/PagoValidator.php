@@ -57,11 +57,33 @@ class PagoValidator
         $result = [ "error" => "" ];
 
         $data["id int"] = Utilitario::getIntParam("id");
-        $data["descripcion"] = Utilitario::getParam("descripcion");
-        $data["resumen"] = Utilitario::getParam("resumen",false);
-        $data["caracteristicas"] = Utilitario::getParam("caracteristicas",false);
-        $data["beneficios"] = Utilitario::getParam("beneficios",false);
+        $data["url_img"] = "public/img/default.png";        
+        $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
         
+        $url_img = Utilitario::getParam("url_img",false);
+        $fl_img_pago = isset($_FILES["fl_img_pago"]) ? $_FILES["fl_img_pago"] : null;
+
+        if($action === 'upd_bp' && $fl_img_pago){ 
+            $url_img_old = $this->model->getUrlImgBaucherPago(["id int" => $data["id int"]])["row"]["url_img"];                        
+            $url_img_old = __DIR__ . "/../../" . $url_img_old;
+            if($url_img_old !== "public/img/default.png" && $url_img_old != "" && $url_img_old != null && file_exists($url_img_old)){
+                unlink( $url_img_old );
+            }
+        }
+
+        if($fl_img_pago){
+            $file_name = $_FILES['fl_img_pago']['name'];
+            $file_tmp  = $_FILES['fl_img_pago']['tmp_name'];
+            $explode = explode('.',$_FILES['fl_img_pago']['name']);
+            $file_ext=strtolower(end($explode));
+            $file_name_db = uniqid() . $data["id int"] . "." . $file_ext;
+            $url_img_new = __DIR__ . "/../../public/img/bauchers/" . $file_name_db;
+            $data["url_img"] = "public/img/bauchers/" . $file_name_db;
+            move_uploaded_file($file_tmp,$url_img_new);
+        }else{
+            $data["url_img"] = $url_img;
+        }
+
         if ($result["error"] === "") $result = $this->model->savePago($action,$data);
 
         return $result;
