@@ -88,6 +88,16 @@ h2 {
   border-bottom-width: 3px;
   transition: all 0.3s ease;
 }
+.focus-des input[type="text"]:focus {
+    /* border-radius: 5px; */
+    /* border-color: #9b59b6; */
+    border-color: var(--blue-secondary);
+  }
+  .focus-des input[type="email"]:focus {
+    /* border-radius: 5px; */
+    /* border-color: #9b59b6; */
+    border-color: var(--blue-secondary);
+  }
 .campo-desc {
   width: 90%;
   display: flex;

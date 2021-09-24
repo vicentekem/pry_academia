@@ -73,27 +73,27 @@
                 <div class="flex-desc">
                     <div class="campo-desc">
                         <!--=== DNI===-->
-                        <div class=" campo1 campo-space">
+                        <div class=" focus-des campo1 campo-space">
                             <input id="txt_dni" class="input-des" type="text" placeholder='Su DNI'>
                         </div>
 
                         <!--=== Apellido Paterno===-->
-                        <div class=" campo2  campo-space">
+                        <div class=" focus-des campo2  campo-space">
                             <input id="txt_ape_pat" class="input-des" type="text" placeholder='Su Apellido Paterno'>
                         </div>
 
                         <!--=== Apellido Materno===-->
-                        <div class=" campo3  campo-space">
+                        <div class=" focus-des campo3  campo-space">
                             <input id="txt_ape_mat" class="input-des" type="text" placeholder='Su Apellido Materno'>
                         </div>
 
                         <!--=== Nombres ===-->
-                        <div class=" campo4  campo-space">
+                        <div class=" focus-des campo4  campo-space">
                             <input id="txt_nombre" class="input-des" type="text" placeholder='Sus Nombres'>
                         </div>
 
                         <!--=== correo ===-->
-                        <div class=" campo6  campo-space">
+                        <div class=" focus-des campo6  campo-space">
                             <input id="txt_correo" class="input-des" type="email" placeholder='Su Correo Electronico'>
                         </div>
 
