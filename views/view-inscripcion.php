@@ -34,16 +34,16 @@
                         <div class="social-flex">
                             <!-- Home -->
                             <div class="btn-ico social-ico">
-                                <a href="?url=inicio">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 24 24" style="fill: #7a7a7a;transform: ;msFilter:;">
-                                        <path d="M3 13h1v7c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-7h1a1 1 0 0 0 .707-1.707l-9-9a.999.999 0 0 0-1.414 0l-9 9A1 1 0 0 0 3 13zm7 7v-5h4v5h-4zm2-15.586 6 6V15l.001 5H16v-5c0-1.103-.897-2-2-2h-4c-1.103 0-2 .897-2 2v5H6v-9.586l6-6z"></path>
+                                <a href="?url=inicio" class="icon-insc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" class="h-6 w-6 svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
                                 </a>
                             </div>
 
                             <!-- whatsapp -->
                             <div class="btn-ico social-ico">
-                                <a href="">
+                                <a href="" class="icon-insc">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 14 14" class="svg-icon s-color-text normal s-mr-1 whatsapp" id="" fill="currentColor" title="">
                                         <path d="M12.036,1.964A6.707,6.707,0,0,0,1.42,9.944L0,14l4.056-1.42a6.707,6.707,0,0,0,7.98-10.616ZM10.609,9.2l-.774.774c-.641.641-2.461-.139-4.065-1.742S3.387,4.807,4.028,4.165L4.8,3.391a.411.411,0,0,1,.581,0l.968.968a.411.411,0,0,1,0,.581L5.77,5.52A5.7,5.7,0,0,0,8.48,8.23l.581-.581a.411.411,0,0,1,.581,0l.968.968A.411.411,0,0,1,10.609,9.2Z"></path>
                                     </svg>
@@ -52,9 +52,9 @@
 
                             <!-- phone-->
                             <div class="btn-ico social-ico">
-                                <a href="#">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 24 24" style="fill: #7a7a7a;transform: ;msFilter:;">
-                                        <path d="M17.707 12.293a.999.999 0 0 0-1.414 0l-1.594 1.594c-.739-.22-2.118-.72-2.992-1.594s-1.374-2.253-1.594-2.992l1.594-1.594a.999.999 0 0 0 0-1.414l-4-4a.999.999 0 0 0-1.414 0L3.581 5.005c-.38.38-.594.902-.586 1.435.023 1.424.4 6.37 4.298 10.268s8.844 4.274 10.269 4.298h.028c.528 0 1.027-.208 1.405-.586l2.712-2.712a.999.999 0 0 0 0-1.414l-4-4.001zm-.127 6.712c-1.248-.021-5.518-.356-8.873-3.712-3.366-3.366-3.692-7.651-3.712-8.874L7 4.414 9.586 7 8.293 8.293a1 1 0 0 0-.272.912c.024.115.611 2.842 2.271 4.502s4.387 2.247 4.502 2.271a.991.991 0 0 0 .912-.271L17 14.414 19.586 17l-2.006 2.005z"></path>
+                                <a href="#" class="icon-insc">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" class="h-6 w-6 svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>
                                     <p>+51 912-234-234</p>
                                 </a>
@@ -69,38 +69,42 @@
                     </div>
                 </div>
 
-
+                
                 <div class="flex-desc">
                     <div class="campo-desc">
+                        <!--=== Curso ===-->
+                        <div class=" focus-des campo1 campo-space ">
+                            <input id="curso" class=" input-des bloqueo" type="text" disabled>
+                        </div>
                         <!--=== DNI===-->
-                        <div class=" campo1 campo-space">
-                            <input id="txt_dni" class="input-des" type="text" placeholder='Su DNI'>
+                        <div class=" focus-des campo1 campo-space">
+                            <input id="txt_dni" class="input-des" type="text" placeholder='DNI'>
                         </div>
 
                         <!--=== Apellido Paterno===-->
-                        <div class=" campo2  campo-space">
-                            <input id="txt_ape_pat" class="input-des" type="text" placeholder='Su Apellido Paterno'>
+                        <div class=" focus-des campo2  campo-space">
+                            <input id="txt_ape_pat" class="input-des" type="text" placeholder='Apellido Paterno'>
                         </div>
 
                         <!--=== Apellido Materno===-->
-                        <div class=" campo3  campo-space">
-                            <input id="txt_ape_mat" class="input-des" type="text" placeholder='Su Apellido Materno'>
+                        <div class=" focus-des campo3  campo-space">
+                            <input id="txt_ape_mat" class="input-des" type="text" placeholder='Apellido Materno'>
                         </div>
 
                         <!--=== Nombres ===-->
-                        <div class=" campo4  campo-space">
-                            <input id="txt_nombre" class="input-des" type="text" placeholder='Sus Nombres'>
+                        <div class=" focus-des campo4  campo-space">
+                            <input id="txt_nombre" class="input-des" type="text" placeholder='Nombres'>
                         </div>
 
                         <!--=== correo ===-->
-                        <div class=" campo6  campo-space">
-                            <input id="txt_correo" class="input-des" type="email" placeholder='Su Correo Electronico'>
+                        <div class=" focus-des campo6  campo-space">
+                            <input id="txt_correo" class="input-des" type="email" placeholder='Correo Electronico'>
                         </div>
 
                     </div>
-
+                    <!-- enviar -->
                     <div>
-                        <div class="btn__go btn-2 campo-desc">
+                        <div class="btn__go-desc btn-2 campo-desc">
                             <a href="?url=inscripcion" class="btn__center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15" class="svg-icon flex-none svg__icon--btn" id="" fill="currentColor" title="">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 14.4951C11.366 14.4951 14.5 11.3611 14.5 7.49512C14.5 3.62912 11.366 0.495117 7.5 0.495117C3.63401 0.495117 0.5 3.62912 0.5 7.49512C0.5 11.3611 3.63401 14.4951 7.5 14.4951ZM7.50002 13.5142C10.8243 13.5142 13.5191 10.8194 13.5191 7.49511C13.5191 4.17084 10.8243 1.47598 7.50002 1.47598C4.17575 1.47598 1.4809 4.17084 1.4809 7.49511C1.4809 10.8194 4.17575 13.5142 7.50002 13.5142Z"></path>

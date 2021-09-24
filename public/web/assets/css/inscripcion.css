@@ -27,7 +27,7 @@ h2 {
 }
 .img-desc {
   width: 50%;
-  background-image: url("../img/photo.jpg");
+  background-image: url("../img/persona1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -65,14 +65,20 @@ h2 {
 }
 .social-ico svg {
   font-size: 1.7rem;
-  color: #7a7a7a;
+  color: #a6a2da;
 }
-.titulo-desc {
+a.icon-insc svg:hover {
+  color: #8f54a7;
+}
+
+/* .titulo-desc {
   margin: 4rem 0 3rem 0;
-}
+} */
 .titulo-desc h2 {
   font-size: 2rem;
   text-align: center;
+  color: #636363;
+  text-transform: uppercase;
 }
 
 .input-des {
@@ -87,6 +93,19 @@ h2 {
   background-color: var(--white);
   border-bottom-width: 3px;
   transition: all 0.3s ease;
+}
+.focus-des input[type="text"]:focus {
+    /* border-radius: 5px; */
+    color: #636363;
+    border-color: #8f54a7;;
+  }
+  .focus-des input[type="email"]:focus {
+    /* border-radius: 5px; */
+   color: #636363;
+    border-color: #8f54a7;
+  }
+.icon-insc svg{
+  color:#a6a2da;
 }
 .campo-desc {
   width: 90%;
@@ -103,6 +122,28 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+.btn__go-desc a {
+  border-radius: 8px;
+  font-weight: 600;
+  background-color: #e3d9fc;
+  color: #a6a2da;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #a6a2da;
+  min-width: 140px;
+  min-height: 2.5rem;
+}
+.campo-desc a:hover {
+  background: #8f54a7;
+  color: white  ;
+  border: 1px solid #a6a2da;
+}
+::placeholder {
+  color: #a6a2da;
+  font-weight: 500;
+}
+.icon-insc p{
+  color: #636092;
 }
 @media (max-width: 1165px) {
     .desc-logo {
