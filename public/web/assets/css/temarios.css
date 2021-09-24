@@ -128,12 +128,13 @@
 .caja__img {
   box-shadow: 0 2px 4px var(--shadow);
   border-radius: 0.5rem;
+  height: 339px;
 
 }
 .caja__img img {
   transition: transform 0.3s ease-out;
   width: 100%;
-  height: 100%;
+  height: auto;
   display: block;
   border-radius: 0.5rem;
 }
