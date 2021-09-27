@@ -48,7 +48,7 @@ if (!isset($_SESSION["usuario_academia"])) {
             <div class="row">
                 <div class="col-lg-4">
                     <div class="contact-box" style="min-height: 171px">
-                        <a style="align-items: center" class="row" href="?url=ciclo&id=6">
+                        <a style="align-items: center" class="row" href="?url=detalle">
                             <div class="col-5">
                                 <div class="text-center">
                                     <div>
@@ -83,7 +83,7 @@ if (!isset($_SESSION["usuario_academia"])) {
 
                 <div class="col-lg-4">
                     <div class=" contact-box" style="min-height: 171px ">
-                        <a style=" align-items: center" class="row" href="?url=ciclo&id=3">
+                        <a style=" align-items: center" class="row" href="?url=detalle">
                             <div class="col-5">
                                 <div class="text-center">
                                     <div>
@@ -118,7 +118,7 @@ if (!isset($_SESSION["usuario_academia"])) {
 
                 <div class="col-lg-4">
                     <div class=" contact-box" style="min-height: 171px">
-                        <a style=" align-items: center" class="row" href="?url=ciclo&id=1">
+                        <a style=" align-items: center" class="row" href="?url=detalle">
                             <div class="col-5">
                                 <div class="text-center">
                                     <div>
@@ -153,7 +153,7 @@ if (!isset($_SESSION["usuario_academia"])) {
 
                 <div class="col-lg-4">
                     <div class=" contact-box" style="min-height: 171px">
-                        <a style=" align-items: center" class="row" href="?url=ciclo&id=2">
+                        <a style=" align-items: center" class="row" href="?url=detalle">
                             <div class="col-5">
                                 <div class="text-center">
                                     <div>

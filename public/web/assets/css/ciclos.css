@@ -322,13 +322,16 @@ input[type="search"]::-webkit-search-results-decoration {
 /*==========img======== */
 .curso__imagen {
   border-top-right-radius: 0.5rem;
-  height: 144px;
+  height: 180px;
   
 }
+
 .curso__imagen img {
   transition: transform 0.3s ease-out;
   width: 100%;
   height: auto;
+  /* max-width:250px; */
+  /* max-height: 180px; */
   display: block;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;
@@ -336,14 +339,99 @@ input[type="search"]::-webkit-search-results-decoration {
 .curso__imagen img:hover {
   transform: scale(0.8);
 }
+
 @supports(object-fit: cover){
   .curso__imagen img{
     height: 100%;
-    object-fit: cover;
-    object-position: center center;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+@media (max-width: 1323px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 170px;
+  }
+}
+@media (max-width: 1300px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 160px;
+  }
+}
+@media (max-width: 1251px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 150px;
+  }
+}
+@media (max-width: 1164px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 170px;
+  }
+}
+@media (max-width: 1120px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 160px;
+  }
+}
+@media (max-width: 1070px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 150px;
   }
 }
 
+@media (max-width: 868px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 177px;
+  }
+}
+@media (max-width: 777px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 160px;
+  }
+}
+@media (max-width: 700px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 155px;
+  }
+}
+@media (max-width: 624px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 190px;
+  }
+}
+@media (max-width: 525px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 170px;
+  }
+}
+@media (max-width: 470px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 160px;
+  }
+}
+@media (max-width: 450px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 150px;
+  }
+}
+@media (max-width: 400px) {
+  .curso__imagen {
+    /* border-top-right-radius: 0.5rem; */
+    height: 140px;
+  }
+}
 
 
 /* ====contenido Curso======= */

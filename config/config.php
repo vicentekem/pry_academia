@@ -13,6 +13,7 @@ $urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
 $urls["ciclo"] = "ciclo.php";
 $urls["correo"] = "correo.php";
+$urls["detalle"] = "detalle.php";
 $urls["inscripcion"] = "view-inscripcion.php";
 $urls["error"] = "error.php";
 
