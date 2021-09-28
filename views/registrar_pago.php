@@ -44,7 +44,7 @@
                 <div class="ibox">
 
                     <div class="ibox-title">
-                        <h3 style="display: inline-block">Deudas pendientes</h3>
+                        <h3 style="display: inline-block">Matricula y Mensualidades</h3>
                         <div class="ibox-tools"></div>
                     </div>
 
