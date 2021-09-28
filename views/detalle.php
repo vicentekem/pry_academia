@@ -65,28 +65,15 @@ if (!isset($_SESSION["usuario_academia"])) {
 <!-- curso -->
                         <div class="form-group col-12 px-1">
                             <label>Curso<span class="text-danger">*</span> </label>
-                            <select class="form-control " tabindex="-1">
-                                <option value="">-SELECCIONE-</option>
-                                <option value="1"> ARITMETICA </option>
-                                <option value="2"> ALGEBRA </option>
-                                <option value="3"> GEOMETRIA </option>
-                                <option value="4"> TRIGONOMETRIA </option>
-                                <option value="6"> ONEM </option>
-                                <option value="7"> CONAMAT </option>
-                                <option value="8"> NOMBRAMIENTO </option>
-                                <option value="9"> ACSCENSO DE NIVEL ESPECIALIZACION </option>
-                                <option value="10"> NUEVO CURO </option>
-                            </select>
+                            <input class="form-control " type="text">
+                            
                             <span class="select2 select2-container select2-container--bootstrap4 select2-container--disabled" dir="ltr" data-select2-id="1" style="width: 100%;">
                             </span>
                         </div>
 <!-- profesor -->
                         <div class="form-group col-12 px-1">
                             <label for="cbx_crud_id_profesor">Profesor<span class="text-danger">*</span> </label>
-                            <select class="form-control " tabindex="-1">
-                                <option value="">-SELECCIONE-</option>
-                                <option value="1"> JOEL VICENTE QUISPE </option>
-                            </select>
+                            <input class="form-control " type="text">
                             <span class="select2 select2-container select2-container--bootstrap4 select2-container--disabled" dir="ltr" data-select2-id="1" style="width: 100%;">
                             </span>
                         </div>
