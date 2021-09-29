@@ -43,43 +43,12 @@ if (!isset($_SESSION["usuario_academia"])) {
             </div>
             <div class="ibox-title mt-2 mb-2">
                 <h3 style="display: inline-block; text-transform:capitalize"> Estos son los cursos en los que estas inscritos</h3>
+
+               
             </div>
 
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="contact-box" style="min-height: 171px">
-                        <a style="align-items: center" class="row" href="?url=detalle">
-                            <div class="col-5">
-                                <div class="text-center">
-                                    <div>
-                                        <img alt="image" class="m-t-xs img-fluid" src="public/web/assets/img/cursos/curso1.jpg">
-                                    </div>
-                                    <div style="text-transform:uppercase" class="m-t-xs font-bold">Acseso de <br>nivel de Especializacion</div>
-                                </div>
-                            </div>
-                            <div class="col-7">
-                                <h3><strong>Status</strong></h3>
-
-                                <p style="margin:0">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <strong>Curso:</strong> <span>En proceso</span>
-
-                                </p>
-                                <p style="margin:0">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <strong>fecha de Termino:</strong> <span>24/09/2021</span>
-
-                                </p>
-
-                                <p style="margin:0">
-                                    <i class="fa fa-angle-double-right"></i>
-                                    <strong>Profesor.</strong> <span>Lorem ipsum, </span>
-
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div id="contenedor-curso" class="row">
+                <?php include "views/includes/templates/card_curso_inscrito.php"; ?>
 
                 <div class="col-lg-4">
                     <div class=" contact-box" style="min-height: 171px ">
@@ -189,6 +158,8 @@ if (!isset($_SESSION["usuario_academia"])) {
 
         </div>
     </div>
+    <?php include "views/includes/templates/card_curso_template.php"; ?>
+
 
     <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
     <?php include __DIR__ . "/includes/partials/curso/modal_curso.php" ?>
@@ -202,6 +173,12 @@ if (!isset($_SESSION["usuario_academia"])) {
     <script src="public/js/utilitario/utilitario.js"></script>
 
     <script src="public/js/scripts/curso.js"></script>
+
+
+
+    <script src="public/js/plugins/mustache/mustache.min.js"></script>
+    <script src="public/js/utilitario/utilitario.js"></script>
+    <script src="public/js/scripts/mis_cursos.js"></script>
 
 </body>
 
