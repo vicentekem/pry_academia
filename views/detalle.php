@@ -49,141 +49,14 @@ if (!isset($_SESSION["usuario_academia"])) {
                 </div>
             </div>
 
-            <div class="ibox-content" id="filter_container">
+            <div class="ibox-content" id="curso_inscrito">
 
-
-                <div class="row">
-                    <input type="hidden" id="txt_crud_id" value="1">
-                    <input type="hidden" id="txt_crud_action" value="upd_curso_programado">
-
-                    <div class="col-12 col-lg-4 row mx-0 px-1">
-
-                        <div class="form-group col-12 px-1">
-                            <img class="w-100" id="img_curso_programado" src="public/img/cursos/614e4df2e90d8.png" alt="">
-                        </div>
-
-
-                    </div>
-
-                    <div class="col-12 col-lg-8 row mx-0 px-1 align-items-start align-content-start">
-<!-- curso -->
-                        <div class="form-group col-12 px-1">
-                            <label>Curso<span class="text-danger">*</span> </label>
-                            <input class="form-control " type="text">
-                            
-                        </div>
-<!-- profesor -->
-                        <div class="form-group col-12 px-1">
-                            <label for="cbx_crud_id_profesor">Profesor<span class="text-danger">*</span> </label>
-                            <input class="form-control " type="text">
-                        </div>
-
-                        <div class="form-group col-12 px-1">
-                            <label >Link </label>
-                            <input  class="form-control" placeholder="">
-                        </div>
-
-                        <div class="form-group col-12 col-lg-4 px-1">
-                            <label >Fecha inicio<span class="text-danger">*</span> </label>
-                            <input class="form-control" data-mask="99/99/9999" placeholder="">
-                        </div>
-
-                        <div class="form-group col-12 col-lg-4 px-1">
-                            <label >Fecha fin<span class="text-danger">*</span> </label>
-                            <input class="form-control" data-mask="99/99/9999" placeholder="">
-                        </div>
-
-                    </div>
-
-                    <div class="col-12 col-lg-5 row mx-0 px-1 align-items-start align-content-start">
-
-                        <div class="col-12 col-lg-6 row mx-0 px-0 align-items-start align-content-start">
-                            <div class="form-group col-12 px-0">
-                                <label for="cbx_crud_id_tipo_pago">Tipo de Pago<span class="text-danger">*</span> </label>
-                                <input class="form-control" type="text" placeholder="">
-                            
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-6 row mx-0 px-0 align-items-start align-content-start">
-                            <div class="form-group col-12 px-0">
-                                <label for="cbx_crud_id_tipo_pago">Monto<span class="text-danger">*</span> </label>
-                                <input class="form-control" type="text" placeholder="">
-                            
-                            </div>
-                        </div>
-
-                        <div class="table-responsive w-100 text-sm">
-                            <table class="table table-hover w-100">
-                                <thead>
-                                    <tr>
-                                        <th class="bg-success">Accion</th>
-                                        <th class="bg-success">Tipo Pago</th>
-                                        <th class="bg-success">Monto</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl_tipo_pago">
-                                    <tr>
-                                        <td class="text-center"><a href="#" class="text-success fa fa-check" data-iditem="11" title="curso" style="font-size:1.2em"></a></td>
-                                        <td>MATRICULA</td>
-                                        <td>70.50</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-7 row mx-0 px-1 align-items-start align-content-start">
-
-                        <div class="col-12 col-lg-5 row mx-0 px-0 align-items-start align-content-start">
-                            <div class="form-group col-12 px-0">
-                                <label >Turno<span class="text-danger">*</span> </label>
-                                <input class="form-control" type="text" placeholder="">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-3 row mx-0 px-0 pl-1 align-items-start align-content-start">
-                            <div class="form-group col-12 px-0">
-                                <label >Hora Inicio<span class="text-danger">*</span> </label>
-                                <input class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="col-12 col-lg-3 row mx-0 px-0 pl-1 align-items-start align-content-start">
-                            <div class="form-group col-12 px-0">
-                                <label >Hora Fin<span class="text-danger">*</span> </label>
-                                <input  class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="table-responsive w-100 text-sm">
-                            <table class="table table-hover w-100">
-                                <thead>
-                                    <tr >
-                                        <th class="bg-success ">Turno</th>
-                                        <th class="bg-success ">Hora Inicio</th>
-                                        <th class="bg-success ">Hora Fin</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="tbl_turno">
-                                    <tr>
-                                        <td>TARDE</td>
-                                        <td>08:00 AM</td>
-                                        <td>11:00 AM</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <!-- <div class="form-group col-12">
-                        <button type="button" id="btn_save_curso_programado" form="frm_crud_curso" class="btn btn-primary">Guardar</button>
-                    </div> -->
-
-                </div>
+            <?php include "views/includes/templates/detalle_curso_inscrito.php"; ?>
             </div>
         </div>
     </div>
+
+    <?php include "views/includes/templates/detalle_curso_inscrito.php"; ?>
 
     <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
     <?php include __DIR__ . "/includes/partials/curso/modal_curso.php" ?>
@@ -197,6 +70,12 @@ if (!isset($_SESSION["usuario_academia"])) {
     <script src="public/js/utilitario/utilitario.js"></script>
 
     <script src="public/js/scripts/curso.js"></script>
+
+
+    <script src="public/js/plugins/mustache/mustache.min.js"></script>
+    <script src="public/js/utilitario/utilitario.js"></script>
+    <script src="public/js/scripts/detalle_curso.js"></script>
+
 
 </body>
 
