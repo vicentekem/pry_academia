@@ -19,8 +19,9 @@ class PersonaValidator
     
     public function cbxPersona()
     {
-        $result = [ "error" => "" ];     
-        if ($result["error"] === "") $result = $this->model->cbxPersona();        
+        $result = [ "error" => "" ];
+        $data["q"] = Utilitario::getParam("q");
+        $result = $result["error"] === "" ? $this->model->cbxPersona($data) : $result;
 
         return $result;
     }

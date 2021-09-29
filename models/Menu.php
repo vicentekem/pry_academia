@@ -57,6 +57,25 @@ class Menu
         );
     }
 
+    public function cbxMenu()
+    {
+        return $this->model->getAllRows(
+            "SELECT m.id,m.name_menu
+            FROM tbl_menu m WHERE m.estado = 1 ORDER BY m.orden"
+        );
+    }
+
+    public function cbxSubMenu($data)
+    {
+        $where = Utilitario::generarFiltros($data,[ "id_menu" => "sm.id_menu = :id_menu" ], ["sm.estado = 1"]);
+
+        return $this->model->getAllRows(
+            "SELECT sm.id,sm.id_menu,sm.name_menu
+            FROM tbl_submenu sm $where ORDER BY sm.orden",$data
+        );
+
+    }
+
 }
 
 

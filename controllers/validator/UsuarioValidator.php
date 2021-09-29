@@ -25,9 +25,9 @@ class UsuarioValidator
         $data["start int"] = isset($_GET["start"]) ? $_GET["start"] : null;
         $data["length int"] = isset($_GET["length"]) ? $_GET["length"] : null;
 
-        $data["search"] =       Utilitario::getParam("search");
-                
-        if ($result["error"] === "") $result = $this->model->qryUsuario($data);        
+        $data["search"] = Utilitario::getParam("search");                
+        
+        $result = $result["error"] === "" ? $this->model->qryUsuario($data) : $result;
 
         return $result;
     }
@@ -36,8 +36,15 @@ class UsuarioValidator
     {
         $result = [ "error" => "" ];
         $data["id int"] = Utilitario::getIntParam("id");
-        if ($result["error"] === "") $result = $this->model->getUsuario($data);        
+        $result = $result["error"] === "" ? $this->model->getUsuario($data) : $result;
+        return $result;
+    }
 
+    public function cbxUsuario()
+    {        
+        $result = [ "error" => "" ];
+        $data["q"] = Utilitario::getParam("q");
+        $result = $result["error"] === "" ? $this->model->cbxUsuario($data) : $result;
         return $result;
     }
 
@@ -49,13 +56,10 @@ class UsuarioValidator
         
         if (!$data["usuario"]) { $result["error"] = "Ingrese usuario"; }        
         if (!$data["clave"]) { $result["error"] = "Ingrese contraseña"; }
-
-        if ($result["error"] === "") {
-            $result = $this->model->login($data);
-        }
-
+        
+        $result = $result["error"] === "" ? $this->model->login($data) : $result;
+        
         return $result;
-
     }
     
 

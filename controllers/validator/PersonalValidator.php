@@ -24,9 +24,7 @@ class PersonalValidator
         $data["length int"] = isset($_GET["length"]) ? $_GET["length"] : null;
 
         $data["search"] = Utilitario::getParam("search");
-
-        if ($result["error"] === "") $result = $this->model->qryPersonal($data);        
-
+        $result = $result["error"] === "" ? $this->model->qryPersonal($data) : $result;        
         return $result;
     }
 
@@ -35,8 +33,7 @@ class PersonalValidator
         $result = [ "error" => "" ];
         
         $data["id int"] = Utilitario::getIntParam("id");
-        
-        if ($result["error"] === "") $result = $this->model->getPersonal($data);        
+        $result = $result["error"] === "" ? $this->model->getPersonal($data) : $result;
 
         return $result;
     }
@@ -44,7 +41,7 @@ class PersonalValidator
     public function cbxPersonal()
     {
         $result = [ "error" => "" ];
-        if ($result["error"] === "") $result = $this->model->cbxPersonal();        
+        $result = $result["error"] === "" ? $this->model->cbxPersonal() : $result;
 
         return $result;
     }
@@ -65,13 +62,11 @@ class PersonalValidator
         $data["correo"] = Utilitario::getParam("correo");
         $data["celular"] = Utilitario::getParam("celular");
         $data["telefono"] = Utilitario::getParam("telefono");
-
         $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
-        //exit( json_encode($data) );
-        if ($result["error"] === "") $result = $this->model->savePersonal($action,$data);
+        
+        $result = $result["error"] === "" ? $this->model->savePersonal($data) : $result;        
 
         return $result;
-
     }
 
 

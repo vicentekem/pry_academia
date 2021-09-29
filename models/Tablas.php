@@ -18,18 +18,18 @@ class Tablas
             "id_tabla" => "id_tabla = :id_tabla"
         ]);
 
-        $where_count = Utilitario::generarFiltros($data,[            
-            "id_tabla" => "id_tabla = :id_tabla"
-        ]);
-        
+        $data_count = $data;
+        unset( $data_count["start int"] );
+        unset( $data_count["length int"] );
+                
         return $data["id_tabla int"] === null ?       
             $result = ["rows" => [], "cant_rows" => 0,"row" => null, "error" => null]
         :
         $this->model->getAllRows(
             "SELECT id_tabla,id_registro AS id,description,cod_referencial,estado
             FROM tbl_tablas $where limit :start,:length ", $data,
-            "SELECT count(id_registro) AS cant_rows FROM tbl_tablas $where_count",
-            ["id_tabla" => $data["id_tabla int"] ]
+            "SELECT count(id_registro) AS cant_rows FROM tbl_tablas $where",
+            $data_count
         );
 
     }
@@ -38,8 +38,7 @@ class Tablas
 
         $where = Utilitario::generarFiltros($data,[
             "id_tabla" => "id_tabla = :id_tabla"
-        ]);
-
+        ]);        
         return $this->model->getAllRows(
             "SELECT id_registro as id,description FROM tbl_tablas $where", $data
         );

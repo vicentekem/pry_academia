@@ -3,7 +3,7 @@
 class Utilitario
 {
 
-    static function generarFiltros($data,$data_filters,$admit_zero = false,$extra_filter = []){
+    static function generarFiltros($data,$data_filters,$extra_filter = []){
         $filters = [];
         foreach( $data as $key => $value ){
             $key = explode(" " , $key)[0];

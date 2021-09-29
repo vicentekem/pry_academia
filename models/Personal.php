@@ -18,24 +18,21 @@ class Personal
             "search" => "trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) like concat('%',:search,'%')"
         ]);
 
-        $where_count = Utilitario::generarFiltros($data,[
-            "search" => "trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) like concat('%',:search,'%')"
-        ]);
+        $data_count = $data;
+        unset( $data_count["start int"] );
+        unset( $data_count["length int"] );
         
         return $this->model->getAllRows(
 
             "SELECT 
-                    pe.id,pe.id_persona,p.dni,p.correo,p.telefono,p.celular,p.estado,tc.description as cargo,
-                    trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) nombre_completo
+                pe.id,pe.id_persona,p.dni,p.correo,p.telefono,p.celular,p.estado,tc.description as cargo,
+                trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) nombre_completo
             FROM tbl_personal pe
             INNER JOIN tbl_persona p on pe.id_persona = p.id
             INNER JOIN tbl_tablas tc on pe.id_cargo = tc.id_registro and tc.id_tabla = 5
-            $where limit :start,:length ",
-
-            $data,
+            $where limit :start,:length ", $data,
         
-            "SELECT count(pe.id) AS cant_rows FROM tbl_personal pe INNER JOIN tbl_persona p on pe.id_persona = p.id $where_count",
-            ["search" => $data["search"] ]
+            "SELECT count(pe.id) AS cant_rows FROM tbl_personal pe INNER JOIN tbl_persona p on pe.id_persona = p.id $where", $data_count
         );
 
     }

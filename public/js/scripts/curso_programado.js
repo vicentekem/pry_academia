@@ -4,6 +4,9 @@ let crud_curso_programado = {
     id_table: "tbl_curso_programado",
     id_modal: "modal_crud_curso_programado",
     action : getParameterByName("action"),
+    id_rol : $("#txt_session_id_rol").val(),
+    id_persona : $("#txt_session_id_persona").val(),
+    id_usuario : $("#txt_session_id_usuario").val(),
     url_img_old : "",
     init : ()=>{
         
@@ -76,13 +79,21 @@ let crud_curso_programado = {
             columns: [
                 {
                     render: function(data, type, row, meta){                    
-                        var btn_edit = `<a class='fa fa-edit  text-warning upd-row' id=upd_${meta.row} href='#' style='font-size: 1.1em'></a>`;
-                        var btn_est  = row.estado == 1 ? 
-                            `<a class='fa fa-times text-danger   est-row' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>` : 
-                            `<a class='fa fa-check text-info  est-row' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>`;
-                            
+                        var btn_edit = `<a class='fa fa-edit text-warning' title='Editar' href='?url=curso_programado&action=upd&id=${row.id}' style='font-size: 1.1em'></a>`;
+                        var btn_view = `<a class='fa fa-eye text-sucess' title='Ver' href='?url=curso_programado&action=view&id=${row.id}' style='font-size: 1.1em'></a>`;
+                        var btn_est  = row.estado == 1 ?
+                            `<a class='fa fa-times text-danger est-row' title='Desactivar' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>` : 
+                            `<a class='fa fa-check text-info  est-row' title='Activar' id=est_${meta.row} href='#' style='font-size: 1.1em'></a>`;
 
-                        return `<div class='text-center'> ${btn_edit} ${btn_est}</div>`;
+                        let id_rol = crud_curso_programado.id_rol;
+                        let id_persona = crud_curso_programado.id_persona;
+
+                        let edit_permision = (id_rol == 1 || id_rol == 2 || id_persona == row.id_persona);
+                        let show_permision = (id_rol != 1 && id_rol != 2);
+                        let change_est_permision = (crud_curso_programado.id_rol == 1 || crud_curso_programado.id_rol == 2);
+
+                        return `<div class='text-center'>
+                            ${ edit_permision?btn_edit:""} ${ show_permision?btn_view:""} ${ change_est_permision?btn_est:""}</div>`;
                     }
                 },
                 { data: "description"},
@@ -94,7 +105,7 @@ let crud_curso_programado = {
                         return `<a href="#" style="word-break: break-all;">${row.link_clase || ""}</a>`;
                     }
                 },
-                { 
+                {
                     render: function(data, type, row, meta){
                         return row.estado == 1 ? `<div class="text-center"><small class="label label-primary">Activado</small></div>` : 
                         `<small class="label label-danger">Desactivado</small>`;
@@ -105,13 +116,6 @@ let crud_curso_programado = {
     },
 
     initActionsTadaTables: ()=>{
-
-        $("#" + crud_curso_programado.id_table + " tbody").on("click", ".upd-row", function(event){
-            event.preventDefault();
-            var id_row = $(this).attr("id").match(/\d+/)[0];
-            var data = crud_curso_programado.dtable.row(id_row).data();            
-            location.href="?url=curso_programado&action=upd&id=" + data.id;
-        });
 
         $("#" + crud_curso_programado.id_table + " tbody").on("click", ".est-row", function(event){
             event.preventDefault();
@@ -196,6 +200,7 @@ let crud_curso_programado = {
             $("#txt_crud_link_clase").val(d.link_clase).attr("disabled",crud_curso_programado.action == 'view');
             $("#txt_crud_fecha_inicio").val(d.fecha_inicio).attr("disabled",crud_curso_programado.action == 'view');
             $("#txt_crud_fecha_fin").val(d.fecha_fin).attr("disabled",crud_curso_programado.action == 'view')
+            $("#txt_crud_cant_mensualidades").val(d.cant_mensualidades).attr("disabled",crud_curso_programado.action == 'view')
 
             $("#img_curso_programado").attr("src",d.url_img_curso);
 
@@ -215,21 +220,23 @@ let crud_curso_programado = {
         else if(data.id_persona == ""){ msg = "Seleccione el profesor"  }
         else if(data.fecha_inicio == ""){ msg = "Ingrese fecha de inicio"  }
         else if(data.fecha_fin == ""){ msg = "Ingrese fecha final"  }
-        else if(data.tipos_pago == ""){ msg = "Agregue tipos de pago" }
-        else if(data.turnos == ""){ msg = "Agregue turnos" }        
+        else if(data.cant_mensualidades == ""){ msg = "Ingrese la cantidad de mensualidades" }
+        else if(data.tipos_pago == ""){ msg = "Agregue montos" }
+        else if(data.turnos == ""){ msg = "Agregue horarios" }
         return msg;
     },
 
-    saveData: (event)=>{        
+    saveData: (event)=>{
         event.preventDefault();
         let action = $("#txt_crud_action").val();
         let id = $("#txt_crud_id").val();
         let id_curso = $("#cbx_crud_id_curso").val();
         let id_persona = $("#cbx_crud_id_profesor").val();
         let fecha_inicio = $("#txt_crud_fecha_inicio").val();
-        let fecha_fin = $("#txt_crud_fecha_fin").val();
-        let fl_img_curso = document.getElementById("fl_crud_img_curso");
+        let fecha_fin = $("#txt_crud_fecha_fin").val();        
         let link_clase = $("#txt_crud_link_clase").val();
+        let cant_mensualidades = $("#txt_crud_cant_mensualidades").val();
+        let fl_img_curso = document.getElementById("fl_crud_img_curso");
         let url_img = $("#img_curso_programado").attr("src");
         let tipos_pago = tbl_tipo_pago.getString();
         let turnos = tbl_turno.getString();
@@ -243,6 +250,7 @@ let crud_curso_programado = {
             fecha_inicio : fecha_inicio,
             fecha_fin : fecha_fin,
             link_clase:link_clase,
+            cant_mensualidades:cant_mensualidades,
             tipos_pago : tipos_pago,
             url_img:url_img,
             turnos : turnos
@@ -258,6 +266,7 @@ let crud_curso_programado = {
         fd.append("fecha_fin",fecha_fin);
         fd.append("tipos_pago",tipos_pago);
         fd.append("turnos",turnos);
+        fd.append("cant_mensualidades",cant_mensualidades);
         fd.append("url_img",url_img);
         fd.append("url_img_old",crud_curso_programado.url_img_old);
         fd.append("fl_img_curso", fl_img_curso.files.length > 0 ? fl_img_curso.files[0] : "");

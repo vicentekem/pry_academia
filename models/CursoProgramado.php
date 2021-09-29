@@ -19,15 +19,15 @@ class CursoProgramado
             "search" => "c.description like concat('%',:search,'%')"            
         ]);
 
-        $data_count = [
-            "search" => $data["search"]
-        ];
+        $data_count = $data;
+        unset( $data_count["start int"] );
+        unset( $data_count["length int"] );
 
         return $this->model->getAllRows(
             "SELECT 
                 cp.id,cp.id_curso,cp.url_img,c.description,cp.estado,cp.link_clase,
                 DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') as fecha_inicio,DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') as fecha_fin,                
-                TRIM(CONCAT(p.nombre,' ',IFNULL(p.apellido_pat,''),' ',IFNULL(p.apellido_mat,''))) profesor
+                TRIM(CONCAT(p.nombre,' ',IFNULL(p.apellido_pat,''),' ',IFNULL(p.apellido_mat,''))) profesor,p.id as id_persona
             FROM tbl_curso_programado cp
             INNER JOIN tbl_curso c on c.id = cp.id_curso
             INNER JOIN tbl_persona p on p.id = cp.id_persona $where limit :start,:length", $data,
@@ -39,10 +39,35 @@ class CursoProgramado
 
     }
 
+    public function qryCursoXPersona($data)
+    {
+        $where = Utilitario::generarFiltros($data,
+        [
+            "id_persona" => "pa.id = :id_persona"
+        ]);
+        
+        return $this->model->getAllRows(
+            "SELECT 
+                cp.id,cp.id_curso,cp.url_img,c.description,cp.estado,cp.link_clase,
+                DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') as fecha_inicio,DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') as fecha_fin,                
+                TRIM(CONCAT(p.nombre,' ',IFNULL(p.apellido_pat,''),' ',IFNULL(p.apellido_mat,''))) profesor,p.id as id_persona,
+                TRIM(CONCAT(pa.nombre,' ',IFNULL(pa.apellido_pat,''),' ',IFNULL(pa.apellido_mat,''))) alumno,
+                case when CURRENT_DATE > fecha_fin then 'FINALIZADO' when CURRENT_DATE > fecha_inicio then 'EN CURSO' 
+                    when CURRENT_DATE < fecha_inicio then 'PROXIMO A INICIAR' end as estado_curso
+            FROM tbl_curso_programado cp
+            INNER JOIN tbl_curso c on c.id = cp.id_curso
+            INNER JOIN tbl_persona p on p.id = cp.id_persona
+            INNER JOIN tbl_matricula m on m.id_curso_programado = cp.id
+            INNER JOIN tbl_alumno a on a.id = m.id_alumno
+            INNER JOIN tbl_persona pa on pa.id = a.id_persona $where", $data
+        );
+
+    }
+
     public function pwCursoProgramado($data)
     {
         $where = Utilitario::generarFiltros($data,[ "search" => "c.description like concat('%',:search,'%')" ]);
-                
+
         return $this->model->getAllRows(
             "SELECT cp.id,cp.id_curso,c.description,c.resumen,cp.url_img AS url_img_curso,
                 cp.id_persona,ctp.monto AS monto_matricula,p.url_img AS url_img_profesor,
@@ -58,10 +83,10 @@ class CursoProgramado
     public function getCursoProgramado($data)
     {
         $where = Utilitario::generarFiltros($data,["id" => "cp.id = :id"]);
-                
+
         $result = $this->model->getRow(
             "SELECT cp.id,cp.id_curso,p.id as id_profesor,DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') fecha_inicio,
-                DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') fecha_fin,cp.link_clase,cp.url_img url_img_curso
+                DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') fecha_fin,cp.link_clase,cp.url_img url_img_curso,cp.cant_mensualidades
             FROM tbl_curso c
             INNER JOIN tbl_curso_programado cp on c.id = cp.id_curso
             INNER JOIN tbl_persona p on cp.id_persona = p.id $where", $data
@@ -81,6 +106,45 @@ class CursoProgramado
             INNER JOIN tbl_curso_programado_turno ct on ct.id_curso_programado = cp.id
             INNER JOIN tbl_tablas tt on ct.id_turno = tt.id_registro and tt.id_tabla = 4 $where", $data
         )["rows"];
+
+        return $result;
+    }
+
+    public function getCursoProgramadoXPersona($data)
+    {
+        $where  = Utilitario::generarFiltros($data,["id" => "cp.id = :id","id_persona" => "pa.id = :id_persona"]);
+        $where2 = Utilitario::generarFiltros($data,["id" => "cp.id = :id"]);
+
+        $result = $this->model->getRow(
+            "SELECT cp.id,cp.id_curso,p.id as id_profesor,DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y') fecha_inicio,
+                DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y') fecha_fin,cp.link_clase,cp.url_img url_img_curso,cp.cant_mensualidades
+            FROM tbl_curso c
+            INNER JOIN tbl_curso_programado cp on c.id = cp.id_curso
+            INNER JOIN tbl_persona p on cp.id_persona = p.id 
+            INNER JOIN tbl_matricula m on m.id_curso_programado = cp.id
+            INNER JOIN tbl_alumno a on a.id = m.id_alumno
+            INNER JOIN tbl_persona pa on pa.id = a.id_persona $where", $data
+        );
+        
+        if( $result["row"] != null ){
+            $result["montos"] = $this->model->getAllRows(
+                "SELECT concat(cp.id,ctp.id_tipo_pago) id,ctp.id_tipo_pago,ttp.description as tipo_pago,ctp.monto
+                FROM tbl_curso_programado cp
+                INNER JOIN tbl_curso_programado_tipo_pago ctp on ctp.id_curso_programado = cp.id
+                INNER JOIN tbl_tablas ttp on ctp.id_tipo_pago = ttp.id_registro and ttp.id_tabla = 3 $where2", $data
+            )["rows"];    
+            $result["horarios"] = $this->model->getAllRows(
+                "SELECT concat(cp.id,ct.id_turno) id,ct.id_turno,tt.description as turno,
+                    DATE_FORMAT(ct.hora_inicio,'%h:%i %p') hora_inicio,DATE_FORMAT(ct.hora_fin,'%h:%i %p') hora_fin
+                FROM tbl_curso_programado cp
+                INNER JOIN tbl_curso_programado_turno ct on ct.id_curso_programado = cp.id
+                INNER JOIN tbl_tablas tt on ct.id_turno = tt.id_registro and tt.id_tabla = 4 $where2", $data
+            )["rows"];
+        }else{
+            $result["montos"] = [];
+            $result["horarios"] = [];
+        }
+        
 
         return $result;
     }
@@ -166,7 +230,7 @@ class CursoProgramado
         
         return $this->model->executeProcess(
             "call sp_curso_programado( '$action' ,:id,:id_curso,:fecha_inicio,
-                :fecha_fin,:url_img,:link_clase,:tipos_pago,:turnos,:id_usuario,:id_persona) ", $data,
+                :fecha_fin,:cant_mensualidades,:url_img,:link_clase,:tipos_pago,:turnos,:id_usuario,:id_persona) ", $data,
             "Datos guardados exitosamente"
         );
 

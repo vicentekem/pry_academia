@@ -29,11 +29,13 @@ class CursoProgramadoController
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
             case "qry_curso_programado":$array_result = $this->validator->qryCursoProgramado();break;
-            case "pw_curso_programado" :$array_result = $this->validator->pwCursoProgramado();break;
+            case "qry_curso_x_persona" :$array_result = $this->validator->qryCursoXPersona();break;
             case "get_curso_programado" :$array_result = $this->validator->getCursoProgramado();break;
+            case "get_curso_programado_x_persona" :$array_result = $this->validator->getCursoProgramadoXPersona();break;
             case "get_data_curso_programado" :$array_result = $this->validator->getDataCursoProgramado();break;
             case "cbx_curso_programado":$array_result = $this->validator->cbxCursoProgramado();break;
             case "cbx_turnos_x_curso":$array_result = $this->validator->cbxTurnosForCurso();break;
+            case "pw_curso_programado" :$array_result = $this->validator->pwCursoProgramado();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);

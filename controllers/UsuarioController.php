@@ -30,6 +30,7 @@ class UsuarioController
         switch ($action){
 
             case "qry_usuario": $array_result = $this->validator->qryUsuario();break;
+            case "cbx_usuario": $array_result = $this->validator->cbxUsuario();break;
             case "get_usuario": $array_result = $this->validator->getUsuario();break;
             default:
                 $array_result["error"] = "Error al procesar la petición";

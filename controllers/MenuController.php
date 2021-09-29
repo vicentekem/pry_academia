@@ -28,8 +28,9 @@ class MenuController
     {
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
-
-            case "qry_Menus":$array_result = $this->validator->getMenus();break;
+            
+            case "cbx_menu":$array_result = $this->validator->cbxMenu();break;
+            case "cbx_submenu":$array_result = $this->validator->cbxSubMenu();break;
 
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
@@ -38,15 +39,8 @@ class MenuController
     
     public function controllerPost()
     {
-        $action = isset($_POST['action']) ? $_POST['action'] : "";
-                            
-        switch ($action) {
-
-            case "ins_prueba": $array_result = $this->validator->saveMenu(false);break;
-            case "upd_prueba": $array_result = $this->validator->saveMenu(true);break;
-
-            default: $array_result["error"] = "Error al procesar la petición";
-        }
+        $action = isset($_POST['action']) ? $_POST['action'] : "";                            
+        switch ($action) { default: $array_result["error"] = "Error al procesar la petición"; }
         echo json_encode($array_result);
     }
 
