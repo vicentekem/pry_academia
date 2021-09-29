@@ -51,6 +51,11 @@
             <input  id="txt_crud_fecha_fin" class="form-control" data-mask="99/99/9999" placeholder="">
         </div>
 
+        <div class="form-group col-12 col-lg-4 px-1">
+            <label for="txt_crud_cant_mensualidades">Cantidad Mensualidades</span> </label>
+            <input  id="txt_crud_cant_mensualidades" class="form-control" placeholder="">
+        </div>
+
     </div>
 
     <div class="col-12 col-lg-5 row mx-0 px-1 align-items-start align-content-start">

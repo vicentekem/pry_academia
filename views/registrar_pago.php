@@ -5,7 +5,7 @@
     global $menu_sup;
     
     $menu_sup = "Procesos";
-    $currentPage = "Registrar Pago";
+    $currentPage = "MATRICULA Y MENSUALIDADES";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
@@ -63,7 +63,6 @@
                                 </div>
                             </div>
 
-
                         </div>
 
                         <div class="table-responsive w-100 text-sm">
@@ -98,6 +97,7 @@
     <?php include __DIR__ . "/includes/templates/cbx_templates.php" ?>
     <?php include __DIR__ . "/includes/partials/pago/modal_adj_pago.php" ?>
     <?php include __DIR__ . "/includes/partials/pago/modal_view_pago.php" ?>
+    <?php include __DIR__ . "/includes/partials/pago/modal_check_pago.php" ?>
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
 
     <script src="public/js/plugins/dataTables/datatables.min.js"></script>

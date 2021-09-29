@@ -16,7 +16,7 @@ class Usuario
         $where = Utilitario::generarFiltros($data,[
             "search" => "trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) like concat('%',:search,'%')"
         ]);
-
+        
         return $this->model->getAllRows(
             "SELECT u.id,trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) nombre_completo,
                 u.estado ,u.usuario,ur.id_rol,tr.description rol
@@ -32,6 +32,18 @@ class Usuario
 
         );
 
+    }
+
+    public function cbxUsuario($data)
+    {
+        $where = Utilitario::generarFiltros($data,[
+            "q" => "TRIM(CONCAT(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) LIKE CONCAT('%',:q,'%')"
+        ]);
+        
+        return $this->model->getAllRows(
+            "SELECT u.id, TRIM(CONCAT(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) as text 
+            FROM tbl_usuario u INNER JOIN tbl_persona p on p.id = u.id_persona $where", $data
+        );
     }
 
     public function getUsuario($data)

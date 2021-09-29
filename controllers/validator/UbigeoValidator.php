@@ -12,37 +12,37 @@ require_once __DIR__ . "/../../utilitario/Utilitario.php";
 class UbigeoValidator
 {
 
-    private $repository;
+    private $model;
 
     public function __construct()
     {
-        $this->repository = new Ubigeo();
+        $this->model = new Ubigeo();
     }
 
-    function cbxUbigeo()
+    public function cbxUbigeo()
     {        
         $data["q"] = Utilitario::getParam("q");
-        $result = $this->repository->cbxUbigeo($data);
+        $result = $this->model->cbxUbigeo($data);
         return $result;
     }
 
-    function cbxDepartamentos()
+    public function cbxDepartamentos()
     {   
-        $result = $this->repository->cbxDepartamentos();
+        $result = $this->model->cbxDepartamentos();
         return $result;
     }
 
-    function cbxProvincias()
+    public function cbxProvincias()
     {
         $data["id_departamento"] = Utilitario::getParam("id_departamento");     
-        $result = $this->repository->cbxProvincias($data);
+        $result = $this->model->cbxProvincias($data);
         return $result;
     }
 
-    function cbxDistritos()
+    public function cbxDistritos()
     {   
         $data["id_provincia"] = Utilitario::getParam("id_provincia");
-        $result = $this->repository->cbxDistritos($data);
+        $result = $this->model->cbxDistritos($data);
         return $result;
     }
 

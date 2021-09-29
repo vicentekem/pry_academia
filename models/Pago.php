@@ -17,7 +17,7 @@ class Pago
         $where = Utilitario::generarFiltros($data,[
             "search" => "c.description like concat('%',:search,'%')",
             "id_persona" => "pe.id = :id_persona"
-        ],false,["p.estado_pago in(2,3,4)"]);
+        ],["p.estado_pago in(2,3,4)"]);
 
         $data_count = $data;
         unset( $data_count["start int"] );
@@ -26,7 +26,7 @@ class Pago
         return $this->model->getAllRows(
             "SELECT p.id,TRIM(CONCAT(pe.nombre,' ',pe.apellido_pat,' ',ifnull(pe.apellido_mat,''))) estudiante,
                 c.description as curso, tp.description as tipo_pago,concat('S/',format(p.monto,2)) monto,te.description as estado_pago,
-                DATE_FORMAT(p.fecha_plazo,'%d/%m/%Y') fecha_plazo,em.description as estado_matricula,
+                DATE_FORMAT(p.fecha_plazo,'%d/%m/%Y') fecha_plazo,em.description as estado_matricula,p.url_img,
                 concat(DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y'),' - ',DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y')) ciclo
             FROM tbl_pago p
             INNER JOIN tbl_matricula m ON m.id = p.id_matricula
@@ -86,7 +86,7 @@ class Pago
 
     public function savePago($action,$data){
         return $this->model->executeProcess(
-            "call sp_pago( '$action' ,:id,:url_img,:id_usuario) ", $data,
+            "call sp_pago( '$action' ,:id,:url_img,:opt,:observacion,:id_usuario) ", $data,
             "Datos guardados exitosamente"
         );
     }

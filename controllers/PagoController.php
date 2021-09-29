@@ -41,7 +41,8 @@ class PagoController
         $action = isset($_POST['action']) ? $_POST['action'] : "";
 
         switch ($action){
-            case "upd_baucher_pago": $array_result = $this->validator->savePago('upd_bp');break;            
+            case "upd_baucher_pago": $array_result = $this->validator->savePago('upd_bp');break;
+            case "chk_baucher_pago": $array_result = $this->validator->savePago('chk_bp');break;            
             default: $array_result["error"] = "Error al procesar la petición";
         }
         echo json_encode($array_result);
