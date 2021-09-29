@@ -67,15 +67,11 @@ if (!isset($_SESSION["usuario_academia"])) {
                             <label>Curso<span class="text-danger">*</span> </label>
                             <input class="form-control " type="text">
                             
-                            <span class="select2 select2-container select2-container--bootstrap4 select2-container--disabled" dir="ltr" data-select2-id="1" style="width: 100%;">
-                            </span>
                         </div>
 <!-- profesor -->
                         <div class="form-group col-12 px-1">
                             <label for="cbx_crud_id_profesor">Profesor<span class="text-danger">*</span> </label>
                             <input class="form-control " type="text">
-                            <span class="select2 select2-container select2-container--bootstrap4 select2-container--disabled" dir="ltr" data-select2-id="1" style="width: 100%;">
-                            </span>
                         </div>
 
                         <div class="form-group col-12 px-1">
