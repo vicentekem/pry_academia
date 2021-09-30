@@ -115,7 +115,7 @@ class CursoProgramadoValidator
         $file_tmp = "";
         $url_img_new = "";
 
-        if($action === 'upd' && $fl_img_pago){
+        if($action === 'upd' && $fl_img_curso){
             $url_img_old = $this->model->getUrlImgCursoProgramado(["id int" => $data["id int"]])["row"]["url_img"];
         }
 
