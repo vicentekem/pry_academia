@@ -77,10 +77,24 @@ class UsuarioValidator
         $data["id int"] = Utilitario::getIntParam("id");
         $data["id_persona int"] = Utilitario::getIntParam("id_persona");        
         $data["usuario"] = Utilitario::getParam("usuario");
-        $data["password"] = Utilitario::getParam("usuario");
+        $data["password"] = Utilitario::getParam("password");
+        $data["old_password"] = Utilitario::getParam("old_password");
         $data["id_rol"] = Utilitario::getIntParam("id_rol");
         $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
         
+        if( $action == 'chng' ){
+
+            $data["id int"] = $_SESSION["usuario_academia"]["id"];
+
+            $repeat_pass = Utilitario::getParam("repeat_password");
+            if( $repeat_pass != $data["password"] ){
+                $result["error"] = "La contraseñas no coinciden";
+            }
+            if( $data["password"] == $data["old_password"] ){
+                $result["error"] = "La contraseña nueva no puede ser igual a la actual.";
+            }
+        }
+
         $result = $result["error"] === "" ? $this->model->saveUsuario($action,$data) : $result;
         return $result;
     }

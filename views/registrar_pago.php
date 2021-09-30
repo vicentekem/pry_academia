@@ -5,7 +5,7 @@
     global $menu_sup;
     
     $menu_sup = "Procesos";
-    $currentPage = "MATRICULA Y MENSUALIDADES";
+    $currentPage = "Matricula Y Mensualidades";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');

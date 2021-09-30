@@ -133,7 +133,7 @@ class CursoProgramado
                 FROM tbl_curso_programado cp
                 INNER JOIN tbl_curso_programado_tipo_pago ctp on ctp.id_curso_programado = cp.id
                 INNER JOIN tbl_tablas ttp on ctp.id_tipo_pago = ttp.id_registro and ttp.id_tabla = 3 $where2", $data
-            )["rows"];    
+            )["rows"];
             $result["horarios"] = $this->model->getAllRows(
                 "SELECT concat(cp.id,ct.id_turno) id,ct.id_turno,tt.description as turno,
                     DATE_FORMAT(ct.hora_inicio,'%h:%i %p') hora_inicio,DATE_FORMAT(ct.hora_fin,'%h:%i %p') hora_fin

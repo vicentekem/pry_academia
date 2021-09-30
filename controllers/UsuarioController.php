@@ -65,6 +65,7 @@ class UsuarioController
             case "upd_usuario": $array_result = $this->validator->saveUsuario('upd');break;
             case "res_usuario": $array_result = $this->validator->saveUsuario('res');break;
             case "est_usuario": $array_result = $this->validator->saveUsuario('est');break;
+            case "change_pass": $array_result = $this->validator->saveUsuario('chng');break;
             default:
                 $array_result["error"] = "Error al procesar la petición";
         }
