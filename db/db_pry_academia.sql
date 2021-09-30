@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 28/09/2021 10:58:55
+ Date: 30/09/2021 14:05:08
 */
 
 SET NAMES utf8mb4;
@@ -77,13 +77,14 @@ CREATE TABLE `tbl_alumno`  (
   `update_password` int(32) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_alumno
 -- ----------------------------
 INSERT INTO `tbl_alumno` VALUES (1, 2, '2021-08-31 12:21:10.803778', NULL, NULL, NULL, 1);
 INSERT INTO `tbl_alumno` VALUES (18, 21, '2021-09-22 16:39:05.502532', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_alumno` VALUES (20, 1, '2021-09-29 17:26:19.411433', NULL, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for tbl_concurso
@@ -101,6 +102,8 @@ CREATE TABLE `tbl_concurso`  (
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
+  `direccion` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `monto_inscripcion` decimal(30, 2) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
@@ -195,7 +198,7 @@ CREATE TABLE `tbl_curso_programado`  (
 -- Records of tbl_curso_programado
 -- ----------------------------
 INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, NULL, 1, '2021-09-06', '2021-12-17', 'public/img/cursos/614e44e97aa5b.jpg', 1, NULL, NULL, 3);
-INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, NULL, 1, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, NULL, NULL, 3);
+INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, '2021-09-29 11:44:54.000000', 1, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, 1, '', 3);
 INSERT INTO `tbl_curso_programado` VALUES (3, 2, '2021-08-31 12:55:30.022456', NULL, NULL, 1, '2021-09-13', '2021-11-26', 'public/img/cursos/curso3.jpg', 1, NULL, NULL, 3);
 INSERT INTO `tbl_curso_programado` VALUES (6, 9, '2021-09-16 15:38:18.000000', 1, '2021-09-17 01:03:55.000000', 1, '2021-09-20', '2012-12-15', 'public/img/cursos/614e433c4b7c1.jpg', 1, 1, '', 3);
 
@@ -244,6 +247,23 @@ INSERT INTO `tbl_curso_programado_turno` VALUES (6, 1, '08:00:00.000000', '12:00
 INSERT INTO `tbl_curso_programado_turno` VALUES (6, 2, '13:00:00.000000', '15:30:00.000000', 1);
 
 -- ----------------------------
+-- Table structure for tbl_inscripcion
+-- ----------------------------
+DROP TABLE IF EXISTS `tbl_inscripcion`;
+CREATE TABLE `tbl_inscripcion`  (
+  `id` int(23) NOT NULL,
+  `id_concurso` int(32) NOT NULL,
+  `id_persona` int(32) NOT NULL,
+  `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
+  `user_create_at` int(32) NULL DEFAULT NULL,
+  `create_up` datetime(6) NULL DEFAULT NULL,
+  `user_create_up` int(32) NULL DEFAULT NULL,
+  `estado` tinyint(1) NULL DEFAULT 1,
+  `monto` decimal(30, 2) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
 -- Table structure for tbl_matricula
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_matricula`;
@@ -260,13 +280,14 @@ CREATE TABLE `tbl_matricula`  (
   `id_tipo_pago` int(32) NOT NULL DEFAULT 1 COMMENT 'id_tabla: 3',
   `estado_matricula` int(32) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_matricula
 -- ----------------------------
 INSERT INTO `tbl_matricula` VALUES (1, 6, 1, '2021-09-21 23:58:27.143462', NULL, NULL, NULL, 1, 120.00, 1, 1);
 INSERT INTO `tbl_matricula` VALUES (16, 1, 18, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, 2, 70.50, 1, 1);
+INSERT INTO `tbl_matricula` VALUES (17, 6, 20, '2021-09-29 17:26:19.472488', NULL, NULL, NULL, 1, 120.00, 1, 1);
 
 -- ----------------------------
 -- Table structure for tbl_menu
@@ -315,7 +336,7 @@ CREATE TABLE `tbl_opcion`  (
 DROP TABLE IF EXISTS `tbl_pago`;
 CREATE TABLE `tbl_pago`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
-  `id_matricula` int(32) NOT NULL,
+  `id_matricula` int(32) NULL DEFAULT NULL,
   `id_tipo_pago` int(32) NOT NULL,
   `monto` decimal(30, 2) NULL DEFAULT NULL,
   `fecha_pago` date NULL DEFAULT NULL,
@@ -327,20 +348,25 @@ CREATE TABLE `tbl_pago`  (
   `fecha_plazo` date NULL DEFAULT NULL,
   `url_img` varchar(500) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `observacion` varchar(800) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `id_inscripcion` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_pago
 -- ----------------------------
-INSERT INTO `tbl_pago` VALUES (1, 1, 1, 120.00, NULL, 2, '2021-09-22 14:10:42.000196', NULL, NULL, NULL, '2021-09-24', NULL, NULL);
-INSERT INTO `tbl_pago` VALUES (2, 1, 2, 80.50, NULL, 1, '2021-09-22 14:13:03.419637', NULL, NULL, NULL, '2021-09-30', NULL, NULL);
-INSERT INTO `tbl_pago` VALUES (3, 1, 2, 80.50, NULL, 1, '2021-09-22 14:13:03.419637', NULL, NULL, NULL, '2021-10-30', NULL, NULL);
-INSERT INTO `tbl_pago` VALUES (4, 1, 2, 80.50, NULL, 1, '2021-09-22 14:13:03.419637', NULL, NULL, NULL, '2021-11-30', NULL, NULL);
-INSERT INTO `tbl_pago` VALUES (14, 16, 1, 70.50, NULL, 3, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-09-23', 'public/img/bauchers/614e07a87b22414.jpg', NULL);
-INSERT INTO `tbl_pago` VALUES (15, 16, 2, 50.00, NULL, 1, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-10-22', NULL, NULL);
-INSERT INTO `tbl_pago` VALUES (16, 16, 2, 50.00, NULL, 1, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-11-22', NULL, NULL);
-INSERT INTO `tbl_pago` VALUES (17, 16, 2, 50.00, NULL, 1, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-12-22', NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (1, 1, 1, 120.00, NULL, 2, '2021-09-22 14:10:42.000196', NULL, NULL, NULL, '2021-09-24', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (2, 1, 2, 80.50, NULL, 1, '2021-09-22 14:13:03.419637', NULL, NULL, NULL, '2021-09-30', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (3, 1, 2, 80.50, NULL, 1, '2021-09-22 14:13:03.419637', NULL, NULL, NULL, '2021-10-30', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (4, 1, 2, 80.50, NULL, 1, '2021-09-22 14:13:03.419637', NULL, NULL, NULL, '2021-11-30', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (14, 16, 1, 70.50, NULL, 4, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-09-23', 'public/img/bauchers/614e07a87b22414.jpg', 'El documento enviado no es correcto', NULL);
+INSERT INTO `tbl_pago` VALUES (15, 16, 2, 50.00, NULL, 1, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-10-22', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (16, 16, 2, 50.00, NULL, 1, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-11-22', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (17, 16, 2, 50.00, NULL, 1, '2021-09-22 16:39:05.503530', NULL, NULL, NULL, '2021-12-22', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (18, 17, 1, 120.00, NULL, 2, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-09-30', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (19, 17, 2, 80.50, NULL, 1, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-10-29', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (20, 17, 2, 80.50, NULL, 1, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-11-29', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (21, 17, 2, 80.50, NULL, 1, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-12-29', NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tbl_persona
@@ -496,6 +522,7 @@ INSERT INTO `tbl_tablas` VALUES (8, 4, NULL, 'RECHAZADO', 1);
 INSERT INTO `tbl_tablas` VALUES (8, 5, NULL, 'COMPLETADO', 1);
 INSERT INTO `tbl_tablas` VALUES (8, 6, NULL, 'ANULADO', 1);
 INSERT INTO `tbl_tablas` VALUES (3, 3, NULL, 'INSCRIPCION POR PATICIPACION', 1);
+INSERT INTO `tbl_tablas` VALUES (2, 5, NULL, 'PARTICIPANTE', 1);
 
 -- ----------------------------
 -- Table structure for tbl_ubigeo
@@ -4261,6 +4288,7 @@ _id int(32),
 _id_curso int(32),
 _fecha_inicio VARCHAR(50),
 _fecha_fin VARCHAR(50),
+_cant_mensualidades int,
 _url_img VARCHAR(255),
 _link_clase varchar(750),
 _tipos_pago text,
@@ -4289,9 +4317,9 @@ case _action
 			
 		ELSEIF(SELECT id FROM tbl_curso_programado where id=_id) IS NULL THEN
 		
-			INSERT INTO tbl_curso_programado(id_curso,create_at,user_create_at,fecha_inicio,fecha_fin,url_img,id_persona,link_clase)
+			INSERT INTO tbl_curso_programado(id_curso,create_at,user_create_at,fecha_inicio,fecha_fin,url_img,id_persona,link_clase,cant_mensualidades)
 			VALUES(_id_curso,CURRENT_TIMESTAMP,_id_usuario,STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),
-					STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),_url_img,_id_persona,_link_clase);
+					STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),_url_img,_id_persona,_link_clase,_cant_mensualidades);
 			
 			
 			SET _id = (SELECT LAST_INSERT_ID());
@@ -4355,7 +4383,8 @@ case _action
 	
 		IF(SELECT id FROM tbl_curso_programado where id_curso=_id_curso and id<>_id) IS NULL THEN
 			UPDATE tbl_curso_programado set id_curso=_id_curso,fecha_inicio=STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),link_clase = _link_clase,
-				fecha_fin=STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),url_img=_url_img,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP WHERE id=_id;
+				fecha_fin=STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),url_img=_url_img,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP,
+				cant_mensualidades = _cant_mensualidades WHERE id=_id;
 			
 			DELETE FROM tbl_curso_programado_turno where id_curso_programado = _id;
 			DELETE FROM tbl_curso_programado_tipo_pago where id_curso_programado = _id;
@@ -4425,6 +4454,117 @@ END
 delimiter ;
 
 -- ----------------------------
+-- Procedure structure for sp_inscripcion
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_inscripcion`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_inscripcion`(
+_action varchar(10),
+_id int(32),
+_dni varchar(8),
+_nombre VARCHAR(255),
+_apellidop VARCHAR(255),
+_apellidom VARCHAR(255),
+_correo VARCHAR(255),
+_celular VARCHAR(25),
+_id_ubigeo VARCHAR(6),
+_id_concurso int(32)
+)
+begin
+
+DECLARE _id_rol int(32) default null;
+DECLARE _id_persona int(32) default null;
+DECLARE _id_usuario_nuevo int(32) default null;
+DECLARE _id_usuario_existente int(32) default null;
+DECLARE _monto decimal(30,2) default null;
+DECLARE _cant_mensualidades int default null;
+DECLARE _i int default 1;
+DECLARE _fecha_inicio date default null;
+
+-- Declaramos las variables necesarias 
+DECLARE _id_submenu int DEFAULT 0;
+DECLARE done INT DEFAULT FALSE;
+DECLARE arreglo CURSOR FOR SELECT id_submenu FROM tbl_accesos_rol WHERE id_rol = 5;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+
+DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	BEGIN
+			ROLLBACK;
+			RESIGNAL;
+	END;
+
+START TRANSACTION;
+
+case _action
+	WHEN 'ins' then	
+				
+		SET _id_persona = ( select id from tbl_persona where dni = _dni );		
+		
+		IF _id_persona is null THEN
+			call sp_persona('ins', null, _dni, _nombre, _apellidop, _apellidom, _correo, _celular, null, null, _id_ubigeo, null, null);
+			SET _id_persona = (SELECT LAST_INSERT_ID());
+		ELSEIF (SELECT id_concurso from tbl_concurso where id_concurso = _id_concurso and id_persona = _id_persona) is not null THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya se encuentra inscrito' , MYSQL_ERRNO = 1001;
+		END IF;
+		
+		SET _id_usuario_existente = (SELECT id FROM tbl_usuario where id_persona = _id_persona);
+		
+		IF _id_usuario_existente IS NULL THEN
+		
+			insert into tbl_usuario(id_persona,usuario,password) values (_id_persona,_dni,md5(_dni));
+			SET _id_usuario_nuevo = (SELECT LAST_INSERT_ID() );
+			insert into tbl_usuario_rol(id_usuario,id_rol) values (_id_usuario_nuevo,5);
+
+			INSERT INTO tbl_accesos_usuario (id_usuario,id_submenu,id_rol)
+			SELECT _id_usuario_nuevo, id_submenu, 5
+			FROM tbl_accesos_rol
+			WHERE id_rol = 5;
+		ELSE
+		
+			SET _id_rol = (SELECT id_rol from tbl_usuario_rol where id_usuario = _id_usuario_existente);
+			-- Se abre el cursor
+			OPEN arreglo;
+			loop_recorre: LOOP
+				-- Fetch lo utilizamos para leer cada uno de los registros
+				FETCH arreglo INTO _id_submenu;
+
+				IF (SELECT id_submenu from tbl_accesos_usuario where id_usuario = _id_usuario_existente and id_submenu = _id_submenu) IS NULL THEN
+					INSERT INTO tbl_accesos_usuario(id_usuario,id_submenu,id_rol) VALUES (_id_usuario_existente,_id_submenu,_id_rol);
+				END IF;
+
+				-- If que permite salir del ciclo
+				IF done THEN 
+					LEAVE loop_recorre;
+				END IF;
+
+			END LOOP;
+			
+			-- cerramos el cursor 
+			CLOSE arreglo;    
+			
+		END IF;
+		
+		SET _monto = (select monto_inscripcion from tbl_concurso where id = _id_concurso);
+				
+		INSERT INTO tbl_inscripcion(id_concurso,id_persona,monto) VALUES (_id_curso_programado,_id_persona,_monto);
+		SET _id = (SELECT LAST_INSERT_ID());
+		
+		INSERT INTO tbl_pago(id_inscripcion,id_tipo_pago,monto,estado_pago,fecha_plazo) VALUES(_id,3,_monto,1, date_add(now(), interval 1 day) );
+						
+	WHEN 'upd' THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error upd' , MYSQL_ERRNO = 1001;	
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
+
+COMMIT;
+
+END
+;;
+delimiter ;
+
+-- ----------------------------
 -- Procedure structure for sp_login
 -- ----------------------------
 DROP PROCEDURE IF EXISTS `sp_login`;
@@ -4478,12 +4618,20 @@ _id_turno int
 )
 begin
 
+DECLARE _id_rol int(32) default null;
 DECLARE _id_persona int(32) default null;
 DECLARE _id_usuario_nuevo int(32) default null;
+DECLARE _id_usuario_existente int(32) default null;
 DECLARE _monto decimal(30,2) default null;
 DECLARE _cant_mensualidades int default null;
 DECLARE _i int default 1;
 DECLARE _fecha_inicio date default null;
+
+-- Declaramos las variables necesarias 
+DECLARE _id_submenu int DEFAULT 0;
+DECLARE done INT DEFAULT FALSE;
+DECLARE arreglo CURSOR FOR SELECT id_submenu FROM tbl_accesos_rol WHERE id_rol = 4;
+DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
 DECLARE EXIT HANDLER FOR SQLEXCEPTION 
 	BEGIN
@@ -4508,7 +4656,10 @@ case _action
 		
 		SET _id_persona = (SELECT id_persona FROM tbl_alumno where id = _id_alumno );
 		
-		IF (SELECT id FROM tbl_usuario where id_persona = _id_persona) IS NULL THEN		
+		SET _id_usuario_existente = (SELECT id FROM tbl_usuario where id_persona = _id_persona);
+		
+		IF _id_usuario_existente IS NULL THEN
+		
 			insert into tbl_usuario(id_persona,usuario,password) values (_id_persona,_dni,md5(_dni));
 			SET _id_usuario_nuevo = (SELECT LAST_INSERT_ID() );
 			insert into tbl_usuario_rol(id_usuario,id_rol) values (_id_usuario_nuevo,4);
@@ -4516,7 +4667,29 @@ case _action
 			INSERT INTO tbl_accesos_usuario (id_usuario,id_submenu,id_rol)
 			SELECT _id_usuario_nuevo,id_submenu,4
 			FROM tbl_accesos_rol
-			WHERE id_rol = 4;			
+			WHERE id_rol = 4;
+			
+		ELSE
+		
+			SET _id_rol = (SELECT id_rol from tbl_usuario_rol where id_usuario = _id_usuario_existente);
+			-- Se abre el cursor
+			OPEN arreglo;
+			loop_recorre: LOOP
+				-- Fetch lo utilizamos para leer cada uno de los registros
+				FETCH arreglo INTO _id_submenu;
+
+				IF (SELECT id_submenu from tbl_accesos_usuario where id_usuario = _id_usuario_existente and id_submenu = _id_submenu) IS NULL THEN
+					INSERT INTO tbl_accesos_usuario(id_usuario,id_submenu,id_rol) VALUES (_id_usuario_existente,_id_submenu,_id_rol);
+				END IF;
+
+				-- If que permite salir del ciclo
+				IF done THEN 
+					LEAVE loop_recorre;
+				END IF;
+
+			END LOOP;			
+			-- cerramos el cursor 
+			CLOSE arreglo;
 		END IF;
 		
 		SET _monto = (select monto from tbl_curso_programado_tipo_pago where id_curso_programado = _id_curso_programado and id_tipo_pago = 1);
@@ -4528,7 +4701,7 @@ case _action
 		SET _id = (SELECT LAST_INSERT_ID());
 		SET _fecha_inicio = (select fecha_inicio from tbl_curso_programado where id = _id_curso_programado);
 		
-		INSERT INTO tbl_pago(id_matricula,id_tipo_pago,monto,estado_pago,fecha_plazo) VALUES(_id,1,_monto,1, date_add(now(), interval 1 day) );
+		INSERT INTO tbl_pago(id_matricula,id_tipo_pago,monto,estado_pago,fecha_plazo) VALUES(_id,1,_monto,2, date_add(now(), interval 1 day) );
 		
 		SET _monto = (select monto from tbl_curso_programado_tipo_pago where id_curso_programado = _id_curso_programado and id_tipo_pago = 2);
 
@@ -4566,24 +4739,45 @@ DROP PROCEDURE IF EXISTS `sp_pago`;
 delimiter ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_pago`( 
 	_action varchar(10),
-	_id int(32),
+	_id int(32),	
 	_url_img varchar(500),
+	_opt int,
+	_observacion varchar(500),
 	_id_usuario int
 )
 BEGIN
-DECLARE _id_ususario_est int default null;
+DECLARE _id_ususario_db int default null;
+DECLARE _id_matricula int default null;
+DECLARE _estado_pago int default null;
 CASE _action
 	WHEN 'upd_bp' THEN
-		SET _id_ususario_est = (SELECT u.id FROM tbl_usuario u INNER JOIN tbl_alumno a on a.id_persona = u.id_persona
+	
+		SET _id_ususario_db = (SELECT u.id FROM tbl_usuario u INNER JOIN tbl_alumno a on a.id_persona = u.id_persona
 			INNER JOIN tbl_matricula m on m.id_alumno = a.id INNER JOIN tbl_pago pa on pa.id_matricula = m.id WHERE pa.id = _id);
 	
-		IF _id_ususario_est = _id_usuario THEN
-			UPDATE tbl_pago SET url_img = _url_img,estado_pago = 3 WHERE id = _id;
+		IF _id_ususario_db = _id_usuario THEN
+			UPDATE tbl_pago SET url_img = _url_img,fecha_pago=CURRENT_DATE,estado_pago = 3 WHERE id = _id;
 		ELSE
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Su usuario no tiene permiso para realizar la acción', MYSQL_ERRNO = 1001;	
 		END IF;
 		
-
+	WHEN 'chk_bp' THEN
+		
+		SET _id_matricula = (SELECT id_matricula FROM tbl_pago where id = _id);
+		SET _estado_pago = (SELECT estado_pago FROM tbl_pago where id = _id);
+		
+		IF _estado_pago = 3 THEN 
+			
+			IF _opt = 1 THEN
+				UPDATE tbl_pago SET estado_pago = 5,observacion=_observacion WHERE id = _id;
+				UPDATE tbl_matricula SET estado_matricula = 2 where id = _id_matricula;
+			ELSEIF _opt = 2 THEN
+				UPDATE tbl_pago SET estado_pago = 4,observacion=_observacion WHERE id = _id;
+			END IF;
+		ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no valida', MYSQL_ERRNO = 1001;	
+		END IF;
+				
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
@@ -4748,40 +4942,62 @@ _id int(11),
 _id_persona int(32),
 _usuario VARCHAR(50),
 _password varchar(150),
-_id_usuario VARCHAR(32))
+_id_rol int,
+_id_usuario int)
 BEGIN
+
 DECLARE msg varchar(255) default '';
- set msg = CONCAT('El usuario ', _usuario , ' ya existe' );
-case _action 
- WHEN 'ins' THEN
-	IF(SELECT id from tbl_usuario where usuario=_usuario) is not null then
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
+DECLARE _id_usuario_nuevo int default null;
+
+SET msg = CONCAT('El usuario ', _usuario , ' ya existe' );
+
+CASE _action 
+	WHEN 'ins' THEN
+	
+		IF(SELECT id from tbl_usuario where usuario=_usuario) is not null then
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = msg, MYSQL_ERRNO = 1001;
 		ELSEIF(SELECT id from tbl_usuario where id_persona=_id_persona) IS NOT NULL THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una cuenta con este DNI', MYSQL_ERRNO = 1001;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya existe una cuenta con este DNI', MYSQL_ERRNO = 1001;
 		ELSEIF(SELECT id from tbl_persona where id=_id_persona) IS NULL THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El DNI no está registrado en la base de datos', MYSQL_ERRNO = 1001;
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El DNI no está registrado en la base de datos', MYSQL_ERRNO = 1001;
 		ELSE
-		INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
-				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
+		
+			INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
+					VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
+			
+			SET _id_usuario_nuevo = (SELECT LAST_INSERT_ID() );
+			
+			INSERT INTO tbl_usuario_rol(id_usuario,id_rol) values (_id_usuario_nuevo,_id_rol);
+			
+			INSERT INTO tbl_accesos_usuario (id_usuario,id_submenu,id_rol)
+			SELECT _id_usuario_nuevo,id_submenu,id_rol
+			FROM tbl_accesos_rol
+			WHERE id_rol = _id_rol;
+
 		END if;
-		/*
-	IF(SELECT id from tbl_usuario where id_persona=_id_persona OR usuario=_usuario LIMIT 1) IS NULL THEN
-	INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
-				VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
-	ELSE
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El usuario ya existe' , MYSQL_ERRNO = 1001;	
-	END if;*/
- WHEN'upd' THEN
-	IF(SELECT id from tbl_usuario where id_persona=_id_persona and id<>_id) is NULL THEN
-	UPDATE tbl_usuario SET usuario=_usuario,`password`=MD5(_password),create_up=CURRENT_TIMESTAMP,user_create_up=_id_usuario,update_password=1 WHERE id=_id and id_persona=_id_persona;
-	ELSE
-	SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar usuario', MYSQL_ERRNO = 1001;
-	END IF;
- WHEN 'est' THEN
+			
+	WHEN'upd' THEN
+		IF(SELECT id from tbl_usuario where id_persona=_id_persona and id<>_id) is NULL THEN
+		
+			UPDATE tbl_usuario SET usuario=_usuario,create_up=CURRENT_TIMESTAMP,user_create_up=_id_usuario,update_password=1
+			WHERE	id=_id and id_persona=_id_persona;
+			
+			UPDATE tbl_usuario_rol SET id_rol = _id_rol WHERE id_usuario = _id AND id_rol = _id_rol;
+			
+		ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar usuario', MYSQL_ERRNO = 1001;
+		END IF;
+		
+	WHEN 'est' THEN
 		UPDATE tbl_usuario SET estado= NOT estado WHERE id=_id AND id_persona=_id_persona;
- ELSE
+	
+	WHEN 'res' THEN
+		
+		UPDATE tbl_usuario SET estado= NOT estado WHERE id=_id AND id_persona=_id_persona;
+		
+	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
- END CASE;
+END CASE;
 END
 ;;
 delimiter ;
