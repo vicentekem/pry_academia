@@ -18,7 +18,7 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
                         <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
-                        <li><a id="modalist" class="dropdown-item" >Cambiar Contraseña</a></li>                        
+                        <li><a id="btn_open_modal" class="dropdown-item" >Cambiar Contraseña</a></li>                        
                         <li class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="?url=logout">Salir</a></li>
                     </ul>
@@ -61,6 +61,6 @@
     </div>
 </nav>
 
-<?php include "views/modal.php"; ?>
+<?php __DIR__. include __DIR__."/../modal.php"; ?>
 
 <script src="public/js/scripts/modal.js"></script>
