@@ -87,7 +87,7 @@ class Usuario
     public function saveUsuario($action,$data){
 
         return $this->model->executeProcess(
-            "call sp_usuario( '$action' ,:id,:id_persona,:usuario,:password,:id_rol,:id_usuario) ", $data,
+            "call sp_usuario( '$action' ,:id,:id_persona,:usuario,:password,:old_password,:id_rol,:id_usuario) ", $data,
             "Datos guardados exitosamente"
         );
 

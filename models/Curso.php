@@ -33,7 +33,7 @@ class Curso
         ]);
 
         $result = $this->model->getRow( "SELECT c.id,c.description,c.resumen,c.estado FROM tbl_curso c $where", $data);
-        $result["rows_caracteristicas"] = $this->model->getAllRows( 
+        $result["rows_caracteristicas"] = $this->model->getAllRows(
             "SELECT c.id,cc.description FROM tbl_curso c inner join tbl_curso_caracteristicas cc on c.id = cc.id_curso $where", $data
         )["rows"];
         $result["rows_beneficios"] = $this->model->getAllRows( 
@@ -48,7 +48,7 @@ class Curso
         return $this->model->getAllRows("SELECT id,description FROM tbl_curso WHERE estado = 1");
     }
 
-    public function saveCurso($action,$data){        
+    public function saveCurso($action,$data){
         return $this->model->executeProcess(
             "call sp_curso( '$action' ,:id,:descripcion,:resumen,:caracteristicas,:beneficios) ", $data,
             "Datos guardados exitosamente"

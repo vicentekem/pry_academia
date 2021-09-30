@@ -1,15 +1,15 @@
 
 <?php
 
-require_once "validator/CursoValidator.php";
+require_once "validator/ConcursoValidator.php";
 
-class CursoController
+class ConcursoController
 {
     private $validator;
 
     public function __construct()
     {
-        $this->validator = new CursoValidator();
+        $this->validator = new ConcursoValidator();
     }
 
     public function procesarPeticion()
@@ -28,9 +28,9 @@ class CursoController
     {
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
-            case "qry_curso":$array_result = $this->validator->qryCurso();break;
-            case "cbx_curso":$array_result = $this->validator->cbxCurso();break;
-            case "get_curso":$array_result = $this->validator->getCurso();break;
+            case "qry_concurso":$array_result = $this->validator->qryConcurso();break;
+            case "get_concurso":$array_result = $this->validator->getConcurso();break;
+            case "get_desc_concurso":$array_result = $this->validator->getDescConcurso();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);
@@ -41,9 +41,9 @@ class CursoController
         $action = isset($_POST['action']) ? $_POST['action'] : "";
 
         switch ($action){
-            case "ins_curso": $array_result = $this->validator->saveCurso('ins');break;
-            case "upd_curso": $array_result = $this->validator->saveCurso('upd');break;
-            case "est_curso": $array_result = $this->validator->saveCurso('est');break;
+            case "ins_concurso": $array_result = $this->validator->saveConcurso('ins');break;
+            case "upd_concurso": $array_result = $this->validator->saveConcurso('upd');break;
+            case "est_concurso": $array_result = $this->validator->saveConcurso('est');break;
             default: $array_result["error"] = "Error al procesar la petición";
         }
         echo json_encode($array_result);
@@ -51,5 +51,5 @@ class CursoController
 
 }
 
-$controller = new CursoController();
+$controller = new ConcursoController();
 $controller->procesarPeticion();

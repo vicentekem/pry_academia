@@ -5,7 +5,7 @@ global $currentPage;
 global $menu_sup;
 
 $menu_sup = "Mantenimiento";
-$currentPage = "Personal";
+$currentPage = "Concurso";
 
 if (!isset($_SESSION["usuario_academia"])) {
     header('location:?url=login');

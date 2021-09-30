@@ -23,9 +23,9 @@ class CursoValidator
         $data["start int"] = isset($_GET["start"]) ? $_GET["start"] : null;
         $data["length int"] = isset($_GET["length"]) ? $_GET["length"] : null;
 
-        $data["search"] =       Utilitario::getParam("search");
+        $data["search"] = Utilitario::getParam("search");
                 
-        if ($result["error"] === "") $result = $this->model->qryCurso($data);        
+        if ($result["error"] === "") $result = $this->model->qryCurso($data);
 
         return $result;
     }
@@ -41,7 +41,7 @@ class CursoValidator
     {
         $result = [ "error" => "" ];        
         $data["id int"] = Utilitario::getParam("id");                
-        if ($result["error"] === "") $result = $this->model->getCurso($data);        
+        if ($result["error"] === "") $result = $this->model->getCurso($data);
 
         return $result;
     }
