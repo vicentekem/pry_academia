@@ -3,24 +3,30 @@ function openModal(e) {
   e.preventDefault();
   
     $('#modal_change_pass').modal('show')
-
+    
 }
 
 function cambioPass (){
     let old_password = $("#txt_pass_act").val();
     let password = $("#txt_new_pass").val();
     let repeat_password = $("#txt_repeat_pass").val();
-
+    
     let data = {
         old_password:old_password,
         password:password,
         repeat_password:repeat_password
-
+        
     } 
-
-    ajaxRequest("change_pass","get","UsuarioController.php",data,
+    
+    ajaxRequest("change_pass","post","UsuarioController.php",data,
     (result) => {
-        showMessage('correcto', 'success')
+        if(result.error === '' ){
+            showMessage('correcto', 'success')
+            $('#modal_change_pass').modal('hide')
+            
+        }else{
+            showMessage(result.error, 'error')
+        }
     });
 
 }
