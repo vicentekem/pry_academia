@@ -60,7 +60,11 @@ class UsuarioController
                 }
                 break;
                 
-            case "login_ajax": $array_result = $this->validator->login();break;            
+            case "login_ajax" : $array_result = $this->validator->login();break;
+            case "ins_usuario": $array_result = $this->validator->saveUsuario('ins');break;
+            case "upd_usuario": $array_result = $this->validator->saveUsuario('upd');break;
+            case "res_usuario": $array_result = $this->validator->saveUsuario('res');break;
+            case "est_usuario": $array_result = $this->validator->saveUsuario('res');break;
             default:
                 $array_result["error"] = "Error al procesar la petición";
         }

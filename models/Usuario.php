@@ -71,6 +71,27 @@ class Usuario
         );
     }
    
+    public function getUserByDNI($data)
+    {
+        $where = Utilitario::generarFiltros($data,[
+            "dni" => "p.dni = :dni"
+        ]);
+        
+        return $this->model->getRow(
+            "SELECT u.id,trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) nombre_completo
+            FROM tbl_usuario u INNER JOIN tbl_persona p on p.id = u.id_persona $where",$data
+        );
+
+    }
+
+    public function saveUsuario($action,$data){
+
+        return $this->model->executeProcess(
+            "call sp_usuario( '$action' ,:id,:id_persona,:usuario,:password,:id_rol,:id_usuario) ", $data,
+            "Datos guardados exitosamente"
+        );
+
+    }
 
 }
 

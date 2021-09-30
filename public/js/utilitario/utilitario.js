@@ -94,11 +94,11 @@ const ajaxSelect2 = (id_select,action,controller,formatRow,formatRowSelection)=>
     
     formatRow = typeof formatRow === "function" ? formatRow :
         row => {
-            if (row.loading) return row.text;
-            return $(`<div>${row.text}<div>`);
+            if (row.loading) return row.description;
+            return $(`<div>${row.description}<div>`);
         };
 
-    formatRowSelection = typeof formatRowSelection === "function" ? formatRowSelection : row => row.text;
+    formatRowSelection = typeof formatRowSelection === "function" ? formatRowSelection : row => row.description;
 
     $('#' + id_select).select2({
         theme: 'bootstrap4',

@@ -1,5 +1,6 @@
 let crud_usuario = {    
     dtable: null,
+    personas_arr : [],
     id_table: "tbl_usuario",
     id_modal: "modal_crud_usuario",
     id_rol : parseInt($("#txt_session_id_rol").val()),
@@ -9,19 +10,25 @@ let crud_usuario = {
         let frm_crud_usuario = $("#frm_crud_usuario");
         let filter_container_jq = $("#filter_container");
         let btn_save_usuario = $("#btn_save_usuario");
+        let cbx_id_persona = $("#cbx_crud_id_persona");
 
         filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
         filter_container_jq.on("keyup", event => {            
-            if(event.keyCode == 13 || event.keyCode == 27){
-                searchEventListener(event);
-            }
+            if(event.keyCode == 13 || event.keyCode == 27){ searchEventListener(event);}
             if(event.keyCode == 27){ event.target.value = ""; }
         });
 
+        cbx_id_persona.on("change", event => {            
+            if( $("#txt_crud_action").val() === 'ins_usuario' ){
+                let i = crud_usuario.personas_arr.findIndex( el => event.target.value === el.id );                
+                let dni = i >= 0 ? crud_usuario.personas_arr[i].dni : "";
+                $("#txt_crud_usuario").val(dni);
+            }
+        });
         frm_crud_usuario.on('submit', (event)=> event.preventDefault);
 
-        btn_new_usuario.on("click",  (event)=> crud_usuario.openModal());
+        btn_new_usuario.on("click",  ()=> crud_usuario.openModal());
         btn_save_usuario.on("click", (event)=> crud_usuario.saveData(event));
         
         crud_usuario.initDataTable();
@@ -173,7 +180,7 @@ let crud_usuario = {
             closeOnConfirm: false
         }, function () {
 
-            ajaxRequest('est_usuario',"post","UsuarioController.php",data,(result)=>{
+            ajaxRequest('res_usuario',"post","UsuarioController.php",data,(result)=>{
                 if(result.error === ""){                    
                     swal({
                         title: 'Completado',
@@ -230,23 +237,34 @@ let crud_usuario = {
         }
     },
 
-    saveData: (event)=>{        
+    validateData : (action,data)=>{
+        let msg = "";
+
+        if( action === 'upd_usuario' && data.id == ""){msg = "El id es requerido";}
+        else if(data.id_curso == ""){ msg = "Seleccione curso"  }        
+        else if(data.id_persona == ""){ msg = "Seleccione persona"  }
+        else if(data.usuario == ""){ msg = "Ingrese Usuario"  }
+        else if(data.id_rol == ""){ msg = "Seleccione Rol"  }        
+        return msg;
+    },
+
+    saveData: (event)=>{
         event.preventDefault();
         let action = $("#txt_crud_action").val();
         let id = $("#txt_crud_id").val();
-        let descripcion = $("#txt_crud_descripcion").val();
-        let resumen = $("#txt_crud_resumen").val();
-
-        let caracteristicas = list_caracteristicas.getString();
-        let beneficios = list_beneficios.getString();
+        let id_persona = $("#cbx_crud_id_persona").val();
+        let usuario = $("#txt_crud_usuario").val();
+        let id_rol = $("#cbx_crud_id_rol").val();
 
         let data = {
             id : id,
-            descripcion : descripcion,
-            resumen : resumen,
-            caracteristicas : caracteristicas,
-            beneficios : beneficios
+            id_persona : id_persona,
+            usuario : usuario,
+            id_rol : id_rol            
         }
+
+        let err_msg = crud_usuario.validateData(action,data);
+        if(err_msg != "") return showMessage( err_msg , "error");
 
         ajaxRequest(action,"post","UsuarioController.php",data,(result)=>{
             if(result.error === ""){
@@ -273,6 +291,7 @@ const loadCbx = ()=>{
     });
 
     ajaxRequest("cbx_persona","get","PersonaController.php",null,(result) => {
+        crud_usuario.personas_arr = result.rows;
         loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_persona',result["rows"],true);
     });
 
@@ -295,3 +314,4 @@ document.addEventListener('DOMContentLoaded',()=>{
     crud_usuario.init();
     
 });
+

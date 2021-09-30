@@ -61,7 +61,29 @@ class UsuarioValidator
         
         return $result;
     }
-    
+
+    public function getUserByDNI(){
+        $result = [ "error" => "" ];        
+        $data["dni"] = Utilitario::getParam("dni");        
+        $result = $result["error"] === "" ? $this->model->getUserByDNI($data) : $result;
+
+        return $result;
+    }
+
+    public function saveUsuario($action){
+
+        $result = [ "error" => "" ];
+
+        $data["id int"] = Utilitario::getIntParam("id");
+        $data["id_persona int"] = Utilitario::getIntParam("id_persona");        
+        $data["usuario"] = Utilitario::getParam("usuario");
+        $data["password"] = Utilitario::getParam("usuario");
+        $data["id_rol"] = Utilitario::getIntParam("id_rol");
+        $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
+        
+        $result = $result["error"] === "" ? $this->model->saveUsuario($action,$data) : $result;
+        return $result;
+    }
 
 }
 

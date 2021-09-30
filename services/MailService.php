@@ -55,12 +55,17 @@ class MailService{
             $mail->isHTML(true);
             $mail->Subject = 'Registro exitoso - academia .... ';
             $msg  = "<p>Hola ". $data["nombre"] ."!</p>";
-            $msg .= "<p>Para completar el proceso de matricula debera ingrresar a la intranet y en la opcion procesos -> registrar pago <br>";
+            $msg .= "<p>Para completar el proceso de matricula debera ingrresar a la intranet y en la opcion procesos -> MATRICULA Y MENSUALIDADES <br>";
             $msg .= "donde debera adjuntar el baucher del pago</p>";
-            $msg .= "<p>Estos son tus credenciales de acceso a la intranet:</p>";
-            $msg .= "<p>Usuario: ". $data["dni"] ."</p>";
-            $msg .= "<p>Contraseña: ". $data["dni"] ."</p>";
-            $msg .= "<p>Podrá cambiar su contraseña por defecto desde la platadforma.</p>";
+
+            if( $data["id"] == null ){
+                $msg .= "<p>Estos son tus credenciales de acceso a la intranet:</p>";
+                $msg .= "<p>Usuario: ". $data["dni"] ."</p>";
+                $msg .= "<p>Contraseña: ". $data["dni"] ."</p>";
+                $msg .= "<p>Deberá cambiar su contraseña por defecto desde la platadforma.</p>";
+            }else{
+                $msg .= "<p>Usuario: ". $data["dni"] ."</p>";                
+            }
             $msg .= "<p>Para Acceder a la plataforma dar <a href='http://localhost:8080/pry_academia/?url=login'>click aqui</a>.</p>";
             $mail->msgHTML($msg);
             

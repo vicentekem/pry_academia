@@ -20,7 +20,7 @@ class Persona
         ]);
 
         return $this->model->getAllRows(
-            "SELECT p.id, trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) description
+            "SELECT p.id, trim(concat(p.nombre,' ',ifnull(p.apellido_pat,''),' ',ifnull(p.apellido_mat,''))) description, p.dni
             FROM tbl_persona p $where",$data
         );
 

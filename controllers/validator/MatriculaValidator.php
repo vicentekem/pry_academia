@@ -7,16 +7,19 @@
  */
 
 require_once __DIR__ . "/../../models/Matricula.php";
+require_once __DIR__ . "/../../models/Usuario.php";
 require_once __DIR__ . "/../../utilitario/Utilitario.php";
 require_once __DIR__ . "/../../services/MailService.php";
 
 class MatriculaValidator
 {
     private $model;
+    private $usuario_model;
     private $mail;
     public function __construct()
     {
         $this->model = new Matricula();
+        $this->usuario_model = new Usuario();
         $this->mail = new MailService();
     }
     
@@ -36,12 +39,16 @@ class MatriculaValidator
         $data["id_curso_programado int"] = Utilitario::getIntParam("id_curso_programado");
         $data["id_turno int"] = Utilitario::getIntParam("id_turno");
         //$data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
- 
+        
+        $usuario = $this->usuario_model->getUserByDNI( ["dni"=> $data["dni"] ] )["row"];
+        
         $result = $this->model->saveMatricula($action,$data);
 
         if($result["error"] == ""){
-            $result_mail = $this->mail->sendMail($data);            
-        }        
+            $data["id"] = $usuario != null ? $usuario["id"] : null;
+            $result_mail = $this->mail->sendMail($data);
+        }
+        //exit("aaa");
         return $result;
     }
 

@@ -18,7 +18,7 @@ class Ubigeo
         ]);
         
         return $this->model->getAllRows(
-            "SELECT id_ubigeo as id,CONCAT(departamento,' - ',provincia,' - ',distrito) as text FROM tbl_ubigeo $where", $data
+            "SELECT id_ubigeo as id,CONCAT(departamento,' - ',provincia,' - ',distrito) as description FROM tbl_ubigeo $where", $data
         );
     }
 
