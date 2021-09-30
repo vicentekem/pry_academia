@@ -50,7 +50,7 @@ if (!isset($_SESSION["usuario_academia"])) {
             <div id="contenedor-curso" class="row">
                 <?php include "views/includes/templates/card_curso_inscrito.php"; ?>
 
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4">
                     <div class=" contact-box" style="min-height: 171px ">
                         <a style=" align-items: center" class="row" href="?url=detalle">
                             <div class="col-5">
@@ -153,7 +153,7 @@ if (!isset($_SESSION["usuario_academia"])) {
                             </div>
                         </a>
                     </div>
-                </div>
+                </div> -->
             </div>
 
         </div>

@@ -12,8 +12,8 @@ let view_ciclo = {
             "CursoProgramadoController.php",
             {id: getParameterByName("id") },
             (result) => {
-              result.row.curso= result.id_curso;
-              console.log(result.row);
+            //   result.row.curso= result.row;
+            //   console.log(result.row);
               loadDataToTemplate(
                 "tmpl_curso_det",
                 "curso_inscrito",
@@ -21,7 +21,6 @@ let view_ciclo = {
               );
             }
           );
-
     }
 }
 

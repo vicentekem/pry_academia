@@ -6,7 +6,7 @@
                             <div class="col-5">
                                 <div class="text-center">
                                     <div>
-                                        <img alt="image" class="m-t-xs img-fluid" src="public/web/assets/img/cursos/curso1.jpg">
+                                        <img alt="image" class="m-t-xs img-fluid" src={{url_img}}>
                                     </div>
                                     <div style="text-transform:uppercase" class="m-t-xs font-bold">
                                     {{description}}</div>

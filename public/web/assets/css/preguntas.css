@@ -187,3 +187,12 @@ p {
     background-color: #00c894;
     color: white;
 }
+@media (max-width: 991px) {
+  .contenedor_pregunta {
+    width: 85%;
+    margin: 0 auto;
+  }
+  .contenido-card {
+    gap: 1rem;
+  }
+}

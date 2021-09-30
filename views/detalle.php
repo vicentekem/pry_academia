@@ -51,7 +51,12 @@ if (!isset($_SESSION["usuario_academia"])) {
 
             <div class="ibox-content" id="curso_inscrito">
 
+
+            
             <?php include "views/includes/templates/detalle_curso_inscrito.php"; ?>
+
+
+
             </div>
         </div>
     </div>

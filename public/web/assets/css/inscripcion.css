@@ -8,6 +8,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 p {
   margin: 0;
   padding: 0;
@@ -24,6 +25,7 @@ h2 {
   gap: 0.5rem;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 .img-desc {
   width: 50%;
