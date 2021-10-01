@@ -27,7 +27,7 @@
                         <li><img src="public/web/assets/img/grupo/home.svg" alt="Home">Estadística</li>
                     </ul>
                     <div class="btn-section d-flex">
-                        <a href="#" class="btn-start">COMIENSA A ESTUDIAR</a>
+                        <a href="#" class="btn-start">COMIENZA A ESTUDIAR</a>
                         <a href="#" class="btn-play"> <span><img src="public/web/assets/img/grupo/play.svg" alt="play"></span>
                             Watch Video</a>
                     </div>
