@@ -470,7 +470,7 @@ const loadCbx = ()=>{
     }    
 
     ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:3},(result) => {
-        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_tipo_pago',result["rows"]);
+        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_tipo_pago',result.rows);
     });
 
     ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:4},(result) => {
