@@ -73,7 +73,18 @@ class Menu
             "SELECT sm.id,sm.id_menu,sm.name_menu
             FROM tbl_submenu sm $where ORDER BY sm.orden",$data
         );
+    }
 
+    public function cbxSubMenuXUsuario($data)
+    {
+        $where = Utilitario::generarFiltros($data,[ "id_usuario" => "u.id = :id_usuario" ]);
+
+        return $this->model->getAllRows(
+            "SELECT sm.id,sm.id_menu,sm.name_menu
+            FROM tbl_submenu sm 
+            INNER JOIN tbl_accesos_usuario au on au.id_submenu = sm.id
+            INNER JOIN tbl_usuario u on u.id = au.id_usuario $where ORDER BY sm.orden",$data
+        );
     }
 
 }

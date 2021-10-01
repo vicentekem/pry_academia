@@ -13,10 +13,8 @@ $urls["dashboard"] = "dashboard.php";
 $urls["inicio"] = "index.php";
 $urls["ciclo"] = "ciclo.php";
 $urls["correo"] = "correo.php";
-$urls["detalle"] = "detalle.php";
-$urls["nuevo"] = "concurso_nuevo.php";
-$urls["editar"] = "concurso_editar.php";
-$urls["inscripcion"] = "view-inscripcion.php";
+$urls["inscripcion"] = "view_inscripcion.php";
+
 $urls["error"] = "error.php";
 
 require __DIR__ . "/Conexion.php";

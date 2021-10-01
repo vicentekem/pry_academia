@@ -1,15 +1,15 @@
 
 <?php
 
-require_once "validator/MenuValidator.php";
+require_once "validator/AccesoValidator.php";
 
-class MenuController
+class AccesoController
 {
     private $validator;
 
     public function __construct()
     {
-        $this->validator = new MenuValidator();
+        $this->validator = new AccesoValidator();
     }
 
     public function procesarPeticion()
@@ -28,11 +28,6 @@ class MenuController
     {
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
-            
-            case "cbx_menu":$array_result = $this->validator->cbxMenu();break;
-            case "cbx_submenu":$array_result = $this->validator->cbxSubMenu();break;
-            case "cbx_submenu_x_usuario":$array_result = $this->validator->cbxSubMenuXUsuario();break;
-
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);
@@ -41,11 +36,17 @@ class MenuController
     public function controllerPost()
     {
         $action = isset($_POST['action']) ? $_POST['action'] : "";                            
-        switch ($action) { default: $array_result["error"] = "Error al procesar la petición"; }
+        switch ($action) {
+            case "add_acceso":$array_result = $this->validator->saveAcceso('add');break;
+            case "add_all_acceso":$array_result = $this->validator->saveAcceso('add_all');break;
+            case "remove_acceso":$array_result = $this->validator->saveAcceso('rmv');break;
+            case "remove_all_acceso":$array_result = $this->validator->saveAcceso('rmv_all');break;
+            default: $array_result["error"] = "Error al procesar la petición";
+        }
         echo json_encode($array_result);
     }
 
 }
 
-$controller = new MenuController();
+$controller = new AccesoController();
 $controller->procesarPeticion();

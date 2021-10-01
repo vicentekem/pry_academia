@@ -26,4 +26,11 @@ class MenuValidator
         return $result;
     }
 
+    public function cbxSubMenuXUsuario(){
+        $result = [ "error" => "" ];
+        $data["id_usuario int"] = Utilitario::getIntParam("id_usuario");        
+        $result = $result["error"] === "" ? $this->model->cbxSubMenuXUsuario($data) : $result;
+        return $result;
+    }
+
 }

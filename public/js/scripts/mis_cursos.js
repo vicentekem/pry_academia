@@ -1,35 +1,31 @@
 let view_ciclo = {
-
+    action : getParameterByName("action"),
     init : ()=>{
-        view_ciclo.showCursos();
+
+        switch(view_ciclo.action){
+            case 'view': view_ciclo.showCurso();break;
+            case 'list': view_ciclo.showCursos();break;
+            default : view_ciclo.showCursos();
+        }        
     },
 
     showCursos: () => {
     
-        ajaxRequest("qry_curso_x_persona", "get","CursoProgramadoController.php",{}, (result) => {
-            //result["rows"] == result.rows
-            loadDataToTemplate('tmpl_curso_insc','contenedor-curso',result["rows"]);
-    
+        ajaxRequest("qry_curso_x_persona", "get","CursoProgramadoController.php",{}, (result) => {            
+            loadDataToTemplate('tmpl_curso_insc','contenedor-curso',result["rows"]);    
         });
 
+    },
+    showCurso : ()=>{
+        console.log("aaa");
+        ajaxRequest("get_curso_programado_x_persona","get","CursoProgramadoController.php",{id: getParameterByName("id") },(result) => {         
+            loadDataToTemplate("tmpl_curso_det","curso_inscrito",result["row"]);
+        });
     }
 }
 
-const loadCbx = ()=>{
-
-    
-
-    /*ajaxRequest("cbx_tablas","get","TablasController.php",{id_tabla:6},(result) => {
-        loadDataToTemplate('tmpl_cbx_main','cbx_crud_id_sexo',result["rows"]);
-    });*/
-
-    //ajaxSelect2("cbx_crud_id_distrito","cbx_ubigeo","UbigeoController.php");
-}
-
-
 document.addEventListener('DOMContentLoaded',()=>{
-        
+
     view_ciclo.init();
-    loadCbx();
-    
+        
 });
