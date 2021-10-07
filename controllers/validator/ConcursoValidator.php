@@ -33,7 +33,7 @@ class ConcursoValidator
     public function getConcurso()
     {
         $result = [ "error" => "" ];
-        $data["id int"] =  Utilitario::getParam("id");
+        $data["id int"] =  Utilitario::getIntParam("id");
 
         $result = $result["error"] === "" ? $this->model->getConcurso($data) : $result;
         return $result;
@@ -42,9 +42,16 @@ class ConcursoValidator
     public function getDescConcurso()
     {
         $result = [ "error" => "" ];
-        $data["id int"] =  Utilitario::getParam("id");
+        $data["id int"] =  Utilitario::getIntParam("id");
 
         $result = $result["error"] === "" ? $this->model->getDescConcurso($data) : $result;
+        return $result;
+    }
+
+    public function pwConcurso()
+    {
+        $result = [ "error" => "" ];
+        $result = $result["error"] === "" ? $this->model->pwConcurso() : $result;
         return $result;
     }
     
@@ -54,15 +61,15 @@ class ConcursoValidator
 
         $data["id int"] = Utilitario::getIntParam("id");
         $data["description"] = Utilitario::getParam("description");
-        $data["resumen"] = Utilitario::getParam("resumen");
+        $data["resumen"] = Utilitario::getParam("resumen",false);
         $data["fecha"] = Utilitario::getParam("fecha");
         $data["hora_inicio"] = Utilitario::getParam("hora_inicio");
         $data["hora_fin"] = Utilitario::getParam("hora_fin");
-        $data["direccion"] = Utilitario::getParam("direccion");
+        $data["direccion"] = Utilitario::getParam("direccion",false);
         $data["monto_inscripcion"] = Utilitario::getParam("monto_inscripcion");
         
         $data["preguntas"] = Utilitario::getParam("preguntas",false);
-        $data["opciones"] = Utilitario::getParam("beneficios",false);
+        $data["opciones"] = Utilitario::getParam("opciones",false);
 
         $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
 
@@ -74,7 +81,7 @@ class ConcursoValidator
         $file_tmp = "";
         $url_img_new = "";
 
-        if($action === 'upd_bp' && $fl_img){
+        if($action === 'upd' && $fl_img){
             $url_img_old = $this->model->getUrlImgConcurso(["id int" => $data["id int"]])["row"]["url_img"];
         }
 
@@ -90,7 +97,7 @@ class ConcursoValidator
             $data["url_img"] = $url_img;
         }
         
-        $result = $result["error"] === "" ? $this->model->saveConcurso($data) : $result;
+        $result = $result["error"] === "" ? $this->model->saveConcurso($action,$data) : $result;
         
         if($result["error"] === ""){
             if($url_img_old !== "public/img/default.png" && $url_img_old != "" && $url_img_old != null && file_exists($url_img_old)){
@@ -99,6 +106,9 @@ class ConcursoValidator
             }
             move_uploaded_file($file_tmp,$url_img_new);
         }
+
+        //echo json_encode( $result );
+        //exit("aaaa");
 
         return $result;
 

@@ -29,8 +29,9 @@ class ConcursoController
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
             case "qry_concurso":$array_result = $this->validator->qryConcurso();break;
-            case "get_concurso":$array_result = $this->validator->getConcurso();break;
+            case "get_concurso":$array_result = $this->validator->getConcurso();break;            
             case "get_desc_concurso":$array_result = $this->validator->getDescConcurso();break;
+            case "pw_concurso":$array_result = $this->validator->pwConcurso();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);

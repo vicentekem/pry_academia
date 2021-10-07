@@ -27,23 +27,23 @@ class InscripcionValidator
 
         $result = [ "error" => "" ];
         
-        $data["id int"] = Utilitario::getIntParam("id");
+        $data["id int"] = Utilitario::getParam("id");
         $data["dni"] = Utilitario::getParam("dni");
         $data["nombre"] = Utilitario::getParam("nombre");
         $data["ape_pat"] = Utilitario::getParam("ape_pat");
         $data["ape_mat"] = Utilitario::getParam("ape_mat");
         $data["correo"] = Utilitario::getParam("correo");
         $data["celular"] = Utilitario::getParam("celular");
-        $data["id_distrito"] = Utilitario::getParam("id_distrito");
-        $data["id_concurso int"] = Utilitario::getIntParam("id_concurso");        
+        $data["id_concurso int"] = Utilitario::getIntParam("id_concurso");
+        /*$data["id_distrito"] = Utilitario::getParam("id_distrito");*/
         //$data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
 
         $usuario = $this->usuario_model->getUserByDNI( ["dni"=> $data["dni"] ] )["row"];
-        
+
         $result = $this->model->saveInscripcion($action,$data);
 
         if($result["error"] == ""){
-            $data["id"] = $usuario != null ? $usuario["id"] : null;
+            //$data["id"] = $usuario != null ? $usuario["id"] : null;
             $result_mail = $this->mail->sendMailInscripcion($data);
         }
         

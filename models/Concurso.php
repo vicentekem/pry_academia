@@ -19,9 +19,9 @@ class Concurso
         ]);
 
         return $this->model->getAllRows(
-            "SELECT c.id,c.nombre,description,DATE_FORMAT(c.fecha,'%d/%m/%Y') fecha,c.monto_inscripcion,
+            "SELECT c.id,c.description,DATE_FORMAT(c.fecha,'%d/%m/%Y') fecha,c.monto_inscripcion,
             DATE_FORMAT(hora_inicio,'%h:%i %p') hora_inicio, DATE_FORMAT(hora_fin,'%h:%i %p') hora_fin,c.estado 
-            FROM tbl_concurso $where limit :start,:length ", $data,
+            FROM tbl_concurso c $where limit :start,:length ", $data,
             "SELECT count(c.id) AS cant_rows FROM tbl_concurso c $where",["search" => $data["search"] ]
         );
 
@@ -35,10 +35,10 @@ class Concurso
         ]);
 
         $result = $this->model->getRow( 
-            "SELECT c.id,c.nombre,description,DATE_FORMAT(c.fecha,'%d/%m/%Y') fecha,c.monto_inscripcion,url_img,
+            "SELECT c.id,c.description,c.resumen,DATE_FORMAT(c.fecha,'%d/%m/%Y') fecha,c.monto_inscripcion,url_img,
                 DATE_FORMAT(hora_inicio,'%h:%i %p') hora_inicio, DATE_FORMAT(hora_fin,'%h:%i %p') hora_fin,c.estado,
                 direccion,resumen
-            FROM tbl_concurso $where", $data
+            FROM tbl_concurso c $where", $data
         );
 
         $result["preguntas"] = $this->model->getAllRows(
@@ -50,7 +50,7 @@ class Concurso
             INNER JOIN tbl_pregunta p on p.id_concurso = c.id
             INNER JOIN tbl_opcion op on op.id_pregunta = p.id $where", $data
         )["rows"];
-
+        
         return $result;
     }
 
@@ -66,6 +66,15 @@ class Concurso
         $where = Utilitario::generarFiltros($data,["id" => "c.id = :id"]);        
         return $this->model->getRow(
             "SELECT c.id,c.description FROM tbl_concurso c $where", $data);
+    }
+
+    public function pwConcurso()
+    {        
+        return $this->model->getRow(
+            "SELECT c.id,c.description,resumen,DATE_FORMAT(fecha,'%d/%m/%Y') fecha,
+                DATE_FORMAT(hora_inicio,'%h:%i %p') hora_inicio, DATE_FORMAT(hora_fin,'%h:%i %p') hora_fin,
+                direccion,monto_inscripcion,url_img
+            FROM tbl_concurso c WHERE fecha > CURRENT_DATE order by fecha ");
     }
 
     public function saveConcurso($action,$data){
