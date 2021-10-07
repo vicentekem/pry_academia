@@ -165,7 +165,7 @@ height: 4px;
 
 .from__btn:hover {
   background-color: var(--blue-opaque);
-  color: var(white);
+  color: white;
 }
 
 /* 

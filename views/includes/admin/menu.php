@@ -17,7 +17,7 @@
                         <span class="text-muted text-xs block">Art Director <b class="caret"></b></span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="dropdown-item" href="profile.html">Perfil</a></li>
+                        <li><a class="dropdown-item" href="?url=profile">Perfil</a></li>
                         <li><a id="btn_open_modal" class="dropdown-item" >Cambiar Contraseña</a></li>                        
                         <li class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="?url=logout">Salir</a></li>

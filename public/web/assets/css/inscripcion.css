@@ -25,7 +25,8 @@ h2 {
   gap: 0.5rem;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .img-desc {
   width: 50%;
