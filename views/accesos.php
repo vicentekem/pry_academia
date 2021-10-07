@@ -74,7 +74,7 @@
                                 </div>
 
                                 <div class="col-12 col-md-4 d-flex flex-wrap flex-md-column justify-content-center align-items-center">
-                                    <button type="button" style="width: 130px;font-size: .85em;" onclick="add()" class="btn btn-sm btn-default m-1">Añadir</button>
+                                    <button id="cbx_añadir" type="button" style="width: 130px;font-size: .85em;"  class="btn btn-sm btn-default m-1">Añadir</button>
                                     <button type="button" style="width: 130px;font-size: .85em;" onclick="addAll()" class="btn btn-sm btn-default m-1">Añadir Todos</button>
                                     <button type="button" style="width: 130px;font-size: .85em;" onclick="remove()" class="btn btn-sm btn-default m-1">Quitar</button>
                                     <button type="button" style="width: 130px;font-size: .85em;" onclick="removeAll()" class="btn btn-sm btn-default m-1">Quitar Todos</button>
@@ -116,6 +116,10 @@
     <?php include __DIR__ . "/includes/partials/alumno/modal_alumno.php" ?>
     <?php include __DIR__ . "/includes/admin/scripts.php" ?>
 
+
+    <?php include "views/includes/templates/cbx_templates.php"; ?>
+
+
     <script src="public/js/plugins/dataTables/datatables.min.js"></script>
     <script src="public/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
     <script src="public/js/plugins/mustache/mustache.min.js"></script>
@@ -123,7 +127,10 @@
     <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="public/js/utilitario/utilitario.js"></script>    
 
-    <script src="public/js/scripts/accesos.js"></script>
+    <!-- <script src="public/js/scripts/accesos.js"></script> -->
+
+    <script src="public/js/scripts/menu_controller.js"></script>
+
 
 </body>
 </html>
