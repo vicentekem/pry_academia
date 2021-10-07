@@ -3,6 +3,10 @@ let crud_curso = {
     dtable: null,
     id_table: "tbl_curso",
     id_modal: "modal_crud_curso",
+    
+    id_rol : $("#txt_session_id_rol").val(),
+    id_persona : $("#txt_session_id_persona").val(),
+    id_usuario : $("#txt_session_id_usuario").val(),
 
     init : ()=>{
         let btn_new_curso = $("#btn_new_curso");
@@ -13,9 +17,8 @@ let crud_curso = {
         filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
         filter_container_jq.on("keyup", event => {
-            if(event.keyCode == 13){
-                searchEventListener(event);
-            }
+            if(event.keyCode == 13 || event.keyCode == 27){ searchEventListener(event);}
+            if(event.keyCode == 27){ event.target.value = ""; }
         });
 
         frm_crud_curso.on('submit', (event)=> event.preventDefault);

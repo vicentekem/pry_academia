@@ -15,6 +15,9 @@
     <link href="public/web/assets/css/temarios.css" rel="stylesheet">
 
     <link href="public/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+
+
+
 </head>
 
 <body>
@@ -74,7 +77,7 @@
                     <div class="campo-desc">
                         <!--=== Curso ===-->
                         <div class=" focus-des campo1 campo-space ">
-                            <input id="curso" class=" input-des bloqueo" type="text" disabled>
+                            <input id="txt_concurso" class=" input-des bloqueo" type="text" disabled>
                         </div>
                         <!--=== DNI===-->
                         <div class=" focus-des campo1 campo-space">
@@ -96,6 +99,11 @@
                             <input id="txt_nombre" class="input-des" type="text" placeholder='Nombres'>
                         </div>
 
+                        <!--=== Nombres ===-->
+                        <div class=" focus-des campo4  campo-space">
+                            <input id="txt_celular" class="input-des" type="text" placeholder='Nro Celular'>
+                        </div>
+
                         <!--=== correo ===-->
                         <div class=" focus-des campo6  campo-space">
                             <input id="txt_correo" class="input-des" type="email" placeholder='Correo Electronico'>
@@ -105,7 +113,7 @@
                     <!-- enviar -->
                     <div>
                         <div class="btn__go-desc btn-2 campo-desc">
-                            <a href="?url=inscripcion" class="btn__center">
+                            <a href="?url=inscripcion" class="btn__center" id="btn_register">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 15 15" class="svg-icon flex-none svg__icon--btn" id="" fill="currentColor" title="">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M7.5 14.4951C11.366 14.4951 14.5 11.3611 14.5 7.49512C14.5 3.62912 11.366 0.495117 7.5 0.495117C3.63401 0.495117 0.5 3.62912 0.5 7.49512C0.5 11.3611 3.63401 14.4951 7.5 14.4951ZM7.50002 13.5142C10.8243 13.5142 13.5191 10.8194 13.5191 7.49511C13.5191 4.17084 10.8243 1.47598 7.50002 1.47598C4.17575 1.47598 1.4809 4.17084 1.4809 7.49511C1.4809 10.8194 4.17575 13.5142 7.50002 13.5142Z"></path>
                                     <rect x="5.42188" y="4.58569" width="0.875" height="6.125" rx="0.4375"></rect>
@@ -121,5 +129,11 @@
         </div>
     </div>
 </body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="public/js/plugins/toastr/toastr.min.js"></script>
+<script src="public/js/plugins/mustache/mustache.min.js"></script>
+<script src="public/js/utilitario/utilitario.js"></script>
+<script src="public/js/scripts/view_inscripcion.js"></script>
 
 </html>

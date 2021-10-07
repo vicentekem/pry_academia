@@ -78,6 +78,8 @@ $action = isset($_GET["action"]) ? $_GET["action"] : "";
     <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="public/js/utilitario/utilitario.js"></script>
 
+    <script src="public/js/plugins/inputmask/inputmask.min.js"></script>
+    <script src="public/js/plugins/inputmask/inputmask.date.extensions.js"></script>
     <script src="public/js/scripts/concurso.js"></script>
 
 </body>
