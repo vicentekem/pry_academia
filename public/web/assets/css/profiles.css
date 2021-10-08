@@ -1,0 +1,149 @@
+@import url("./myStyles.css");
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+.space {
+  padding: 0 0.5rem 0 0.5rem;
+}
+.cont_perfil {
+  /* width: 90%; */
+  margin: 0 auto ;
+  display: flex;
+  gap: 0.5rem ;
+}
+.cont_right {
+  border-right: 3px solid #8c89b8;
+  border-radius: 2px;
+  width: 30%;
+}
+.cont_space {
+  padding:0 2rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap:1.5rem;
+}
+.cont-caja {
+  width: 150px;
+  height: 150px;
+}
+.cont_img {
+  border-radius: 50%;
+  position: relative;
+}
+.cont_img img {
+    width: 150px;
+    height: 150px;
+    clip-path: circle(50% at center);
+}
+.plas {
+  position: absolute;
+  top: 80%;
+  left: 71%;
+  border: 1px solid;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a6a2da;
+  border: 2px solid  white;
+  cursor: pointer;
+  color: white;
+}
+/* =================== */
+.cont_info{
+    width: 70% ;
+}
+.cont_info_caja{
+    width: 80%;
+    margin: 0 auto;
+}
+.personal{
+    
+    padding-bottom: 0.5rem;
+}
+.cont-datos{
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 3rem;
+    row-gap: 3rem;
+    align-items: center;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+.cont-campo{
+    min-width: 250px;
+width: calc(25% - 1rem);
+/* min-height: 470px; */
+box-shadow: 0 2px 4px rgba(174, 190, 205, 0.3);
+border-radius: 0.5rem;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+@media (max-width: 1278px) {
+    .cont-campo{
+        min-width: 235px;
+    }
+}
+@media (max-width: 1225px) {
+    .cont-campo{
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .cont_info_caja {
+        width: 85%;
+    }
+}
+@media (max-width: 1052px) {
+    .cont-campo{
+        min-width: 180px;
+    }
+}
+@media (max-width: 989px) {
+    .cont_info {
+        width: 60%;
+    }   
+    .cont_right {
+        width: 40%;
+    } 
+}
+@media (max-width: 550px) {
+    .cont_perfil {
+        flex-direction: column;
+        align-items: center;
+    }
+    .cont_right {
+        border: none;
+        width: 100%;
+    }
+    .cont-datos {
+        row-gap: 1.5rem;
+    }
+    
+    .cont_info_caja {
+        width: 95%;
+    }
+}
+
+@media (max-width: 470px) {
+    .cont_info {
+        width: 70%;
+    }
+} 
+@media (max-width: 414px) {
+    .cont_info {
+        width: 80%;
+    }
+} 

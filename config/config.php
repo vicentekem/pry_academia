@@ -14,7 +14,7 @@ $urls["inicio"] = "index.php";
 $urls["ciclo"] = "ciclo.php";
 $urls["correo"] = "correo.php";
 $urls["inscripcion"] = "view_inscripcion.php";
-
+$urls["profile"] = "profiles.php";
 $urls["error"] = "error.php";
 
 require __DIR__ . "/Conexion.php";
