@@ -87,7 +87,7 @@ if (!isset($_SESSION["usuario_academia"])) {
                                         <label class="cont-campo">
                                             <h3>DNI</h3>
                                             <div class="cont-data">
-                                                <input class="input" type="text" placeholder="70897099">
+                                                <input class="input" type="text" placeholder="70896533">
                                                 <i class="edit fa fa-pencil"></i>
                                             </div>
                                         </label>
@@ -105,7 +105,7 @@ if (!isset($_SESSION["usuario_academia"])) {
 
                                         <!-- Celular -->
                                         <label class="cont-campo">
-                                            <h3>celular</h3>
+                                            <h3>Celular</h3>
                                             <div class="cont-data">
                                                 <input class="input" type="text" placeholder="983564829">
                                                 <i class="edit fa fa-pencil"></i>
