@@ -178,6 +178,7 @@ input[type="submit"]:hover{
 @media (max-width: 1052px) {
   .cont-campo {
     min-width: 180px;
+
   }
 }
 @media (max-width: 989px) {
@@ -187,6 +188,12 @@ input[type="submit"]:hover{
   .cont_right {
     width: 40%;
   }
+  .enviar {
+    justify-content: center;
+}
+.cont-campo{
+    width: 100%;
+}
 }
 @media (max-width: 550px) {
   .cont_perfil {
