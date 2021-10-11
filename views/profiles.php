@@ -47,47 +47,99 @@ if (!isset($_SESSION["usuario_academia"])) {
                         <div class="ibox-tools">
                         </div>
                     </div>
+                    <!-- Formulario -->
+                    <form class="ibox-content ">
+                        <fieldset class="cont_perfil">
 
-                    <div class="ibox-content ">
-                        <div class="cont_perfil">
+                            <!-- Imagen y nombre de usuario -->
                             <div class="cont_right">
                                 <div class="cont_space">
+
+                                    <!--Imagen de Usuario  -->
                                     <div class="cont-caja">
                                         <div class="cont_img">
                                             <img class="foto" src="public/img/photo2.jpg" alt="">
-                                            <i class="plas fa fa-plus"></i>
+                                            <label for="file">
+                                                <input id="file" type="file" accept="image/*">
+                                                <i class="plas fa fa-camera"></i>
+                                            </label>
                                         </div>
                                     </div>
-                                    <div>
-                                        <p>Joel vicente Q.</p>
-                                    </div>
+
+                                    <!-- nombre de Usuario -->
+                                    <label for="nombre" class="cont-nombre">
+                                        <input id="nombre" type="text" class="nombre" placeholder="My Name">
+                                        <i class="edit fa fa-pencil"></i>
+                                    </label>
                                 </div>
                             </div>
+                            <!-- ====================== -->
+
+
+                            <!-- Persoanl Information -->
                             <div class="cont_info">
                                 <div class="cont_info_caja">
                                     <h2 class="personal">Persoanl Information</h2>
+
                                     <div class="cont-datos">
-                                        <div class="cont-campo">
+
+                                        <!-- DNI -->
+                                        <label class="cont-campo">
                                             <h3>DNI</h3>
-                                            <p>70897099</p>
-                                        </div>
-                                        <div class="cont-campo">
+                                            <div class="cont-data">
+                                                <input class="input" type="text" placeholder="70897099">
+                                                <i class="edit fa fa-pencil"></i>
+                                            </div>
+                                        </label>
+                                        <!-- ============== -->
+
+                                        <!-- Correo -->
+                                        <label class="cont-campo">
                                             <h3>Email</h3>
-                                            <p>admin.edu@gmail.com</p>
-                                        </div>
-                                        <div class="cont-campo">
+                                            <div class="cont-data">
+                                                <input class="input" type="email" placeholder="admin.edu@gmail.com">
+                                                <i class="edit fa fa-pencil"></i>
+                                            </div>
+                                        </label>
+                                        <!-- ============== -->
+
+                                        <!-- Celular -->
+                                        <label class="cont-campo">
                                             <h3>celular</h3>
-                                            <p>976543087</p>
-                                        </div>
-                                        <div class="cont-campo">
+                                            <div class="cont-data">
+                                                <input class="input" type="text" placeholder="983564829">
+                                                <i class="edit fa fa-pencil"></i>
+                                            </div>
+
+                                        </label>
+                                        <!-- ============== -->
+
+                                        <!-- Direccion -->
+                                        <label class="cont-campo">
                                             <h3>Direccion</h3>
-                                            <p>admin.edu@gmail.com</p>
-                                        </div>
+                                            <div class="cont-data">
+                                                <input class="input" type="text" placeholder="av. Ramos la Rea 123">
+                                                <i class="edit fa fa-pencil"></i>
+                                            </div>
+                                        </label>
+                                        <!-- ============== -->
+
+                                        <!-- Submit -->
+
+                                    </div>
+
+
+                                    <div class="enviar">
+                                        <input  class="btn_enviar" type="submit"
+                                        value="Guardar">
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+
+
+                        </fieldset>
+                    </form>
+
 
                 </div>
 
