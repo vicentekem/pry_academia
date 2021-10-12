@@ -11,7 +11,7 @@
  Target Server Version : 100130
  File Encoding         : 65001
 
- Date: 30/09/2021 14:05:08
+ Date: 12/10/2021 12:06:02
 */
 
 SET NAMES utf8mb4;
@@ -32,8 +32,20 @@ CREATE TABLE `tbl_accesos_rol`  (
 -- ----------------------------
 INSERT INTO `tbl_accesos_rol` VALUES (1, 1);
 INSERT INTO `tbl_accesos_rol` VALUES (1, 2);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 4);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 5);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 11);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 12);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 13);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 15);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 16);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 17);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 18);
+INSERT INTO `tbl_accesos_rol` VALUES (1, 19);
 INSERT INTO `tbl_accesos_rol` VALUES (4, 11);
 INSERT INTO `tbl_accesos_rol` VALUES (4, 14);
+INSERT INTO `tbl_accesos_rol` VALUES (5, 15);
+INSERT INTO `tbl_accesos_rol` VALUES (5, 18);
 
 -- ----------------------------
 -- Table structure for tbl_accesos_usuario
@@ -49,6 +61,7 @@ CREATE TABLE `tbl_accesos_usuario`  (
 -- ----------------------------
 -- Records of tbl_accesos_usuario
 -- ----------------------------
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 0, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 1, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 2, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 3, 1);
@@ -58,9 +71,14 @@ INSERT INTO `tbl_accesos_usuario` VALUES (1, 6, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 11, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 12, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 14, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 15, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (1, 17, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 18, 1);
+INSERT INTO `tbl_accesos_usuario` VALUES (1, 19, 1);
 INSERT INTO `tbl_accesos_usuario` VALUES (2, 11, 4);
 INSERT INTO `tbl_accesos_usuario` VALUES (2, 14, 4);
+INSERT INTO `tbl_accesos_usuario` VALUES (2, 15, 4);
+INSERT INTO `tbl_accesos_usuario` VALUES (2, 18, 4);
 INSERT INTO `tbl_accesos_usuario` VALUES (17, 11, 4);
 INSERT INTO `tbl_accesos_usuario` VALUES (17, 14, 4);
 
@@ -92,9 +110,9 @@ INSERT INTO `tbl_alumno` VALUES (20, 1, '2021-09-29 17:26:19.411433', NULL, NULL
 DROP TABLE IF EXISTS `tbl_concurso`;
 CREATE TABLE `tbl_concurso`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
-  `descripcion` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
-  `fecha` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `resumen` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
+  `fecha` date NULL DEFAULT NULL,
   `hora_inicio` time(6) NULL DEFAULT NULL,
   `hora_fin` time(6) NULL DEFAULT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
@@ -104,8 +122,15 @@ CREATE TABLE `tbl_concurso`  (
   `user_create_up` int(32) NULL DEFAULT NULL,
   `direccion` varchar(300) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `monto_inscripcion` decimal(30, 2) NULL DEFAULT NULL,
+  `url_img` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `puntaje_total` int(255) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_concurso
+-- ----------------------------
+INSERT INTO `tbl_concurso` VALUES (21, 'LOREM IPSUM', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has su', '2021-10-15', '10:00:00.000000', '13:00:00.000000', 1, '2021-10-06 15:54:05.971555', NULL, NULL, NULL, 'LOREM IPSUM LOREM IPSUM LOREM IPSUM', 10.00, 'public/img/concurso/615e0cedea7a2.jpg', 4);
 
 -- ----------------------------
 -- Table structure for tbl_curso
@@ -197,8 +222,8 @@ CREATE TABLE `tbl_curso_programado`  (
 -- ----------------------------
 -- Records of tbl_curso_programado
 -- ----------------------------
-INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, NULL, 1, '2021-09-06', '2021-12-17', 'public/img/cursos/614e44e97aa5b.jpg', 1, NULL, NULL, 3);
-INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, '2021-09-29 11:44:54.000000', 1, '2021-09-01', '2021-12-01', 'public/img/cursos/curso2.jpg', 1, 1, '', 3);
+INSERT INTO `tbl_curso_programado` VALUES (1, 5, '2021-08-31 12:51:32.611256', NULL, '2021-10-12 10:35:41.000000', 1, '2021-09-06', '2021-12-17', 'public/img/cursos/6165a9c066649.jpg', 1, 1, 'https://www.youtube.com/', 3);
+INSERT INTO `tbl_curso_programado` VALUES (2, 4, '2021-08-31 12:54:34.937925', NULL, '2021-09-30 18:21:13.000000', 1, '2021-09-01', '2021-12-01', 'public/img/cursos/615646693f0c8.jpg', 1, 1, '', 3);
 INSERT INTO `tbl_curso_programado` VALUES (3, 2, '2021-08-31 12:55:30.022456', NULL, NULL, 1, '2021-09-13', '2021-11-26', 'public/img/cursos/curso3.jpg', 1, NULL, NULL, 3);
 INSERT INTO `tbl_curso_programado` VALUES (6, 9, '2021-09-16 15:38:18.000000', 1, '2021-09-17 01:03:55.000000', 1, '2021-09-20', '2012-12-15', 'public/img/cursos/614e433c4b7c1.jpg', 1, 1, '', 3);
 
@@ -251,7 +276,7 @@ INSERT INTO `tbl_curso_programado_turno` VALUES (6, 2, '13:00:00.000000', '15:30
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_inscripcion`;
 CREATE TABLE `tbl_inscripcion`  (
-  `id` int(23) NOT NULL,
+  `id` int(23) UNSIGNED NOT NULL AUTO_INCREMENT,
   `id_concurso` int(32) NOT NULL,
   `id_persona` int(32) NOT NULL,
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
@@ -260,8 +285,16 @@ CREATE TABLE `tbl_inscripcion`  (
   `user_create_up` int(32) NULL DEFAULT NULL,
   `estado` tinyint(1) NULL DEFAULT 1,
   `monto` decimal(30, 2) NULL DEFAULT NULL,
+  `estado_inscripcion` int(32) UNSIGNED NOT NULL DEFAULT 1,
+  `puntaje` tinyint(32) NULL DEFAULT NULL,
+  `respuestas` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_inscripcion
+-- ----------------------------
+INSERT INTO `tbl_inscripcion` VALUES (2, 21, 1, '2021-10-07 15:37:23.206249', NULL, NULL, NULL, 1, 10.00, 1, 1, '46,87|47,91|48,93|49,97');
 
 -- ----------------------------
 -- Table structure for tbl_matricula
@@ -317,10 +350,10 @@ INSERT INTO `tbl_menu` VALUES (6, 'CONSULTAS', 'fa-search', 2, 1);
 -- ----------------------------
 DROP TABLE IF EXISTS `tbl_opcion`;
 CREATE TABLE `tbl_opcion`  (
-  `id` int(32) NOT NULL,
+  `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_pregunta` int(32) NOT NULL,
   `nro_orden` int(32) NULL DEFAULT 1,
-  `descripcion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `es_correcto` tinyint(1) NULL DEFAULT 0,
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
@@ -328,7 +361,23 @@ CREATE TABLE `tbl_opcion`  (
   `user_create_up` int(32) NULL DEFAULT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 98 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_opcion
+-- ----------------------------
+INSERT INTO `tbl_opcion` VALUES (86, 46, 1, 'opcion 1', 1, '2021-10-11 17:32:21.108061', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (87, 46, 2, 'opcion 2', 0, '2021-10-11 17:32:21.108061', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (88, 46, 3, 'opcion 3', 0, '2021-10-11 17:32:21.108061', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (89, 46, 4, 'Nueva opcion', 0, '2021-10-11 17:32:21.108061', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (90, 47, 1, 'Nueva opcion', 0, '2021-10-11 17:32:21.108061', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (91, 47, 2, 'Nueva opcion', 1, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (92, 47, 3, 'Nueva opcion', 0, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (93, 48, 1, 'Nueva opcion', 0, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (94, 48, 2, 'Nueva opcion', 1, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (95, 49, 1, 'Nueva opcion', 0, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (96, 49, 2, 'Nueva opcion peee', 1, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
+INSERT INTO `tbl_opcion` VALUES (97, 49, 3, 'Nueva opcion', 0, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for tbl_pago
@@ -350,7 +399,7 @@ CREATE TABLE `tbl_pago`  (
   `observacion` varchar(800) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `id_inscripcion` int(32) NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_pago
@@ -367,6 +416,7 @@ INSERT INTO `tbl_pago` VALUES (18, 17, 1, 120.00, NULL, 2, '2021-09-29 17:26:19.
 INSERT INTO `tbl_pago` VALUES (19, 17, 2, 80.50, NULL, 1, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-10-29', NULL, NULL, NULL);
 INSERT INTO `tbl_pago` VALUES (20, 17, 2, 80.50, NULL, 1, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-11-29', NULL, NULL, NULL);
 INSERT INTO `tbl_pago` VALUES (21, 17, 2, 80.50, NULL, 1, '2021-09-29 17:26:19.513504', NULL, NULL, NULL, '2021-12-29', NULL, NULL, NULL);
+INSERT INTO `tbl_pago` VALUES (23, NULL, 3, 10.00, NULL, 2, '2021-10-07 15:37:23.206249', NULL, NULL, NULL, '2021-10-08', NULL, NULL, 2);
 
 -- ----------------------------
 -- Table structure for tbl_persona
@@ -426,15 +476,24 @@ CREATE TABLE `tbl_pregunta`  (
   `id` int(32) NOT NULL AUTO_INCREMENT,
   `id_concurso` int(32) NOT NULL,
   `nro_orden` int(32) NOT NULL,
-  `descripcion` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `url_img` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL,
   `create_at` datetime(6) NULL DEFAULT CURRENT_TIMESTAMP(6),
   `user_create_at` int(32) NULL DEFAULT NULL,
   `create_up` datetime(6) NULL DEFAULT NULL,
   `user_create_up` int(32) NULL DEFAULT NULL,
   `estado` tinyint(1) NOT NULL DEFAULT 1,
+  `puntaje` tinyint(2) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 50 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of tbl_pregunta
+-- ----------------------------
+INSERT INTO `tbl_pregunta` VALUES (46, 21, 1, 'nueva pregunta pe causa', NULL, '2021-10-11 17:32:21.029986', NULL, NULL, NULL, 1, 1);
+INSERT INTO `tbl_pregunta` VALUES (47, 21, 2, 'Nuena Pregunta 2', NULL, '2021-10-11 17:32:21.108061', NULL, NULL, NULL, 1, 1);
+INSERT INTO `tbl_pregunta` VALUES (48, 21, 3, 'Nuena Pregunta 3', NULL, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1, 1);
+INSERT INTO `tbl_pregunta` VALUES (49, 21, 4, 'Nuena Pregunta 4', NULL, '2021-10-11 17:32:21.109043', NULL, NULL, NULL, 1, 1);
 
 -- ----------------------------
 -- Table structure for tbl_submenu
@@ -451,7 +510,7 @@ CREATE TABLE `tbl_submenu`  (
   `estado` tinyint(1) NULL DEFAULT 1,
   `orden` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = latin1 COLLATE = latin1_swedish_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tbl_submenu
@@ -460,7 +519,7 @@ INSERT INTO `tbl_submenu` VALUES (1, '1', 'TABLAS', '2', 'tablas', 'tablas.php',
 INSERT INTO `tbl_submenu` VALUES (2, '1', 'PERSONAL', '2', 'personal', 'personal.php', NULL, 1, 2);
 INSERT INTO `tbl_submenu` VALUES (3, '5', 'CURSO', '2', 'curso', 'curso.php', NULL, 1, 1);
 INSERT INTO `tbl_submenu` VALUES (4, '1', 'ALUMNO', '2', 'alumno', 'alumno.php', NULL, 1, 3);
-INSERT INTO `tbl_submenu` VALUES (5, '4', 'ACCESOS', '2', 'accesos', 'accesos.php', NULL, 1, 1);
+INSERT INTO `tbl_submenu` VALUES (5, '4', 'ACCESOS X USUARIO', '2', 'accesos', 'accesos.php', NULL, 1, 1);
 INSERT INTO `tbl_submenu` VALUES (6, '5', 'CURSO PROGRAMADO', '2', 'curso_programado', 'curso_programado.php', NULL, 1, 2);
 INSERT INTO `tbl_submenu` VALUES (7, NULL, 'Inicio', '1', 'inicio', 'index.php', NULL, 1, 1);
 INSERT INTO `tbl_submenu` VALUES (8, NULL, 'Sobre Nosotros', '1', 'sobre_nosotros', 'sobre_nosotros.php', NULL, 1, 2);
@@ -470,9 +529,11 @@ INSERT INTO `tbl_submenu` VALUES (11, '2', 'MATRICULA Y MENSUALIDADES', '2', 're
 INSERT INTO `tbl_submenu` VALUES (12, '1', 'USUARIO', '2', 'usuario', 'usuario.php', NULL, 1, 4);
 INSERT INTO `tbl_submenu` VALUES (13, '1', 'ROLES', '2', 'roles', 'rol.php', NULL, 0, 4);
 INSERT INTO `tbl_submenu` VALUES (14, '5', 'MIS CURSOS', '2', 'mis_cursos', 'mis_cursos.php', NULL, 1, 3);
-INSERT INTO `tbl_submenu` VALUES (15, '5', 'MIS DEUDAS', '2', 'mis_pagos', 'mis_pagos.php', NULL, 0, 3);
+INSERT INTO `tbl_submenu` VALUES (15, '2', 'INSCRIPCIONES', '2', 'inscripciones', 'inscripciones.php', NULL, 1, 3);
 INSERT INTO `tbl_submenu` VALUES (16, '2', 'REVISAR PAGOS', '2', 'registrar_pago', 'registrar_pago.php', NULL, 1, 2);
 INSERT INTO `tbl_submenu` VALUES (17, '1', 'CONCURSO', '2', 'concursos', 'concurso.php', NULL, 1, 2);
+INSERT INTO `tbl_submenu` VALUES (18, '2', 'PARTICIPAR', '2', 'participar_concurso', 'participar.php', NULL, 1, 1);
+INSERT INTO `tbl_submenu` VALUES (19, '4', 'ACCESOS X ROL', '2', 'accesos_rol', 'accesos_rol.php', NULL, 1, 1);
 
 -- ----------------------------
 -- Table structure for tbl_tablas
@@ -489,7 +550,7 @@ CREATE TABLE `tbl_tablas`  (
 -- ----------------------------
 -- Records of tbl_tablas
 -- ----------------------------
-INSERT INTO `tbl_tablas` VALUES (0, 1, NULL, 'TIPO_MENU', 1);
+INSERT INTO `tbl_tablas` VALUES (0, 1, '', 'TIPO_MENU', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 1, NULL, 'PAGINA_WEB', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 2, NULL, 'ADMIN', 1);
 INSERT INTO `tbl_tablas` VALUES (0, 2, NULL, 'ROLES', 1);
@@ -508,7 +569,7 @@ INSERT INTO `tbl_tablas` VALUES (0, 6, NULL, 'SEXO', 1);
 INSERT INTO `tbl_tablas` VALUES (6, 1, NULL, 'MASCULINO', 1);
 INSERT INTO `tbl_tablas` VALUES (6, 2, NULL, 'FEMENINO', 1);
 INSERT INTO `tbl_tablas` VALUES (0, 7, NULL, 'ESTADO_MATRICULA', 1);
-INSERT INTO `tbl_tablas` VALUES (7, 1, NULL, 'REGISTRADO', 1);
+INSERT INTO `tbl_tablas` VALUES (7, 1, NULL, 'PRE-MATRICULADO', 1);
 INSERT INTO `tbl_tablas` VALUES (7, 2, NULL, 'COMPLETADO', 1);
 INSERT INTO `tbl_tablas` VALUES (7, 3, NULL, 'ANULADO', 1);
 INSERT INTO `tbl_tablas` VALUES (1, 3, NULL, 'ESTUDIANTE', 1);
@@ -523,6 +584,10 @@ INSERT INTO `tbl_tablas` VALUES (8, 5, NULL, 'COMPLETADO', 1);
 INSERT INTO `tbl_tablas` VALUES (8, 6, NULL, 'ANULADO', 1);
 INSERT INTO `tbl_tablas` VALUES (3, 3, NULL, 'INSCRIPCION POR PATICIPACION', 1);
 INSERT INTO `tbl_tablas` VALUES (2, 5, NULL, 'PARTICIPANTE', 1);
+INSERT INTO `tbl_tablas` VALUES (0, 9, NULL, 'ESTADO_INSCRIPCION', 1);
+INSERT INTO `tbl_tablas` VALUES (9, 1, NULL, 'PRE-INSCRITO', 1);
+INSERT INTO `tbl_tablas` VALUES (9, 2, NULL, 'COMPLETADO', 1);
+INSERT INTO `tbl_tablas` VALUES (9, 3, NULL, 'ANULADO', 1);
 
 -- ----------------------------
 -- Table structure for tbl_ubigeo
@@ -4005,7 +4070,7 @@ CREATE TABLE `tbl_usuario`  (
 -- ----------------------------
 -- Records of tbl_usuario
 -- ----------------------------
-INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `tbl_usuario` VALUES (1, 1, 'JVICENTEQ', 'e10adc3949ba59abbe56e057f20f883e', '2021-08-27 12:14:07.428221', NULL, '2021-10-01 10:41:03.000000', 1, 1, 1);
 INSERT INTO `tbl_usuario` VALUES (2, 4, '70389258', '1192f784f2e3a9a28723e01e3029e882', '2021-09-21 23:58:26.958305', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `tbl_usuario` VALUES (17, 21, '70897099', '1e4f05b6d5e9f4a1547b3dabc5445e4f', '2021-09-22 16:39:05.503530', NULL, NULL, NULL, NULL, 1);
 
@@ -4035,61 +4100,226 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_accesos`(
 _action VARCHAR(10),
 _id_usuario int(32),
 _id_rol INT(32),
+_id_menu INT(32),
 _accesos VARCHAR(50)
 )
 BEGIN
+
 DECLARE strLen INT DEFAULT 0;
 DECLARE subStrlen INT DEFAULT 0;
 
+SET _id_rol = (SELECT id_rol from tbl_usuario_rol where id_usuario = _id_usuario limit 1);
 
-case _action 
-WHEN 'ins' THEN
-SET strLen=CHAR_LENGTH(_accesos);
-		ins_accesos: LOOP
+case _action
+WHEN 'add' THEN
+	
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	ins_accesos: LOOP
 		SET strLen = CHAR_LENGTH(_accesos);
-		
-		
+
 		IF strLen > 0 THEN
-			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , '|', 1 ))is NULL THEN
-					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La tabla no existe', MYSQL_ERRNO = 1001;
-			
-			ELSEIF(SELECT id from tbl_usuario 
-				where id=_id_usuario ) IS NULL  THEN
-						SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El Usuario no existe', MYSQL_ERRNO = 1001;
-			ELSEIF(SELECT id_usuario from tbl_accesos_usuario 
-				where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL  THEN
-					
+			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , '|', 1 ) )is NULL THEN
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El menu no existe', MYSQL_ERRNO = 1001;
+			ELSEIF(SELECT id_usuario from tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL  THEN					
 					insert into tbl_accesos_usuario(id_usuario,id_rol,id_submenu) values(_id_usuario,_id_rol,SUBSTRING_INDEX( _accesos , '|', 1 ) );
-						
 			END IF;
 		END IF;
-				
+					
 		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , '|',1 )) + 2;
 		SET _accesos = MID( _accesos , subStrLen, strLen);
-				
-	IF _accesos='' THEN
-		LEAVE ins_accesos; 
-	END IF; 
-END LOOP ins_accesos;
 
-WHEN 'dlt' THEN
-		SET strLen=CHAR_LENGTH(_accesos);
-		dlt_accesos: LOOP
+		IF _accesos='' THEN
+			LEAVE ins_accesos; 
+		END IF; 
+
+	END LOOP ins_accesos;
+
+WHEN 'add_all' THEN
+	
+	SET _accesos = (SELECT GROUP_CONCAT(id) from tbl_submenu where id_menu = _id_menu);
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	ins_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+
+		IF strLen > 0 THEN
+			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , ',', 1 ) )is NULL THEN
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El menu no existe', MYSQL_ERRNO = 1001;
+			ELSEIF(SELECT id_usuario from tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , ',', 1 )) IS NULL  THEN				
+				insert into tbl_accesos_usuario(id_usuario,id_rol,id_submenu) values(_id_usuario,_id_rol,SUBSTRING_INDEX( _accesos , ',', 1 ) );					
+			END IF;
+		END IF;
+					
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , ',',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+
+		IF _accesos='' THEN
+			LEAVE ins_accesos; 
+		END IF; 
+
+	END LOOP ins_accesos;
+
+WHEN 'rmv' THEN
+	
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	dlt_accesos: LOOP
 		SET strLen = CHAR_LENGTH(_accesos);
 		
-		IF(SELECT id_usuario FROM tbl_accesos_usuario 
-		where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL THEN
+		IF(SELECT id_usuario FROM tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL THEN
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error', MYSQL_ERRNO = 1001;
 		ELSE
 			DELETE FROM tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 );
 		END IF;
+		
 		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , '|',1 )) + 2;
 		SET _accesos = MID( _accesos , subStrLen, strLen);
-	IF _accesos='' THEN
-		LEAVE dlt_accesos; 
-	END IF; 
-END LOOP dlt_accesos;
+		
+		IF _accesos='' THEN
+			LEAVE dlt_accesos; 
+		END IF; 
+	END LOOP dlt_accesos;
+
+WHEN 'rmv_all' THEN
+	
+	SET _accesos = (SELECT GROUP_CONCAT(id_submenu) from tbl_accesos_usuario where id_usuario = _id_usuario);
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	dlt_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+		
+		IF(SELECT id_usuario FROM tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , ',', 1 )) IS NULL THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error', MYSQL_ERRNO = 1001;
+		ELSE
+			DELETE FROM tbl_accesos_usuario where id_usuario=_id_usuario and id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , ',', 1 );
+		END IF;
+		
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , ',',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+		
+		IF _accesos='' THEN
+			LEAVE dlt_accesos; 
+		END IF; 
+	END LOOP dlt_accesos;
+	
 END CASE;
+
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_accesos_rol
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_accesos_rol`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_accesos_rol`(
+_action VARCHAR(10),
+_id_rol INT(32),
+_id_menu INT(32),
+_accesos VARCHAR(50)
+)
+BEGIN
+
+DECLARE strLen INT DEFAULT 0;
+DECLARE subStrlen INT DEFAULT 0;
+
+case _action
+WHEN 'add' THEN
+	
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	ins_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+
+		IF strLen > 0 THEN
+			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , '|', 1 ) )is NULL THEN
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El menu no existe', MYSQL_ERRNO = 1001;
+			ELSEIF(SELECT id_rol from tbl_accesos_rol where id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL  THEN					
+					insert into tbl_accesos_rol(id_rol,id_submenu) values(_id_rol,SUBSTRING_INDEX( _accesos , '|', 1 ) );
+			END IF;
+		END IF;
+					
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , '|',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+
+		IF _accesos='' THEN
+			LEAVE ins_accesos; 
+		END IF; 
+
+	END LOOP ins_accesos;
+
+WHEN 'add_all' THEN
+	
+	SET _accesos = (SELECT GROUP_CONCAT(id) from tbl_submenu where id_menu = _id_menu);
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	ins_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+
+		IF strLen > 0 THEN
+			IF(SELECT id FROM tbl_submenu where id=SUBSTRING_INDEX( _accesos , ',', 1 ) )is NULL THEN
+					SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El menu no existe', MYSQL_ERRNO = 1001;
+			ELSEIF(SELECT id_rol from tbl_accesos_rol where id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , ',', 1 )) IS NULL  THEN				
+				insert into tbl_accesos_rol(id_rol,id_submenu) values(_id_rol,SUBSTRING_INDEX( _accesos , ',', 1 ) );					
+			END IF;
+		END IF;
+					
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , ',',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+
+		IF _accesos='' THEN
+			LEAVE ins_accesos; 
+		END IF; 
+
+	END LOOP ins_accesos;
+
+WHEN 'rmv' THEN
+	
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	dlt_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+		
+		IF(SELECT id_rol FROM tbl_accesos_rol where id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 )) IS NULL THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error', MYSQL_ERRNO = 1001;
+		ELSE
+			DELETE FROM tbl_accesos_rol where id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , '|', 1 );
+		END IF;
+		
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , '|',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+		
+		IF _accesos='' THEN
+			LEAVE dlt_accesos; 
+		END IF; 
+	END LOOP dlt_accesos;
+
+WHEN 'rmv_all' THEN
+	
+	SET _accesos = (SELECT GROUP_CONCAT(id_submenu) from tbl_accesos_rol where id_rol = _id_rol);
+	SET strLen=CHAR_LENGTH(_accesos);
+	
+	dlt_accesos: LOOP
+		SET strLen = CHAR_LENGTH(_accesos);
+		
+		IF(SELECT id_rol FROM tbl_accesos_rol where id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , ',', 1 )) IS NULL THEN
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error', MYSQL_ERRNO = 1001;
+		ELSE
+			DELETE FROM tbl_accesos_rol where id_rol=_id_rol and id_submenu=SUBSTRING_INDEX( _accesos , ',', 1 );
+		END IF;
+		
+		SET subStrlen = CHAR_LENGTH(SUBSTRING_INDEX( _accesos , ',',1 )) + 2;
+		SET _accesos = MID( _accesos , subStrLen, strLen);
+		
+		IF _accesos='' THEN
+			LEAVE dlt_accesos; 
+		END IF; 
+	END LOOP dlt_accesos;
+	
+END CASE;
+
 END
 ;;
 delimiter ;
@@ -4151,6 +4381,288 @@ BEGIN
 			ELSE
 				SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 		END CASE;
+END
+;;
+delimiter ;
+
+-- ----------------------------
+-- Procedure structure for sp_concurso
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sp_concurso`;
+delimiter ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_concurso`( 
+	_action varchar(10),
+	_id int(32),	
+	_description VARCHAR(255),
+	_resumen varchar(255),
+	_fecha varchar(255),
+	_hora_inicio varchar(255),
+	_hora_fin varchar(255),
+	_direccion varchar(255),
+	_monto_inscripcion varchar(255),
+	_url_img varchar(255),
+	_preguntas text,
+	_opciones text,
+	_respuestas text,
+	_id_usuario int
+)
+BEGIN
+
+DECLARE strLen      INT DEFAULT 0;
+DECLARE subStrLen   INT DEFAULT 0;
+DECLARE strLen_1    INT DEFAULT 0;
+DECLARE subStrLen_1 INT DEFAULT 0;
+
+DECLARE strLen_options    INT DEFAULT 0;
+DECLARE subStrLen_options INT DEFAULT 0;
+
+DECLARE separetor1 CHAR(2) DEFAULT ',';
+DECLARE separetor2 CHAR(2) DEFAULT '|';
+
+DECLARE separetor_1 CHAR(2) DEFAULT ',,';
+DECLARE separetor_2 CHAR(2) DEFAULT '||';
+DECLARE separetor_3 CHAR(2) DEFAULT '¡!';
+
+DECLARE _id_persona INT DEFAULT 0;
+
+DECLARE _opciones_x_pregunta text default null; 
+DECLARE _opcion varchar(255) default null;
+DECLARE _respuesta varchar(255) default null;
+DECLARE _fecha_date DATE DEFAULT STR_TO_DATE( _fecha, '%d/%m/%Y' ); 
+DECLARE _descripcion_opcion varchar(255) default null; 
+DECLARE _is_correct int(1) default null; 
+
+DECLARE _id_pregunta INT DEFAULT 0;
+DECLARE _pregunta_data varchar(850) DEFAULT null;
+DECLARE _pregunta VARCHAR(850) DEFAULT 0;
+DECLARE _id_opcion INT DEFAULT 0;
+DECLARE _id_opcion_correcta INT DEFAULT 0;
+DECLARE _id_inscripcion INT DEFAULT 0;
+DECLARE _puntaje INT DEFAULT 0;
+DECLARE _puntaje_total INT DEFAULT 0;
+
+DECLARE i_preguntas INT DEFAULT 1;
+DECLARE i_opciones INT DEFAULT 1;
+
+DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	BEGIN
+			ROLLBACK;
+			RESIGNAL;
+	END;
+START TRANSACTION;
+
+
+CASE _action
+	WHEN 'ins' THEN
+	
+		IF(SELECT id FROM tbl_concurso where description=_description and fecha = _fecha_date ) IS NULL THEN
+		
+			INSERT INTO tbl_concurso(description,resumen,fecha,hora_inicio,hora_fin,direccion,monto_inscripcion,url_img) 
+				VALUES(_description,_resumen,_fecha_date,STR_TO_DATE(_hora_inicio,'%h:%i %p'),STR_TO_DATE(_hora_fin,'%h:%i %p'),_direccion,_monto_inscripcion,_url_img);
+			
+			SET _id = (SELECT LAST_INSERT_ID());
+			
+			/*BUCLE PARA INSERTAR CARACTERISTICAS*/
+			ins_preguntas: LOOP
+		
+				SET strLen = CHAR_LENGTH(_preguntas);
+				SET strLen_options = CHAR_LENGTH(_opciones);
+				
+				IF strLen > 0 THEN
+					-- SET _id_pregunta = (SELECT LAST_INSERT_ID());
+					SET _pregunta_data = SUBSTRING_INDEX( _preguntas , separetor_2 , 1 );
+					
+					SET _pregunta = SUBSTRING_INDEX( _pregunta_data , separetor_2 , 1 );										
+					SET _puntaje = SUBSTRING(
+						_pregunta_data,
+						CHAR_LENGTH(SUBSTRING_INDEX( _pregunta_data , separetor_1, 1 )) + 3,
+						CHAR_LENGTH(SUBSTRING_INDEX( _pregunta_data , separetor_1, 2 )) - 3
+					);
+					
+					INSERT into tbl_pregunta(id_concurso,nro_orden,description) values(_id, i_preguntas, _pregunta);
+					SET _id_pregunta = (SELECT LAST_INSERT_ID());
+					SET i_preguntas = i_preguntas + 1;
+				END IF;
+								
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _preguntas , separetor_2, 1 )) + 3;
+				SET _preguntas = MID( _preguntas , subStrLen, strLen);
+				
+				SET _opciones_x_pregunta = SUBSTRING_INDEX( _opciones , separetor_3, 1 );
+				
+				/* BLUCLE PARA LAS OPCIONES */
+				ins_opciones: LOOP
+					
+					SET strLen_1 = CHAR_LENGTH(_opciones_x_pregunta);
+					
+					IF strLen_1 > 0 THEN
+					
+						SET _opcion = SUBSTRING_INDEX( _opciones_x_pregunta , separetor_2 , 1 );
+						
+						SET _descripcion_opcion = SUBSTRING_INDEX( _opcion , separetor_1, 1 );
+						
+						SET _is_correct = SUBSTRING(
+							_opcion,
+							CHAR_LENGTH(SUBSTRING_INDEX( _opcion , separetor_1, 1 )) + 3,
+							CHAR_LENGTH(SUBSTRING_INDEX( _opcion , separetor_1, 2 )) - 3
+						);
+						
+						insert into tbl_opcion(id_pregunta,nro_orden,description,es_correcto) values(_id_pregunta, i_opciones, _descripcion_opcion, _is_correct );
+						SET i_opciones = i_opciones + 1;
+						
+					END IF;
+					
+					SET subStrLen_1 = CHAR_LENGTH(SUBSTRING_INDEX( _opciones_x_pregunta , separetor_2, 1 )) + 3;
+					SET _opciones_x_pregunta = MID( _opciones_x_pregunta , subStrLen_1, strLen_1);
+					
+					IF _opciones_x_pregunta = '' THEN
+						LEAVE ins_opciones;
+					END IF;
+					
+				END LOOP ins_opciones;
+				/* FIN DE BUCLE PARA OPCIONES */
+				
+				SET subStrLen_options = CHAR_LENGTH(SUBSTRING_INDEX( _opciones , separetor_3, 1 )) + 3;
+				SET _opciones = MID( _opciones , subStrLen_options, strLen_options);
+				
+				SET i_opciones = 1;
+	
+				IF _preguntas = '' THEN
+					LEAVE ins_preguntas;
+				END IF;
+			END LOOP ins_preguntas;
+			
+		ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'El concurso ya existe', MYSQL_ERRNO = 1001;	
+		END IF;
+		
+	WHEN 'upd' THEN
+	
+		IF(SELECT id FROM tbl_concurso where description=_description and fecha = _fecha_date and id<>_id) IS NULL THEN
+		
+			UPDATE tbl_concurso set description=_description,resumen=_resumen,fecha = _fecha_date,
+				hora_inicio = STR_TO_DATE(_hora_inicio,'%h:%i %p') ,hora_fin = STR_TO_DATE(_hora_fin,'%h:%i %p'),
+				direccion = _direccion, monto_inscripcion = _monto_inscripcion, url_img = _url_img WHERE id=_id;
+			
+			DELETE FROM tbl_opcion  WHERE id_pregunta in ( select p.id from tbl_pregunta p where p.id_concurso = _id);			
+			DELETE FROM tbl_pregunta WHERE id_concurso = _id;
+			
+			/*BUCLE PARA INSERTAR CARACTERISTICAS*/
+			ins_preguntas: LOOP
+		
+				SET strLen = CHAR_LENGTH(_preguntas);
+				SET strLen_options = CHAR_LENGTH(_opciones);
+				
+				IF strLen > 0 THEN
+					insert into tbl_pregunta(id_concurso,nro_orden,description) values(_id, i_preguntas, SUBSTRING_INDEX( _preguntas , separetor_2 , 1 ) );
+					SET _id_pregunta = (SELECT LAST_INSERT_ID());
+					SET i_preguntas = i_preguntas + 1;
+				END IF;
+								
+				SET subStrLen = CHAR_LENGTH(SUBSTRING_INDEX( _preguntas , separetor_2, 1 )) + 3;
+				SET _preguntas = MID( _preguntas , subStrLen, strLen);
+				
+				SET _opciones_x_pregunta = SUBSTRING_INDEX( _opciones , separetor_3, 1 );
+				
+				/* BLUCLE PARA LAS OPCIONES */
+				ins_opciones: LOOP
+					
+					SET strLen_1 = CHAR_LENGTH(_opciones_x_pregunta);
+					
+					IF strLen_1 > 0 THEN
+					
+						SET _opcion = SUBSTRING_INDEX( _opciones_x_pregunta , separetor_2 , 1 );
+						
+						SET _descripcion_opcion = SUBSTRING_INDEX( _opcion , separetor_1, 1 );
+						
+						SET _is_correct = SUBSTRING(
+							_opcion,
+							CHAR_LENGTH(SUBSTRING_INDEX( _opcion , separetor_1, 1 )) + 3,
+							CHAR_LENGTH(SUBSTRING_INDEX( _opcion , separetor_1, 2 )) - 3
+						);
+						
+						insert into tbl_opcion(id_pregunta,nro_orden,description,es_correcto) values(_id_pregunta, i_opciones, _descripcion_opcion, _is_correct );
+						SET i_opciones = i_opciones + 1;
+						
+					END IF;
+					
+					SET subStrLen_1 = CHAR_LENGTH(SUBSTRING_INDEX( _opciones_x_pregunta , separetor_2, 1 )) + 3;
+					SET _opciones_x_pregunta = MID( _opciones_x_pregunta , subStrLen_1, strLen_1);
+					
+					IF _opciones_x_pregunta = '' THEN
+						LEAVE ins_opciones;
+					END IF;
+					
+				END LOOP ins_opciones;
+				/* FIN DE BUCLE PARA OPCIONES */
+				
+				SET subStrLen_options = CHAR_LENGTH(SUBSTRING_INDEX( _opciones , separetor_3, 1 )) + 3;
+				SET _opciones = MID( _opciones , subStrLen_options, strLen_options);
+				
+				SET i_opciones = 1;
+	
+				IF _preguntas = '' THEN
+					LEAVE ins_preguntas;
+				END IF;
+			END LOOP ins_preguntas;
+			
+		ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'error al actualizar el curso', MYSQL_ERRNO = 1001;
+		END IF;
+		
+	WHEN 'sv_res' THEN 
+		
+		SET _id_persona = ( SELECT id_persona FROM tbl_usuario where id = _id_usuario );
+		UPDATE tbl_inscripcion SET respuestas = _respuestas WHERE id_concurso = _id and id_persona = _id_persona;
+		
+		SET _puntaje_total = 0;
+		
+		/* BLUCLE PARA CALCULAR EL PUNTAJE*/
+		calc_puntaje: LOOP
+			
+			SET strLen_1 = CHAR_LENGTH(_respuestas);
+			
+			IF strLen_1 > 0 THEN
+			
+				SET _respuesta = SUBSTRING_INDEX( _respuestas , separetor2 , 1 );
+				
+				SET _id_pregunta = SUBSTRING_INDEX( _respuesta , separetor1 , 1 );
+				
+				SET _id_opcion = SUBSTRING(
+					_respuesta,
+					CHAR_LENGTH(SUBSTRING_INDEX( _respuesta , separetor1, 1 )) + 2,
+					CHAR_LENGTH(SUBSTRING_INDEX( _respuesta , separetor1, 2 )) - 2
+				);
+				
+				SET _puntaje = ( SELECT puntaje FROM tbl_pregunta WHERE id = _id_pregunta );
+				SET _id_opcion_correcta = ( SELECT id FROM tbl_opcion WHERE es_correcto = 1 and id_pregunta = _id_pregunta limit 1 );
+								
+				IF _id_opcion = _id_opcion_correcta THEN
+					SET _puntaje_total = _puntaje_total + _puntaje;
+				END IF;
+				
+			END IF;
+			
+			SET subStrLen_1 = CHAR_LENGTH(SUBSTRING_INDEX( _respuestas , separetor2, 1 )) + 2;
+			SET _respuestas = MID( _respuestas , subStrLen_1, strLen_1);
+			
+			IF _respuestas = '' THEN
+				LEAVE calc_puntaje;
+			END IF;
+			
+		END LOOP calc_puntaje;
+		/* FIN DE BUCLE PARA OPCIONES */
+		
+		UPDATE tbl_inscripcion SET puntaje = _puntaje_total WHERE id_concurso = _id and id_persona = _id_persona;
+		
+	WHEN 'est' THEN
+		UPDATE tbl_curso SET estado= NOT estado WHERE id=_id;
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
+END CASE;
+
+
+COMMIT;
+
 END
 ;;
 delimiter ;
@@ -4308,6 +4820,12 @@ DECLARE _id_turno int DEFAULT 0;
 DECLARE _hora_inicio time DEFAULT 0;
 DECLARE _hora_fin time DEFAULT 0;
 
+DECLARE EXIT HANDLER FOR SQLEXCEPTION 
+	BEGIN
+			ROLLBACK;
+			RESIGNAL;
+	END;
+START TRANSACTION;
 
 case _action
 	WHEN 'ins' then
@@ -4380,7 +4898,7 @@ case _action
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error' , MYSQL_ERRNO = 1001;	
 		END if;
 	WHEN 'upd' THEN
-	
+		
 		IF(SELECT id FROM tbl_curso_programado where id_curso=_id_curso and id<>_id) IS NULL THEN
 			UPDATE tbl_curso_programado set id_curso=_id_curso,fecha_inicio=STR_TO_DATE(_fecha_inicio,'%d/%m/%Y'),link_clase = _link_clase,
 				fecha_fin=STR_TO_DATE(_fecha_fin,'%d/%m/%Y'),url_img=_url_img,user_create_up=_id_usuario,create_up=CURRENT_TIMESTAMP,
@@ -4449,6 +4967,9 @@ case _action
 		ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
+
+COMMIT;
+
 END
 ;;
 delimiter ;
@@ -4498,13 +5019,13 @@ START TRANSACTION;
 
 case _action
 	WHEN 'ins' then	
-				
-		SET _id_persona = ( select id from tbl_persona where dni = _dni );		
+
+		SET _id_persona = ( select id from tbl_persona where dni = _dni );
 		
 		IF _id_persona is null THEN
 			call sp_persona('ins', null, _dni, _nombre, _apellidop, _apellidom, _correo, _celular, null, null, _id_ubigeo, null, null);
 			SET _id_persona = (SELECT LAST_INSERT_ID());
-		ELSEIF (SELECT id_concurso from tbl_concurso where id_concurso = _id_concurso and id_persona = _id_persona) is not null THEN
+		ELSEIF (SELECT id_concurso from tbl_inscripcion where id_concurso = _id_concurso and id_persona = _id_persona) is not null THEN
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ya se encuentra inscrito' , MYSQL_ERRNO = 1001;
 		END IF;
 		
@@ -4541,16 +5062,16 @@ case _action
 			END LOOP;
 			
 			-- cerramos el cursor 
-			CLOSE arreglo;    
+			CLOSE arreglo;
 			
 		END IF;
 		
 		SET _monto = (select monto_inscripcion from tbl_concurso where id = _id_concurso);
-				
-		INSERT INTO tbl_inscripcion(id_concurso,id_persona,monto) VALUES (_id_curso_programado,_id_persona,_monto);
+
+		INSERT INTO tbl_inscripcion(id_concurso,id_persona,monto) VALUES (_id_concurso,_id_persona,_monto);
 		SET _id = (SELECT LAST_INSERT_ID());
 		
-		INSERT INTO tbl_pago(id_inscripcion,id_tipo_pago,monto,estado_pago,fecha_plazo) VALUES(_id,3,_monto,1, date_add(now(), interval 1 day) );
+		INSERT INTO tbl_pago(id_inscripcion,id_tipo_pago,monto,estado_pago,fecha_plazo) VALUES(_id,3,_monto,2, date_add(now(), interval 1 day) );
 						
 	WHEN 'upd' THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Error upd' , MYSQL_ERRNO = 1001;	
@@ -4742,15 +5263,18 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_pago`(
 	_id int(32),	
 	_url_img varchar(500),
 	_opt int,
-	_observacion varchar(500),
+	_observacion varchar(500),	
 	_id_usuario int
 )
 BEGIN
+
 DECLARE _id_ususario_db int default null;
 DECLARE _id_matricula int default null;
 DECLARE _estado_pago int default null;
+DECLARE _id_siguiente_pago int default null;
+
 CASE _action
-	WHEN 'upd_bp' THEN
+	WHEN 'upd_bp' THEN  -- update baucher de pago de matricula/inscripcion a un curso/concurso
 	
 		SET _id_ususario_db = (SELECT u.id FROM tbl_usuario u INNER JOIN tbl_alumno a on a.id_persona = u.id_persona
 			INNER JOIN tbl_matricula m on m.id_alumno = a.id INNER JOIN tbl_pago pa on pa.id_matricula = m.id WHERE pa.id = _id);
@@ -4761,7 +5285,7 @@ CASE _action
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Su usuario no tiene permiso para realizar la acción', MYSQL_ERRNO = 1001;	
 		END IF;
 		
-	WHEN 'chk_bp' THEN
+	WHEN 'chk_bp' THEN -- revision baucher de pago de matricula a un curso
 		
 		SET _id_matricula = (SELECT id_matricula FROM tbl_pago where id = _id);
 		SET _estado_pago = (SELECT estado_pago FROM tbl_pago where id = _id);
@@ -4769,15 +5293,20 @@ CASE _action
 		IF _estado_pago = 3 THEN 
 			
 			IF _opt = 1 THEN
+			
+				SET _id_siguiente_pago = ( SELECT id FROM tbl_pago where estado_pago = 1 order by fecha_plazo limit 1 );
 				UPDATE tbl_pago SET estado_pago = 5,observacion=_observacion WHERE id = _id;
+				UPDATE tbl_pago SET estado_pago = 2 WHERE id = _id_siguiente_pago;
 				UPDATE tbl_matricula SET estado_matricula = 2 where id = _id_matricula;
+				
 			ELSEIF _opt = 2 THEN
 				UPDATE tbl_pago SET estado_pago = 4,observacion=_observacion WHERE id = _id;
 			END IF;
+			
 		ELSE
 			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no valida', MYSQL_ERRNO = 1001;	
 		END IF;
-				
+
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Acción no válida', MYSQL_ERRNO = 1001;
 END CASE;
@@ -4942,12 +5471,14 @@ _id int(11),
 _id_persona int(32),
 _usuario VARCHAR(50),
 _password varchar(150),
+_old_password varchar(150),
 _id_rol int,
 _id_usuario int)
 BEGIN
 
 DECLARE msg varchar(255) default '';
 DECLARE _id_usuario_nuevo int default null;
+DECLARE _dni varchar(10) default null;
 
 SET msg = CONCAT('El usuario ', _usuario , ' ya existe' );
 
@@ -4963,7 +5494,7 @@ CASE _action
 		ELSE
 		
 			INSERT INTO tbl_usuario(id,id_persona,usuario,`password`,create_at,user_create_at,update_password)
-					VALUES(_id,_id_persona,_usuario,MD5(_password),CURRENT_TIMESTAMP,_id_usuario,0);
+					VALUES(_id,_id_persona,_usuario,MD5(_usuario),CURRENT_TIMESTAMP,_id_usuario,0);
 			
 			SET _id_usuario_nuevo = (SELECT LAST_INSERT_ID() );
 			
@@ -4989,12 +5520,23 @@ CASE _action
 		END IF;
 		
 	WHEN 'est' THEN
-		UPDATE tbl_usuario SET estado= NOT estado WHERE id=_id AND id_persona=_id_persona;
+		UPDATE tbl_usuario SET estado= NOT estado WHERE id=_id;
 	
 	WHEN 'res' THEN
+		SET _usuario = (SELECT usuario from tbl_usuario where id = _id);
+		SET _dni = (SELECT dni FROM tbl_persona p INNER JOIN tbl_usuario u on u.id_persona = p.id where u.id = _id);
 		
-		UPDATE tbl_usuario SET estado= NOT estado WHERE id=_id AND id_persona=_id_persona;
+		UPDATE tbl_usuario SET `password` = md5(_dni),update_password = 0 WHERE id=_id;
+	
+	WHEN 'chng' THEN
 		
+		IF (select id FROM tbl_usuario WHERE `password`=MD5(_old_password)) IS NOT NULL THEN
+			UPDATE tbl_usuario SET `password` = md5(_password),update_password = 1 WHERE id=_id;
+		ELSE
+			SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'La contraseña actual no es correcta', MYSQL_ERRNO = 1001;
+		END IF;
+		
+	
 	ELSE
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Accion no válida', MYSQL_ERRNO = 1001;
 END CASE;
