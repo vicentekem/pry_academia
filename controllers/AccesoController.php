@@ -41,6 +41,12 @@ class AccesoController
             case "add_all_acceso":$array_result = $this->validator->saveAcceso('add_all');break;
             case "remove_acceso":$array_result = $this->validator->saveAcceso('rmv');break;
             case "remove_all_acceso":$array_result = $this->validator->saveAcceso('rmv_all');break;
+
+            case "add_acceso_x_rol":$array_result = $this->validator->saveAccesoXRol('add');break;
+            case "add_all_acceso_x_rol":$array_result = $this->validator->saveAccesoXRol('add_all');break;
+            case "remove_acceso_x_rol":$array_result = $this->validator->saveAccesoXRol('rmv');break;
+            case "remove_all_acceso_x_rol":$array_result = $this->validator->saveAccesoXRol('rmv_all');break;
+
             default: $array_result["error"] = "Error al procesar la petición";
         }
         echo json_encode($array_result);

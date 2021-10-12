@@ -13,11 +13,11 @@
                     </div>
                 </div>
                 <div class="col-7">
-                    <h3><strong>Status</strong></h3>
+                    <h3><strong></strong></h3>
 
                     <p style="margin:0">
                         <i class="fa fa-angle-double-right"></i>
-                        <strong>Curso:</strong> <span>{{estado_curso}}</span>
+                        <strong>Estado:</strong> <span>{{estado_curso}}</span>
 
                     </p>
                     <p style="margin:0">

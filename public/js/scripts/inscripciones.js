@@ -25,7 +25,10 @@ let crud_pago = {
 
         filter_container_jq.on("click",  event => searchEventListener( event ) );
         filter_container_jq.on("change", event => searchEventListener( event ) );
-        filter_container_jq.on("keyup", event => { if(event.keyCode == 13){ searchEventListener(event); } });
+        filter_container_jq.on("keyup", event => {
+            if(event.keyCode == 13 || event.keyCode == 27){ searchEventListener(event);}
+            if(event.keyCode == 27){ event.target.value = ""; }
+        });
 
         btn_new_pago.on("click",  ()=> crud_pago.openModal());
         btn_save_pago.on("click", (event)=> crud_pago.saveData(event));
@@ -50,7 +53,7 @@ let crud_pago = {
                 type:"GET",
                 url: "controllers/PagoController.php",
                 data: function(dtp){
-                    dtp.action = 'qry_pago';
+                    dtp.action = 'qry_pago_inscripcion';
                     dtp.id_pago = $("#cbx_id_pago").val();
                     dtp.search   = $("#txt_search").val();
                     return dtp;
@@ -70,10 +73,11 @@ let crud_pago = {
             ],
             columns: [
                 {
-                    render: function(data, type, row, meta){                        
+                    render: function(data, type, row, meta){
+
                         var btn_rev =  row.id_estado_pago == 3 && crud_pago.id_rol <=3 ?
                             '<a class="dropdown-item check-row" href="#" id="check_' + meta.row + '">Revisar Baucher</a>' : '';
-
+                        
                         var btn_options = `
                         <div class="dropdown">
                             <button class="btn btn-success dropdown-toggle" type="button" 
@@ -91,8 +95,7 @@ let crud_pago = {
                     }
                 },
                 { data: "estudiante"},
-                { data: "curso"},
-                { data: "ciclo"},
+                { data: "curso"},                
                 { data: "tipo_pago"},
                 { data: "fecha_plazo"},
                 { data: "monto"},

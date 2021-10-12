@@ -29,8 +29,8 @@ class PagoController
         $action = isset($_GET['action']) ? $_GET['action'] : "";
         switch ($action) {
             case "qry_pago":$array_result = $this->validator->qryPago();break;
-            case "cbx_pago":$array_result = $this->validator->cbxPago();break;            
-            case "get_pago":$array_result = $this->validator->getPago();break;
+            case "qry_pago_inscripcion":$array_result = $this->validator->qryPagoInscripcion();break;
+            case "cbx_pago":$array_result = $this->validator->cbxPago();break;
             default: $array_result["error"] = "Error al procesar la petición";break;
         }
         echo json_encode($array_result);

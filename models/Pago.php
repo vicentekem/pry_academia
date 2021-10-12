@@ -26,7 +26,7 @@ class Pago
         return $this->model->getAllRows(
             "SELECT p.id,TRIM(CONCAT(pe.nombre,' ',pe.apellido_pat,' ',ifnull(pe.apellido_mat,''))) estudiante,
                 c.description as curso, tp.description as tipo_pago,concat('S/',format(p.monto,2)) monto,te.description as estado_pago,
-                DATE_FORMAT(p.fecha_plazo,'%d/%m/%Y') fecha_plazo,em.description as estado_matricula,p.url_img,
+                DATE_FORMAT(p.fecha_plazo,'%d/%m/%Y') fecha_plazo,em.description as estado_matricula,p.url_img, p.estado_pago as id_estado_pago,
                 concat(DATE_FORMAT(cp.fecha_inicio,'%d/%m/%Y'),' - ',DATE_FORMAT(cp.fecha_fin,'%d/%m/%Y')) ciclo
             FROM tbl_pago p
             INNER JOIN tbl_matricula m ON m.id = p.id_matricula
@@ -54,23 +54,42 @@ class Pago
 
     }
 
-    public function getPago($data)
+    public function qryPagoInscripcion($data)
     {
-
         $where = Utilitario::generarFiltros($data,[
-            "id" => "c.id = :id"
-        ]);
+            "search" => "c.description like concat('%',:search,'%')",
+            "id_persona" => "pe.id = :id_persona"
+        ],["p.estado_pago in(2,3,4)"]);
 
-        $result = $this->model->getRow( "SELECT c.id,c.description,c.resumen,c.estado FROM tbl_pago c $where", $data);
-        $result["rows_caracteristicas"] = $this->model->getAllRows( 
-            "SELECT c.id,cc.description FROM tbl_pago c inner join tbl_pago_caracteristicas cc on c.id = cc.id_pago $where", $data
-        )["rows"];
-        $result["rows_beneficios"] = $this->model->getAllRows( 
-            "SELECT c.id,cb.description FROM tbl_pago c inner join tbl_pago_beneficios cb on c.id = cb.id_pago $where", $data
-        )["rows"];
+        $data_count = $data;
+        unset( $data_count["start int"] );
+        unset( $data_count["length int"] );
+        
+        return $this->model->getAllRows(
+            "SELECT p.id,TRIM(CONCAT(pe.nombre,' ',pe.apellido_pat,' ',ifnull(pe.apellido_mat,''))) estudiante,p.estado_pago as id_estado_pago,
+                c.description as curso, tp.description as tipo_pago,concat('S/',format(p.monto,2)) monto,te.description as estado_pago,
+                DATE_FORMAT(p.fecha_plazo,'%d/%m/%Y') fecha_plazo,p.url_img,DATE_FORMAT(c.fecha,'%d/%m/%Y') as fecha
+            FROM tbl_pago p
+            INNER JOIN tbl_inscripcion i ON i.id = p.id_inscripcion            
+            INNER JOIN tbl_concurso c ON c.id = i.id_concurso
+            INNER JOIN tbl_persona pe on pe.id = i.id_persona
+            INNER JOIN tbl_tablas tp ON tp.id_registro = p.id_tipo_pago and tp.id_tabla = 3            
+            INNER JOIN tbl_tablas te ON te.id_registro = p.estado_pago and te.id_tabla = 8 $where
+            ORDER BY pe.id,p.fecha_plazo  limit :start,:length ", $data,
 
-        return $result;
+            "SELECT count(p.id) as cant_rows
+            FROM tbl_pago p
+            INNER JOIN tbl_inscripcion i ON i.id = p.id_inscripcion            
+            INNER JOIN tbl_concurso c ON c.id = i.id_concurso
+            INNER JOIN tbl_persona pe on pe.id = i.id_persona
+            INNER JOIN tbl_tablas tp ON tp.id_registro = p.id_tipo_pago and tp.id_tabla = 3            
+            INNER JOIN tbl_tablas te ON te.id_registro = p.estado_pago and te.id_tabla = 8 $where",
+            $data_count
+        );
+
     }
+
+
 
     public function cbxPago()
     {

@@ -5,7 +5,7 @@
     global $menu_sup;
     
     $menu_sup = "Procesos";
-    $currentPage = "Matricula Y Mensualidades";
+    $currentPage = "Inscripciones";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
@@ -44,13 +44,14 @@
                 <div class="ibox">
 
                     <div class="ibox-title">
-                        <h3 style="display: inline-block">Matricula y Mensualidades</h3>
+                        <h3 style="display: inline-block"> Inscripciones </h3>
                         <div class="ibox-tools"></div>
                     </div>
 
                     <div class="ibox-content" id="filter_container">
 
                         <div class="row">
+
                             <div class="form-group mb-0 col-12 col-md-5 col-lg-10">
                                 <label for="txt_search">Buscar</label>
                                 <div class="form-group input-group">
@@ -70,10 +71,9 @@
                                     <tr>
                                         <th>Accion</th>
                                         <th>Estudiante</th>
-                                        <th>Curso</th>
-                                        <th>Ciclo</th>
+                                        <th>Curso</th>                                        
                                         <th>Tipo</th>
-                                        <th>Fecha</th>
+                                        <th>Fecha Plazo</th>
                                         <th>Monto</th>
                                         <th>Estado</th>
                                     </tr>
@@ -106,7 +106,7 @@
     <script src="public/js/plugins/sweetalert/sweetalert.min.js"></script>
     <script src="public/js/utilitario/utilitario.js"></script>    
 
-    <script src="public/js/scripts/registrar_pago.js"></script>
+    <script src="public/js/scripts/inscripciones.js"></script>
 
 </body>
 </html>

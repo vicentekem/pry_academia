@@ -270,7 +270,7 @@ let crud_concurso = {
 
         <div class="mt-1">
             <input type="radio" id="rd_add_opt_${id_question}">
-            <a href="#" id="add_opt_${id_question}" class="add-option" >Agregar opcionaaa</a>
+            <a href="#" id="add_opt_${id_question}" class="add-option" >Agregar opcion</a>
         </div>`;
 
         return `
@@ -318,7 +318,7 @@ let crud_concurso = {
         questions.forEach( ( question )=>{
             let id_question = question.id;            
             let id_option = 0;
-
+            console.log( question );
             let optionsHTML = all_options.filter( option=> option.id_pregunta == id_question ).map(( option )=>{
                 id_option++;
                 return `
@@ -331,7 +331,7 @@ let crud_concurso = {
             }).join(' ') + 
             `<div class="mt-1">
                 <input type="radio" id="rd_add_opt_${crud_concurso.id_question}">
-                <a href="#" id="add_opt_${crud_concurso.id_question}" class="add-option" >Agregar opcionaaa</a>
+                <a href="#" id="add_opt_${crud_concurso.id_question}" class="add-option" >Agregar opcion</a>
             </div>`;
 
             let questionsHTML = crud_concurso.getHtmlQuestion(crud_concurso.id_question,question,optionsHTML);

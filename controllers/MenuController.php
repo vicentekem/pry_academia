@@ -32,6 +32,7 @@ class MenuController
             case "cbx_menu":$array_result = $this->validator->cbxMenu();break;
             case "cbx_submenu":$array_result = $this->validator->cbxSubMenu();break;
             case "cbx_submenu_x_usuario":$array_result = $this->validator->cbxSubMenuXUsuario();break;
+            case "cbx_submenu_x_rol":$array_result = $this->validator->cbxSubMenuXRol();break;
 
             default: $array_result["error"] = "Error al procesar la petición";break;
         }

@@ -87,6 +87,18 @@ class Menu
         );
     }
 
+    public function cbxSubMenuXRol($data)
+    {
+        $where = Utilitario::generarFiltros($data,[ "id_rol" => "ar.id_rol = :id_rol" ]);
+
+        return $this->model->getAllRows(
+            "SELECT sm.id,sm.id_menu,sm.name_menu
+            FROM tbl_submenu sm
+            INNER JOIN tbl_accesos_rol ar on ar.id_submenu = sm.id
+            INNER JOIN tbl_tablas tr on tr.id_registro = ar.id_rol and tr.id_tabla = 2 $where ORDER BY sm.orden",$data
+        );
+    }
+
 }
 
 

@@ -100,7 +100,7 @@ class CursoProgramadoValidator
         $data["id_persona int"] = Utilitario::getIntParam("id_persona");
         $data["fecha_inicio"] = Utilitario::getParam("fecha_inicio");
         $data["fecha_fin"] = Utilitario::getParam("fecha_fin");
-        $data["link_clase"] = Utilitario::getParam("link_clase");
+        $data["link_clase"] = Utilitario::getParam("link_clase",false);
         $data["tipos_pago"] = Utilitario::getParam("tipos_pago");
         $data["turnos"] = Utilitario::getParam("turnos");
         $data["cant_mensualidades int"] = Utilitario::getIntParam("cant_mensualidades");
@@ -139,8 +139,7 @@ class CursoProgramadoValidator
                 unlink( $url_img_old );
             }
             move_uploaded_file($file_tmp,$url_img_new);
-        }
-                
+        }        
         return $result;
     }
 

@@ -33,4 +33,11 @@ class MenuValidator
         return $result;
     }
 
+    public function cbxSubMenuXRol(){
+        $result = [ "error" => "" ];
+        $data["id_rol int"] = Utilitario::getIntParam("id_rol");
+        $result = $result["error"] === "" ? $this->model->cbxSubMenuXRol($data) : $result;
+        return $result;
+    }
+
 }

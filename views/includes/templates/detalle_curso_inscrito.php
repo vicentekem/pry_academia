@@ -31,7 +31,7 @@
                 <!-- enlace -->
                 <div class="form-group col-12 px-1">
                     <label for="cbx_crud_id_profesor">Link<span class="text-danger">*</span> </label>
-                    <p class="form-control "><a href={{link_clase}}></a></p>
+                    <p class="form-control "><a href='{{link_clase}}' target='_blank'> {{link_clase}} </a></p>
                 </div>
 
                 <!-- fecha de inico -->

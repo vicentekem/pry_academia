@@ -5,7 +5,7 @@
     global $menu_sup;
     
     $menu_sup = "Herramientas";
-    $currentPage = "Accesos x Usuario";
+    $currentPage = "Accesos x Rol";
     
     if (!isset($_SESSION["usuario_academia"])) {
         header('location:?url=login');
@@ -83,8 +83,8 @@
                                 <div class="col-12 col-md-4">
                                     
                                     <div class="form-group">
-                                        <label for="cbx_usuarios">Usuario</label>
-                                        <select class="form-control" name="cbx_menus" id="cbx_usuarios">
+                                        <label for="cbx_rol">ROL</label>
+                                        <select class="form-control" name="cbx_rol" id="cbx_rol">
                                             <option value="">[Seleccione]</option><option value="1">
                                         </select>                                        
                                     </div>
@@ -129,7 +129,7 @@
 
     <!-- <script src="public/js/scripts/accesos.js"></script> -->
 
-    <script src="public/js/scripts/menu_controller.js"></script>
+    <script src="public/js/scripts/accesos_rol.js"></script>
 
 
 </body>

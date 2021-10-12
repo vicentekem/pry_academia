@@ -58,7 +58,7 @@ if (!isset($_SESSION["usuario_academia"])) {
                                     <!--Imagen de Usuario  -->
                                     <div class="cont-caja">
                                         <div class="cont_img">
-                                            <img class="foto" src="public/img/photo2.jpg" alt="">
+                                            <img class="foto" src="public/img/profile_small.jpg" alt="">
                                             <label for="file">
                                                 <input id="file" type="file" accept="image/*">
                                                 <i class="plas fa fa-camera"></i>
@@ -79,7 +79,7 @@ if (!isset($_SESSION["usuario_academia"])) {
                             <!-- Persoanl Information -->
                             <div class="cont_info">
                                 <div class="cont_info_caja">
-                                    <h2 class="personal">Persoanl Information</h2>
+                                    <h2 class="personal">INFORMACION PERSONAL</h2>
 
                                     <div class="cont-datos">
 

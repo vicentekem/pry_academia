@@ -14,10 +14,15 @@ class Acceso
     public function saveAcceso($action,$data){
 
         return $this->model->executeProcess(
-            "call sp_alumno( '$action' ,:id,:id_persona,:dni,:nombre,:ape_pat,:ape_mat,:correo,
-                :celular,:telefono,null,:id_distrito,:id_sexo,:id_usuario) ",
-            $data,
-            "Datos guardados exitosamente"
+            "call sp_accesos( '$action' ,:id_usuario,:id_rol,:id_menu,:accesos) ",$data,"Datos guardados exitosamente"
+        );
+
+    }
+
+    public function saveAccesoXRol($action,$data){
+
+        return $this->model->executeProcess(
+            "call sp_accesos_rol( '$action',:id_rol,:id_menu,:accesos) ",$data,"Datos guardados exitosamente"
         );
 
     }

@@ -25,9 +25,64 @@ class MailService{
         //$mail->msgHTML("<h1>InformaciÃ³n de cita</h1>");
         //$mail->addStringAttachment($f, 'Cita.pdf');
     */
-    
+    private $username = 'joel.vicente.quispe@gmail.com';
+    private $password = 'Kempa123.';    
+    private $subject = 'Academia .... ';
+    private $url_base = 'http://localhost:8080/pry_academia/';
 
     function sendMail($data)
+    {
+        $result = ["error" => "", "rows" => []];
+        try {
+            //$f = file_get_contents("http://localhost/hc/services/pdf/pdfcita.php?id=".$data["id"]);
+            $mail = new PHPMailer(true);
+            $mail->CharSet = "UTF-8";
+            $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+            $mail->isSMTP();                                            // Set mailer to use SMTP
+            $mail->Host = 'smtp.gmail.com';                             // Specify main and backup SMTP servers
+            //$mail->Host = 'mail.dirislimacentro.gob.pe';              // Specify main and backup SMTP servers
+            $mail->SMTPAuth = true;                                     // Enable SMTP authentication
+            $mail->Username = $this->username;                          // SMTP username
+            $mail->Password = $this->password;                          // SMTP password
+            //$mail->Username = 'admision@dirislimacentro.gob.pe';        // SMTP username
+            //$mail->Password = 'RNECimap7102';                           // SMTP password
+            $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+            $mail->Port = 587;                                          // TCP port to connect to
+            //$mail->Port = 465;                                        // TCP port to connect to
+
+            $mail->setFrom('joel.vicente.quispe@gmail.com', 'Academia');
+            $mail->addAddress($data["correo"]);
+
+            $mail->isHTML(true);
+            $mail->Subject = 'Registro Exitoso - ' . $this->subject;
+            $msg  = "<p>Hola ". $data["nombre"] ."!</p>";
+            $msg .= "<p>Para completar el proceso de matricula debera ingrresar a la intranet y en la opcion procesos -> MATRICULA Y MENSUALIDADES <br>";
+            $msg .= "donde debera adjuntar el baucher del pago</p>";
+
+            if( $data["id"] == null ){
+                $msg .= "<p>Estos son tus credenciales de acceso a la intranet:</p>";
+                $msg .= "<p>Usuario: ". $data["dni"] ."</p>";
+                $msg .= "<p>Contraseña: ". $data["dni"] ."</p>";
+                $msg .= "<p>Deberá cambiar su contraseña por defecto desde la platadforma.</p>";
+            }else{
+                $msg .= "<p>Usuario: ". $data["dni"] ."</p>";                
+            }            
+            $msg .= "<p>Para Acceder a la plataforma dar <a href='" . $this->url_base . "?url=login'>click aqui</a>.</p>";
+            $mail->msgHTML($msg);
+            
+            if (!$mail->send()) {
+                $result["error"] = "Error al enviar el email";
+            }
+
+        } catch (Exception $e) {
+            //$result["error"] = "Error al enviar el email";
+            $result["error"] = $e->getMessage();
+        }
+
+        return $result;
+    }
+
+    function sendMailInscripcion($data)
     {
         $result = ["error" => "", "rows" => []];
         try {
@@ -41,8 +96,8 @@ class MailService{
             $mail->Host = 'smtp.gmail.com';                             // Specify main and backup SMTP servers
             //$mail->Host = 'mail.dirislimacentro.gob.pe';              // Specify main and backup SMTP servers
             $mail->SMTPAuth = true;                                     // Enable SMTP authentication
-            $mail->Username = 'joel.vicente.quispe@gmail.com';          // SMTP username
-            $mail->Password = 'Kempa123.';                              // SMTP password
+            $mail->Username = $this->username;                          // SMTP username
+            $mail->Password = $this->password;                          // SMTP password
             //$mail->Username = 'admision@dirislimacentro.gob.pe';        // SMTP username
             //$mail->Password = 'RNECimap7102';                           // SMTP password
             $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
@@ -53,9 +108,11 @@ class MailService{
             $mail->addAddress($data["correo"]);
 
             $mail->isHTML(true);
-            $mail->Subject = 'Registro exitoso - academia .... ';
+
+            $mail->Subject = 'Registro Exitoso - ' . $this->subject;
+
             $msg  = "<p>Hola ". $data["nombre"] ."!</p>";
-            $msg .= "<p>Para completar el proceso de matricula debera ingrresar a la intranet y en la opcion procesos -> MATRICULA Y MENSUALIDADES <br>";
+            $msg .= "<p>Para completar el proceso de inscripcion debera ingrresar a la intranet y en la opcion procesos -> INSCRIPCIONES <br>";
             $msg .= "donde debera adjuntar el baucher del pago</p>";
 
             if( $data["id"] == null ){
@@ -66,7 +123,8 @@ class MailService{
             }else{
                 $msg .= "<p>Usuario: ". $data["dni"] ."</p>";                
             }
-            $msg .= "<p>Para Acceder a la plataforma dar <a href='http://localhost:8080/pry_academia/?url=login'>click aqui</a>.</p>";
+
+            $msg .= "<p>Para Acceder a la plataforma dar <a href='" . $this->url_base . "?url=login'>click aqui</a>.</p>";
             $mail->msgHTML($msg);
             
             if (!$mail->send()) {

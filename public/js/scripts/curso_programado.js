@@ -271,6 +271,7 @@ let crud_curso_programado = {
         fd.append("fecha_fin",fecha_fin);
         fd.append("tipos_pago",tipos_pago);
         fd.append("turnos",turnos);
+        fd.append("link_clase",link_clase);
         fd.append("cant_mensualidades",cant_mensualidades);
         fd.append("url_img",url_img);
         fd.append("url_img_old",crud_curso_programado.url_img_old);

@@ -27,6 +27,31 @@ class Concurso
 
     }
 
+    public function qryConcursoInscripcion($data)
+    {
+        $where = Utilitario::generarFiltros($data,[
+            "search" => "c.description like concat('%',:search,'%')",
+            "id_persona" => "i.id_persona = :id_persona"
+        ]);
+
+        return $this->model->getAllRows(
+            "SELECT c.id,c.description,DATE_FORMAT(c.fecha,'%d/%m/%Y') fecha,c.monto_inscripcion,ifnull(puntaje,0) puntaje,
+            DATE_FORMAT(hora_inicio,'%h:%i %p') hora_inicio, DATE_FORMAT(hora_fin,'%h:%i %p') hora_fin,
+            CASE 
+                WHEN c.fecha = current_date and TIME(NOW()) between hora_inicio and hora_fin  THEN 1
+                WHEN c.fecha > current_date or ( c.fecha = current_date and time(now()) < hora_inicio ) THEN 2
+                ELSE 3
+            END as id_estado,
+            CASE 
+                WHEN c.fecha = current_date and TIME(NOW()) between hora_inicio and hora_fin  THEN 'En curso'
+                WHEN c.fecha > current_date or ( c.fecha = current_date and time(now()) < hora_inicio ) THEN 'Proximamente'
+                ELSE 'Terminado'
+            END as estado
+            FROM tbl_concurso c inner join tbl_inscripcion i on i.id_concurso = c.id $where ", $data
+        );
+
+    }
+
     public function getConcurso($data)
     {
 
@@ -78,9 +103,10 @@ class Concurso
     }
 
     public function saveConcurso($action,$data){
+
         return $this->model->executeProcess(
             "call sp_concurso( '$action' ,:id,:description,:resumen,:fecha,:hora_inicio,:hora_fin,
-            :direccion,:monto_inscripcion,:url_img,:preguntas,:opciones,:id_usuario)", $data,
+            :direccion,:monto_inscripcion,:url_img,:preguntas,:opciones,:respuestas,:id_usuario)", $data,
             "Datos guardados exitosamente"
         );
 

@@ -30,6 +30,17 @@ class ConcursoValidator
         return $result;
     }
 
+    public function qryConcursoInscripcion()
+    {
+        $result = [ "error" => "" ];
+
+        $data["search"] =  Utilitario::getParam("search");
+        $data["id_persona"] = $_SESSION["usuario_academia"]["id_persona"];
+
+        $result = $result["error"] === "" ? $this->model->qryConcursoInscripcion($data) : $result;
+        return $result;
+    }
+
     public function getConcurso()
     {
         $result = [ "error" => "" ];
@@ -37,8 +48,9 @@ class ConcursoValidator
 
         $result = $result["error"] === "" ? $this->model->getConcurso($data) : $result;
         return $result;
+    
     }
-
+    
     public function getDescConcurso()
     {
         $result = [ "error" => "" ];
@@ -70,6 +82,7 @@ class ConcursoValidator
         
         $data["preguntas"] = Utilitario::getParam("preguntas",false);
         $data["opciones"] = Utilitario::getParam("opciones",false);
+        $data["respuestas"] = Utilitario::getParam("respuestas");
 
         $data["id_usuario"] = $_SESSION["usuario_academia"]["id"];
 
@@ -80,31 +93,39 @@ class ConcursoValidator
         $url_img_old = "";
         $file_tmp = "";
         $url_img_new = "";
+        
+        $data["url_img"] = $url_img;
 
-        if($action === 'upd' && $fl_img){
-            $url_img_old = $this->model->getUrlImgConcurso(["id int" => $data["id int"]])["row"]["url_img"];
-        }
+        if($action != "sv_res"){
 
-        if($fl_img){
-            $file_name = $_FILES['fl_img']['name'];
-            $file_tmp  = $_FILES['fl_img']['tmp_name'];
-            $explode = explode('.',$_FILES['fl_img']['name']);
-            $file_ext=strtolower(end($explode));
-            $file_name_db = uniqid() . "." . $file_ext;
-            $url_img_new = __DIR__ . "/../../public/img/concurso/" . $file_name_db;
-            $data["url_img"] = "public/img/concurso/" . $file_name_db;            
-        }else{
-            $data["url_img"] = $url_img;
+            if($action === 'upd' && $fl_img){
+                $url_img_old = $this->model->getUrlImgConcurso(["id int" => $data["id int"]])["row"]["url_img"];
+            }
+    
+            if($fl_img){
+                $file_name = $_FILES['fl_img']['name'];
+                $file_tmp  = $_FILES['fl_img']['tmp_name'];
+                $explode = explode('.',$_FILES['fl_img']['name']);
+                $file_ext=strtolower(end($explode));
+                $file_name_db = uniqid() . "." . $file_ext;
+                $url_img_new = __DIR__ . "/../../public/img/concurso/" . $file_name_db;
+                $data["url_img"] = "public/img/concurso/" . $file_name_db;            
+            }else{
+                $data["url_img"] = $url_img;
+            }
+
         }
         
         $result = $result["error"] === "" ? $this->model->saveConcurso($action,$data) : $result;
         
-        if($result["error"] === ""){
+        if($result["error"] === "" && $action != "sv_res"){
+
             if($url_img_old !== "public/img/default.png" && $url_img_old != "" && $url_img_old != null && file_exists($url_img_old)){
                 $url_img_old = __DIR__ . "/../../" . $url_img_old;
                 unlink( $url_img_old );
             }
             move_uploaded_file($file_tmp,$url_img_new);
+
         }
 
         //echo json_encode( $result );

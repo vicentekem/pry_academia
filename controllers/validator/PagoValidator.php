@@ -36,6 +36,25 @@ class PagoValidator
         return $result;
     }
 
+    public function qryPagoInscripcion()
+    {
+        $result = [ "error" => "" ];
+
+        $data["start int"] = isset($_GET["start"]) ? $_GET["start"] : null;
+        $data["length int"] = isset($_GET["length"]) ? $_GET["length"] : null;
+
+        $data["search"] =     Utilitario::getParam("search");
+        
+        $id_rol = $_SESSION["usuario_academia"]["id_rol"];
+        if( $id_rol != 1 && $id_rol != 2 ){
+            $data["id_persona int"] = $_SESSION["usuario_academia"]["id_persona"];
+        }
+        
+        if ($result["error"] === "") $result = $this->model->qryPagoInscripcion($data);        
+
+        return $result;
+    }
+
     public function cbxPago()
     {
         $result = [ "error" => "" ];        
@@ -43,15 +62,7 @@ class PagoValidator
         return $result;
     }
 
-    public function getPago()
-    {
-        $result = [ "error" => "" ];        
-        $data["id int"] = Utilitario::getParam("id");                
-        if ($result["error"] === "") $result = $this->model->getPago($data);        
-
-        return $result;
-    }
-
+    
     public function savePago($action){
 
         $result = [ "error" => "" ];
