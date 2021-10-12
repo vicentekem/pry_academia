@@ -292,10 +292,9 @@ form.php-email-form {
 .imagen {
   width: 100%;
 }
-.contenido__title{
+.contenido__title {
   /* background-color: red; */
   width: 100%;
-  
 }
 .title__nosotros {
   text-align: center;
@@ -485,8 +484,28 @@ transition: all 0.3s ease;
   animation: up-down 2s ease-in-out infinite alternate-reverse both;
 }
 
-.row {
+.comtact {
+  display: flex;
   justify-content: center;
+}
+
+.row {
+  justify-content: space-around;
+}
+
+@media (max-width: 767px) {
+  .contact .info{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    gap: 1rem;
+  }
+  .contact-about{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -568,11 +587,11 @@ transition: all 0.3s ease;
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
-.space__content{
+.space__content {
   padding: 2rem 0 5rem 0;
   overflow: hidden;
 }
-.space--contactos{
+.space--contactos {
   padding-top: 3rem;
   overflow: hidden;
 }
@@ -1213,7 +1232,10 @@ transition: all 0.3s ease;
   position: relative;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
@@ -1221,7 +1243,10 @@ transition: all 0.3s ease;
   border: 1px solid #3498db;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.portfolio-details
+  .portfolio-details-slider
+  .swiper-pagination
+  .swiper-pagination-bullet-active {
   background-color: #3498db;
 }
 
@@ -1480,6 +1505,8 @@ transition: all 0.3s ease;
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
+
+
 .contact .contact-about h3 {
   font-size: 28px;
   margin: 0 0 10px 0;
@@ -1597,7 +1624,7 @@ transition: all 0.3s ease;
 .contact .php-email-form textarea:focus {
   border-color: #3498db;
 }
-.btn-space{
+.btn-space {
   margin: 2rem 0 3rem 0;
 }
 
