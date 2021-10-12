@@ -11,16 +11,16 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-.container-banner{
+.container-banner {
   width: 100%;
-max-width: 1140px;
-margin: 0 auto;
+  max-width: 1140px;
+  margin: 0 auto;
 }
 
-.border-baner{
+.border-baner {
   border: none;
 }
-.imagen-2 img{
+.imagen-2 img {
   display: none;
 }
 .shap22 {
@@ -43,26 +43,54 @@ margin: 0 auto;
   left: 58%;
   animation: rotate 10s linear infinite;
 }
+
+/* ----------------------------- */
+.curso_img {
+  border-top-right-radius: 0.5rem;
+  height: 350px;
+}
+.curso_img img {
+  transition: transform 0.3s ease-out;
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  box-shadow: -10px 10px 20px -10px rgba(0, 0, 0, 0.5);
+  /* border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem; */
+}
+.curso_img img:hover {
+  transform: scale(0.8);
+  cursor: pointer;
+}
+
+@supports(object-fit: cover){
+  .curso_img img{
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+}
+
 @media (max-width: 757px) {
   .contenedor-baner {
     background-image: none;
   }
-  .imagen-1 img{
+  .imagen-1 img {
     display: none;
   }
-  .contenido-baner p{
+  .contenido-baner p {
     text-align: center;
   }
-  .contenedor-baner{
+  .contenedor-baner {
     margin-bottom: 0;
   }
-  .contenido-asets{
+  .contenido-asets {
     min-width: 271px;
     width: 50%;
     margin: 0 auto;
   }
-  .btn-2 a{
-    margin:0 auto;
+  .btn-2 a {
+    margin: 0 auto;
   }
-
 }

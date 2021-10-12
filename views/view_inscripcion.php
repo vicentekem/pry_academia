@@ -37,7 +37,7 @@
                         <div class="social-flex">
                             <!-- Home -->
                             <div class="btn-ico social-ico">
-                                <a href="?url=inicio" class="icon-insc">
+                                <a href="?url=inicio" class="icon-insc" title="Home">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" class="h-6 w-6 svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                                     </svg>
@@ -46,7 +46,7 @@
 
                             <!-- whatsapp -->
                             <div class="btn-ico social-ico">
-                                <a href="" class="icon-insc">
+                                <a href="" class="icon-insc" title="Whatsapp">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" viewBox="0 0 14 14" class="svg-icon s-color-text normal s-mr-1 whatsapp" id="" fill="currentColor" title="">
                                         <path d="M12.036,1.964A6.707,6.707,0,0,0,1.42,9.944L0,14l4.056-1.42a6.707,6.707,0,0,0,7.98-10.616ZM10.609,9.2l-.774.774c-.641.641-2.461-.139-4.065-1.742S3.387,4.807,4.028,4.165L4.8,3.391a.411.411,0,0,1,.581,0l.968.968a.411.411,0,0,1,0,.581L5.77,5.52A5.7,5.7,0,0,0,8.48,8.23l.581-.581a.411.411,0,0,1,.581,0l.968.968A.411.411,0,0,1,10.609,9.2Z"></path>
                                     </svg>
@@ -55,7 +55,7 @@
 
                             <!-- phone-->
                             <div class="btn-ico social-ico">
-                                <a href="#" class="icon-insc">
+                                <a href="#" class="icon-insc" title="Celular">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="1.25em" height="1.25em" class="h-6 w-6 svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                     </svg>

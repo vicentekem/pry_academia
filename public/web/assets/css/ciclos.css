@@ -330,8 +330,6 @@ input[type="search"]::-webkit-search-results-decoration {
   transition: transform 0.3s ease-out;
   width: 100%;
   height: auto;
-  /* max-width:250px; */
-  /* max-height: 180px; */
   display: block;
   border-top-left-radius: 0.5rem;
   border-top-right-radius: 0.5rem;

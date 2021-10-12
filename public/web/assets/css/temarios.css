@@ -360,6 +360,7 @@ color: var(--dark-sure);
   padding-left: 0.8rem;
 }
 
+
 @media (max-width: 1379px) {
   .beneficio__caja{
     min-width: 250px;
